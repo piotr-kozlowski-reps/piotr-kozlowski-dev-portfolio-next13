@@ -1,32 +1,71 @@
-import React, { Fragment, FunctionComponent, useRef, useState } from "react";
+import React, {
+  Fragment,
+  FunctionComponent,
+  useCallback,
+  useRef,
+  useState,
+} from "react";
 import Image from "next/image";
+import { gsap } from "gsap";
+import useDeviceSize from "../hooks/useDeviceSize";
 
 interface Props {
   timeline: gsap.core.Timeline;
-  // footerRef: React.RefObject<HTMLDivElement>;
+  footerRef: React.RefObject<HTMLDivElement>;
 }
 
-const Navigation: FunctionComponent<Props> = ({ timeline }) => {
+const Navigation: FunctionComponent<Props> = ({ timeline, footerRef }) => {
   ////vars
   const [isHamburger, setIsHamburger] = useState(true);
+  const [isShowMobileNavigation, setIsShowMobileNavigation] = useState(false);
+  const [width, height] = useDeviceSize();
 
   let mobileNavigationRef = useRef<HTMLDivElement>(null);
   let hamburgerIconRef1 = useRef<HTMLDivElement>(null);
   let hamburgerIconRef2 = useRef<HTMLDivElement>(null);
 
+  ////utils
+  // const showMobileNavigation = () => {
+  //   const tl = gsap.timeline();
+  //   tl.to(footerRef.current, { y: 200, duration: 0.4 }).to(
+  //     mobileNavigationRef.current,
+  //     {
+  //       clipPath: "polygon(3% 0%, 100% 0%, 100% 100%, 100% 100%, 15% 90%)",
+  //       duration: 0.3,
+  //     },
+  //     "-=0.3"
+  //   );
+  //   setIsShowMobileNavigation(true);
+  // };
+  // const hideMobileNavigation = useCallback(() => {
+  //   const ctx = gsap.context(() => {
+  //     const tl = gsap.timeline({ ease: "elastic.out(1, 0.3)" });
+  //     tl.to(mobileNavigationRef.current, {
+  //       clipPath: "polygon(100% 0%, 100% 0%, 100% 100%, 100% 100%, 100% 70%)",
+  //       duration: 0.3,
+  //     }).to(footerRef.current, { y: 0, duration: 0.3 }, "-=0.3");
+  //   });
+  //   setIsShowMobileNavigation(false);
+  // }, [footerRef]);
+
   ////logic
+  const isLessThanOrEqualMdSize = useCallback(() => {
+    return width < 768 ? true : false;
+  }, [width]);
   /** Toggling HamburgerIcon and "X" */
   function toggleHamburgerIcon() {
-    if (isHamburger && isLessThanOrEqualMdSize()) {
-      hamburgerIntoXAnimation(hamburgerIconRef1, hamburgerIconRef2);
-      showMobileNavigation();
-      setIsHamburger(false);
-    }
-    if (!isHamburger && isLessThanOrEqualMdSize()) {
-      XIntoHamburgerAnimation(hamburgerIconRef1, hamburgerIconRef2);
-      hideMobileNavigation();
-      setIsHamburger(true);
-    }
+    console.log("toggleHamburgerIcon");
+
+    // if (isHamburger && isLessThanOrEqualMdSize()) {
+    //   // hamburgerIntoXAnimation(hamburgerIconRef1, hamburgerIconRef2);
+    //   showMobileNavigation();
+    //   setIsHamburger(false);
+    // }
+    // if (!isHamburger && isLessThanOrEqualMdSize()) {
+    //   // XIntoHamburgerAnimation(hamburgerIconRef1, hamburgerIconRef2);
+    //   hideMobileNavigation();
+    //   setIsHamburger(true);
+    // }
   }
 
   ////jsx
@@ -379,11 +418,29 @@ const Navigation: FunctionComponent<Props> = ({ timeline }) => {
               </Link>
             </div>
           </div> */}
+          <div className="absolute top-8 left-8">
+            <Image
+              src="/logo_transparency 1.png"
+              alt="piotr kozłowski dev-portfolio"
+              width={160}
+              height={44}
+            />
+          </div>
           <div
-            className="w-9 h-9 absolute transition ease-out hover:scale-110 md:hover:scale-100 top-6 right-8 z-50"
+            className="w-16 absolute top-8 right-1 z-50"
             onClick={toggleHamburgerIcon}
           >
-            <div className="absolute top-0 left-0 z-20" ref={hamburgerIconRef1}>
+            <div ref={hamburgerIconRef1}>
+              <Image
+                src="/hamburger.svg"
+                alt="hamburger icon"
+                width={44}
+                height={44}
+                className="cursor-pointer md:cursor-default"
+                priority={true}
+              />
+            </div>
+            {/* <div className="absolute top-0 left-0" ref={hamburgerIconRef2}>
               <Image
                 src={"/hamburger.svg"}
                 alt="hamburger icon"
@@ -391,16 +448,7 @@ const Navigation: FunctionComponent<Props> = ({ timeline }) => {
                 height={35}
                 className="cursor-pointer md:cursor-default"
               />
-            </div>
-            <div className="absolute top-0 left-0" ref={hamburgerIconRef2}>
-              <Image
-                src={"/hamburger.svg"}
-                alt="hamburger icon"
-                width={35}
-                height={35}
-                className="cursor-pointer md:cursor-default"
-              />
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
