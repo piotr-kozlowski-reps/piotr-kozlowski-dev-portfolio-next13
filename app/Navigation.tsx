@@ -2,12 +2,20 @@ import React, {
   Fragment,
   FunctionComponent,
   useCallback,
+  useEffect,
   useRef,
   useState,
 } from "react";
 import Image from "next/image";
 import { gsap } from "gsap";
 import useDeviceSize from "../hooks/useDeviceSize";
+import {
+  hamburgerIntoSeparatorAnimation,
+  hideElementsInXAnimation,
+  revealElementsInXAnimation,
+  separatorIntoHamburgerAnimation,
+} from "../utils/animations";
+import Link from "next/link";
 
 interface Props {
   timeline: gsap.core.Timeline;
@@ -20,11 +28,20 @@ const Navigation: FunctionComponent<Props> = ({ timeline, footerRef }) => {
   const [isShowMobileNavigation, setIsShowMobileNavigation] = useState(false);
   const [width, height] = useDeviceSize();
 
-  let mobileNavigationRef = useRef<HTMLDivElement>(null);
-  let hamburgerIconRef1 = useRef<HTMLDivElement>(null);
-  let hamburgerIconRef2 = useRef<HTMLDivElement>(null);
+  let hamburgerIconRef = useRef<HTMLDivElement>(null);
+  let separatorIconRef = useRef<HTMLDivElement>(null);
+  let homeRef = useRef<HTMLLIElement>(null);
+  let aboutRef = useRef<HTMLLIElement>(null);
+  let projectsRef = useRef<HTMLLIElement>(null);
+  let contactRef = useRef<HTMLLIElement>(null);
+  let githubRef = useRef<HTMLDivElement>(null);
+  let linkedinRef = useRef<HTMLDivElement>(null);
 
   ////utils
+  //TODO: delete later
+  function alertHandler(message: string) {
+    alert(message);
+  }
   // const showMobileNavigation = () => {
   //   const tl = gsap.timeline();
   //   tl.to(footerRef.current, { y: 200, duration: 0.4 }).to(
@@ -67,6 +84,54 @@ const Navigation: FunctionComponent<Props> = ({ timeline, footerRef }) => {
     //   setIsHamburger(true);
     // }
   }
+
+  ////side effects
+  /** Triggering animation of Hamburger Icon when media query changes */
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      let mm = gsap.matchMedia();
+
+      mm.add("(max-width: 768px)", () => {
+        separatorIntoHamburgerAnimation(hamburgerIconRef, separatorIconRef);
+        hideElementsInXAnimation(
+          [
+            linkedinRef.current!,
+            githubRef.current!,
+            contactRef.current!,
+            projectsRef.current!,
+            aboutRef.current!,
+            homeRef.current!,
+          ],
+          0,
+          0.3,
+          0.04,
+          0,
+          60
+        );
+      });
+
+      mm.add("(min-width: 769px)", () => {
+        hamburgerIntoSeparatorAnimation(hamburgerIconRef, separatorIconRef);
+        revealElementsInXAnimation(
+          [
+            homeRef.current!,
+            aboutRef.current!,
+            projectsRef.current!,
+            contactRef.current!,
+            githubRef.current!,
+            linkedinRef.current!,
+          ],
+          0.3,
+          0.4,
+          0.02,
+          60,
+          0
+        );
+      });
+    });
+
+    return () => ctx.revert();
+  }, []);
 
   ////jsx
   return (
@@ -418,6 +483,102 @@ const Navigation: FunctionComponent<Props> = ({ timeline, footerRef }) => {
               </Link>
             </div>
           </div> */}
+
+          {/* <ul className="uppercase text-lg font-quicksand font-semibold text-white flex flex-col gap-7 justify-end items-end pt-[5.5rem] pr-8">
+              <li
+                className="cursor-pointer"
+                ref={homeMobileRef}
+                onMouseEnter={mouseEventsAnimationHandler.bind(
+                  null,
+                  homeMobileRef,
+                  1,
+                  1.1,
+                  0.3
+                )}
+                onMouseLeave={mouseEventsAnimationHandler.bind(
+                  null,
+                  homeMobileRef,
+                  1.1,
+                  1,
+                  0.3
+                )}
+              >
+                <Link href={"/"}>
+                  <span onClick={alertHandler.bind(null, "not implemented")}>
+                    <span className="">home</span>
+                  </span>
+                </Link>
+              </li> */}
+
+          {/* links - start */}
+          <div className="absolute top-8 right-132px w-96">
+            <ul className="flex justify-end gap-6">
+              <li className="link" ref={homeRef}>
+                <Link href="/">
+                  <span onClick={alertHandler.bind(null, "not implemented")}>
+                    HOME
+                  </span>
+                </Link>
+              </li>
+              <li className="link" ref={aboutRef}>
+                <Link href="/">
+                  <span onClick={alertHandler.bind(null, "not implemented")}>
+                    ABOUT
+                  </span>
+                </Link>
+              </li>
+              <li className="link" ref={projectsRef}>
+                <Link href="/">
+                  <span onClick={alertHandler.bind(null, "not implemented")}>
+                    Projects
+                  </span>
+                </Link>
+              </li>
+              <li className="link" ref={contactRef}>
+                <Link href="/">
+                  <span onClick={alertHandler.bind(null, "not implemented")}>
+                    contact
+                  </span>
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* links - end */}
+
+          {/* socials - start */}
+          <div
+            className="absolute top-11 right-57px cursor-pointer z-max"
+            ref={githubRef}
+          >
+            <Link href="/">
+              <Image
+                src="github.svg"
+                alt="github icon"
+                width={21}
+                height={21}
+                onClick={alertHandler.bind(null, "not implemented")}
+              />
+            </Link>
+          </div>
+
+          <div
+            className="absolute top-42px right-7 cursor-pointer z-max"
+            ref={linkedinRef}
+          >
+            <Link href="/">
+              <Image
+                src="linkedIn.svg"
+                alt="linkedIn icon"
+                width={24}
+                height={24}
+                onClick={alertHandler.bind(null, "not implemented")}
+              />
+            </Link>
+          </div>
+          {/* socials - end */}
+
+          {/* logo - start */}
           <div className="absolute top-8 left-8">
             <Image
               src="/logo_transparency 1.png"
@@ -426,11 +587,14 @@ const Navigation: FunctionComponent<Props> = ({ timeline, footerRef }) => {
               height={44}
             />
           </div>
+          {/* logo - end*/}
+
+          {/* hamburger / separator icons - start */}
           <div
             className="w-16 absolute top-8 right-1 z-50"
             onClick={toggleHamburgerIcon}
           >
-            <div ref={hamburgerIconRef1}>
+            <div ref={hamburgerIconRef}>
               <Image
                 src="/hamburger.svg"
                 alt="hamburger icon"
@@ -440,16 +604,20 @@ const Navigation: FunctionComponent<Props> = ({ timeline, footerRef }) => {
                 priority={true}
               />
             </div>
-            {/* <div className="absolute top-0 left-0" ref={hamburgerIconRef2}>
-              <Image
-                src={"/hamburger.svg"}
-                alt="hamburger icon"
-                width={35}
-                height={35}
-                className="cursor-pointer md:cursor-default"
-              />
-            </div> */}
           </div>
+          <div className="w-16 absolute top-8 right-1 z-50">
+            <div ref={separatorIconRef}>
+              <Image
+                src="/separator.svg"
+                alt="separator icon"
+                width={44}
+                height={44}
+                className="cursor-pointer md:cursor-default"
+                priority={true}
+              />
+            </div>
+          </div>
+          {/* hamburger / separator icons - end */}
         </div>
       </div>
     </React.Fragment>

@@ -1,4 +1,4 @@
-import { gsap } from "gsap/dist/gsap";
+import { gsap } from "gsap";
 
 // export function mouseEventsAnimationHandler(
 //   ref: React.RefObject<HTMLElement>,
@@ -59,93 +59,97 @@ import { gsap } from "gsap/dist/gsap";
 // }
 
 // /** Toggle HamburgerIcon <=> Separator  */
-// const startRef1SeparatorState = {
-//   scaleY: 1,
-//   scaleX: 1,
-//   rotateZ: 0,
-//   x: 0,
-//   y: 0,
-// };
-// const endRef1SeparatorState = {
-//   x: -55,
-//   y: -8,
-//   scaleY: 0.25,
-//   scaleX: 0.5,
-//   rotateZ: 90,
-//   ease: "Power4.easeOut",
-//   duration: 1,
-// };
-// export function hamburgerIntoSeparatorAnimation(
-//   ref1: React.RefObject<HTMLElement>,
-//   ref2: React.RefObject<HTMLElement>
-// ) {
-//   gsap.fromTo(
-//     [ref1.current, ref2.current],
-//     startRef1SeparatorState,
-//     endRef1SeparatorState
-//   );
-// }
-// export function separatorIntoHamburgerAnimation(
-//   ref1: React.RefObject<HTMLElement>,
-//   ref2: React.RefObject<HTMLElement>
-// ) {
-//   gsap.fromTo(
-//     [ref1.current, ref2.current],
-//     endRef1SeparatorState,
-//     startRef1SeparatorState
-//   );
-// }
+const startRefHamburger: gsap.TweenVars = {
+  scaleY: 1,
+  scaleX: 1,
+  rotateZ: 0,
+  x: 0,
+  y: 0,
+  opacity: 1,
+};
+const endRefHamburger: gsap.TweenVars = {
+  scaleY: 0.5,
+  scaleX: 1,
+  rotateZ: 90,
+  x: -70,
+  y: 10,
+  opacity: 0,
+};
 
-// /** LandingPage timeline  */
-// export function revealElementsInYAnimation(
-//   refs: HTMLElement[],
-//   delay: number,
-//   durationValue: number,
-//   staggerValue: number,
-//   initialYValue: number,
-//   endYValue: number
-// ) {
-//   return gsap.fromTo(
-//     refs,
-//     {
-//       y: initialYValue,
-//       autoAlpha: 0,
-//     },
-//     {
-//       y: endYValue,
-//       autoAlpha: 100,
-//       stagger: staggerValue,
-//       duration: durationValue,
-//       ease: "power4.out",
-//       delay: delay,
-//     }
-//   );
-// }
+const startRefSeparator: gsap.TweenVars = {
+  x: 0,
+  opacity: 0,
+};
+const endRefSeparator: gsap.TweenVars = {
+  x: -60,
+  opacity: 1,
+};
 
-// export function hideElementsInYAnimation(
-//   refs: HTMLElement[],
-//   delay: number,
-//   durationValue: number,
-//   staggerValue: number,
-//   initialXValue: number,
-//   endXValue: number
-// ) {
-//   return gsap.fromTo(
-//     refs,
-//     {
-//       y: initialXValue,
-//       autoAlpha: 100,
-//     },
-//     {
-//       y: endXValue,
-//       autoAlpha: 0,
-//       stagger: staggerValue,
-//       duration: durationValue,
-//       ease: "power4.out",
-//       delay: delay,
-//     }
-//   );
-// }
+export function hamburgerIntoSeparatorAnimation(
+  refHamburger: React.RefObject<HTMLElement>,
+  refSeparator: React.RefObject<HTMLElement>
+) {
+  gsap.fromTo([refHamburger.current], startRefHamburger, endRefHamburger);
+  gsap.fromTo([refSeparator.current], startRefSeparator, endRefSeparator);
+}
+export function separatorIntoHamburgerAnimation(
+  refHamburger: React.RefObject<HTMLElement>,
+  refSeparator: React.RefObject<HTMLElement>
+) {
+  gsap.fromTo([refHamburger.current], endRefHamburger, startRefHamburger);
+  gsap.fromTo([refSeparator.current], endRefSeparator, startRefSeparator);
+}
+
+/** LandingPage timeline  */
+export function revealElementsInXAnimation(
+  refs: (HTMLDivElement | HTMLLIElement)[],
+  delay: number,
+  durationValue: number,
+  staggerValue: number,
+  initialXValue: number,
+  endXValue: number
+) {
+  return gsap.fromTo(
+    refs,
+    {
+      x: initialXValue,
+      autoAlpha: 0,
+    },
+    {
+      x: endXValue,
+      autoAlpha: 100,
+      stagger: staggerValue,
+      duration: durationValue,
+      ease: "power4.out",
+      delay: delay,
+    }
+  );
+}
+
+export function hideElementsInXAnimation(
+  refs: (HTMLDivElement | HTMLLIElement)[],
+  delay: number,
+  durationValue: number,
+  staggerValue: number,
+  initialXValue: number,
+  endXValue: number
+) {
+  return gsap.fromTo(
+    refs,
+    {
+      x: initialXValue,
+      autoAlpha: 100,
+    },
+    {
+      x: endXValue,
+      autoAlpha: 0,
+      stagger: staggerValue,
+      duration: durationValue,
+      ease: "power4.out",
+      delay: delay,
+    }
+  );
+}
 
 // export function fullyCustomizableAnimationWithPassedTimeline(
 //   refs: HTMLElement[],

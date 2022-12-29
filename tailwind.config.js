@@ -13,6 +13,20 @@ module.exports = {
         main_white: "#DDDFE4",
         main_color: "#FCEB41",
       },
+      spacing: {
+        "42px": "42px",
+        "57px": "57px",
+        "132px": "132px",
+      },
+      zIndex: {
+        max: 1000,
+      },
+      fontFamily: {
+        mainFont: ['var("--mainFont")'],
+      },
+      letterSpacing: {
+        tightest: "-.074em",
+      },
     },
   },
   plugins: [],

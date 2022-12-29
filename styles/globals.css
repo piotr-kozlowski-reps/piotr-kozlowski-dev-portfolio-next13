@@ -11,3 +11,9 @@
 body {
   margin: 0;
 }
+
+@layer components {
+  .link {
+    @apply uppercase text-[18px] text-main_white font-mainFont font-medium tracking-tightest p-2 cursor-pointer;
+  }
+}

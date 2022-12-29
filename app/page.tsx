@@ -20,19 +20,19 @@ const Home = () => {
   return (
     <div
       className="h-screen flex flex-col justify-between bg-background_1_lighter relative"
-      style={{
-        // backgroundImage: `url("/opening_page_mobile.png")`,
-        backgroundImage: `url("/opening_page_tablet.png")`,
-      }}
+      style={
+        {
+          // backgroundImage: `url("/opening_page_mobile.png")`,
+          // backgroundImage: `url("/opening_page_tablet.png")`,
+        }
+      }
     >
       <Navigation timeline={tl} footerRef={footerRef} />
       <div className="relative bg-background-1" ref={footerRef}>
         <div
           className="w-full absolute -bottom-1 h-24 bg-background-2 clip-path-footerStartStatePath"
           ref={footerBackgroundRef}
-        >
-          {/* <img src="/landingPageFooter.svg" className="w-full" /> */}
-        </div>
+        ></div>
         <div
           className="absolute bottom-2 flex justify-center items-center w-full"
           ref={mouseRef}

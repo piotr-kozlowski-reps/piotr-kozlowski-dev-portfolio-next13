@@ -1,5 +1,32 @@
 import "../styles/globals.css";
 
+import localFont from "@next/font/local";
+const mainFont = localFont({
+  src: [
+    {
+      path: "EuclidCircularBLight.ttf",
+      style: "light",
+    },
+    {
+      path: "EuclidCircularBMedium.ttf",
+      style: "medium",
+    },
+    {
+      path: "EuclidCircularBRegular.ttf",
+      style: "regular",
+    },
+    {
+      path: "EuclidCircularBSemiBold.ttf",
+      style: "semibold",
+    },
+    {
+      path: "EuclidCircularBBold.ttf",
+      style: "bbold",
+    },
+  ],
+  variable: "--mainFont",
+});
+
 export default function RootLayout({
   children,
 }: {
@@ -8,7 +35,7 @@ export default function RootLayout({
   return (
     <html>
       <head />
-      <body>{children}</body>
+      <body className={`${mainFont.variable}`}>{children}</body>
     </html>
   );
 }
