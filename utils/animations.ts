@@ -1,4 +1,4 @@
-import { gsap } from "gsap";
+import { gsap, Power4 } from "gsap";
 
 // export function mouseEventsAnimationHandler(
 //   ref: React.RefObject<HTMLElement>,
@@ -120,7 +120,7 @@ export function revealElementsInXAnimation(
       autoAlpha: 100,
       stagger: staggerValue,
       duration: durationValue,
-      ease: "power4.out",
+      ease: Power4.easeOut,
       delay: delay,
     }
   );
@@ -145,7 +145,7 @@ export function hideElementsInXAnimation(
       autoAlpha: 0,
       stagger: staggerValue,
       duration: durationValue,
-      ease: "power4.out",
+      ease: Power4.easeOut,
       delay: delay,
     }
   );

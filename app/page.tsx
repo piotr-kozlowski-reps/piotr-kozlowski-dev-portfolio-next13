@@ -24,10 +24,13 @@ const Home = () => {
         {
           // backgroundImage: `url("/opening_page_mobile.png")`,
           // backgroundImage: `url("/opening_page_tablet.png")`,
+          // backgroundImage: `url("/opening_page_desktop.png")`,
         }
       }
     >
-      <Navigation timeline={tl} footerRef={footerRef} />
+      <div className="xl:w-[1220px] xl:h-full relative xl:mx-auto">
+        <Navigation timeline={tl} footerRef={footerRef} />
+      </div>
       <div className="relative bg-background-1" ref={footerRef}>
         <div
           className="w-full absolute -bottom-1 h-24 bg-background-2 clip-path-footerStartStatePath"

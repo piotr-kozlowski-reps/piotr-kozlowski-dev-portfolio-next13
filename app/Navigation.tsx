@@ -3,6 +3,7 @@ import React, {
   FunctionComponent,
   useCallback,
   useEffect,
+  useLayoutEffect,
   useRef,
   useState,
 } from "react";
@@ -92,6 +93,8 @@ const Navigation: FunctionComponent<Props> = ({ timeline, footerRef }) => {
       let mm = gsap.matchMedia();
 
       mm.add("(max-width: 768px)", () => {
+        console.log("(max-width: 768px)");
+
         separatorIntoHamburgerAnimation(hamburgerIconRef, separatorIconRef);
         hideElementsInXAnimation(
           [
@@ -103,7 +106,7 @@ const Navigation: FunctionComponent<Props> = ({ timeline, footerRef }) => {
             homeRef.current!,
           ],
           0,
-          0.3,
+          0.4,
           0.04,
           0,
           60
@@ -111,6 +114,8 @@ const Navigation: FunctionComponent<Props> = ({ timeline, footerRef }) => {
       });
 
       mm.add("(min-width: 769px)", () => {
+        console.log("(min-width: 769px)");
+
         hamburgerIntoSeparatorAnimation(hamburgerIconRef, separatorIconRef);
         revealElementsInXAnimation(
           [
@@ -123,7 +128,7 @@ const Navigation: FunctionComponent<Props> = ({ timeline, footerRef }) => {
           ],
           0.3,
           0.4,
-          0.02,
+          0.04,
           60,
           0
         );
@@ -512,8 +517,8 @@ const Navigation: FunctionComponent<Props> = ({ timeline, footerRef }) => {
 
           {/* links - start */}
           <div className="absolute top-8 right-132px w-96">
-            <ul className="flex justify-end gap-6">
-              <li className="link" ref={homeRef}>
+            <ul className="flex justify-end gap-2">
+              <li className="link-active" ref={homeRef}>
                 <Link href="/">
                   <span onClick={alertHandler.bind(null, "not implemented")}>
                     HOME
