@@ -515,7 +515,7 @@ const Navigation: FunctionComponent<Props> = ({ timeline, footerRef }) => {
                 </Link>
               </li> */}
 
-          {/* links - start */}
+          {/* tablet and up - links - start */}
           <div className="absolute top-8 right-132px w-96">
             <ul className="flex justify-end gap-2">
               <li className="link-active" ref={homeRef}>
@@ -548,10 +548,9 @@ const Navigation: FunctionComponent<Props> = ({ timeline, footerRef }) => {
               </li>
             </ul>
           </div>
+          {/* tablet and up  links - end */}
 
-          {/* links - end */}
-
-          {/* socials - start */}
+          {/* tablet and up - socials - start */}
           <div
             className="absolute top-11 right-57px cursor-pointer z-max"
             ref={githubRef}
@@ -581,7 +580,7 @@ const Navigation: FunctionComponent<Props> = ({ timeline, footerRef }) => {
               />
             </Link>
           </div>
-          {/* socials - end */}
+          {/* tablet and up - socials - end */}
 
           {/* logo - start */}
           <div className="absolute top-8 left-8">
