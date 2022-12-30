@@ -17,7 +17,7 @@ body {
 @layer components {
   /* link */
   .link {
-    @apply uppercase text-[18px] text-main_white font-mainFont font-medium tracking-tightest px-2 pt-2 pb-0 cursor-pointer hover:border-b-2 hover:border-main_color/80;
+    @apply uppercase text-[18px] text-main_white font-mainFont font-medium tracking-tightest px-2 pt-2 pb-0 cursor-pointer;
   }
   .link-active {
     @apply uppercase text-[18px] text-main_color font-mainFont font-medium tracking-tightest px-2 pt-2 pb-0  border-b-2 border-main_color/80;
@@ -25,15 +25,15 @@ body {
   .link::after {
     content: "";
     position: absolute;
-    height: 2px;
+    height: 1px;
     background-color: #f69ec4;
     width: 0;
     left: 50%;
     bottom: 0;
     transform: translateX(-50%);
-    transition: 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) all;
+    transition: 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55) all;
   }
   .link:hover::after {
-    width: 100%;
+    width: 60%;
   }
 }
