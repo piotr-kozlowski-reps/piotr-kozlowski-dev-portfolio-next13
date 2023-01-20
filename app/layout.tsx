@@ -1,4 +1,5 @@
 import "../styles/globals.css";
+import { inDevEnvironment } from "../utils/inDevEnvironment";
 
 import localFont from "@next/font/local";
 const mainFont = localFont({
@@ -35,7 +36,13 @@ export default function RootLayout({
   return (
     <html>
       <head />
-      <body className={`${mainFont.variable}`}>{children}</body>
+      <body
+        className={`${mainFont.variable} ${
+          inDevEnvironment ? "debug-screens" : ""
+        }`}
+      >
+        {children}
+      </body>
     </html>
   );
 }

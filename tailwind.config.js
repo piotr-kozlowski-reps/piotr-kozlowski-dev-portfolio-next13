@@ -7,6 +7,14 @@ module.exports = {
   ],
   theme: {
     extend: {
+      clipPath: {
+        "footer-start":
+          "polygon(65% 100%, 100% 100%, 100% 100%, 0% 100%, 0% 100%)",
+        "mobile-menu-bg1": "polygon(100% 0%, 100% 0%, 100% 100%, 100% 19%)",
+        "mobile-menu-bg2":
+          "polygon(100% 0%, 100% 0%, 100% 100%, 100% 100%, 100% 33%)",
+        // "footer-desktop": "polygon(55% 45%, 100% 0%, 100% 100%, 0% 100%, 0% 12%)",
+      },
       colors: {
         background_1_lighter: "#2C2F36",
         background_2_darker: "#26292E",
@@ -14,11 +22,13 @@ module.exports = {
         main_color: "#FCEB41",
       },
       spacing: {
+        "26px": "26px",
         "42px": "42px",
         "57px": "57px",
         "132px": "132px",
       },
       zIndex: {
+        60: 60,
         max: 1000,
       },
       fontFamily: {
@@ -32,5 +42,8 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    require("tailwind-clip-path"),
+    require("tailwindcss-debug-screens"),
+  ],
 };

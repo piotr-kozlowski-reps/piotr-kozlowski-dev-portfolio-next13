@@ -1,4 +1,4 @@
-import { gsap, Power4 } from "gsap";
+import { Circ, gsap, Power0, Power4 } from "gsap";
 
 // export function mouseEventsAnimationHandler(
 //   ref: React.RefObject<HTMLElement>,
@@ -25,38 +25,55 @@ import { gsap, Power4 } from "gsap";
 // //   });
 // // }
 
-// /** Toggle HamburgerIcon <=> X  */
-// const startRef1State = { scaleY: 1, scaleX: 1, rotateZ: 0 };
-// const endRef1State = {
-//   scaleY: 0.25,
-//   scaleX: 1.1,
-//   rotateZ: 45,
-//   ease: "Power4.easeOut",
-//   duration: 0.5,
-// };
-// const startRef2State = { scaleY: 1, scaleX: 1, rotateZ: 0, autoAlpha: 0 };
-// const endRef2State = {
-//   autoAlpha: 100,
-//   scaleY: 0.25,
-//   scaleX: 1.1,
-//   rotateZ: 135,
-//   ease: "Power4.easeOut",
-//   duration: 0.5,
-// };
-// export function hamburgerIntoXAnimation(
-//   ref1: React.RefObject<HTMLElement>,
-//   ref2: React.RefObject<HTMLElement>
-// ) {
-//   gsap.fromTo(ref1.current, startRef1State, endRef1State);
-//   gsap.fromTo(ref2.current, startRef2State, endRef2State);
-// }
-// export function XIntoHamburgerAnimation(
-//   ref1: React.RefObject<HTMLElement>,
-//   ref2: React.RefObject<HTMLElement>
-// ) {
-//   gsap.fromTo(ref1.current, endRef1State, startRef1State);
-//   gsap.fromTo(ref2.current, endRef2State, startRef2State);
-// }
+/** Toggle HamburgerIcon <=> X  */
+const startRef1State: gsap.TweenVars = {
+  scaleY: 1,
+  scaleX: 1,
+  rotateZ: 0,
+  autoAlpha: 100,
+  transformOrigin: "35% 50%",
+  immediateRender: false,
+};
+const endRef1State: gsap.TweenVars = {
+  scaleY: 0.25,
+  scaleX: 1,
+  rotateZ: 140,
+  autoAlpha: 0,
+  transformOrigin: "35% 50%",
+  ease: Power4.easeOut,
+  duration: 0.5,
+  immediateRender: false,
+};
+const startRef2State: gsap.TweenVars = {
+  transformOrigin: "35% 50%",
+  autoAlpha: 0,
+  rotateZ: 0,
+  scale: 0,
+  immediateRender: false,
+};
+const endRef2State: gsap.TweenVars = {
+  transformOrigin: "35% 50%",
+  autoAlpha: 100,
+  rotateZ: 180,
+  scale: 1,
+  ease: Power4.easeOut,
+  duration: 0.6,
+  immediateRender: false,
+};
+export function hamburgerIntoXAnimation(
+  ref1: React.RefObject<HTMLElement>,
+  ref2: React.RefObject<HTMLElement>
+) {
+  gsap.fromTo(ref1.current, startRef1State, endRef1State);
+  gsap.fromTo(ref2.current, startRef2State, endRef2State);
+}
+export function XIntoHamburgerAnimation(
+  ref1: React.RefObject<HTMLElement>,
+  ref2: React.RefObject<HTMLElement>
+) {
+  gsap.fromTo(ref2.current, endRef2State, startRef2State);
+  gsap.fromTo(ref1.current, endRef1State, startRef1State);
+}
 
 // /** Toggle HamburgerIcon <=> Separator  */
 const startRefHamburger: gsap.TweenVars = {
@@ -65,7 +82,7 @@ const startRefHamburger: gsap.TweenVars = {
   rotateZ: 0,
   x: 0,
   y: 0,
-  opacity: 1,
+  autoAlpha: 1,
 };
 const endRefHamburger: gsap.TweenVars = {
   scaleY: 0.5,
@@ -74,6 +91,7 @@ const endRefHamburger: gsap.TweenVars = {
   x: -70,
   y: 10,
   opacity: 0,
+  autoAlpha: 0,
 };
 
 const startRefSeparator: gsap.TweenVars = {
@@ -139,6 +157,31 @@ export function hideElementsInXAnimation(
     {
       x: initialXValue,
       autoAlpha: 100,
+    },
+    {
+      x: endXValue,
+      autoAlpha: 0,
+      stagger: staggerValue,
+      duration: durationValue,
+      ease: Power4.easeOut,
+      delay: delay,
+    }
+  );
+}
+
+export function hideElementsInXAnimationInitialForMobileView_Invisibly(
+  refs: (HTMLDivElement | HTMLLIElement)[],
+  delay: number,
+  durationValue: number,
+  staggerValue: number,
+  initialXValue: number,
+  endXValue: number
+) {
+  return gsap.fromTo(
+    refs,
+    {
+      x: initialXValue,
+      autoAlpha: 0,
     },
     {
       x: endXValue,
