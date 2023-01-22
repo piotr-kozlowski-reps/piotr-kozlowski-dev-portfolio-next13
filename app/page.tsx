@@ -88,9 +88,17 @@ const Home = () => {
 
   ////jsx
   return (
-    // <div className="h-[300vh]">
     <Fragment>
-      <div>
+      {/* fixed navigation - start */}
+      <div className="fixed top-0 w-screen h-screen z-max">
+        {/* <div className="fixed top-0 w-full h-20"> */}
+        <div className="xl:w-[1220px] xl:h-full relative xl:mx-auto z-10">
+          <Navigation timeline={tl} footerRef={footerRef} />
+        </div>
+      </div>
+      {/* fixed navigation - end */}
+
+      <div className="relative w-full h-full bg-background_2_darker">
         <div
           className="relative flex flex-col justify-between h-screen bg-background_1_lighter"
           style={
@@ -102,13 +110,8 @@ const Home = () => {
             }
           }
         >
-          {/* navigation container */}
-          <div className="xl:w-[1220px] xl:h-full relative xl:mx-auto z-10">
-            <Navigation timeline={tl} footerRef={footerRef} />
-          </div>
-
           {/* image revealing + text */}
-          <OpeningPageImageRevealing />
+          {/* <OpeningPageImageRevealing /> */}
 
           {/* footer */}
           <div className="relative bg-background_1_lighter" ref={footerRef}>
@@ -139,10 +142,10 @@ const Home = () => {
             </div>
           </div>
         </div>
+        <div className="w-screen h-screen">1szy div</div>
+        <div className="w-screen h-screen">2gi div</div>
+        <div className="w-screen h-screen">3ci div</div>
       </div>
-      <div className="w-screen h-screen"></div>
-      <div className="w-screen h-screen"></div>
-      <div className="w-screen h-screen"></div>
     </Fragment>
   );
 };

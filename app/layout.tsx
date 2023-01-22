@@ -34,12 +34,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html>
+    <html className="overflow-y-scroll">
       <head />
       <body
-        className={`${mainFont.variable} ${
+        className={`overflow-x-hidden ${mainFont.variable} ${
           inDevEnvironment ? "debug-screens" : ""
-        }`}
+        } scrollbar scrollbar-w-2 scrollbar-thumb-background_1_lighter scrollbar-thumb-rounded-lg scrollbar-track-background_2_darker `}
       >
         {children}
       </body>

@@ -20,6 +20,7 @@ module.exports = {
         background_2_darker: "#26292E",
         main_white: "#DDDFE4",
         main_color: "#FCEB41",
+        main_white_50: "#17181c",
       },
       spacing: {
         "26px": "26px",
@@ -45,5 +46,6 @@ module.exports = {
   plugins: [
     require("tailwind-clip-path"),
     require("tailwindcss-debug-screens"),
+    require("tailwindcss-scrollbar"),
   ],
 };

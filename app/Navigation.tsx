@@ -251,22 +251,22 @@ const Navigation: FunctionComponent<Props> = ({ timeline, footerRef }) => {
   return (
     <React.Fragment>
       {/* mobile - menu - start */}
-      <div className="absolute top-0 left-0 w-screen h-screen z-50 xl:w-fit xl:h-fit">
+      <div className="absolute top-0 left-0 z-50 w-screen h-screen xl:w-fit xl:h-fit">
         <div className="relative w-screen h-screen xl:w-fit xl:h-fit">
           <div
-            className="absolute top-0 left-0 w-screen h-screen z-50 bg-background_1_lighter clip-path-mobile-menu-bg1 xl:w-fit xl:h-fit"
+            className="absolute top-0 left-0 z-50 w-screen h-screen bg-background_1_lighter clip-path-mobile-menu-bg1 xl:w-fit xl:h-fit"
             ref={mobileMenuBackground1}
           ></div>
           <div
-            className="absolute top-0 left-0 w-screen h-screen z-50 bg-background_2_darker clip-path-mobile-menu-bg2 xl:w-fit xl:h-fit"
+            className="absolute top-0 left-0 z-50 w-screen h-screen bg-background_2_darker clip-path-mobile-menu-bg2 xl:w-fit xl:h-fit"
             ref={mobileMenuBackground2}
           ></div>
         </div>
 
         {/* mobile links - start */}
         <nav className="absolute top-[33%] w-64 h-fit mt-[19px] z-60 right-[25px]  xl:right-16">
-          <ul className="flex flex-col justify-start items-end">
-            <li className="mobile-link invisible" ref={mobile_homeRef}>
+          <ul className="flex flex-col items-end justify-start">
+            <li className="invisible mobile-link" ref={mobile_homeRef}>
               <Link href="/">
                 <span
                   onClick={alertHandler.bind(null, "home - not implemented")}
@@ -275,7 +275,7 @@ const Navigation: FunctionComponent<Props> = ({ timeline, footerRef }) => {
                 </span>
               </Link>
             </li>
-            <li className="mobile-link invisible" ref={mobile_aboutRef}>
+            <li className="invisible mobile-link" ref={mobile_aboutRef}>
               <Link href="/">
                 <span
                   onClick={alertHandler.bind(null, "ABOUT - not implemented")}
@@ -284,7 +284,7 @@ const Navigation: FunctionComponent<Props> = ({ timeline, footerRef }) => {
                 </span>
               </Link>
             </li>
-            <li className="mobile-link invisible" ref={mobile_projectsRef}>
+            <li className="invisible mobile-link" ref={mobile_projectsRef}>
               <Link href="/">
                 <span
                   onClick={alertHandler.bind(
@@ -296,7 +296,7 @@ const Navigation: FunctionComponent<Props> = ({ timeline, footerRef }) => {
                 </span>
               </Link>
             </li>
-            <li className="mobile-link invisible" ref={mobile_contactRef}>
+            <li className="invisible mobile-link" ref={mobile_contactRef}>
               <Link href="/">
                 <span
                   onClick={alertHandler.bind(null, "contact - not implemented")}
@@ -355,9 +355,9 @@ const Navigation: FunctionComponent<Props> = ({ timeline, footerRef }) => {
       <div className="relative">
         <div>
           {/* tablet and desktop -> links - start */}
-          <nav className="absolute top-8 right-132px w-96 z-50">
+          <nav className="absolute z-50 top-8 right-132px w-96">
             <ul className="flex justify-end gap-2">
-              <li className="link-active opacity-0" ref={homeRef}>
+              <li className="opacity-0 link-active" ref={homeRef}>
                 <Link href="/" className="cursor-default">
                   <span
                     onClick={alertHandler.bind(null, "home - not implemented")}
@@ -366,7 +366,7 @@ const Navigation: FunctionComponent<Props> = ({ timeline, footerRef }) => {
                   </span>
                 </Link>
               </li>
-              <li className="link opacity-0" ref={aboutRef}>
+              <li className="opacity-0 link" ref={aboutRef}>
                 <Link href="/">
                   <span
                     onClick={alertHandler.bind(null, "ABOUT - not implemented")}
@@ -375,7 +375,7 @@ const Navigation: FunctionComponent<Props> = ({ timeline, footerRef }) => {
                   </span>
                 </Link>
               </li>
-              <li className="link opacity-0" ref={projectsRef}>
+              <li className="opacity-0 link" ref={projectsRef}>
                 <Link href="/">
                   <span
                     onClick={alertHandler.bind(
@@ -387,7 +387,7 @@ const Navigation: FunctionComponent<Props> = ({ timeline, footerRef }) => {
                   </span>
                 </Link>
               </li>
-              <li className="link opacity-0" ref={contactRef}>
+              <li className="opacity-0 link" ref={contactRef}>
                 <Link href="/">
                   <span
                     onClick={alertHandler.bind(
@@ -405,7 +405,7 @@ const Navigation: FunctionComponent<Props> = ({ timeline, footerRef }) => {
 
           {/* tablet and desktop - socials - start */}
           <div
-            className="absolute top-11 right-57px cursor-pointer z-max icon-link opacity-0"
+            className="absolute opacity-0 cursor-pointer top-11 right-57px z-max icon-link"
             ref={githubRef}
             onMouseOver={() => {
               setIsGithubHover(true);
@@ -436,7 +436,7 @@ const Navigation: FunctionComponent<Props> = ({ timeline, footerRef }) => {
           </div>
 
           <div
-            className="absolute top-42px right-26px cursor-pointer z-max icon-link opacity-0"
+            className="absolute opacity-0 cursor-pointer top-42px right-26px z-max icon-link"
             ref={linkedinRef}
             onMouseOver={() => {
               setIsLinkedInHover(true);
@@ -486,23 +486,25 @@ const Navigation: FunctionComponent<Props> = ({ timeline, footerRef }) => {
 
           {/* hamburger / separator icons - start */}
           <div
-            className="w-16 absolute top-8 right-1 z-max md:z-50"
+            className="absolute w-16 top-8 right-1 md:z-50"
             onClick={toggleHamburgerIcon}
           >
-            <div ref={hamburgerIconRef}>
+            <div
+              ref={hamburgerIconRef}
+              className="cursor-pointer z-max md:cursor-default"
+            >
               <Image
                 src="/hamburger.svg"
                 alt="hamburger icon"
                 width={44}
                 height={44}
-                className="cursor-pointer md:cursor-default"
                 priority={true}
               />
             </div>
           </div>
 
           <div
-            className="w-16 absolute top-8 right-1 z-max md:z-50 "
+            className="absolute w-16 top-8 right-1 z-max md:z-50 "
             onClick={toggleHamburgerIcon}
           >
             <div ref={XIconRef} className="opacity-0 ">
@@ -511,13 +513,13 @@ const Navigation: FunctionComponent<Props> = ({ timeline, footerRef }) => {
                 alt="close icon"
                 width={44}
                 height={44}
-                className="cursor-pointer md:cursor-default origin-center"
+                className="origin-center cursor-pointer md:cursor-default"
                 priority={true}
               />
             </div>
           </div>
 
-          <div className="w-16 absolute top-8 right-1 z-50">
+          <div className="absolute w-16 top-8 right-1 z-100">
             <div ref={separatorIconRef} className="opacity-0">
               <Image
                 src="/separator.svg"
