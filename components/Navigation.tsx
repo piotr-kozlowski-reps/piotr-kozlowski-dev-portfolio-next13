@@ -23,22 +23,15 @@ import {
 } from "../utils/animations";
 import Link from "next/link";
 
-interface Props {
-  timeline: gsap.core.Timeline;
-  footerRef: React.RefObject<HTMLDivElement>;
-}
-
 /** avoid start animation when site starts in mobile mode
  * "(max-width: 768px)" animation when starts only when number of renders is more than initial 2
  * counts from 0 so: 0, 1, trigger*/
 let isFirstRender = 0;
 
-const Navigation: FunctionComponent<Props> = ({ timeline, footerRef }) => {
+const Navigation: FunctionComponent = () => {
   ////vars
   const [isHamburger, setIsHamburger] = useState(true);
   let isShowingMobileNavigation = useRef(false);
-  // const [isShowingMobileNavigation, setIsShowingMobileNavigation] =
-  //   useState(false);
   const [width, height] = useDeviceSize();
   const [isLinkedInHover, setIsLinkedInHover] = useState(false);
   const [isGithubHover, setIsGithubHover] = useState(false);
@@ -90,6 +83,8 @@ const Navigation: FunctionComponent<Props> = ({ timeline, footerRef }) => {
     clipPath: "polygon(74% 0%, 100% 0%, 100% 100%, 0% 100%, 0% 33%)",
     duration: 0.3,
   };
+
+  const xShift = 80;
   function showMobileNavigation() {
     const tl = gsap.timeline();
     tl.fromTo(mobileMenuBackground1.current, background1Start, background1End);
@@ -112,7 +107,7 @@ const Navigation: FunctionComponent<Props> = ({ timeline, footerRef }) => {
       0.1,
       0.2,
       0.05,
-      22, //
+      xShift,
       0
     );
     isShowingMobileNavigation.current = true;
@@ -145,7 +140,7 @@ const Navigation: FunctionComponent<Props> = ({ timeline, footerRef }) => {
       0.1,
       0.04,
       0,
-      22
+      xShift
     );
     isShowingMobileNavigation.current = false;
   }
@@ -187,7 +182,7 @@ const Navigation: FunctionComponent<Props> = ({ timeline, footerRef }) => {
             0.4,
             0.04,
             0,
-            22
+            xShift
           );
         }
         if (isFirstRender > 1) {
@@ -205,7 +200,7 @@ const Navigation: FunctionComponent<Props> = ({ timeline, footerRef }) => {
             0.4,
             0.04,
             0,
-            22
+            xShift
           );
         }
         isFirstRender += 1;
@@ -227,7 +222,7 @@ const Navigation: FunctionComponent<Props> = ({ timeline, footerRef }) => {
           0.3,
           0.4,
           0.04,
-          22,
+          xShift,
           0
         );
         isFirstRender += 1;
