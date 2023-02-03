@@ -10,7 +10,8 @@ import React, {
   useState,
 } from "react";
 import Image from "next/image";
-import { gsap, Power4 } from "gsap";
+import gsap, { Power4 } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import useDeviceSize from "../hooks/useDeviceSize";
 import {
   hamburgerIntoSeparatorAnimation,
@@ -28,8 +29,10 @@ import Link from "next/link";
  * counts from 0 so: 0, 1, trigger*/
 let isFirstRender = 0;
 
+gsap.registerPlugin(ScrollTrigger);
 const Navigation: FunctionComponent = () => {
   ////vars
+
   const [isHamburger, setIsHamburger] = useState(true);
   let isShowingMobileNavigation = useRef(false);
   const [width, height] = useDeviceSize();

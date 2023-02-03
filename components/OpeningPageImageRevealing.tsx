@@ -1,11 +1,12 @@
 import gsap, { Power4 } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Image from "next/image";
+import Link from "next/link";
 import React, { Fragment, useLayoutEffect, useRef } from "react";
 import { start } from "repl";
 
 type Props = {
   tl: gsap.core.Timeline;
-  progress: number;
 };
 
 /** avoid start animation when site starts in mobile mode
@@ -15,16 +16,18 @@ let isFirstRender = 0;
 
 gsap.registerPlugin(ScrollTrigger);
 const OpeningPageImageRevealing = (props: Props) => {
-  const { tl, progress } = props;
+  const { tl } = props;
   // const imageBackground_start = useRef<HTMLDivElement>(null);
   const imageBackgroundBase = useRef<HTMLDivElement>(null);
   const imageBackgroundDesign = useRef<HTMLDivElement>(null);
+  const imageBackgroundDevelop = useRef<HTMLDivElement>(null);
   const designText = useRef<HTMLDivElement>(null);
+  const developText = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
       if (isFirstRender > 1) {
-        tl.addLabel("start")
+        tl.addLabel("design")
           .fromTo(
             imageBackgroundBase.current,
             { opacity: 1, ease: Power4.easeOut },
@@ -34,7 +37,22 @@ const OpeningPageImageRevealing = (props: Props) => {
             imageBackgroundDesign.current,
             { opacity: 0 },
             { opacity: 1 },
-            "start"
+            "design"
+          )
+          .fromTo(designText.current, { opacity: 0 }, { opacity: 1 }, "design")
+          .addLabel("develop")
+          .fromTo(
+            imageBackgroundDevelop.current,
+            { opacity: 0 },
+            { opacity: 1 },
+            "develop"
+          )
+          .fromTo(designText.current, { opacity: 1 }, { opacity: 0 }, "develop")
+          .fromTo(
+            developText.current,
+            { opacity: 0 },
+            { opacity: 1 },
+            "develop"
           );
       }
     });
@@ -66,9 +84,6 @@ const OpeningPageImageRevealing = (props: Props) => {
   //   clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
   //   duration: 0.3,
   // };
-
-  console.log(progress);
-  console.log(tl);
 
   // useLayoutEffect(() => {
   //   gsap.utils.toArray(".comparisonSection").forEach((section) => {
@@ -104,20 +119,14 @@ const OpeningPageImageRevealing = (props: Props) => {
   return (
     <Fragment>
       <div
-        className="absolute top-0 bottom-0 left-0 right-0 z-20 h-screen bg-center bg-no-repeat bg-cover"
+        className="absolute top-0 bottom-0 left-0 right-0 z-20 h-screen bg-center bg-no-repeat bg-cover "
         style={{
           backgroundImage: `url("/bg-landing-page.jpg")`,
         }}
         ref={imageBackgroundBase}
       ></div>
-      <div
-        className="absolute top-0 bottom-0 left-0 right-0 z-20 h-screen bg-center bg-no-repeat bg-cover afterImage_outer"
-        // style={{
-        //   backgroundImage: `url("/bg-landing-page_revealed.jpg")`,
-        // }}
-      >
+      <div className="absolute top-0 bottom-0 left-0 right-0 z-20 h-screen bg-center bg-no-repeat bg-cover afterImage_outer">
         <div
-          // className="z-30 w-full h-full bg-center bg-no-repeat bg-cover afterImage_inner clip-path-image_revealing"
           className="z-30 w-full h-full bg-center bg-no-repeat bg-cover afterImage_inner"
           style={{
             backgroundImage: `url("/bg-landing-page_design.jpg")`,
@@ -125,29 +134,55 @@ const OpeningPageImageRevealing = (props: Props) => {
           ref={imageBackgroundDesign}
         ></div>
       </div>
-      <div
-        className="absolute top-0 bottom-0 left-0 right-0 z-40 w-screen h-screen"
-        ref={designText}
-      >
-        <div className="flex flex-col items-center justify-center">
-          <div className="w-full h-20 ml-16 mr-[25px]  xl:mr-16 bg-red-500"></div>
+      <div className="absolute top-0 bottom-0 left-0 right-0 z-20 h-screen bg-center bg-no-repeat bg-cover afterImage_outer">
+        <div
+          className="z-30 w-full h-full bg-center bg-no-repeat bg-cover afterImage_inner"
+          style={{
+            backgroundImage: `url("/bg-landing-page_develop.jpg")`,
+          }}
+          ref={imageBackgroundDevelop}
+        ></div>
+      </div>
+
+      {/* develop text */}
+      <div className="absolute top-0 bottom-0 left-0 right-0 z-40 w-full h-full">
+        <div
+          className="flex flex-col items-center justify-center w-full h-full"
+          ref={developText}
+        >
+          <Link href="/">
+            <Image
+              src="develop.svg"
+              alt="develop text"
+              width={1160}
+              height={2000}
+              className=" xl:ml-[9px] pl-[31px] pr-[31px] xl:pl-0 xl:pr-0"
+              // onClick={alertHandler.bind(null, "github - not implemented")}
+            />
+          </Link>
+        </div>
+      </div>
+
+      {/* design text */}
+      <div className="absolute top-0 bottom-0 left-0 right-0 z-40 w-full h-full">
+        <div
+          className="flex flex-col items-center justify-center w-full h-full"
+          ref={designText}
+        >
+          <Link href="/">
+            <Image
+              src="design.svg"
+              alt="design text"
+              width={1164}
+              height={2000}
+              className=" pl-[31px] pr-[31px] xl:pl-0 xl:pr-0 xl:ml-2"
+              // onClick={alertHandler.bind(null, "github - not implemented")}
+            />
+          </Link>
         </div>
       </div>
     </Fragment>
   );
-
-  // return (
-  //   <div className="test-images">
-  //     <section className="comparisonSection" ref={imageSectionRef}>
-  //       <div className="comparisonImage beforeImage">
-  //         <img src="https://assets.codepen.io/16327/before.jpg" alt="before" />
-  //       </div>
-  //       <div className="comparisonImage afterImage">
-  //         <img src="https://assets.codepen.io/16327/after.jpg" alt="after" />
-  //       </div>
-  //     </section>
-  //   </div>
-  // );
 };
 
 export default OpeningPageImageRevealing;
