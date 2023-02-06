@@ -1,12 +1,21 @@
 "use client";
 
-import React, { Fragment, use, useLayoutEffect, useRef, useState } from "react";
+import React, {
+  Fragment,
+  use,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from "react";
 import gsap, { Power4 } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import Navigation from "../components/Navigation";
-import OpeningPageImageRevealing from "../components/OpeningPageImageRevealing";
-import OpeningPageFooter from "../components/OpeningPageFooter";
+import HomePageImageRevealing from "../components/homePage/HomePageImageRevealing";
+import HomePageFooter from "../components/homePage/HomePageFooter";
+import AboutTitle from "../components/aboutPage/AboutTitle";
+import useScrollPositionToDefineSectionAndChangeLinks from "../hooks/useScrollPositionToDefineSectionAndChangeLinks";
 
 gsap.registerPlugin(ScrollTrigger);
 const Home = () => {
@@ -15,9 +24,18 @@ const Home = () => {
   const [openingPageProgress, setOpeningPageProgress] = useState(0);
 
   let menuBackgroundRef = useRef<HTMLDivElement>(null);
+  const homeSectionRef = useRef<HTMLDivElement>(null);
+  const aboutRef = useRef<HTMLDivElement>(null);
+  const projectsRef = useRef<HTMLDivElement>(null);
+  const contactRef = useRef<HTMLDivElement>(null);
 
-  const openingPageDivRef = useRef<HTMLDivElement>(null);
-  const aboutDivRef = useRef<HTMLDivElement>(null);
+  /** get object defining in which section we are currently based on Scroll Y position */
+  const { whichSectionIsActive } =
+    useScrollPositionToDefineSectionAndChangeLinks(
+      aboutRef,
+      projectsRef,
+      contactRef
+    );
 
   // /** Footer Pinned With ScrollTrigger */
   useLayoutEffect(() => {
@@ -25,7 +43,7 @@ const Home = () => {
       setTl(
         gsap.timeline({
           scrollTrigger: {
-            trigger: openingPageDivRef.current,
+            trigger: homeSectionRef.current,
             start: "top top",
             end: "500% top",
             pin: true,
@@ -48,11 +66,11 @@ const Home = () => {
       gsap.from(menuBackgroundRef.current!, {
         autoAlpha: 0,
         scrollTrigger: {
-          trigger: aboutDivRef.current!,
+          trigger: aboutRef.current!,
           start: "top-=100% top",
           end: "top top",
           scrub: 0.7,
-          markers: true,
+          // markers: true,
         },
       });
     });
@@ -70,12 +88,17 @@ const Home = () => {
           ref={menuBackgroundRef}
         ></div>
         <div className="xl:w-[1220px] xl:h-full relative xl:mx-auto z-10">
-          <Navigation />
+          <Navigation
+            aboutSection={aboutRef.current!}
+            projectsSection={projectsRef.current!}
+            contactSection={contactRef.current!}
+            whichSectionIsActive={whichSectionIsActive}
+          />
         </div>
       </div>
 
       {/* Home Section */}
-      <section ref={openingPageDivRef} title="home">
+      <section ref={homeSectionRef} title="home">
         <div className="w-full h-full bg-background_1_lighter">
           <div
             className="relative flex flex-col justify-between h-screen bg-background_1_lighter"
@@ -88,8 +111,8 @@ const Home = () => {
               }
             }
           >
-            <OpeningPageImageRevealing tl={tl} />
-            <OpeningPageFooter />
+            <HomePageImageRevealing tl={tl} />
+            <HomePageFooter />
           </div>
         </div>
       </section>
@@ -98,20 +121,30 @@ const Home = () => {
       <section title="about">
         <div
           className="w-screen h-screen bg-background_2_darker"
-          ref={aboutDivRef}
+          ref={aboutRef}
         >
-          about
+          <AboutTitle />
         </div>
       </section>
 
       {/* Projects Section */}
       <section title="projects">
-        <div className="w-screen h-screen bg-background_2_darker">projects</div>
+        <div
+          className="w-screen h-screen bg-background_2_darker"
+          ref={projectsRef}
+        >
+          projects
+        </div>
       </section>
 
       {/* Contact Section */}
       <section title="contact">
-        <div className="w-screen h-screen bg-background_2_darker">contact</div>
+        <div
+          className="w-screen h-screen bg-background_2_darker"
+          ref={contactRef}
+        >
+          contact
+        </div>
       </section>
 
       {/* Footer Section */}

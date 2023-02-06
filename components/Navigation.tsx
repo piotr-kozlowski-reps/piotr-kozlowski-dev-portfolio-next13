@@ -1,10 +1,8 @@
 "use client";
 
 import React, {
-  Fragment,
   FunctionComponent,
   useCallback,
-  useEffect,
   useLayoutEffect,
   useRef,
   useState,
@@ -23,15 +21,29 @@ import {
   XIntoHamburgerAnimation,
 } from "../utils/animations";
 import Link from "next/link";
+import { WhichSectionIsActive } from "../types/typings";
 
 /** avoid start animation when site starts in mobile mode
  * "(max-width: 768px)" animation when starts only when number of renders is more than initial 2
  * counts from 0 so: 0, 1, trigger*/
 let isFirstRender = 0;
 
+type Props = {
+  aboutSection: HTMLDivElement;
+  projectsSection: HTMLDivElement;
+  contactSection: HTMLDivElement;
+  whichSectionIsActive: WhichSectionIsActive;
+};
+
 gsap.registerPlugin(ScrollTrigger);
-const Navigation: FunctionComponent = () => {
+const Navigation: FunctionComponent<Props> = (props) => {
   ////vars
+  const {
+    aboutSection,
+    projectsSection,
+    contactSection,
+    whichSectionIsActive,
+  } = props;
 
   const [isHamburger, setIsHamburger] = useState(true);
   let isShowingMobileNavigation = useRef(false);
@@ -162,6 +174,15 @@ const Navigation: FunctionComponent = () => {
     }
   }
 
+  /** Trigger mobile navigation and hide mobile menu */
+  function triggerMobileNavigation(sectionToMoveInto: HTMLDivElement | null) {
+    if (!sectionToMoveInto) window.scroll({ top: 0 });
+    else sectionToMoveInto.scrollIntoView();
+
+    hideMobileNavigation();
+    toggleHamburgerIcon();
+  }
+
   ////side effects
   /** Triggering animation of Hamburger Icon when media query changes */
   useLayoutEffect(() => {
@@ -264,40 +285,63 @@ const Navigation: FunctionComponent = () => {
         {/* mobile links - start */}
         <nav className="absolute top-[33%] w-64 h-fit mt-[19px] z-60 right-[25px]  xl:right-16">
           <ul className="flex flex-col items-end justify-start">
-            <li className="invisible mobile-link" ref={mobile_homeRef}>
+            <li
+              className={
+                whichSectionIsActive.home
+                  ? "invisible mobile-link-active"
+                  : "invisible mobile-link"
+              }
+              ref={mobile_homeRef}
+            >
               <Link href="/">
-                <span
-                  onClick={alertHandler.bind(null, "home - not implemented")}
-                >
+                <span onClick={triggerMobileNavigation.bind(null, null)}>
                   HOME
                 </span>
               </Link>
             </li>
-            <li className="invisible mobile-link" ref={mobile_aboutRef}>
+            <li
+              className={
+                whichSectionIsActive.about
+                  ? "invisible mobile-link-active"
+                  : "invisible mobile-link"
+              }
+              ref={mobile_aboutRef}
+            >
               <Link href="/">
                 <span
-                  onClick={alertHandler.bind(null, "ABOUT - not implemented")}
+                  onClick={triggerMobileNavigation.bind(null, aboutSection)}
                 >
                   ABOUT
                 </span>
               </Link>
             </li>
-            <li className="invisible mobile-link" ref={mobile_projectsRef}>
+            <li
+              className={
+                whichSectionIsActive.projects
+                  ? "invisible mobile-link-active"
+                  : "invisible mobile-link"
+              }
+              ref={mobile_projectsRef}
+            >
               <Link href="/">
                 <span
-                  onClick={alertHandler.bind(
-                    null,
-                    "Projects - not implemented"
-                  )}
+                  onClick={triggerMobileNavigation.bind(null, projectsSection)}
                 >
                   Projects
                 </span>
               </Link>
             </li>
-            <li className="invisible mobile-link" ref={mobile_contactRef}>
+            <li
+              className={
+                whichSectionIsActive.contact
+                  ? "invisible mobile-link-active"
+                  : "invisible mobile-link"
+              }
+              ref={mobile_contactRef}
+            >
               <Link href="/">
                 <span
-                  onClick={alertHandler.bind(null, "contact - not implemented")}
+                  onClick={triggerMobileNavigation.bind(null, contactSection)}
                 >
                   contact
                 </span>
@@ -355,38 +399,83 @@ const Navigation: FunctionComponent = () => {
           {/* tablet and desktop -> links - start */}
           <nav className="absolute z-50 top-8 right-132px w-96">
             <ul className="flex justify-end gap-2">
-              <li className="opacity-0 link-active" ref={homeRef}>
-                <Link href="/" className="cursor-default">
-                  <span
-                    onClick={alertHandler.bind(null, "home - not implemented")}
-                  >
-                    HOME
-                  </span>
+              <li
+                className={
+                  whichSectionIsActive.home
+                    ? "opacity-0 link-active "
+                    : "opacity-0 link"
+                }
+                ref={homeRef}
+              >
+                <Link
+                  href="/"
+                  className={
+                    whichSectionIsActive.home
+                      ? "cursor-default"
+                      : "cursor-pointer"
+                  }
+                >
+                  <span onClick={() => window.scroll({ top: 0 })}>HOME</span>
                 </Link>
               </li>
-              <li className="opacity-0 link" ref={aboutRef}>
-                <Link href="/">
-                  <span
-                    onClick={alertHandler.bind(null, "ABOUT - not implemented")}
-                  >
+              <li
+                className={
+                  whichSectionIsActive.about
+                    ? "opacity-0 link-active"
+                    : "opacity-0 link"
+                }
+                ref={aboutRef}
+              >
+                <Link
+                  href="/"
+                  className={
+                    whichSectionIsActive.about
+                      ? "cursor-default"
+                      : "cursor-pointer"
+                  }
+                >
+                  <span onClick={() => aboutSection.scrollIntoView()}>
                     ABOUT
                   </span>
                 </Link>
               </li>
-              <li className="opacity-0 link" ref={projectsRef}>
-                <Link href="/">
-                  <span
-                    onClick={alertHandler.bind(
-                      null,
-                      "Projects - not implemented"
-                    )}
-                  >
+              <li
+                className={
+                  whichSectionIsActive.projects
+                    ? "opacity-0 link-active"
+                    : "opacity-0 link"
+                }
+                ref={projectsRef}
+              >
+                <Link
+                  href="/"
+                  className={
+                    whichSectionIsActive.projects
+                      ? "cursor-default"
+                      : "cursor-pointer"
+                  }
+                >
+                  <span onClick={() => projectsSection.scrollIntoView()}>
                     Projects
                   </span>
                 </Link>
               </li>
-              <li className="opacity-0 link" ref={contactRef}>
-                <Link href="/">
+              <li
+                className={
+                  whichSectionIsActive.contact
+                    ? "opacity-0 link-active"
+                    : "opacity-0 link"
+                }
+                ref={contactRef}
+              >
+                <Link
+                  href="/"
+                  className={
+                    whichSectionIsActive.contact
+                      ? "cursor-default"
+                      : "cursor-pointer"
+                  }
+                >
                   <span
                     onClick={alertHandler.bind(
                       null,

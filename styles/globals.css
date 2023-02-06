@@ -65,25 +65,10 @@ body {
     /* @apply uppercase text-[18px] text-main_white font-mainFont font-medium tracking-tightest px-2 pt-2 pb-0 cursor-pointer hover:text-main_color; */
     @apply uppercase text-[22px] text-main_white font-mainFont font-medium tracking-tightest px-2 pt-2 pb-2 cursor-pointer hover:text-main_color;
   }
+  .mobile-link-active {
+    @apply uppercase text-[22px] text-main_color font-mainFont font-medium tracking-tightest px-2 pt-2 pb-2 cursor-pointer;
+  }
 }
-
-/* scrollBar */
-/* .scrollbar::-webkit-scrollbar {
-  width: 10px;
-  height: 20px;
-}
-.scrollbar::-webkit-scrollbar-track {
-  border-radius: 100vh;
-  background: #f7f4ed;
-}
-.scrollbar::-webkit-scrollbar-thumb {
-  background: #e0cbcb;
-  border-radius: 100vh;
-  border: 3px solid #f6f7ed;
-}
-.scrollbar::-webkit-scrollbar-thumb:hover {
-  background: #c0a0b9;
-} */
 
 /* images */
 test-images {

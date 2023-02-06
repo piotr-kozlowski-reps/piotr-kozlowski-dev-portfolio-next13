@@ -1,11 +1,11 @@
 import React, { useLayoutEffect, useRef } from "react";
-import useDeviceSize from "../hooks/useDeviceSize";
+import useDeviceSize from "../../hooks/useDeviceSize";
 import Image from "next/image";
 import gsap, { Power4 } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
-const OpeningPageFooter = () => {
+const HomePageFooter = () => {
   ///vars
 
   const [width, height] = useDeviceSize();
@@ -136,4 +136,4 @@ const OpeningPageFooter = () => {
   );
 };
 
-export default OpeningPageFooter;
+export default HomePageFooter;

@@ -15,7 +15,7 @@ type Props = {
 let isFirstRender = 0;
 
 gsap.registerPlugin(ScrollTrigger);
-const OpeningPageImageRevealing = (props: Props) => {
+const HomePageImageRevealing = (props: Props) => {
   const { tl } = props;
   // const imageBackground_start = useRef<HTMLDivElement>(null);
   const imageBackgroundBase = useRef<HTMLDivElement>(null);
@@ -185,4 +185,4 @@ const OpeningPageImageRevealing = (props: Props) => {
   );
 };
 
-export default OpeningPageImageRevealing;
+export default HomePageImageRevealing;
