@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { WhichSectionIsActive } from "../types/typings";
+import { defineTopPositionValueOfElementInDOM } from "../utils/scrollUtils";
 
 const useScrollPositionToDefineSectionAndChangeLinks = (
   aboutRef: React.RefObject<HTMLDivElement>,
@@ -14,22 +15,16 @@ const useScrollPositionToDefineSectionAndChangeLinks = (
       contact: false,
     });
 
-  function defineTopYScrollValueOfElementInDOM(
-    el: HTMLDivElement | null
-  ): number | null {
-    return el ? el.getBoundingClientRect().top + window.scrollY : null;
-  }
-
   const checkWhatSectionIsActive = () => {
     let scrollYPosition = window.scrollY;
 
-    const aboutTopPosition = defineTopYScrollValueOfElementInDOM(
+    const aboutTopPosition = defineTopPositionValueOfElementInDOM(
       aboutRef.current
     );
-    const projectsTopPosition = defineTopYScrollValueOfElementInDOM(
+    const projectsTopPosition = defineTopPositionValueOfElementInDOM(
       projectsRef.current
     );
-    const contactTopPosition = defineTopYScrollValueOfElementInDOM(
+    const contactTopPosition = defineTopPositionValueOfElementInDOM(
       contactRef.current
     );
 

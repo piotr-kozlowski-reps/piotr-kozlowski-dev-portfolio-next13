@@ -32,6 +32,7 @@ type Props = {
   aboutSection: HTMLDivElement;
   projectsSection: HTMLDivElement;
   contactSection: HTMLDivElement;
+  backgroundFadeRef: HTMLDivElement;
   whichSectionIsActive: WhichSectionIsActive;
 };
 
@@ -42,6 +43,7 @@ const Navigation: FunctionComponent<Props> = (props) => {
     aboutSection,
     projectsSection,
     contactSection,
+    backgroundFadeRef,
     whichSectionIsActive,
   } = props;
 
@@ -68,7 +70,7 @@ const Navigation: FunctionComponent<Props> = (props) => {
   let mobile_contactRef = useRef<HTMLLIElement>(null);
   let mobile_githubRef = useRef<HTMLDivElement>(null);
   let mobile_linkedinRef = useRef<HTMLDivElement>(null);
-  let mobile_separator = useRef<HTMLDivElement>(null);
+  let mobileSeparatorRef = useRef<HTMLDivElement>(null);
 
   ////utils
   //TODO: delete later
@@ -115,7 +117,7 @@ const Navigation: FunctionComponent<Props> = (props) => {
         mobile_aboutRef.current!,
         mobile_projectsRef.current!,
         mobile_contactRef.current!,
-        mobile_separator.current!,
+        mobileSeparatorRef.current!,
         mobile_githubRef.current!,
         mobile_linkedinRef.current!,
       ],
@@ -145,7 +147,7 @@ const Navigation: FunctionComponent<Props> = (props) => {
       [
         mobile_linkedinRef.current!,
         mobile_githubRef.current!,
-        mobile_separator.current!,
+        mobileSeparatorRef.current!,
         mobile_contactRef.current!,
         mobile_projectsRef.current!,
         mobile_aboutRef.current!,
@@ -181,6 +183,28 @@ const Navigation: FunctionComponent<Props> = (props) => {
 
     hideMobileNavigation();
     toggleHamburgerIcon();
+  }
+
+  /** Trigger background fading and scrollMovement when desktop navigation clicked */
+  function scrollWithFadingHandler(sectionToMoveInto: HTMLDivElement | null) {
+    const tl = gsap.timeline();
+    tl.fromTo(
+      backgroundFadeRef,
+      { autoAlpha: 0 },
+      {
+        autoAlpha: 1,
+        duration: 0.2,
+        onComplete: () => {
+          if (!sectionToMoveInto) window.scroll({ top: 0 });
+          else sectionToMoveInto.scrollIntoView();
+        },
+      }
+    );
+    tl.fromTo(
+      backgroundFadeRef,
+      { autoAlpha: 1 },
+      { autoAlpha: 0, duration: 0.4 }
+    );
   }
 
   ////side effects
@@ -347,7 +371,7 @@ const Navigation: FunctionComponent<Props> = (props) => {
                 </span>
               </Link>
             </li>
-            <div className="py-12 mr-[7px] invisible" ref={mobile_separator}>
+            <div className="py-12 mr-[7px] invisible" ref={mobileSeparatorRef}>
               <Image
                 src="/mobile_separator.svg"
                 alt="mobile separator icon"
@@ -415,7 +439,9 @@ const Navigation: FunctionComponent<Props> = (props) => {
                       : "cursor-pointer"
                   }
                 >
-                  <span onClick={() => window.scroll({ top: 0 })}>HOME</span>
+                  <span onClick={scrollWithFadingHandler.bind(null, null)}>
+                    HOME
+                  </span>
                 </Link>
               </li>
               <li
@@ -434,7 +460,9 @@ const Navigation: FunctionComponent<Props> = (props) => {
                       : "cursor-pointer"
                   }
                 >
-                  <span onClick={() => aboutSection.scrollIntoView()}>
+                  <span
+                    onClick={scrollWithFadingHandler.bind(null, aboutSection)}
+                  >
                     ABOUT
                   </span>
                 </Link>
@@ -455,7 +483,12 @@ const Navigation: FunctionComponent<Props> = (props) => {
                       : "cursor-pointer"
                   }
                 >
-                  <span onClick={() => projectsSection.scrollIntoView()}>
+                  <span
+                    onClick={scrollWithFadingHandler.bind(
+                      null,
+                      projectsSection
+                    )}
+                  >
                     Projects
                   </span>
                 </Link>
@@ -477,10 +510,7 @@ const Navigation: FunctionComponent<Props> = (props) => {
                   }
                 >
                   <span
-                    onClick={alertHandler.bind(
-                      null,
-                      "contact - not implemented"
-                    )}
+                    onClick={scrollWithFadingHandler.bind(null, contactSection)}
                   >
                     contact
                   </span>

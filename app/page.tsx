@@ -14,20 +14,23 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Navigation from "../components/Navigation";
 import HomePageImageRevealing from "../components/homePage/HomePageImageRevealing";
 import HomePageFooter from "../components/homePage/HomePageFooter";
-import AboutTitle from "../components/aboutPage/AboutTitle";
+import AboutSection from "../components/aboutPage/AboutSection";
 import useScrollPositionToDefineSectionAndChangeLinks from "../hooks/useScrollPositionToDefineSectionAndChangeLinks";
 
 gsap.registerPlugin(ScrollTrigger);
 const Home = () => {
   ////vars
-  const [tl, setTl] = useState(() => gsap.timeline());
-  const [openingPageProgress, setOpeningPageProgress] = useState(0);
+  const [tlHomeSection, setTlHomeSection] = useState(() => gsap.timeline());
+  const [tlAboutSection, setTlAboutSection] = useState(() => gsap.timeline());
 
-  let menuBackgroundRef = useRef<HTMLDivElement>(null);
-  const homeSectionRef = useRef<HTMLDivElement>(null);
+  const menuBackgroundRef = useRef<HTMLDivElement>(null);
+  const homeRef = useRef<HTMLDivElement>(null);
   const aboutRef = useRef<HTMLDivElement>(null);
   const projectsRef = useRef<HTMLDivElement>(null);
   const contactRef = useRef<HTMLDivElement>(null);
+  const backgroundFadeRef = useRef<HTMLDivElement>(null);
+
+  const homeSectionHPercentage = 0; //500 was to make nice home page section, needs to be reorganised to make rest of the animations possible
 
   /** get object defining in which section we are currently based on Scroll Y position */
   const { whichSectionIsActive } =
@@ -38,20 +41,18 @@ const Home = () => {
     );
 
   // /** Footer Pinned With ScrollTrigger */
+
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
-      setTl(
+      setTlHomeSection(
         gsap.timeline({
           scrollTrigger: {
-            trigger: homeSectionRef.current,
+            trigger: homeRef.current,
             start: "top top",
-            end: "500% top",
+            end: `${homeSectionHPercentage}% top`,
             pin: true,
             scrub: 0.8,
             // markers: true,
-            onUpdate: (self) => {
-              setOpeningPageProgress(Math.floor(self.progress * 100));
-            },
           },
         })
       );
@@ -59,6 +60,24 @@ const Home = () => {
 
     return () => ctx.revert();
   }, []);
+
+  /** Tl for AboutPart */
+  // useLayoutEffect(() => {
+  //   const ctx = gsap.context(() => {
+  //     setTlAboutSection(
+  //       gsap.timeline({
+  //         scrollTrigger: {
+  //           trigger: aboutRef.current,
+  //           start: "2000 bottom",
+  //           end: "3000 bottom",
+  //           scrub: 0.8,
+  //           markers: true,
+  //         },
+  //       })
+  //     );
+  //   });
+  //   return ctx.revert();
+  // }, []);
 
   /** gradient on menu background when scrolling to about part */
   useLayoutEffect(() => {
@@ -83,6 +102,11 @@ const Home = () => {
     <Fragment>
       {/* Fixed Navigation */}
       <div className="fixed top-0 w-screen h-screen z-max">
+        {/* Background for fading when navigating with links */}
+        <div
+          className="absolute top-0 left-0 invisible w-screen h-screen bg-background_2_darker right-4 z-max"
+          ref={backgroundFadeRef}
+        ></div>
         <div
           className="absolute z-0 w-full h-[108px] bg-gradient-to-b from-background_2_darker via-background_2_darker"
           ref={menuBackgroundRef}
@@ -93,12 +117,13 @@ const Home = () => {
             projectsSection={projectsRef.current!}
             contactSection={contactRef.current!}
             whichSectionIsActive={whichSectionIsActive}
+            backgroundFadeRef={backgroundFadeRef.current!}
           />
         </div>
       </div>
 
       {/* Home Section */}
-      <section ref={homeSectionRef} title="home">
+      <section ref={homeRef} title="home">
         <div className="w-full h-full bg-background_1_lighter">
           <div
             className="relative flex flex-col justify-between h-screen bg-background_1_lighter"
@@ -111,7 +136,7 @@ const Home = () => {
               }
             }
           >
-            <HomePageImageRevealing tl={tl} />
+            <HomePageImageRevealing tl={tlHomeSection} />
             <HomePageFooter />
           </div>
         </div>
@@ -119,11 +144,11 @@ const Home = () => {
 
       {/* About Section */}
       <section title="about">
-        <div
-          className="w-screen h-screen bg-background_2_darker"
-          ref={aboutRef}
-        >
-          <AboutTitle />
+        <div className="bg-background_2_darker" ref={aboutRef}>
+          <AboutSection
+            tl={tlAboutSection}
+            sectionsBeforePercentage={homeSectionHPercentage}
+          />
         </div>
       </section>
 

@@ -14,7 +14,9 @@ module.exports = {
         "mobile-menu-bg2":
           "polygon(100% 0%, 100% 0%, 100% 100%, 100% 100%, 100% 33%)",
         // "footer-desktop": "polygon(55% 45%, 100% 0%, 100% 100%, 0% 100%, 0% 12%)",
-        image_revealing: "polygon(100% 0%, 100% 0%, 100% 100%, 100% 100%)",
+        "image-revealing": "polygon(100% 0%, 100% 0%, 100% 100%, 100% 100%)",
+        "logo-left-triangle": "polygon(100% 0%, 0% 100%, 100% 100%);",
+        "logo-right-triangle": "polygon(0% -5%, 0% 100%, 100% 0%);",
       },
       colors: {
         background_1_lighter: "#2C2F36",
