@@ -69,14 +69,25 @@ body {
   }
 
   /*fonts*/
+
+  .font-style-h3 {
+    @apply font-mainFont text-[22px] text-main_white uppercase tracking-tight;
+  }
+  .font-style-h4 {
+    @apply font-mainFont text-[16px] text-main_white uppercase tracking-tight;
+  }
+
   .font-style-p {
-    @apply font-mainFont text-[22px] text-main_white;
+    @apply font-mainFont text-[22px] text-main_white tracking-tight;
+  }
+  .font-style-sm {
+    @apply font-mainFont text-[10px] text-main_white tracking-wide;
   }
   .font-initially-invisible-white-p {
-    @apply font-mainFont text-[22px] text-main_white invisible;
+    @apply font-mainFont text-[22px] text-main_white invisible tracking-tight;
   }
   .font-initially-invisible-yellow-p {
-    @apply font-mainFont text-[22px] text-main_color invisible;
+    @apply font-mainFont text-[22px] text-main_color invisible tracking-tight;
   }
 }
 

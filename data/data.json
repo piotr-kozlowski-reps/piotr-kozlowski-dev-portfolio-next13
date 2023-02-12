@@ -1,0 +1,21 @@
+{
+  "aboutSliders": [
+    { "mainTitle": "html / css", "additionalInfo": "", "percentage": 75 },
+    {
+      "mainTitle": "JAVASCRIPT / TYPESCRIPT ",
+      "additionalInfo": "",
+      "percentage": 69
+    },
+    { "mainTitle": "NODE", "additionalInfo": "", "percentage": 42 },
+    {
+      "mainTitle": "FRAMEWORKS",
+      "additionalInfo": "React | Next | Express",
+      "percentage": 62
+    },
+    {
+      "mainTitle": "LIBRARIES",
+      "additionalInfo": "Jest | Gsap | ReactQuery | ReactTestingLIbrary | TailwindCSS | ... ",
+      "percentage": 50
+    }
+  ]
+}
