@@ -34,7 +34,7 @@ const AboutTitle = () => {
   return (
     <section title="aboutText">
       <div
-        className="flex flex-col items-center justify-center w-full h-screen"
+        className="flex flex-col items-center justify-center w-full h-screen z-60"
         ref={titleRef}
       >
         <Image

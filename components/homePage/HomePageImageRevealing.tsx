@@ -116,6 +116,7 @@ const HomePageImageRevealing = (props: Props) => {
   //   });
   // }, []);
 
+  ////jsx
   return (
     <Fragment>
       <div

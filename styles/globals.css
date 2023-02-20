@@ -71,7 +71,7 @@ body {
   /*fonts*/
 
   .font-style-h3 {
-    @apply font-mainFont text-[22px] text-main_white uppercase tracking-tight;
+    @apply font-mainFont text-[22px] text-main_white uppercase tracking-tight font-semibold;
   }
   .font-style-h4 {
     @apply font-mainFont text-[16px] text-main_white uppercase tracking-tight;

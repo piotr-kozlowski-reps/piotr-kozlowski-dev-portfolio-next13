@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { WhichSectionIsActive } from "../types/typings";
+import { TWhichSectionIsActive } from "../types/typings";
 import { defineTopPositionValueOfElementInDOM } from "../utils/scrollUtils";
 
 const useScrollPositionToDefineSectionAndChangeLinks = (
@@ -8,7 +8,7 @@ const useScrollPositionToDefineSectionAndChangeLinks = (
   contactRef: React.RefObject<HTMLDivElement>
 ) => {
   const [whichSectionIsActive, setWhichSectionIsActive] =
-    useState<WhichSectionIsActive>({
+    useState<TWhichSectionIsActive>({
       home: true,
       about: false,
       projects: false,

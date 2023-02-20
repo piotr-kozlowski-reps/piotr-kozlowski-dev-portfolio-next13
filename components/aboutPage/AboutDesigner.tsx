@@ -8,26 +8,25 @@ import data from "../../data/data.json";
 import AboutSlider from "./AboutSlider";
 import { TSliderData } from "../../types/typings";
 
-gsap.registerPlugin(ScrollTrigger);
-const AboutDeveloper = () => {
+const AboutDesigner = () => {
   ////vars
-  const developerSectionRef = useRef<HTMLDivElement>(null);
-  const developerLogoRef = useRef<HTMLDivElement>(null);
-  const developerTitleRef = useRef<HTMLDivElement>(null);
-  const developerParagraphRef = useRef<HTMLDivElement>(null);
-  const developerGraphsRef = useRef<HTMLDivElement>(null);
+  const designerSectionRef = useRef<HTMLDivElement>(null);
+  const designerLogoRef = useRef<HTMLDivElement>(null);
+  const designerTitleRef = useRef<HTMLDivElement>(null);
+  const designerParagraphRef = useRef<HTMLDivElement>(null);
+  const designerGraphsRef = useRef<HTMLDivElement>(null);
 
-  const developerSliders: TSliderData[] = data.aboutSlidersDeveloper;
-  const slidersDeveloper = useRef<
+  const designerSliders: TSliderData[] = data.aboutSlidersDesigner;
+  const aboutSlidersDesigner = useRef<
     { element: React.RefObject<HTMLDivElement>; percentage: number }[]
   >([]);
 
   ////logic
-  const addSlidersDeveloperHandler = (elementInfo: {
+  const addSlidersDesignerHandler = (elementInfo: {
     element: React.RefObject<HTMLDivElement>;
     percentage: number;
   }) => {
-    slidersDeveloper.current.push(elementInfo);
+    aboutSlidersDesigner.current.push(elementInfo);
   };
 
   ////animation
@@ -35,7 +34,7 @@ const AboutDeveloper = () => {
     const ctx = gsap.context(() => {
       const tlDeveloperSection = gsap.timeline({
         scrollTrigger: {
-          trigger: developerSectionRef.current,
+          trigger: designerSectionRef.current,
           start: "top 204px",
           end: "+=450%",
           // markers: true,
@@ -43,49 +42,36 @@ const AboutDeveloper = () => {
           pin: true,
         },
       });
-
-      const slidersAnimation = () =>
-        slidersDeveloper.current.forEach((el, i) => {
-          return gsap.to(el.element.current, {
-            scaleX: 0.5,
-            transformOrigin: "top left",
-            ease: Power4.easeInOut,
-            scrollTrigger: {
-              scrub: 0.8,
-            },
-          });
-        });
-
       tlDeveloperSection
         .addLabel("start")
         .fromTo(
-          developerLogoRef.current,
+          designerLogoRef.current,
+          { autoAlpha: 0 },
+          { autoAlpha: 1 },
+          "start"
+        )
+        .fromTo(
+          designerTitleRef.current,
           { autoAlpha: 0, x: "100vw" },
           { autoAlpha: 1, x: 0 },
           "start"
         )
         .fromTo(
-          developerTitleRef.current,
+          designerParagraphRef.current,
           { autoAlpha: 0, x: "100vw" },
           { autoAlpha: 1, x: 0 },
           "start"
         )
-        .fromTo(
-          developerParagraphRef.current,
-          { autoAlpha: 0, x: "100vw" },
-          { autoAlpha: 1, x: 0 },
-          "start"
-        )
-        .to(developerParagraphRef.current, {})
+        .to(designerParagraphRef.current, {})
         .addLabel("secondParagraph")
         .fromTo(
-          developerParagraphRef.current,
+          designerParagraphRef.current,
           { autoAlpha: 1, x: 0 },
           { autoAlpha: 0, x: "-100vw" },
           "secondParagraph"
         )
         .fromTo(
-          developerGraphsRef.current,
+          designerGraphsRef.current,
           { autoAlpha: 0, x: "100vw" },
           {
             autoAlpha: 1,
@@ -94,7 +80,7 @@ const AboutDeveloper = () => {
           "secondParagraph"
         )
         .add(() => {
-          slidersDeveloper.current.forEach((eachSlider, i) => {
+          aboutSlidersDesigner.current.forEach((eachSlider, i) => {
             console.log(eachSlider.percentage);
             console.log(eachSlider.percentage / 100);
 
@@ -104,7 +90,7 @@ const AboutDeveloper = () => {
             });
           });
         })
-        .to(developerParagraphRef.current, {});
+        .to(designerParagraphRef.current, {});
     });
 
     return () => ctx.revert();
@@ -112,18 +98,15 @@ const AboutDeveloper = () => {
 
   ////jsx
   return (
-    <section title="developerSection">
+    <section title="designerSection">
       <div
-        className="flex flex-col items-center justify-center -mt-[200%]"
-        ref={developerSectionRef}
+        className="flex flex-col items-center justify-center mt-[200%]"
+        ref={designerSectionRef}
       >
-        <div
-          className="relative w-[44px] h-[44px] invisible"
-          ref={developerLogoRef}
-        >
+        <div className="relative w-[44px] h-[44px]" ref={designerLogoRef}>
           <div
             className="absolute top-0 bottom-0 left-0 right-0 w-full h-full"
-            ref={developerLogoRef}
+            ref={designerLogoRef}
           >
             <Image
               src="/logo_only_graph_transparency.png"
@@ -132,16 +115,16 @@ const AboutDeveloper = () => {
               height={44}
             />
           </div>
-          <div className="absolute top-0 bottom-0 left-0 right-0 w-full h-full bg-background_2_darker clip-path-logo-right-triangle"></div>
+          <div className="absolute top-0 bottom-0 left-0 right-0 w-full h-full bg-background_2_darker clip-path-logo-left-triangle"></div>
         </div>
-        <div className="invisible mt-2 font-style-h3" ref={developerTitleRef}>
-          developer
+        <div className="invisible mt-2 font-style-h3" ref={designerTitleRef}>
+          designer
         </div>
         <div className="relative w-full">
           <div className="absolute w-full h-full">
             <div
               className="mx-8 pt-[48px] text-center font-style-p invisible"
-              ref={developerParagraphRef}
+              ref={designerParagraphRef}
             >
               <p>
                 I'm a passionate Front-End Developer with +6 years of experience
@@ -155,13 +138,13 @@ const AboutDeveloper = () => {
           <div className="absolute w-full h-full">
             <div
               className="mx-8 pt-[48px] text-center font-style-p invisible"
-              ref={developerGraphsRef}
+              ref={designerGraphsRef}
             >
-              {developerSliders.map((slider, index) => (
+              {designerSliders.map((slider, index) => (
                 <Fragment key={index}>
                   <AboutSlider
                     sliderData={slider}
-                    addSliderElement={addSlidersDeveloperHandler}
+                    addSliderElement={addSlidersDesignerHandler}
                   />
                 </Fragment>
               ))}
@@ -173,4 +156,4 @@ const AboutDeveloper = () => {
   );
 };
 
-export default AboutDeveloper;
+export default AboutDesigner;

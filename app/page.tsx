@@ -1,13 +1,6 @@
 "use client";
 
-import React, {
-  Fragment,
-  use,
-  useEffect,
-  useLayoutEffect,
-  useRef,
-  useState,
-} from "react";
+import React, { Fragment, useLayoutEffect, useRef, useState } from "react";
 import gsap, { Power4 } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -16,12 +9,14 @@ import HomePageImageRevealing from "../components/homePage/HomePageImageRevealin
 import HomePageFooter from "../components/homePage/HomePageFooter";
 import AboutSection from "../components/aboutPage/AboutSection";
 import useScrollPositionToDefineSectionAndChangeLinks from "../hooks/useScrollPositionToDefineSectionAndChangeLinks";
+import useDeviceSize from "../hooks/useDeviceSize";
 
 gsap.registerPlugin(ScrollTrigger);
 const Home = () => {
   ////vars
   const [tlHomeSection, setTlHomeSection] = useState(() => gsap.timeline());
   const [tlAboutSection, setTlAboutSection] = useState(() => gsap.timeline());
+  const [width, height] = useDeviceSize();
 
   const menuBackgroundRef = useRef<HTMLDivElement>(null);
   const homeRef = useRef<HTMLDivElement>(null);
@@ -41,7 +36,6 @@ const Home = () => {
     );
 
   // /** Footer Pinned With ScrollTrigger */
-
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
       setTlHomeSection(
@@ -78,6 +72,11 @@ const Home = () => {
   //   });
   //   return ctx.revert();
   // }, []);
+
+  /** */
+  // useLayoutEffect(() => {
+  //   ScrollTrigger.refresh();
+  // }, [width, height]);
 
   /** gradient on menu background when scrolling to about part */
   useLayoutEffect(() => {

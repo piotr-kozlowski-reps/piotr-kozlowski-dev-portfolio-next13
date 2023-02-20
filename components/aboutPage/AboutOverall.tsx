@@ -4,6 +4,9 @@ import Image from "next/image";
 import React, { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import useDeviceSize from "../../hooks/useDeviceSize";
+import { generatePropertiesForTimelineInEveryResolution } from "../../utils/animations";
+import { TMediaSizeNames } from "../../types/typings";
 
 gsap.registerPlugin(ScrollTrigger);
 const AboutOverall = () => {
@@ -15,21 +18,19 @@ const AboutOverall = () => {
   const overAllSectionP1Ref = useRef<HTMLParagraphElement>(null);
   const overAllSectionP2Ref = useRef<HTMLParagraphElement>(null);
 
+  const [width, height] = useDeviceSize();
+  const getWidthSizeByName = (width: number): TMediaSizeNames => {
+    if (width < 768) return "mobile";
+    if (width > 769 && width < 1223) return "tablet";
+    return "desktop";
+  };
+  const windowSizeNamed = getWidthSizeByName(width);
+
   ////animation
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
-      /** overall section animation */
-      const tlOverAllSection = gsap.timeline({
-        scrollTrigger: {
-          trigger: overAllSectionRef.current,
-          start: () => "top 204px",
-          end: "+=350%",
-          // markers: true,
-          pin: true,
-          scrub: 0.8,
-          // pinSpacing: false,
-        },
-      });
+      let tlOverAllSection: gsap.core.Timeline;
+      let mm = gsap.matchMedia();
 
       const whiteTextFirstParagraph =
         overAllSectionP1Ref.current!.getElementsByClassName(
@@ -48,25 +49,42 @@ const AboutOverall = () => {
           "font-initially-invisible-yellow-p"
         );
 
-      tlOverAllSection
-        .addLabel("start")
-        .to(overAllSectionLogoRef.current, { autoAlpha: 1 }, "start")
-        .to(
-          overAllSectionLogoLeftClippingMaskRef.current!,
-          { autoAlpha: 0 },
-          "start"
-        )
-        .to(yellowTextFirstParagraph, { autoAlpha: 1 }, "start")
-        .to(whiteTextFirstParagraph, { autoAlpha: 1 })
-        .addLabel("secondParagraph")
-        .to(
-          overAllSectionLogoRightClippingMaskRef.current!,
-          { autoAlpha: 0 },
-          "secondParagraph"
-        )
-        .to(yellowTextSecondParagraph, { autoAlpha: 1 }, "secondParagraph")
-        .to(whiteTextSecondParagraph, { autoAlpha: 1 })
-        .to(overAllSectionRef.current, { autoAlpha: 0, x: "-100%" });
+      const overAllSectionAnimation = (tl: gsap.core.Timeline) => {
+        tl.addLabel("start")
+          .to(overAllSectionLogoRef.current, { autoAlpha: 1 }, "start")
+          .to(
+            overAllSectionLogoLeftClippingMaskRef.current!,
+            { autoAlpha: 0 },
+            "start"
+          )
+          .to(yellowTextFirstParagraph, { autoAlpha: 1 }, "start")
+          .to(whiteTextFirstParagraph, { autoAlpha: 1 })
+          .addLabel("secondParagraph")
+          .to(
+            overAllSectionLogoRightClippingMaskRef.current!,
+            { autoAlpha: 0 },
+            "secondParagraph"
+          )
+          .to(yellowTextSecondParagraph, { autoAlpha: 1 }, "secondParagraph")
+          .to(whiteTextSecondParagraph, { autoAlpha: 1 })
+          .to(overAllSectionRef.current, { autoAlpha: 0, x: "-100%" });
+      };
+
+      mm.add("(max-width: 768px)", () => {
+        tlOverAllSection = generatePropertiesForTimelineInEveryResolution(
+          172,
+          overAllSectionRef
+        );
+        overAllSectionAnimation(tlOverAllSection);
+      });
+
+      mm.add("(min-width: 769px)", () => {
+        tlOverAllSection = generatePropertiesForTimelineInEveryResolution(
+          204,
+          overAllSectionRef
+        );
+        overAllSectionAnimation(tlOverAllSection);
+      });
     });
 
     return () => ctx.revert();
@@ -76,10 +94,20 @@ const AboutOverall = () => {
   return (
     <section title="overAll">
       <div
-        className="flex flex-col items-center justify-center -mt-[280%]"
+        className={`flex flex-col items-center justify-center ${
+          windowSizeNamed === "mobile" ? "-mt-[280%]" : "-mt-[140vh]"
+        }`}
         ref={overAllSectionRef}
       >
-        <div className="relative w-[44px] h-[44px]">
+        <div
+          className={`relative ${
+            windowSizeNamed === "mobile"
+              ? "w-[44px] h-[44px]"
+              : windowSizeNamed === "tablet"
+              ? "w-[88px] h-[88px]"
+              : "w-[128px] h-[128px]"
+          } `}
+        >
           <div
             className="absolute top-0 bottom-0 left-0 right-0 invisible w-full h-full"
             ref={overAllSectionLogoRef}
@@ -87,8 +115,8 @@ const AboutOverall = () => {
             <Image
               src="/logo_only_graph_transparency.png"
               alt="logo"
-              width={44}
-              height={44}
+              width={128}
+              height={128}
             />
           </div>
           <div
@@ -101,7 +129,7 @@ const AboutOverall = () => {
           ></div>
         </div>
         {/* <div className="mx-8 pt-[48px] text-center font-style-p pb-[3000px]"> */}
-        <div className="mx-8 pt-[48px] text-center font-style-p">
+        <div className="mx-8 md:mx-0 w-fill md:w-[566px] pt-[48px] text-center font-style-p ">
           <p ref={overAllSectionP1Ref}>
             <span className="font-initially-invisible-white-p">
               Here comes text that is never read by anyone, ever. Main keywords
@@ -115,17 +143,18 @@ const AboutOverall = () => {
             <span className="font-initially-invisible-white-p">.</span>
           </p>
           <p ref={overAllSectionP2Ref}>
+            <br />
             <span className="font-initially-invisible-white-p">
-              Another never noticed part, with keywords:{" "}
+              Another never read part, with keywords:{" "}
             </span>
             <span className="font-initially-invisible-yellow-p">designer</span>
             <span className="font-initially-invisible-white-p">, </span>
-            <span className="font-initially-invisible-yellow-p">reliable</span>
+            <span className="font-initially-invisible-yellow-p">reliable </span>
             <span className="font-initially-invisible-white-p">
-              {" "}
-              (still visible on screen, so it seems redundant!). Have you seen
-              visual connection with parallel appearing "designer" logo part?
-              Appealing? (to be considered...)
+              ("reliable" is still visible on screen above, so it seems
+              redundant!). Have you noticed visual connection with parallel
+              appearing "designer" logo part? Appealing? (I'm not convinced,
+              ...reconsider...)
             </span>
           </p>
         </div>

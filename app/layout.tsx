@@ -1,3 +1,5 @@
+"use client";
+
 import "../styles/globals.css";
 import { inDevEnvironment } from "../utils/inDevEnvironment";
 
@@ -22,7 +24,7 @@ const mainFont = localFont({
     },
     {
       path: "EuclidCircularBBold.ttf",
-      style: "bbold",
+      style: "bold",
     },
   ],
   variable: "--mainFont",

@@ -1,12 +1,12 @@
 "use client";
 
 import React from "react";
-import { SliderData } from "../../types/typings";
+import { TAddSliderToAnimation, TSliderData } from "../../types/typings";
 import AboutSliderStripe from "./AboutSliderStripe";
 
 type Props = {
-  sliderData: SliderData;
-  addSliderElement: (el: React.RefObject<HTMLDivElement>) => void;
+  sliderData: TSliderData;
+  addSliderElement: TAddSliderToAnimation;
 };
 
 const AboutSlider = (props: Props) => {

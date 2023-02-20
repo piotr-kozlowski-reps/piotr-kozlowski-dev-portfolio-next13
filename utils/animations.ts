@@ -194,17 +194,21 @@ export function hideElementsInXAnimationInitialForMobileView_Invisibly(
   );
 }
 
-// export function fullyCustomizableAnimationWithPassedTimeline(
-//   refs: HTMLElement[],
-//   timeline: gsap.core.Timeline,
-//   initialAnimationObject: gsap.TweenVars,
-//   endAnimationObject: gsap.TweenVars
-// ) {
-//   return timeline.fromTo(
-//     refs,
-//     { ...initialAnimationObject },
-//     {
-//       ...endAnimationObject,
-//     }
-//   );
-// }
+export const generatePropertiesForTimelineInEveryResolution = (
+  amountPixelsFromTop: number,
+  trigger: React.RefObject<HTMLDivElement>
+) => {
+  return gsap.timeline({
+    scrollTrigger: {
+      trigger: trigger.current,
+      start: () => `top ${amountPixelsFromTop}px`,
+      end: "+=350%",
+      markers: {
+        startColor: "#fff",
+        endColor: "#fff",
+      },
+      pin: true,
+      scrub: 0.8,
+    },
+  });
+};

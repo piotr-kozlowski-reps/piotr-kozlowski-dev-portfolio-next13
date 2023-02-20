@@ -1,21 +1,38 @@
 {
-  "aboutSliders": [
-    { "mainTitle": "html / css", "additionalInfo": "", "percentage": 75 },
+  "aboutSlidersDeveloper": [
+    {
+      "mainTitle": "html / css",
+      "additionalInfo": "Tailwind",
+      "percentage": 75
+    },
     {
       "mainTitle": "JAVASCRIPT / TYPESCRIPT ",
       "additionalInfo": "",
-      "percentage": 69
+      "percentage": 72
     },
-    { "mainTitle": "NODE", "additionalInfo": "", "percentage": 42 },
     {
       "mainTitle": "FRAMEWORKS",
       "additionalInfo": "React | Next | Express",
       "percentage": 62
     },
+    { "mainTitle": "NODE", "additionalInfo": "", "percentage": 46 },
+    { "mainTitle": "JAVA", "additionalInfo": "", "percentage": 28 }
+  ],
+  "aboutSlidersDesigner": [
     {
-      "mainTitle": "LIBRARIES",
-      "additionalInfo": "Jest | Gsap | ReactQuery | ReactTestingLIbrary | TailwindCSS | ... ",
-      "percentage": 50
+      "mainTitle": "3d graphics",
+      "additionalInfo": "3D Studio MAX | Corona | Vray",
+      "percentage": 97
+    },
+    {
+      "mainTitle": "raster",
+      "additionalInfo": "Photoshop | Figma | LightRoom",
+      "percentage": 97
+    },
+    {
+      "mainTitle": "video",
+      "additionalInfo": "Premiere | AfterEffects | Resolve",
+      "percentage": 82
     }
   ]
 }

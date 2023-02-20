@@ -21,7 +21,7 @@ import {
   XIntoHamburgerAnimation,
 } from "../utils/animations";
 import Link from "next/link";
-import { WhichSectionIsActive } from "../types/typings";
+import { TWhichSectionIsActive } from "../types/typings";
 
 /** avoid start animation when site starts in mobile mode
  * "(max-width: 768px)" animation when starts only when number of renders is more than initial 2
@@ -33,7 +33,7 @@ type Props = {
   projectsSection: HTMLDivElement;
   contactSection: HTMLDivElement;
   backgroundFadeRef: HTMLDivElement;
-  whichSectionIsActive: WhichSectionIsActive;
+  whichSectionIsActive: TWhichSectionIsActive;
 };
 
 gsap.registerPlugin(ScrollTrigger);
@@ -255,8 +255,6 @@ const Navigation: FunctionComponent<Props> = (props) => {
       });
 
       mm.add("(min-width: 769px)", () => {
-        console.log("(min-width: 769px)");
-
         hamburgerIntoSeparatorAnimation(hamburgerIconRef, separatorIconRef);
         revealElementsInXAnimation(
           [
