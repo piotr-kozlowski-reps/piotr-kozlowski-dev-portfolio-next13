@@ -1,23 +1,34 @@
 "use client";
 
 import React from "react";
-import { TAddSliderToAnimation, TSliderData } from "../../types/typings";
+import {
+  TAddSliderToAnimation,
+  TMediaSizeNames,
+  TSliderData,
+} from "../../types/typings";
 import AboutSliderStripe from "./AboutSliderStripe";
 
 type Props = {
   sliderData: TSliderData;
   addSliderElement: TAddSliderToAnimation;
+  mediaSizeName?: TMediaSizeNames;
 };
 
 const AboutSlider = (props: Props) => {
   ////vars
   const { mainTitle, additionalInfo, percentage } = props.sliderData;
-  const { addSliderElement } = props;
+  const { addSliderElement, mediaSizeName } = props;
 
   ////jsx
   {
     return additionalInfo ? (
-      <div className="flex flex-col items-center justify-center mb-8">
+      <div
+        className={`flex mb-8 flex-col ${
+          mediaSizeName === "desktop"
+            ? "items-start justify-center"
+            : "items-center justify-center"
+        }`}
+      >
         <div className="font-style-h4">{mainTitle}</div>
         <div className="-mt-1 font-style-sm">{additionalInfo}</div>
         <AboutSliderStripe
@@ -26,7 +37,13 @@ const AboutSlider = (props: Props) => {
         />
       </div>
     ) : (
-      <div className="flex flex-col items-center justify-center mb-8">
+      <div
+        className={`flex mb-8 flex-col ${
+          mediaSizeName === "desktop"
+            ? "items-start justify-center"
+            : "items-center justify-center"
+        }`}
+      >
         <div className="font-style-h4">{mainTitle}</div>
         <AboutSliderStripe
           percentage={percentage}

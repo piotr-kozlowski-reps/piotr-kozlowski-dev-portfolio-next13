@@ -132,6 +132,7 @@ const Home = () => {
                 // backgroundImage: `url("/opening_page_tablet.png")`,
                 // backgroundImage: `url("/opening_page_desktop.png")`,
                 // backgroundImage: `url("/opening_page___mobile_Menu.png")`,
+                // backgroundImage: `url("/about_developer.png")`,
               }
             }
           >

@@ -305,7 +305,7 @@ const Navigation: FunctionComponent<Props> = (props) => {
         </div>
 
         {/* mobile links - start */}
-        <nav className="absolute top-[33%] w-64 h-fit mt-[19px] z-60 right-[25px]  xl:right-16">
+        <nav className="absolute top-[33%] w-64 h-fit mt-[19px] z-60 right-[25px] xl:right-16">
           <ul className="flex flex-col items-end justify-start">
             <li
               className={

@@ -18,13 +18,7 @@ const AboutOverall = () => {
   const overAllSectionP1Ref = useRef<HTMLParagraphElement>(null);
   const overAllSectionP2Ref = useRef<HTMLParagraphElement>(null);
 
-  const [width, height] = useDeviceSize();
-  const getWidthSizeByName = (width: number): TMediaSizeNames => {
-    if (width < 768) return "mobile";
-    if (width > 769 && width < 1223) return "tablet";
-    return "desktop";
-  };
-  const windowSizeNamed = getWidthSizeByName(width);
+  const [width, height, mediaSizeName] = useDeviceSize();
 
   ////animation
   useLayoutEffect(() => {
@@ -94,16 +88,16 @@ const AboutOverall = () => {
   return (
     <section title="overAll">
       <div
-        className={`flex flex-col items-center justify-center ${
-          windowSizeNamed === "mobile" ? "-mt-[280%]" : "-mt-[140vh]"
+        className={`flex flex-col items-center justify-start ${
+          mediaSizeName === "mobile" ? "-mt-[280%]" : "-mt-[140vh]"
         }`}
         ref={overAllSectionRef}
       >
         <div
           className={`relative ${
-            windowSizeNamed === "mobile"
+            mediaSizeName === "mobile"
               ? "w-[44px] h-[44px]"
-              : windowSizeNamed === "tablet"
+              : mediaSizeName === "tablet"
               ? "w-[88px] h-[88px]"
               : "w-[128px] h-[128px]"
           } `}

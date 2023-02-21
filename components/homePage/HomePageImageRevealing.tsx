@@ -120,7 +120,7 @@ const HomePageImageRevealing = (props: Props) => {
   return (
     <Fragment>
       <div
-        className="absolute top-0 bottom-0 left-0 right-0 z-20 h-screen bg-center bg-no-repeat bg-cover "
+        className="absolute top-0 bottom-0 left-0 right-0 z-20 h-screen bg-center bg-no-repeat bg-cover"
         style={{
           backgroundImage: `url("/bg-landing-page.jpg")`,
         }}
@@ -135,7 +135,7 @@ const HomePageImageRevealing = (props: Props) => {
           ref={imageBackgroundDesign}
         ></div>
       </div>
-      <div className="absolute top-0 bottom-0 left-0 right-0 z-20 h-screen bg-center bg-no-repeat bg-cover afterImage_outer">
+      <div className="absolute top-0 bottom-0 left-0 right-0 z-20 invisible h-screen bg-center bg-no-repeat bg-cover afterImage_outer">
         <div
           className="z-30 w-full h-full bg-center bg-no-repeat bg-cover afterImage_inner"
           style={{
@@ -146,7 +146,7 @@ const HomePageImageRevealing = (props: Props) => {
       </div>
 
       {/* develop text */}
-      <div className="absolute top-0 bottom-0 left-0 right-0 z-40 w-full h-full">
+      <div className="absolute top-0 bottom-0 left-0 right-0 z-40 invisible w-full h-full">
         <div
           className="flex flex-col items-center justify-center w-full h-full"
           ref={developText}
@@ -158,7 +158,6 @@ const HomePageImageRevealing = (props: Props) => {
               width={1160}
               height={2000}
               className=" xl:ml-[9px] pl-[31px] pr-[31px] xl:pl-0 xl:pr-0"
-              // onClick={alertHandler.bind(null, "github - not implemented")}
             />
           </Link>
         </div>

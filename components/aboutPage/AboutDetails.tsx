@@ -30,23 +30,33 @@ const AboutDetails = (props: Props) => {
   const paragraphRef = useRef<HTMLDivElement>(null);
   const graphsRef = useRef<HTMLDivElement>(null);
 
-  const [width, height] = useDeviceSize();
-  const getWidthSizeByName = (width: number) => {
-    if (width < 768) return "mobile";
-    if (width > 769) return "tablet";
-  };
-  const windowSizeNamed = getWidthSizeByName(width);
+  const sectionDesktopRef = useRef<HTMLDivElement>(null);
+  const logoDesktopRef = useRef<HTMLDivElement>(null);
+  const titleDesktopRef = useRef<HTMLDivElement>(null);
+  const paragraphDesktopRef = useRef<HTMLDivElement>(null);
+  const graphsDesktopRef = useRef<HTMLDivElement>(null);
 
-  const slidersRef = useRef<
+  const [width, height, mediaSizeName] = useDeviceSize();
+
+  const slidersNonDesktopRef = useRef<
+    { element: React.RefObject<HTMLDivElement>; percentage: number }[]
+  >([]);
+  const slidersDesktopRef = useRef<
     { element: React.RefObject<HTMLDivElement>; percentage: number }[]
   >([]);
 
   ////logic
-  const addSlidersHandler = (elementInfo: {
+  const addSlidersNonDesktopHandler = (elementInfo: {
     element: React.RefObject<HTMLDivElement>;
     percentage: number;
   }) => {
-    slidersRef.current.push(elementInfo);
+    slidersNonDesktopRef.current.push(elementInfo);
+  };
+  const addSlidersDesktopHandler = (elementInfo: {
+    element: React.RefObject<HTMLDivElement>;
+    percentage: number;
+  }) => {
+    slidersDesktopRef.current.push(elementInfo);
   };
 
   ////animation
@@ -55,7 +65,9 @@ const AboutDetails = (props: Props) => {
       let aboutDetailsSectionTimeline: gsap.core.Timeline;
       let mm = gsap.matchMedia();
 
-      const aboutDetailsSectionAnimation = (tl: gsap.core.Timeline) => {
+      const aboutDetailsSectionNonDesktopAnimation = (
+        tl: gsap.core.Timeline
+      ) => {
         tl.addLabel("start")
           .fromTo(logoRef.current, { autoAlpha: 0 }, { autoAlpha: 1 }, "start")
           .fromTo(
@@ -88,10 +100,7 @@ const AboutDetails = (props: Props) => {
             "secondParagraph"
           )
           .add(() => {
-            slidersRef.current.forEach((eachSlider, i) => {
-              console.log(eachSlider.percentage);
-              console.log(eachSlider.percentage / 100);
-
+            slidersNonDesktopRef.current.forEach((eachSlider, i) => {
               return gsap.to(eachSlider.element.current, {
                 scaleX: eachSlider.percentage / 100,
                 autoAlpha: 1,
@@ -101,16 +110,73 @@ const AboutDetails = (props: Props) => {
           .to(paragraphRef.current, {});
       };
 
+      const aboutDetailsSectionDesktopAnimation = (tl: gsap.core.Timeline) => {
+        tl.addLabel("start")
+          .fromTo(
+            logoDesktopRef.current,
+            { autoAlpha: 0 },
+            { autoAlpha: 1 },
+            "start"
+          )
+          .fromTo(
+            titleDesktopRef.current,
+            { autoAlpha: 0, x: "100vw" },
+            { autoAlpha: 1, x: 0 },
+            "start"
+          )
+          .fromTo(
+            paragraphDesktopRef.current,
+            { autoAlpha: 0, x: "100vw" },
+            { autoAlpha: 1, x: 0 },
+            "start"
+          )
+          .to(paragraphDesktopRef.current, {});
+        // .addLabel("secondParagraph")
+        // .fromTo(
+        //   paragraphRef.current,
+        //   { autoAlpha: 1, x: 0 },
+        //   { autoAlpha: 0, x: "-100vw" },
+        //   "secondParagraph"
+        // )
+        // .fromTo(
+        //   graphsRef.current,
+        //   { autoAlpha: 0, x: "100vw" },
+        //   {
+        //     autoAlpha: 1,
+        //     x: 0,
+        //   },
+        //   "secondParagraph"
+        // )
+        // .add(() => {
+        //   slidersNonDesktopRef.current.forEach((eachSlider, i) => {
+        //     return gsap.to(eachSlider.element.current, {
+        //       scaleX: eachSlider.percentage / 100,
+        //       autoAlpha: 1,
+        //     });
+        //   });
+        // })
+        // .to(paragraphRef.current, {});
+      };
+
       mm.add("(max-width: 768px)", () => {
         aboutDetailsSectionTimeline =
           generatePropertiesForTimelineInEveryResolution(172, sectionRef);
-        aboutDetailsSectionAnimation(aboutDetailsSectionTimeline);
+        aboutDetailsSectionNonDesktopAnimation(aboutDetailsSectionTimeline);
       });
 
-      mm.add("(min-width: 769px)", () => {
+      mm.add("(min-width: 769px) and (max-width: 1223px)", () => {
         aboutDetailsSectionTimeline =
           generatePropertiesForTimelineInEveryResolution(204, sectionRef);
-        aboutDetailsSectionAnimation(aboutDetailsSectionTimeline);
+        aboutDetailsSectionNonDesktopAnimation(aboutDetailsSectionTimeline);
+      });
+
+      mm.add("(min-width: 1224px)", () => {
+        aboutDetailsSectionTimeline =
+          generatePropertiesForTimelineInEveryResolution(
+            204,
+            sectionDesktopRef
+          );
+        aboutDetailsSectionDesktopAnimation(aboutDetailsSectionTimeline);
       });
     });
 
@@ -118,8 +184,8 @@ const AboutDetails = (props: Props) => {
   }, []);
 
   ////jsx
-  return (
-    <section title="designerSection">
+  const mobileAndTabletJSX = (
+    <section title="aboutDetailsSection">
       <div
         className={`flex flex-col items-center justify-center ${
           isFirstSectionThenNoTopMargin ? "" : "mt-[200%]"
@@ -128,7 +194,7 @@ const AboutDetails = (props: Props) => {
       >
         <div
           className={`relative ${
-            windowSizeNamed === "mobile"
+            mediaSizeName === "mobile"
               ? "w-[44px] h-[44px]"
               : "w-[88px] h-[88px]"
           } `}
@@ -165,7 +231,7 @@ const AboutDetails = (props: Props) => {
                 <Fragment key={index}>
                   <AboutSlider
                     sliderData={slider}
-                    addSliderElement={addSlidersHandler}
+                    addSliderElement={addSlidersNonDesktopHandler}
                   />
                 </Fragment>
               ))}
@@ -175,6 +241,64 @@ const AboutDetails = (props: Props) => {
       </div>
     </section>
   );
+
+  const desktopJSX = (
+    <section title="aboutDetailsSection">
+      <div className="flex items-start justify-between xl:w-[1220px] xl:mx-auto z-10">
+        <div
+          className={`flex flex-col items-start justify-start ml-8 w-[570px] ${
+            isFirstSectionThenNoTopMargin ? "" : "mt-[200%]"
+          }`}
+          ref={sectionDesktopRef}
+        >
+          <div className={`relative w-[44px] h-[44px]`} ref={logoDesktopRef}>
+            <div
+              className="absolute top-0 bottom-0 left-0 right-0 w-full h-full"
+              ref={logoDesktopRef}
+            >
+              <Image src={logoImageURL} alt="logo" width={128} height={128} />
+            </div>
+            <div
+              className={`absolute top-0 bottom-0 left-0 right-0 w-full h-full bg-background_2_darker ${clipPathName}`}
+            ></div>
+          </div>
+          {/* <div className="invisible mt-2 font-style-h3" ref={titleRef}> */}
+          <div className="mt-2 font-style-h3" ref={titleDesktopRef}>
+            {sectionPurposeName}
+          </div>
+          <div className="relative w-full ">
+            <div className="absolute w-full h-full">
+              <div
+                // className="mx-8 pt-[48px] text-center font-style-p invisible"
+                className="pt-[48px] font-style-p"
+                ref={paragraphDesktopRef}
+              >
+                <p>{paragraphText}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="w-[74px]"></div>
+        <div className="w-[468px] mr-[28px]">
+          <div className="h-fill w-fill mt-[134px]">
+            <div className="invisible font-style-p" ref={graphsDesktopRef}>
+              {sliders.map((slider, index) => (
+                <Fragment key={index}>
+                  <AboutSlider
+                    sliderData={slider}
+                    addSliderElement={addSlidersDesktopHandler}
+                    mediaSizeName={mediaSizeName}
+                  />
+                </Fragment>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+
+  return mediaSizeName !== "desktop" ? mobileAndTabletJSX : desktopJSX;
 };
 
 export default AboutDetails;

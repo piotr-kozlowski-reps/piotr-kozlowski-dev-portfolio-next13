@@ -10,6 +10,8 @@ import AboutDetails from "./AboutDetails";
 import { TDetailsInfoSet } from "../../types/typings";
 import data from "../../data/data.json";
 import useDeviceSize from "../../hooks/useDeviceSize";
+import AboutDetailsDesktop from "./AboutDetailsDesktop";
+import AboutDetailsMobileAndTablet from "./AboutDetailsMobileAndTablet";
 
 type Props = {
   tl: gsap.core.Timeline;
@@ -20,11 +22,11 @@ gsap.registerPlugin(ScrollTrigger);
 const AboutSection = (props: Props) => {
   ////vars
   const { tl, sectionsBeforePercentage } = props;
-  const [width, height] = useDeviceSize();
+  const [width, height, mediaSizeName] = useDeviceSize();
 
-  useEffect(() => {
-    ScrollTrigger.refresh();
-  }, [width, height]);
+  // useEffect(() => {
+  //   ScrollTrigger.refresh();
+  // }, [width, height]);
 
   const developerDetails: TDetailsInfoSet = {
     slidersData: data.aboutSlidersDeveloper,
@@ -52,8 +54,20 @@ const AboutSection = (props: Props) => {
     <Fragment>
       <AboutTitle />
       <AboutOverall />
-      <AboutDetails detailsInfoSet={developerDetails} />
-      <AboutDetails detailsInfoSet={designerDetails} />
+
+      {/* developer details  */}
+      {mediaSizeName === "desktop" ? (
+        <AboutDetailsDesktop detailsInfoSet={developerDetails} />
+      ) : (
+        <AboutDetailsMobileAndTablet detailsInfoSet={developerDetails} />
+      )}
+
+      {/* designer details  */}
+      {mediaSizeName === "desktop" ? (
+        <AboutDetailsDesktop detailsInfoSet={designerDetails} />
+      ) : (
+        <AboutDetailsMobileAndTablet detailsInfoSet={designerDetails} />
+      )}
     </Fragment>
   );
 };

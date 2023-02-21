@@ -203,10 +203,10 @@ export const generatePropertiesForTimelineInEveryResolution = (
       trigger: trigger.current,
       start: () => `top ${amountPixelsFromTop}px`,
       end: "+=350%",
-      markers: {
-        startColor: "#fff",
-        endColor: "#fff",
-      },
+      // markers: {
+      //   startColor: "#fff",
+      //   endColor: "#fff",
+      // },
       pin: true,
       scrub: 0.8,
     },
