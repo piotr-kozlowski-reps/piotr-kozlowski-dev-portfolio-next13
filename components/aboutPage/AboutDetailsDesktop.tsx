@@ -101,7 +101,7 @@ const AboutDetailsDesktop = (props: Props) => {
         ref={sectionRef}
       >
         <div
-          className={`flex flex-col items-start justify-start ml-8 w-[570px]`}
+          className={`flex flex-col items-start justify-start ml-[40px] w-[570px]`}
         >
           <div className="relative w-[44px] h-[44px]" ref={logoRef}>
             <div className="absolute top-0 bottom-0 left-0 right-0 w-fill h-fill">
@@ -126,8 +126,7 @@ const AboutDetailsDesktop = (props: Props) => {
             </div>
           </div>
         </div>
-        <div className="w-[74px]"></div>
-        <div className="w-[468px] mr-[28px]">
+        <div className="w-[570px] mr-[23px]">
           <div className="h-fill w-fill mt-[134px]">
             <div className="invisible font-style-p" ref={graphsRef}>
               {sliders.map((slider, index) => (

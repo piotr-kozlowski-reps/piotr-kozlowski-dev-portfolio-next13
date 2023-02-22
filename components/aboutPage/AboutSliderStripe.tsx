@@ -18,12 +18,6 @@ const AboutSliderStripe = (props: Props) => {
   //animation
   useLayoutEffect(() => {
     addSliderElement({ element: yellowStripeRef, percentage });
-
-    // gsap.fromTo(
-    //   backgroundStripeRef.current,
-    //   { autoAlpha: 0 },
-    //   { autoAlpha: 1, scale: 2, yoyo: true, duration: 1 }
-    // );
   }, []);
 
   useLayoutEffect(() => {
@@ -35,7 +29,7 @@ const AboutSliderStripe = (props: Props) => {
           autoAlpha: 0.6,
           repeat: -1,
           yoyo: true,
-          // ease: Power4.easeInOut,
+          ease: Power4.easeInOut,
           duration: 3,
         }
       );

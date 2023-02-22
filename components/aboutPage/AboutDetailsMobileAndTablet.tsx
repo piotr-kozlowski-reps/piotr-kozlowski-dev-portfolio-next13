@@ -90,7 +90,11 @@ const AboutDetailsMobileAndTablet = (props: Props) => {
               });
             });
           })
-          .to(paragraphRef.current, {});
+          .to(paragraphRef.current, {})
+          .addLabel("fadeOut")
+          .to(graphsRef.current, { autoAlpha: 0, y: "-100vw" }, "fadeOut")
+          .to(titleRef.current, { autoAlpha: 0, y: "-100vw" }, "fadeOut")
+          .to(logoRef.current, { autoAlpha: 0, y: "-100vw" }, "fadeOut");
       };
 
       mm.add("(max-width: 768px)", () => {
@@ -114,7 +118,7 @@ const AboutDetailsMobileAndTablet = (props: Props) => {
     <section title="aboutDetailsSection">
       <div
         className={`flex flex-col items-center justify-center ${
-          isFirstSectionThenNoTopMargin ? "" : "mt-[200%]"
+          isFirstSectionThenNoTopMargin ? "" : "mt-[100%]"
         }`}
         ref={sectionRef}
       >

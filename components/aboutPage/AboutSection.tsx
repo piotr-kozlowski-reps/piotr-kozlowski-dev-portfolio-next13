@@ -12,6 +12,7 @@ import data from "../../data/data.json";
 import useDeviceSize from "../../hooks/useDeviceSize";
 import AboutDetailsDesktop from "./AboutDetailsDesktop";
 import AboutDetailsMobileAndTablet from "./AboutDetailsMobileAndTablet";
+import AboutCredentials from "./AboutCredentials";
 
 type Props = {
   tl: gsap.core.Timeline;
@@ -68,6 +69,8 @@ const AboutSection = (props: Props) => {
       ) : (
         <AboutDetailsMobileAndTablet detailsInfoSet={designerDetails} />
       )}
+
+      <AboutCredentials />
     </Fragment>
   );
 };

@@ -26,4 +26,12 @@ export type TDetailsInfoSet = {
   isFirstSectionThenNoTopMargin: boolean;
 };
 
+export type TCredentialsInfoSet = {
+  backgroundTopImgUrl: string;
+  backgroundTopLineImgUrl: string;
+  portraitImgUrl: string;
+  credentialText: string;
+  backgroundBottomImgUrl: string;
+};
+
 export type TMediaSizeNames = "mobile" | "tablet" | "desktop";

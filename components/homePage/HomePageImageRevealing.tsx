@@ -11,7 +11,7 @@ type Props = {
 
 /** avoid start animation when site starts in mobile mode
  * "(max-width: 768px)" animation when starts only when number of renders is more than initial 2
- * counts from 0 so: 0, 1, trigger*/
+ * counts from 0 so: 0, 1, trigger */
 let isFirstRender = 0;
 
 gsap.registerPlugin(ScrollTrigger);

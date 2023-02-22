@@ -30,7 +30,7 @@ const AboutSlider = (props: Props) => {
         }`}
       >
         <div className="font-style-h4">{mainTitle}</div>
-        <div className="-mt-1 font-style-sm">{additionalInfo}</div>
+        <div className="-mt-1 font-style-xs">{additionalInfo}</div>
         <AboutSliderStripe
           percentage={percentage}
           addSliderElement={addSliderElement}

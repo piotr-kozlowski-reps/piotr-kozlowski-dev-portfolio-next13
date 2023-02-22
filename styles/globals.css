@@ -81,6 +81,9 @@ body {
     @apply font-mainFont text-[22px] text-main_white tracking-tight;
   }
   .font-style-sm {
+    @apply font-mainFont text-[16px] text-main_white tracking-tight;
+  }
+  .font-style-xs {
     @apply font-mainFont text-[10px] text-main_white tracking-wide;
   }
   .font-initially-invisible-white-p {
