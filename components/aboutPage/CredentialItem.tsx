@@ -4,15 +4,15 @@ import Image from "next/image";
 import React, { useLayoutEffect, useRef } from "react";
 import { TCredentialsInfoSet } from "../../types/typings";
 import gsap, { Power4 } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 type Props = {
   credentialInfoSet: TCredentialsInfoSet;
-  tl: gsap.core.Timeline;
 };
 
+gsap.registerPlugin(ScrollTrigger);
 const CredentialItem = (props: Props) => {
   ////vars
-  const { tl } = props;
   const {
     backgroundTopImgUrl,
     backgroundTopLineImgUrl,
@@ -21,29 +21,57 @@ const CredentialItem = (props: Props) => {
     backgroundBottomImgUrl,
   } = props.credentialInfoSet;
 
+  const credentialItemRef = useRef<HTMLDivElement>(null);
   const credentialTopLineRef = useRef<HTMLDivElement>(null);
   const credentialTopBackgroundRef = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
-      // tl.addLabel("start").from(
-      //   credentialTopLineRef.current,
-      //   { autoAlpha: 1, x: 500 },
-      //   "start"
-      // );
-      // gsap.from(credentialItemRef.current, { x: 500 });
+      let mm = gsap.matchMedia();
+
+      const credentialTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: credentialItemRef.current,
+          start: "center center",
+          end: "bottom center",
+          toggleActions: "restart reverse none none",
+          markers: true,
+          pin: true,
+          // scrub: 0.8,
+        },
+      });
+
+      credentialTl
+        .addLabel("start")
+        .from(
+          credentialItemRef.current,
+          { autoAlpha: 0, scaleY: 0, ease: Power4.easeInOut, duration: 0.2 },
+          "start"
+        )
+        .fromTo(
+          credentialTopLineRef.current,
+          { autoAlpha: 0, duration: 0.4 },
+          { autoAlpha: 1 },
+          "start"
+        )
+        .fromTo(
+          credentialTopBackgroundRef.current,
+          { autoAlpha: 0, duration: 0.2 },
+          { autoAlpha: 1 },
+          "start"
+        );
     });
-    return ctx.revert();
+    return () => ctx.revert();
   }, []);
 
   ////jsx
   return (
-    <div className="absolute top-0 left-0 w-full h-full">
+    <div ref={credentialItemRef} className="invisible">
       <div className="flex flex-col items-center justify-center w-full h-full">
         <div className="flex flex-col items-center justify-center">
           <div className="relative h-[60px] w-full">
             <div
-              className="absolute top-0 left-0 w-full h-full"
+              className="absolute top-0 left-0 invisible w-full h-full"
               ref={credentialTopLineRef}
             >
               <Image

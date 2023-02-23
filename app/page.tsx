@@ -35,6 +35,11 @@ const Home = () => {
       contactRef
     );
 
+  //TODO: wywal potem
+  useLayoutEffect(() => {
+    projectsRef.current!.scrollIntoView();
+  }, [projectsRef.current]);
+
   // /** Footer Pinned With ScrollTrigger */
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
@@ -43,7 +48,7 @@ const Home = () => {
           scrollTrigger: {
             trigger: homeRef.current,
             start: "top top",
-            end: `${homeSectionHPercentage}% top`,
+            end: () => `${homeSectionHPercentage}% top`,
             pin: true,
             scrub: 0.8,
             // markers: true,
@@ -54,29 +59,6 @@ const Home = () => {
 
     return () => ctx.revert();
   }, []);
-
-  /** Tl for AboutPart */
-  // useLayoutEffect(() => {
-  //   const ctx = gsap.context(() => {
-  //     setTlAboutSection(
-  //       gsap.timeline({
-  //         scrollTrigger: {
-  //           trigger: aboutRef.current,
-  //           start: "2000 bottom",
-  //           end: "3000 bottom",
-  //           scrub: 0.8,
-  //           markers: true,
-  //         },
-  //       })
-  //     );
-  //   });
-  //   return ctx.revert();
-  // }, []);
-
-  /** */
-  // useLayoutEffect(() => {
-  //   ScrollTrigger.refresh();
-  // }, [width, height]);
 
   /** gradient on menu background when scrolling to about part */
   useLayoutEffect(() => {

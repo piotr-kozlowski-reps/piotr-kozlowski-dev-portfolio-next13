@@ -3,7 +3,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
 import Link from "next/link";
 import React, { Fragment, useLayoutEffect, useRef } from "react";
-import { start } from "repl";
 
 type Props = {
   tl: gsap.core.Timeline;

@@ -1,7 +1,13 @@
 import { useEffect, useState } from "react";
 import { TMediaSizeNames } from "../types/typings";
 
-/**hook that constantly returns window resolution changes */
+/**hook that constantly returns window resolution changes
+ * return:
+ * width: number
+ * height: number
+ * mediaSizeName: "mobile" | "tablet" | "desktop"
+ */
+
 const useDeviceSize = (): [number, number, TMediaSizeNames] => {
   ////vars
   const [width, setWidth] = useState(0);
