@@ -1,3 +1,5 @@
+import gsap from "gsap";
+
 export type TWhichSectionIsActive = {
   home: boolean;
   about: boolean;
@@ -33,5 +35,7 @@ export type TCredentialsInfoSet = {
   credentialText: string;
   backgroundBottomImgUrl: string;
 };
+
+export type TTimelineFunctionsToBeNested = () => gsap.core.Timeline;
 
 export type TMediaSizeNames = "mobile" | "tablet" | "desktop";

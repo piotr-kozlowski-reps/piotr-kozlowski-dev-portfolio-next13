@@ -202,7 +202,7 @@ export const generatePropertiesForTimelineInEveryResolution = (
     scrollTrigger: {
       trigger: trigger.current,
       start: () => `top ${amountPixelsFromTop}px`,
-      end: "+=350%",
+      end: () => `+=350%`,
       // markers: {
       //   startColor: "#fff",
       //   endColor: "#fff",

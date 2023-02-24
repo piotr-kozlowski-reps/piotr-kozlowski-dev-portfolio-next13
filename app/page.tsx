@@ -47,11 +47,14 @@ const Home = () => {
         gsap.timeline({
           scrollTrigger: {
             trigger: homeRef.current,
-            start: "top top",
+            start: () => "top top",
             end: () => `${homeSectionHPercentage}% top`,
             pin: true,
             scrub: 0.8,
             // markers: true,
+            onRefresh: () => {
+              console.log("refreshing Scroll Trigger");
+            },
           },
         })
       );

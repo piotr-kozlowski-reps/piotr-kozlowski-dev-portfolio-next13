@@ -2,76 +2,100 @@
 
 import Image from "next/image";
 import React, { useLayoutEffect, useRef } from "react";
-import { TCredentialsInfoSet } from "../../types/typings";
+import {
+  TCredentialsInfoSet,
+  TTimelineFunctionsToBeNested,
+} from "../../types/typings";
 import gsap, { Power4 } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 type Props = {
   credentialInfoSet: TCredentialsInfoSet;
+  addTimeline: (
+    timelineFunctionToBeNested: TTimelineFunctionsToBeNested
+  ) => void;
 };
 
 gsap.registerPlugin(ScrollTrigger);
 const CredentialItem = (props: Props) => {
   ////vars
+  const { credentialInfoSet, addTimeline } = props;
   const {
     backgroundTopImgUrl,
     backgroundTopLineImgUrl,
     portraitImgUrl,
     credentialText,
     backgroundBottomImgUrl,
-  } = props.credentialInfoSet;
+  } = credentialInfoSet;
 
   const credentialItemRef = useRef<HTMLDivElement>(null);
   const credentialTopLineRef = useRef<HTMLDivElement>(null);
   const credentialTopBackgroundRef = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
-    const ctx = gsap.context(() => {
-      let mm = gsap.matchMedia();
+    function tlCredentialItem() {
+      let tl = gsap.timeline();
+      tl.fromTo(
+        credentialItemRef.current,
+        { autoAlpha: 0, x: 100 },
+        { autoAlpha: 1, x: 0 }
+      );
+      return tl;
+    }
 
-      const credentialTl = gsap.timeline({
-        scrollTrigger: {
-          trigger: credentialItemRef.current,
-          start: "center center",
-          end: "bottom center",
-          toggleActions: "restart reverse none none",
-          markers: true,
-          pin: true,
-          // scrub: 0.8,
-        },
-      });
-
-      credentialTl
-        .addLabel("start")
-        .from(
-          credentialItemRef.current,
-          { autoAlpha: 0, scaleY: 0, ease: Power4.easeInOut, duration: 0.2 },
-          "start"
-        )
-        .fromTo(
-          credentialTopLineRef.current,
-          { autoAlpha: 0, duration: 0.4 },
-          { autoAlpha: 1 },
-          "start"
-        )
-        .fromTo(
-          credentialTopBackgroundRef.current,
-          { autoAlpha: 0, duration: 0.2 },
-          { autoAlpha: 1 },
-          "start"
-        );
-    });
-    return () => ctx.revert();
+    addTimeline(tlCredentialItem);
   }, []);
+
+  // useLayoutEffect(() => {
+  //   const ctx = gsap.context(() => {
+  //     let mm = gsap.matchMedia();
+
+  //     const credentialTl = gsap.timeline({
+  //       // scrollTrigger: {
+  //       // trigger: credentialItemRef.current,
+  //       // start: "center center",
+  //       // end: "bottom center",
+  //       // toggleActions: "restart reverse none none",
+  //       // markers: true,
+  //       // pin: true,
+  //       // scrub: 0.8,
+  //       // },
+  //     });
+
+  //     credentialTl
+  //       .addLabel("start")
+  //       .from(
+  //         credentialItemRef.current,
+  //         { autoAlpha: 0, scaleY: 0, ease: Power4.easeInOut, duration: 0.2 },
+  //         "start"
+  //       )
+  //       .fromTo(
+  //         credentialTopLineRef.current,
+  //         { autoAlpha: 0, duration: 0.4 },
+  //         { autoAlpha: 1 },
+  //         "start"
+  //       )
+  //       .fromTo(
+  //         credentialTopBackgroundRef.current,
+  //         { autoAlpha: 0, duration: 0.2 },
+  //         { autoAlpha: 1 },
+  //         "start"
+  //       );
+  //   });
+  //   return () => ctx.revert();
+  // }, []);
 
   ////jsx
   return (
-    <div ref={credentialItemRef} className="invisible">
+    <div
+      ref={credentialItemRef}
+      className="absolute top-0 left-0 w-full h-full"
+    >
       <div className="flex flex-col items-center justify-center w-full h-full">
         <div className="flex flex-col items-center justify-center">
           <div className="relative h-[60px] w-full">
             <div
-              className="absolute top-0 left-0 invisible w-full h-full"
+              className="absolute top-0 left-0 w-full h-full"
               ref={credentialTopLineRef}
             >
               <Image
