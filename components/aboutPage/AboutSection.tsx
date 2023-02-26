@@ -25,10 +25,6 @@ const AboutSection = (props: Props) => {
   const { tl, sectionsBeforePercentage } = props;
   const [width, height, mediaSizeName] = useDeviceSize();
 
-  // useEffect(() => {
-  //   ScrollTrigger.refresh();
-  // }, [width, height]);
-
   const developerDetails: TDetailsInfoSet = {
     slidersData: data.aboutSlidersDeveloper,
     logoImageURL: "/logo_only_graph_transparency.png",
@@ -57,20 +53,20 @@ const AboutSection = (props: Props) => {
       <AboutOverall />
 
       {/* developer details  */}
-      {mediaSizeName === "desktop" ? (
+      {/* {mediaSizeName === "desktop" ? (
         <AboutDetailsDesktop detailsInfoSet={developerDetails} />
       ) : (
         <AboutDetailsMobileAndTablet detailsInfoSet={developerDetails} />
-      )}
+      )} */}
 
       {/* designer details  */}
-      {mediaSizeName === "desktop" ? (
+      {/* {mediaSizeName === "desktop" ? (
         <AboutDetailsDesktop detailsInfoSet={designerDetails} />
       ) : (
         <AboutDetailsMobileAndTablet detailsInfoSet={designerDetails} />
-      )}
+      )} */}
 
-      <AboutCredentials />
+      {/* <AboutCredentials /> */}
     </Fragment>
   );
 };

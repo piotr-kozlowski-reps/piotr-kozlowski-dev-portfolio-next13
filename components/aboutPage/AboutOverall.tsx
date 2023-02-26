@@ -19,29 +19,16 @@ const AboutOverall = () => {
   const overAllSectionP2Ref = useRef<HTMLParagraphElement>(null);
 
   const [width, height, mediaSizeName] = useDeviceSize();
+  /* refresh ScrollTrigger when window size changes */
+  // useLayoutEffect(() => {
+  //   ScrollTrigger.refresh();
+  // }, [width, height]);
 
   ////animation
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
       let tlOverAllSection: gsap.core.Timeline;
       let mm = gsap.matchMedia();
-
-      const whiteTextFirstParagraph =
-        overAllSectionP1Ref.current!.getElementsByClassName(
-          "font-initially-invisible-white-p"
-        );
-      const yellowTextFirstParagraph =
-        overAllSectionP1Ref.current!.getElementsByClassName(
-          "font-initially-invisible-yellow-p"
-        );
-      const whiteTextSecondParagraph =
-        overAllSectionP2Ref.current!.getElementsByClassName(
-          "font-initially-invisible-white-p"
-        );
-      const yellowTextSecondParagraph =
-        overAllSectionP2Ref.current!.getElementsByClassName(
-          "font-initially-invisible-yellow-p"
-        );
 
       const overAllSectionAnimation = (tl: gsap.core.Timeline) => {
         tl.addLabel("start")
@@ -51,16 +38,46 @@ const AboutOverall = () => {
             { autoAlpha: 0 },
             "start"
           )
-          .to(yellowTextFirstParagraph, { autoAlpha: 1 }, "start")
-          .to(whiteTextFirstParagraph, { autoAlpha: 1 })
+          .to(
+            gsap.utils.toArray(
+              overAllSectionP1Ref.current!.getElementsByClassName(
+                "font-initially-invisible-yellow-p"
+              )
+            ),
+            { autoAlpha: 1 },
+            "start"
+          )
+          .to(
+            gsap.utils.toArray(
+              overAllSectionP1Ref.current!.getElementsByClassName(
+                "font-initially-invisible-white-p"
+              )
+            ),
+            { autoAlpha: 1 }
+          )
           .addLabel("secondParagraph")
           .to(
             overAllSectionLogoRightClippingMaskRef.current!,
             { autoAlpha: 0 },
             "secondParagraph"
           )
-          .to(yellowTextSecondParagraph, { autoAlpha: 1 }, "secondParagraph")
-          .to(whiteTextSecondParagraph, { autoAlpha: 1 })
+          .to(
+            gsap.utils.toArray(
+              overAllSectionP2Ref.current!.getElementsByClassName(
+                "font-initially-invisible-yellow-p"
+              )
+            ),
+            { autoAlpha: 1 },
+            "secondParagraph"
+          )
+          .to(
+            gsap.utils.toArray(
+              overAllSectionP2Ref.current!.getElementsByClassName(
+                "font-initially-invisible-white-p"
+              )
+            ),
+            { autoAlpha: 1 }
+          )
           .to(overAllSectionRef.current, { autoAlpha: 0, x: "-100%" });
       };
 

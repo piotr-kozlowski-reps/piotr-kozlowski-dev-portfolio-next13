@@ -209,6 +209,7 @@ export const generatePropertiesForTimelineInEveryResolution = (
       // },
       pin: true,
       scrub: 0.8,
+      invalidateOnRefresh: true,
     },
   });
 };

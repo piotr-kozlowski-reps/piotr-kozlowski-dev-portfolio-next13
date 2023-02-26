@@ -1,6 +1,12 @@
 "use client";
 
-import React, { Fragment, useLayoutEffect, useRef, useState } from "react";
+import React, {
+  Fragment,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from "react";
 import gsap, { Power4 } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -36,9 +42,14 @@ const Home = () => {
     );
 
   //TODO: wywal potem
-  useLayoutEffect(() => {
-    projectsRef.current!.scrollIntoView();
-  }, [projectsRef.current]);
+  // useLayoutEffect(() => {
+  //   projectsRef.current!.scrollIntoView();
+  // }, [projectsRef.current]);
+
+  /* refresh ScrollTrigger when window size changes */
+  useEffect(() => {
+    () => ScrollTrigger.refresh();
+  }, [width, height]);
 
   // /** Footer Pinned With ScrollTrigger */
   useLayoutEffect(() => {
@@ -51,10 +62,7 @@ const Home = () => {
             end: () => `${homeSectionHPercentage}% top`,
             pin: true,
             scrub: 0.8,
-            // markers: true,
-            onRefresh: () => {
-              console.log("refreshing Scroll Trigger");
-            },
+            invalidateOnRefresh: true,
           },
         })
       );
@@ -73,7 +81,7 @@ const Home = () => {
           start: "top-=100% top",
           end: "top top",
           scrub: 0.7,
-          // markers: true,
+          invalidateOnRefresh: true,
         },
       });
     });

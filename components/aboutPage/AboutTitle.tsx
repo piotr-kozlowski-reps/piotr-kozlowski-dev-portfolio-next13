@@ -2,13 +2,20 @@
 
 import gsap from "gsap";
 import Image from "next/image";
-import React, { useLayoutEffect, useRef } from "react";
+import React, { useEffect, useLayoutEffect, useRef } from "react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import useDeviceSize from "../../hooks/useDeviceSize";
 
 gsap.registerPlugin(ScrollTrigger);
 const AboutTitle = () => {
   ////vars
   const titleRef = useRef<HTMLDivElement>(null);
+  const [width, height] = useDeviceSize();
+
+  // /* refresh ScrollTrigger when window size changes */
+  // useEffect(() => {
+  //   ScrollTrigger.refresh();
+  // }, [width, height]);
 
   ////animation
   useLayoutEffect(() => {
@@ -19,10 +26,11 @@ const AboutTitle = () => {
         opacity: 0,
         scrollTrigger: {
           trigger: titleRef.current,
-          start: `top top`,
-          end: `bottom top`,
+          start: () => `top top`,
+          end: () => `bottom top`,
           pin: true,
           scrub: 0.8,
+          invalidateOnRefresh: true,
         },
       });
     });
