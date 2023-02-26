@@ -74,10 +74,17 @@ const AboutDetailsDesktop = (props: Props) => {
           )
           .add(() => {
             slidersRef.current.forEach((eachSlider, i) => {
-              return gsap.to(eachSlider.element.current, {
-                scaleX: eachSlider.percentage / 100,
-                autoAlpha: 1,
-              });
+              const tl = gsap.timeline();
+              tl
+                // .set(eachSlider.element.current, {
+                //   scaleX: 0,
+                //   autoAlpha: 0,
+                // })
+                .to(eachSlider.element.current, {
+                  scaleX: eachSlider.percentage / 100,
+                  autoAlpha: 1,
+                });
+              return tl;
             });
           })
           .to(paragraphRef.current, {});

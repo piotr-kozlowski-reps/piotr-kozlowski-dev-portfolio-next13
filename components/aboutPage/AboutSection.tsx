@@ -53,18 +53,18 @@ const AboutSection = (props: Props) => {
       <AboutOverall />
 
       {/* developer details  */}
-      {/* {mediaSizeName === "desktop" ? (
+      {mediaSizeName === "desktop" ? (
         <AboutDetailsDesktop detailsInfoSet={developerDetails} />
       ) : (
         <AboutDetailsMobileAndTablet detailsInfoSet={developerDetails} />
-      )} */}
+      )}
 
       {/* designer details  */}
-      {/* {mediaSizeName === "desktop" ? (
+      {mediaSizeName === "desktop" ? (
         <AboutDetailsDesktop detailsInfoSet={designerDetails} />
       ) : (
         <AboutDetailsMobileAndTablet detailsInfoSet={designerDetails} />
-      )} */}
+      )}
 
       {/* <AboutCredentials /> */}
     </Fragment>
