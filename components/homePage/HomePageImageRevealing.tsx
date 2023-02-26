@@ -163,7 +163,7 @@ const HomePageImageRevealing = (props: Props) => {
       </div>
 
       {/* design text */}
-      <div className="absolute top-0 bottom-0 left-0 right-0 z-40 w-full h-full">
+      <div className="absolute top-0 bottom-0 left-0 right-0 z-40 invisible w-full h-full">
         <div
           className="flex flex-col items-center justify-center w-full h-full"
           ref={designText}
