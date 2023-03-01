@@ -10,12 +10,6 @@ gsap.registerPlugin(ScrollTrigger);
 const AboutTitle = () => {
   ////vars
   const titleRef = useRef<HTMLDivElement>(null);
-  const [width, height] = useDeviceSize();
-
-  // /* refresh ScrollTrigger when window size changes */
-  // useEffect(() => {
-  //   ScrollTrigger.refresh();
-  // }, [width, height]);
 
   ////animation
   useLayoutEffect(() => {

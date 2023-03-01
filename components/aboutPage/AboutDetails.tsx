@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import React, { Fragment, useLayoutEffect, useRef } from "react";
-import gsap, { Power4 } from "gsap";
+import gsap from "gsap";
 import AboutSlider from "./AboutSlider";
 import { TDetailsInfoSet } from "../../types/typings";
 import { generatePropertiesForTimelineInEveryResolution } from "../../utils/animations";

@@ -8,7 +8,7 @@ import React, {
   useState,
 } from "react";
 import Image from "next/image";
-import gsap, { Power4 } from "gsap";
+import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import useDeviceSize from "../hooks/useDeviceSize";
 import {

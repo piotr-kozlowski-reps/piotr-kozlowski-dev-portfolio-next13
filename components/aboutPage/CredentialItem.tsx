@@ -6,7 +6,7 @@ import {
   TCredentialsInfoSet,
   TTimelineFunctionsToBeNested,
 } from "../../types/typings";
-import gsap, { Power4 } from "gsap";
+import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 type Props = {
@@ -66,7 +66,7 @@ const CredentialItem = (props: Props) => {
   //       .addLabel("start")
   //       .from(
   //         credentialItemRef.current,
-  //         { autoAlpha: 0, scaleY: 0, ease: Power4.easeInOut, duration: 0.2 },
+  //         { autoAlpha: 0, scaleY: 0, ease: "power4.inOut", duration: 0.2 },
   //         "start"
   //       )
   //       .fromTo(

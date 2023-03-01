@@ -5,8 +5,6 @@ import React, { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import useDeviceSize from "../../hooks/useDeviceSize";
-import { generatePropertiesForTimelineInEveryResolution } from "../../utils/animations";
-import { TMediaSizeNames } from "../../types/typings";
 
 gsap.registerPlugin(ScrollTrigger);
 const AboutOverall = () => {
@@ -19,86 +17,101 @@ const AboutOverall = () => {
   const overAllSectionP2Ref = useRef<HTMLParagraphElement>(null);
 
   const [width, height, mediaSizeName] = useDeviceSize();
-  /* refresh ScrollTrigger when window size changes */
-  // useLayoutEffect(() => {
-  //   ScrollTrigger.refresh();
-  // }, [width, height]);
 
   ////animation
   useLayoutEffect(() => {
-    const ctx = gsap.context(() => {
-      let tlOverAllSection: gsap.core.Timeline;
-      let mm = gsap.matchMedia();
+    let mm = gsap.matchMedia();
 
-      const overAllSectionAnimation = (tl: gsap.core.Timeline) => {
-        tl.addLabel("start")
-          .to(overAllSectionLogoRef.current, { autoAlpha: 1 }, "start")
-          .to(
-            overAllSectionLogoLeftClippingMaskRef.current!,
-            { autoAlpha: 0 },
-            "start"
-          )
-          .to(
-            gsap.utils.toArray(
-              overAllSectionP1Ref.current!.getElementsByClassName(
-                "font-initially-invisible-yellow-p"
-              )
-            ),
-            { autoAlpha: 1 },
-            "start"
-          )
-          .to(
-            gsap.utils.toArray(
-              overAllSectionP1Ref.current!.getElementsByClassName(
-                "font-initially-invisible-white-p"
-              )
-            ),
-            { autoAlpha: 1 }
-          )
-          .addLabel("secondParagraph")
-          .to(
-            overAllSectionLogoRightClippingMaskRef.current!,
-            { autoAlpha: 0 },
-            "secondParagraph"
-          )
-          .to(
-            gsap.utils.toArray(
-              overAllSectionP2Ref.current!.getElementsByClassName(
-                "font-initially-invisible-yellow-p"
-              )
-            ),
-            { autoAlpha: 1 },
-            "secondParagraph"
-          )
-          .to(
-            gsap.utils.toArray(
-              overAllSectionP2Ref.current!.getElementsByClassName(
-                "font-initially-invisible-white-p"
-              )
-            ),
-            { autoAlpha: 1 }
-          )
-          .to(overAllSectionRef.current, { autoAlpha: 0, x: "-100%" });
-      };
+    //animation details
+    const overAllSectionAnimation = (tl: gsap.core.Timeline) => {
+      tl.addLabel("start")
+        .to(overAllSectionLogoRef.current, { autoAlpha: 1 }, "start")
+        .to(
+          overAllSectionLogoLeftClippingMaskRef.current!,
+          { autoAlpha: 0 },
+          "start"
+        )
+        .to(
+          gsap.utils.toArray(
+            overAllSectionP1Ref.current!.getElementsByClassName(
+              "font-initially-invisible-yellow-p"
+            )
+          ),
+          { autoAlpha: 1 },
+          "start"
+        )
+        .to(
+          gsap.utils.toArray(
+            overAllSectionP1Ref.current!.getElementsByClassName(
+              "font-initially-invisible-white-p"
+            )
+          ),
+          { autoAlpha: 1 }
+        )
+        .addLabel("secondParagraph")
+        .to(
+          overAllSectionLogoRightClippingMaskRef.current!,
+          { autoAlpha: 0 },
+          "secondParagraph"
+        )
+        .to(
+          gsap.utils.toArray(
+            overAllSectionP2Ref.current!.getElementsByClassName(
+              "font-initially-invisible-yellow-p"
+            )
+          ),
+          { autoAlpha: 1 },
+          "secondParagraph"
+        )
+        .to(
+          gsap.utils.toArray(
+            overAllSectionP2Ref.current!.getElementsByClassName(
+              "font-initially-invisible-white-p"
+            )
+          ),
+          { autoAlpha: 1 }
+        )
+        .to(overAllSectionRef.current, { autoAlpha: 0, x: "-100%" });
+    };
 
-      mm.add("(max-width: 768px)", () => {
-        tlOverAllSection = generatePropertiesForTimelineInEveryResolution(
-          172,
-          overAllSectionRef
-        );
-        overAllSectionAnimation(tlOverAllSection);
+    mm.add("(max-width: 768px)", () => {
+      //tl
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: overAllSectionRef.current,
+          start: () => `top 172px`,
+          end: () => `+=350%`,
+          pin: true,
+          scrub: 0.8,
+          invalidateOnRefresh: true,
+        },
       });
 
-      mm.add("(min-width: 769px)", () => {
-        tlOverAllSection = generatePropertiesForTimelineInEveryResolution(
-          204,
-          overAllSectionRef
-        );
-        overAllSectionAnimation(tlOverAllSection);
-      });
+      //animation
+      overAllSectionAnimation(tl);
     });
 
-    return () => ctx.revert();
+    mm.add("(min-width: 769px)", () => {
+      //tl
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: overAllSectionRef.current,
+          start: () => `top 204px`,
+          end: () => `+=350%`,
+          pin: true,
+          scrub: 0.8,
+          invalidateOnRefresh: true,
+        },
+      });
+
+      //animation
+      overAllSectionAnimation(tl);
+    });
+
+    //clear and revert
+    return () => {
+      mm.revert();
+    };
   }, []);
 
   ////jsx
@@ -139,7 +152,6 @@ const AboutOverall = () => {
             ref={overAllSectionLogoRightClippingMaskRef}
           ></div>
         </div>
-        {/* <div className="mx-8 pt-[48px] text-center font-style-p pb-[3000px]"> */}
         <div className="mx-8 md:mx-0 w-fill md:w-[566px] pt-[48px] text-center font-style-p ">
           <p ref={overAllSectionP1Ref}>
             <span className="font-initially-invisible-white-p">

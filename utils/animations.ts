@@ -1,4 +1,4 @@
-import { Circ, gsap, Power0, Power4 } from "gsap";
+import gsap, { Circ } from "gsap";
 
 // export function mouseEventsAnimationHandler(
 //   ref: React.RefObject<HTMLElement>,
@@ -11,7 +11,7 @@ import { Circ, gsap, Power0, Power4 } from "gsap";
 //     { scale: initialScale },
 //     {
 //       scale: endScale,
-//       ease: "Power4.easeOut",
+//       ease: "power4.inOut",
 //       duration: duration,
 //     }
 //   );
@@ -20,7 +20,7 @@ import { Circ, gsap, Power0, Power4 } from "gsap";
 // // export function mouseOutHandler(ref: React.RefObject<HTMLElement>) {
 // //   gsap.to(ref.current, {
 // //     scale: 1,
-// //     ease: "Power4.easeOut",
+// //     ease: "power4.inOut",
 // //     duration: duration,
 // //   });
 // // }
@@ -40,7 +40,7 @@ const endRef1State: gsap.TweenVars = {
   rotateZ: 140,
   autoAlpha: 0,
   transformOrigin: "35% 50%",
-  ease: Power4.easeOut,
+  ease: "power4.inOut",
   duration: 0.5,
   immediateRender: false,
 };
@@ -56,7 +56,7 @@ const endRef2State: gsap.TweenVars = {
   autoAlpha: 100,
   rotateZ: 180,
   scale: 1,
-  ease: Power4.easeOut,
+  ease: "power4.inOut",
   duration: 0.6,
   immediateRender: false,
 };
@@ -138,7 +138,7 @@ export function revealElementsInXAnimation(
       autoAlpha: 100,
       stagger: staggerValue,
       duration: durationValue,
-      ease: Power4.easeOut,
+      ease: "power4.inOut",
       delay: delay,
     }
   );
@@ -163,7 +163,7 @@ export function hideElementsInXAnimation(
       autoAlpha: 0,
       stagger: staggerValue,
       duration: durationValue,
-      ease: Power4.easeOut,
+      ease: "power4.inOut",
       delay: delay,
     }
   );
@@ -188,7 +188,7 @@ export function hideElementsInXAnimationInitialForMobileView_Invisibly(
       autoAlpha: 0,
       stagger: staggerValue,
       duration: durationValue,
-      ease: Power4.easeOut,
+      ease: "power4.inOut",
       delay: delay,
     }
   );

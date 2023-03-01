@@ -1,7 +1,7 @@
 import React, { useLayoutEffect, useRef } from "react";
 import useDeviceSize from "../../hooks/useDeviceSize";
 import Image from "next/image";
-import gsap, { Power4 } from "gsap";
+import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -46,7 +46,7 @@ const HomePageFooter = () => {
         repeat: -1,
         yoyo: true,
         duration: 0.6,
-        yoyoEase: Power4.easeIn,
+        yoyoEase: "power4.inOut",
       });
     });
     return () => ctx.revert();

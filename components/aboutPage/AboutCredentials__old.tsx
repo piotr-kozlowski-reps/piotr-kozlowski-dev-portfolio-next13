@@ -2,7 +2,7 @@ import Image from "next/image";
 import React, { useLayoutEffect, useRef, useState } from "react";
 
 import CredentialItem from "./CredentialItem";
-import gsap, { Power4 } from "gsap";
+import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import data from "../../data/data.json";
 import { animated, useSpring } from "@react-spring/web";

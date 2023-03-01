@@ -7,7 +7,7 @@ import React, {
   useRef,
   useState,
 } from "react";
-import gsap, { Power4 } from "gsap";
+import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import Navigation from "../components/Navigation";
@@ -41,15 +41,10 @@ const Home = () => {
       contactRef
     );
 
-  //TODO: wywal potem
+  //TODO: delete afterwards
   // useLayoutEffect(() => {
   //   projectsRef.current!.scrollIntoView();
   // }, [projectsRef.current]);
-
-  /* refresh ScrollTrigger when window size changes */
-  useEffect(() => {
-    () => ScrollTrigger.refresh();
-  }, [width, height]);
 
   // /** Footer Pinned With ScrollTrigger */
   useLayoutEffect(() => {
@@ -78,8 +73,8 @@ const Home = () => {
         autoAlpha: 0,
         scrollTrigger: {
           trigger: aboutRef.current!,
-          start: "top-=100% top",
-          end: "top top",
+          start: () => "top-=100% top",
+          end: () => "top top",
           scrub: 0.7,
           invalidateOnRefresh: true,
         },
@@ -114,8 +109,7 @@ const Home = () => {
         </div>
       </div>
 
-      {/* Home Section */}
-      <section ref={homeRef} title="home">
+      <section ref={homeRef} title="home_section">
         <div className="w-full h-full bg-background_1_lighter">
           <div
             className="relative flex flex-col justify-between h-screen bg-background_1_lighter"
@@ -135,8 +129,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* About Section */}
-      <section title="about">
+      <section title="about_section">
         <div className="bg-background_2_darker" ref={aboutRef}>
           <AboutSection
             tl={tlAboutSection}
@@ -145,8 +138,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Projects Section */}
-      <section title="projects">
+      <section title="projects_section">
         <div
           className="w-screen h-screen bg-background_2_darker"
           ref={projectsRef}
@@ -155,8 +147,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Contact Section */}
-      <section title="contact">
+      <section title="contact_section">
         <div
           className="w-screen h-screen bg-background_2_darker"
           ref={contactRef}
@@ -166,7 +157,7 @@ const Home = () => {
       </section>
 
       {/* Footer Section */}
-      <section title="finalFooter">
+      <section title="footer_section">
         <div className="w-screen bg-background_2_darker">
           Footer
           <br />

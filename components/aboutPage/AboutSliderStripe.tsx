@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useLayoutEffect, useRef } from "react";
-import gsap, { Power4 } from "gsap";
+import gsap from "gsap";
 import { TAddSliderToAnimation } from "../../types/typings";
 
 type Props = {
@@ -15,7 +15,7 @@ const AboutSliderStripe = (props: Props) => {
   let yellowStripeRef = useRef<HTMLDivElement>(null);
   let backgroundStripeRef = useRef<HTMLDivElement>(null);
 
-  //animation
+  /* add all sliders to parent array */
   useLayoutEffect(() => {
     addSliderElement({ element: yellowStripeRef, percentage });
   }, []);
@@ -29,7 +29,7 @@ const AboutSliderStripe = (props: Props) => {
           autoAlpha: 0.6,
           repeat: -1,
           yoyo: true,
-          ease: Power4.easeInOut,
+          ease: "power4.inOut",
           duration: 3,
         }
       );

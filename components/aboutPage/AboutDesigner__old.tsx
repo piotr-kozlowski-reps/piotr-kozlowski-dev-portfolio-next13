@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import React, { Fragment, useLayoutEffect, useRef, useState } from "react";
-import gsap, { Power4 } from "gsap";
+import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import data from "../../data/data.json";
 import AboutSlider from "./AboutSlider";

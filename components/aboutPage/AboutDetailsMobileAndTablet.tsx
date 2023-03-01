@@ -4,7 +4,7 @@ import useDeviceSize from "../../hooks/useDeviceSize";
 import { TDetailsInfoSet } from "../../types/typings";
 import { generatePropertiesForTimelineInEveryResolution } from "../../utils/animations";
 import AboutSlider from "./AboutSlider";
-import gsap, { Power4 } from "gsap";
+import gsap from "gsap";
 
 type Props = {
   detailsInfoSet: TDetailsInfoSet;
@@ -44,73 +44,113 @@ const AboutDetailsMobileAndTablet = (props: Props) => {
 
   ////animation
   useLayoutEffect(() => {
-    const ctx = gsap.context(() => {
-      let aboutDetailsSectionTimeline: gsap.core.Timeline;
-      let mm = gsap.matchMedia();
+    let mm = gsap.matchMedia();
 
-      const aboutDetailsSectionNonDesktopAnimation = (
-        tl: gsap.core.Timeline
-      ) => {
-        tl.addLabel("start")
-          .fromTo(logoRef.current, { autoAlpha: 0 }, { autoAlpha: 1 }, "start")
-          .fromTo(
-            titleRef.current,
-            { autoAlpha: 0, x: "100vw" },
-            { autoAlpha: 1, x: 0 },
-            "start"
-          )
-          .fromTo(
-            paragraphRef.current,
-            { autoAlpha: 0, x: "100vw" },
-            { autoAlpha: 1, x: 0 },
-            "start"
-          )
-          .to(paragraphRef.current, {})
-          .addLabel("secondParagraph")
-          .fromTo(
-            paragraphRef.current,
-            { autoAlpha: 1, x: 0 },
-            { autoAlpha: 0, x: "-100vw" },
-            "secondParagraph"
-          )
-          .fromTo(
-            graphsRef.current,
-            { autoAlpha: 0, x: "100vw" },
-            {
-              autoAlpha: 1,
-              x: 0,
-            },
-            "secondParagraph"
-          )
-          .add(() => {
-            slidersRef.current.forEach((eachSlider, i) => {
-              return gsap.to(eachSlider.element.current, {
+    const aboutDetailsSectionAnimation = (
+      tl: gsap.core.Timeline,
+      self: gsap.Context
+    ) => {
+      tl.addLabel("start")
+        .fromTo(logoRef.current, { autoAlpha: 0 }, { autoAlpha: 1 }, "start")
+        .fromTo(
+          titleRef.current,
+          { autoAlpha: 0, x: "100vw" },
+          { autoAlpha: 1, x: 0 },
+          "start"
+        )
+        .fromTo(
+          paragraphRef.current,
+          { autoAlpha: 0, x: "100vw" },
+          { autoAlpha: 1, x: 0 },
+          "start"
+        )
+        .to(paragraphRef.current, {})
+        .addLabel("secondParagraph")
+        .fromTo(
+          paragraphRef.current,
+          { autoAlpha: 1, x: 0 },
+          { autoAlpha: 0, x: "-100vw" },
+          "secondParagraph"
+        )
+        .fromTo(
+          graphsRef.current,
+          { autoAlpha: 0, x: "100vw" },
+          {
+            autoAlpha: 1,
+            x: 0,
+          },
+          "secondParagraph"
+        )
+        .call(() => {
+          slidersRef.current.forEach((eachSlider, i) => {
+            self.add(() => {
+              gsap.to(eachSlider.element.current, {
                 scaleX: eachSlider.percentage / 100,
                 autoAlpha: 1,
               });
             });
-          })
-          .to(paragraphRef.current, {})
-          .addLabel("fadeOut")
-          .to(graphsRef.current, { autoAlpha: 0, y: "-100vw" }, "fadeOut")
-          .to(titleRef.current, { autoAlpha: 0, y: "-100vw" }, "fadeOut")
-          .to(logoRef.current, { autoAlpha: 0, y: "-100vw" }, "fadeOut");
-      };
+          });
+        })
+        // .call(() => {
+        //   self.add(() => {
+        //     slidersRef.current.forEach((eachSlider, i) => {
+        //       return gsap.to(eachSlider.element.current, {
+        //         scaleX: eachSlider.percentage / 100,
+        //         autoAlpha: 1,
+        //       });
+        //     });
+        //   });
+        // })
+        // .self.add(
+        //   slidersRef.current.forEach((eachSlider, i) => {
+        //     gsap.to(eachSlider.element.current, {
+        //       scaleX: eachSlider.percentage / 100,
+        //       autoAlpha: 1,
+        //     });
+        //   })
+        // )
+        .to(paragraphRef.current, {})
+        .addLabel("fadeOut")
+        .to(graphsRef.current, { autoAlpha: 0, y: "-100vw" }, "fadeOut")
+        .to(titleRef.current, { autoAlpha: 0, y: "-100vw" }, "fadeOut")
+        .to(logoRef.current, { autoAlpha: 0, y: "-100vw" }, "fadeOut");
+    };
 
-      mm.add("(max-width: 768px)", () => {
-        aboutDetailsSectionTimeline =
-          generatePropertiesForTimelineInEveryResolution(172, sectionRef);
-        aboutDetailsSectionNonDesktopAnimation(aboutDetailsSectionTimeline);
+    mm.add("(max-width: 768px)", (self) => {
+      //tl
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: () => `top 172px`,
+          end: () => `+=350%`,
+          pin: true,
+          scrub: 0.8,
+          invalidateOnRefresh: true,
+        },
       });
 
-      mm.add("(min-width: 769px)", () => {
-        aboutDetailsSectionTimeline =
-          generatePropertiesForTimelineInEveryResolution(204, sectionRef);
-        aboutDetailsSectionNonDesktopAnimation(aboutDetailsSectionTimeline);
-      });
+      //animation
+      aboutDetailsSectionAnimation(tl, self);
     });
 
-    return () => ctx.revert();
+    mm.add("(min-width: 769px) and (max-width: 1223px)", (self) => {
+      //tl
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: () => `top 204px`,
+          end: () => `+=350%`,
+          pin: true,
+          scrub: 0.8,
+          invalidateOnRefresh: true,
+        },
+      });
+
+      //animation
+      aboutDetailsSectionAnimation(tl, self);
+    });
+
+    return () => mm.revert();
   }, []);
 
   ////jsx

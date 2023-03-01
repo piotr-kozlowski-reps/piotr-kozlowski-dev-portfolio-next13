@@ -1,4 +1,4 @@
-import gsap, { Power4 } from "gsap";
+import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
 import Link from "next/link";
@@ -29,7 +29,7 @@ const HomePageImageRevealing = (props: Props) => {
         tl.addLabel("design")
           .fromTo(
             imageBackgroundBase.current,
-            { opacity: 1, ease: Power4.easeOut },
+            { opacity: 1, ease: "power4.inOut" },
             { opacity: 0 }
           )
           .fromTo(
