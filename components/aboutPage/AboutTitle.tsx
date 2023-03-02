@@ -2,9 +2,8 @@
 
 import gsap from "gsap";
 import Image from "next/image";
-import React, { useEffect, useLayoutEffect, useRef } from "react";
+import React, { useLayoutEffect, useRef } from "react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import useDeviceSize from "../../hooks/useDeviceSize";
 
 gsap.registerPlugin(ScrollTrigger);
 const AboutTitle = () => {
@@ -15,11 +14,11 @@ const AboutTitle = () => {
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
       /** ABOUT text animation */
-      gsap.to(titleRef.current!, {
+      gsap.to(titleRef.current, {
         scale: 33,
         opacity: 0,
         scrollTrigger: {
-          trigger: titleRef.current,
+          trigger: titleRef.current!,
           start: () => `top top`,
           end: () => `bottom top`,
           pin: true,
@@ -36,7 +35,7 @@ const AboutTitle = () => {
   return (
     <section title="aboutText">
       <div
-        className="flex flex-col items-center justify-center w-full h-screen z-60"
+        className="flex flex-col items-center justify-center w-screen h-screen z-60"
         ref={titleRef}
       >
         <Image

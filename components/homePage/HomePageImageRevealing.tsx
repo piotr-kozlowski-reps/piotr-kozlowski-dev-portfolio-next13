@@ -119,24 +119,24 @@ const HomePageImageRevealing = (props: Props) => {
   return (
     <Fragment>
       <div
-        className="absolute top-0 bottom-0 left-0 right-0 z-20 h-screen bg-center bg-no-repeat bg-cover"
+        className="absolute top-0 bottom-0 left-0 right-0 z-20 h-screen bg-center bg-no-repeat bg-cover "
         style={{
           backgroundImage: `url("/bg-landing-page.jpg")`,
         }}
         ref={imageBackgroundBase}
       ></div>
-      <div className="absolute top-0 bottom-0 left-0 right-0 z-20 h-screen bg-center bg-no-repeat bg-cover afterImage_outer">
+      <div className="absolute top-0 bottom-0 left-0 right-0 z-20 h-screen bg-center bg-no-repeat bg-cover afterImage_outer ">
         <div
-          className="z-30 w-full h-full bg-center bg-no-repeat bg-cover afterImage_inner"
+          className="z-30 w-full h-full bg-center bg-no-repeat bg-cover afterImage_inner "
           style={{
             backgroundImage: `url("/bg-landing-page_design.jpg")`,
           }}
           ref={imageBackgroundDesign}
         ></div>
       </div>
-      <div className="absolute top-0 bottom-0 left-0 right-0 z-20 invisible h-screen bg-center bg-no-repeat bg-cover afterImage_outer">
+      <div className="absolute top-0 bottom-0 left-0 right-0 z-20 invisible h-screen bg-center bg-no-repeat bg-cover afterImage_outer ">
         <div
-          className="z-30 w-full h-full bg-center bg-no-repeat bg-cover afterImage_inner"
+          className="z-30 w-full h-full bg-center bg-no-repeat bg-cover afterImage_inner "
           style={{
             backgroundImage: `url("/bg-landing-page_develop.jpg")`,
           }}
@@ -145,7 +145,7 @@ const HomePageImageRevealing = (props: Props) => {
       </div>
 
       {/* develop text */}
-      <div className="absolute top-0 bottom-0 left-0 right-0 z-40 invisible w-full h-full">
+      <div className="absolute top-0 bottom-0 left-0 right-0 z-40 invisible w-full h-full ">
         <div
           className="flex flex-col items-center justify-center w-full h-full"
           ref={developText}
@@ -163,9 +163,9 @@ const HomePageImageRevealing = (props: Props) => {
       </div>
 
       {/* design text */}
-      <div className="absolute top-0 bottom-0 left-0 right-0 z-40 invisible w-full h-full">
+      <div className="absolute top-0 bottom-0 left-0 right-0 z-40 invisible w-full h-full ">
         <div
-          className="flex flex-col items-center justify-center w-full h-full"
+          className="flex flex-col items-center justify-center w-full h-full bg-red-600"
           ref={designText}
         >
           <Link href="/">

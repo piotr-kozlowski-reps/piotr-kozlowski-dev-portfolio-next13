@@ -80,16 +80,16 @@ const AboutDetailsDesktop = (props: Props) => {
           },
           "secondParagraph"
         )
-        .call(() => {
-          slidersRef.current.forEach((eachSlider, i) => {
-            self.add(() => {
-              gsap.to(eachSlider.element.current, {
-                scaleX: eachSlider.percentage / 100,
-                autoAlpha: 1,
-              });
-            });
-          });
-        })
+        // .call(() => {
+        //   slidersRef.current.forEach((eachSlider, i) => {
+        //     self.add(() => {
+        //       gsap.to(eachSlider.element.current, {
+        //         scaleX: eachSlider.percentage / 100,
+        //         autoAlpha: 1,
+        //       });
+        //     });
+        //   });
+        // })
         // .call(() => {
         //   self.add(() => {
         //     slidersRef.current.forEach((eachSlider, i) => {
@@ -150,7 +150,7 @@ const AboutDetailsDesktop = (props: Props) => {
                 <Fragment key={index}>
                   <AboutSlider
                     sliderData={slider}
-                    addSliderElement={addSlidersHandler}
+                    // addSliderElement={addSlidersHandler}
                     mediaSizeName={mediaSizeName}
                   />
                 </Fragment>

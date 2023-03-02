@@ -110,9 +110,9 @@ const Home = () => {
       </div>
 
       <section ref={homeRef} title="home_section">
-        <div className="w-full h-full bg-background_1_lighter">
+        <div className="w-full h-full bg-background_1_lighter ">
           <div
-            className="relative flex flex-col justify-between h-screen bg-background_1_lighter"
+            className="relative flex flex-col justify-between h-screen bg-background_1_lighter "
             style={
               {
                 // backgroundImage: `url("/opening_page_mobile.png")`,
@@ -130,7 +130,7 @@ const Home = () => {
       </section>
 
       <section title="about_section">
-        <div className="bg-background_2_darker" ref={aboutRef}>
+        <div className=" bg-background_2_darker" ref={aboutRef}>
           <AboutSection
             tl={tlAboutSection}
             sectionsBeforePercentage={homeSectionHPercentage}

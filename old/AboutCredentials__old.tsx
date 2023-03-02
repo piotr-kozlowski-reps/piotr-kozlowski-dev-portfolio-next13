@@ -1,14 +1,14 @@
 import Image from "next/image";
 import React, { useLayoutEffect, useRef, useState } from "react";
 
-import CredentialItem from "./CredentialItem";
+import CredentialItem from "../components/aboutPage/CredentialItem";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import data from "../../data/data.json";
+import data from "../data/data.json";
 import { animated, useSpring } from "@react-spring/web";
 
 gsap.registerPlugin(ScrollTrigger);
-const AboutCredentials = () => {
+const AboutCredentialsOld = () => {
   ////vars
   const { credentialItems } = data;
   const credentialItemsSectionRef = useRef<HTMLDivElement>(null);
@@ -340,7 +340,7 @@ const AboutCredentials = () => {
             </div>
             {/* paragraphs - end */}
 
-            <div className="relative h-[88px] w-full ">
+            {/* <div className="relative h-[88px] w-full ">
               <div className="absolute top-0 left-0 w-full h-full">
                 <Image
                   src={credentialItems[0].backgroundBottomImgUrl}
@@ -349,7 +349,7 @@ const AboutCredentials = () => {
                   alt="credentials bottom background"
                 />
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
@@ -423,4 +423,4 @@ const AboutCredentials = () => {
   );
 };
 
-export default AboutCredentials;
+export default AboutCredentialsOld;

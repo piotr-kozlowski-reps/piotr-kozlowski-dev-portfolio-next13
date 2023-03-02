@@ -10,14 +10,14 @@ import AboutSliderStripe from "./AboutSliderStripe";
 
 type Props = {
   sliderData: TSliderData;
-  addSliderElement: TAddSliderToAnimation;
+  // addSliderElement: TAddSliderToAnimation;
   mediaSizeName?: TMediaSizeNames;
 };
 
 const AboutSlider = (props: Props) => {
   ////vars
   const { mainTitle, additionalInfo, percentage } = props.sliderData;
-  const { addSliderElement, mediaSizeName } = props;
+  const { mediaSizeName } = props;
 
   ////jsx
   {
@@ -33,7 +33,7 @@ const AboutSlider = (props: Props) => {
         <div className="-mt-1 font-style-xs">{additionalInfo}</div>
         <AboutSliderStripe
           percentage={percentage}
-          addSliderElement={addSliderElement}
+          // addSliderElement={addSliderElement}
         />
       </div>
     ) : (
@@ -47,7 +47,7 @@ const AboutSlider = (props: Props) => {
         <div className="font-style-h4">{mainTitle}</div>
         <AboutSliderStripe
           percentage={percentage}
-          addSliderElement={addSliderElement}
+          // addSliderElement={addSliderElement}
         />
       </div>
     );

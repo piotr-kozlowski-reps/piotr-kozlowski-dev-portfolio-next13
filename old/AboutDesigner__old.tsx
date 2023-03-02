@@ -8,7 +8,7 @@ import data from "../../data/data.json";
 import AboutSlider from "./AboutSlider";
 import { TSliderData } from "../../types/typings";
 
-const AboutDesigner = () => {
+const AboutDesigner_Old = () => {
   ////vars
   const designerSectionRef = useRef<HTMLDivElement>(null);
   const designerLogoRef = useRef<HTMLDivElement>(null);
@@ -156,4 +156,4 @@ const AboutDesigner = () => {
   );
 };
 
-export default AboutDesigner;
+export default AboutDesigner_Old;

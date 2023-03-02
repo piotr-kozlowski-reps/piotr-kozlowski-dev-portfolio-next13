@@ -112,7 +112,7 @@ const HomePageFooter = () => {
         ref={footerBackgroundRef}
       ></div>
       <div
-        className="absolute z-30 flex items-center justify-center w-full bottom-2"
+        className="absolute z-30 flex items-center justify-center w-full bottom-2 "
         ref={mouseRef}
       >
         {width < 768 ? (

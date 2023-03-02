@@ -6,19 +6,19 @@ import { TAddSliderToAnimation } from "../../types/typings";
 
 type Props = {
   percentage: number;
-  addSliderElement: TAddSliderToAnimation;
+  // addSliderElement: TAddSliderToAnimation;
 };
 
 const AboutSliderStripe = (props: Props) => {
   ////vars
-  const { percentage, addSliderElement } = props;
+  const { percentage } = props;
   let yellowStripeRef = useRef<HTMLDivElement>(null);
   let backgroundStripeRef = useRef<HTMLDivElement>(null);
 
   /* add all sliders to parent array */
-  useLayoutEffect(() => {
-    addSliderElement({ element: yellowStripeRef, percentage });
-  }, []);
+  // useLayoutEffect(() => {
+  //   addSliderElement({ element: yellowStripeRef, percentage });
+  // }, []);
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
