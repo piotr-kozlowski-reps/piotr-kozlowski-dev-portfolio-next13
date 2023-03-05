@@ -1,4 +1,10 @@
-import React, { Fragment, RefObject, useLayoutEffect, useRef } from "react";
+import React, {
+  Fragment,
+  RefObject,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from "react";
 import gsap from "gsap";
 
 import { TDetailsInfoSet } from "../../types/typings";
@@ -14,7 +20,6 @@ type Props = {
 gsap.registerPlugin(ScrollTrigger);
 const AboutDetails = (props: Props) => {
   ////vars
-  const { detailsInfoSet } = props;
   const {
     isFirstSectionThenNoTopMargin,
     logoImageURL,
@@ -24,58 +29,75 @@ const AboutDetails = (props: Props) => {
     sliders,
   } = props.detailsInfoSet;
 
+  const [isAnimateStripes, setIsAnimateStripes] = useState(false);
+
   const [width, height, mediaSizeName] = useDeviceSize();
 
-  // const sectionMobileAndTabletRef = useRef<HTMLDivElement>(null);
-
   const sectionRef = useRef<HTMLDivElement>(null);
-  const logoRef = useRef<HTMLDivElement>(null);
-  const titleRef = useRef<HTMLDivElement>(null);
-  const paragraphRef = useRef<HTMLDivElement>(null);
-  const graphsRef = useRef<HTMLDivElement>(null);
+  const logoMobileAndTabletRef = useRef<HTMLDivElement>(null);
+  const logoDesktopRef = useRef<HTMLDivElement>(null);
+  const titleMobileAndTabletRef = useRef<HTMLDivElement>(null);
+  const titleDesktopRef = useRef<HTMLDivElement>(null);
+  const paragraphMobileAndTabletRef = useRef<HTMLDivElement>(null);
+  const paragraphDesktopRef = useRef<HTMLDivElement>(null);
+  const graphsMobileAndTabletRef = useRef<HTMLDivElement>(null);
+  const graphsDesktopRef = useRef<HTMLDivElement>(null);
 
   ////animation
   useLayoutEffect(() => {
     let mm = gsap.matchMedia();
 
-    mm.add("(max-width: 768px)", () => {
-      console.log("(max-width: 768px)");
-      //tl
-      const tl = gsap.timeline({
+    function createTl(
+      ref: React.RefObject<HTMLDivElement>,
+      yFromTopInPixels: number,
+      endPercentage: number
+    ) {
+      return gsap.timeline({
         scrollTrigger: {
-          trigger: sectionRef.current,
-          start: () => `top 172px`,
-          end: () => `+=350%`,
+          trigger: ref.current,
+          start: () => `top ${yFromTopInPixels}px`,
+          end: () => `+=${endPercentage}%`,
+          // markers: true,
           pin: true,
           scrub: 0.8,
           invalidateOnRefresh: true,
         },
       });
+    }
 
+    function animateMobileAndTablet(tl: gsap.core.Timeline) {
       tl.addLabel("start")
-        .fromTo(logoRef.current, { autoAlpha: 0 }, { autoAlpha: 1 }, "start")
+        .call(() => {
+          setIsAnimateStripes(false);
+        })
         .fromTo(
-          titleRef.current,
+          logoMobileAndTabletRef.current,
+          { autoAlpha: 0 },
+          { autoAlpha: 1 },
+          "start"
+        )
+        .fromTo(
+          titleMobileAndTabletRef.current,
           { autoAlpha: 0, x: "100vw" },
           { autoAlpha: 1, x: 0 },
           "start"
         )
         .fromTo(
-          paragraphRef.current,
+          paragraphMobileAndTabletRef.current,
           { autoAlpha: 0, x: "100vw" },
           { autoAlpha: 1, x: 0 },
           "start"
         )
-        .to(paragraphRef.current, {})
+        .to(paragraphMobileAndTabletRef.current, {})
         .addLabel("secondParagraph")
         .fromTo(
-          paragraphRef.current,
+          paragraphMobileAndTabletRef.current,
           { autoAlpha: 1, x: 0 },
           { autoAlpha: 0, x: "-100vw" },
           "secondParagraph"
         )
         .fromTo(
-          graphsRef.current,
+          graphsMobileAndTabletRef.current,
           { autoAlpha: 0, x: "100vw" },
           {
             autoAlpha: 1,
@@ -83,96 +105,71 @@ const AboutDetails = (props: Props) => {
           },
           "secondParagraph"
         )
-        .to(paragraphRef.current, {})
+        .call(() => {
+          setIsAnimateStripes(true);
+        })
+        .to(paragraphMobileAndTabletRef.current, {})
         .addLabel("fadeOut")
-        .to(graphsRef.current, { autoAlpha: 0, y: "-100vw" }, "fadeOut")
-        .to(titleRef.current, { autoAlpha: 0, y: "-100vw" }, "fadeOut")
-        .to(logoRef.current, { autoAlpha: 0, y: "-100vw" }, "fadeOut");
+        .to(
+          graphsMobileAndTabletRef.current,
+          { autoAlpha: 0, y: "-100vw" },
+          "fadeOut"
+        )
+        .to(
+          titleMobileAndTabletRef.current,
+          { autoAlpha: 0, y: "-100vw" },
+          "fadeOut"
+        )
+        .to(
+          logoMobileAndTabletRef.current,
+          { autoAlpha: 0, y: "-100vw" },
+          "fadeOut"
+        )
+        .to(paragraphMobileAndTabletRef.current, {});
+    }
+
+    mm.add("(max-width: 768px)", () => {
+      const tl = createTl(sectionRef, 172, 450);
+      animateMobileAndTablet(tl);
     });
 
     mm.add("(min-width: 769px) and (max-width: 1223px)", () => {
-      console.log("(min-width: 769px) and (max-width: 1223px)");
-      //tl
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: () => `top 204px`,
-          end: () => `+=350%`,
-          pin: true,
-          scrub: 0.8,
-          invalidateOnRefresh: true,
-        },
-      });
-
-      tl.addLabel("start")
-        .fromTo(logoRef.current, { autoAlpha: 0 }, { autoAlpha: 1 }, "start")
-        .fromTo(
-          titleRef.current,
-          { autoAlpha: 0, x: "100vw" },
-          { autoAlpha: 1, x: 0 },
-          "start"
-        )
-        .fromTo(
-          paragraphRef.current,
-          { autoAlpha: 0, x: "100vw" },
-          { autoAlpha: 1, x: 0 },
-          "start"
-        )
-        .to(paragraphRef.current, {})
-        .addLabel("secondParagraph")
-        .fromTo(
-          paragraphRef.current,
-          { autoAlpha: 1, x: 0 },
-          { autoAlpha: 0, x: "-100vw" },
-          "secondParagraph"
-        )
-        .fromTo(
-          graphsRef.current,
-          { autoAlpha: 0, x: "100vw" },
-          {
-            autoAlpha: 1,
-            x: 0,
-          },
-          "secondParagraph"
-        )
-        .to(paragraphRef.current, {})
-        .addLabel("fadeOut")
-        .to(graphsRef.current, { autoAlpha: 0, y: "-100vw" }, "fadeOut")
-        .to(titleRef.current, { autoAlpha: 0, y: "-100vw" }, "fadeOut")
-        .to(logoRef.current, { autoAlpha: 0, y: "-100vw" }, "fadeOut");
+      const tl = createTl(sectionRef, 204, 500);
+      animateMobileAndTablet(tl);
     });
 
     mm.add("(min-width: 1224px)", () => {
-      console.log("(min-width: 1224px)");
       //tl
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current!,
-          start: () => `top 204px`,
-          end: () => `+=350%`,
-          pin: true,
-          scrub: 0.8,
-          invalidateOnRefresh: true,
-        },
-      });
+      const tl = createTl(sectionRef, 204, 450);
 
       tl.addLabel("start")
-        .fromTo(logoRef.current, { autoAlpha: 0 }, { autoAlpha: 1 }, "start")
+        .call(() => {
+          setIsAnimateStripes(false);
+        })
         .fromTo(
-          titleRef.current,
+          logoDesktopRef.current,
+          { autoAlpha: 0 },
+          { autoAlpha: 1 },
+          "start"
+        )
+        .fromTo(
+          titleDesktopRef.current,
           { autoAlpha: 0, x: "-100vw" },
           { autoAlpha: 1, x: 0 },
           "start"
         )
         .fromTo(
-          paragraphRef.current,
+          paragraphDesktopRef.current,
           { autoAlpha: 0, x: "-100vw" },
           { autoAlpha: 1, x: 0 },
           "start"
         )
+        .call(() => {
+          setIsAnimateStripes(true);
+        })
         .addLabel("secondParagraph")
         .fromTo(
-          graphsRef.current,
+          graphsDesktopRef.current,
           { autoAlpha: 0, x: "100vw" },
           {
             autoAlpha: 1,
@@ -180,119 +177,129 @@ const AboutDetails = (props: Props) => {
           },
           "secondParagraph"
         )
-        .to(paragraphRef.current, {});
+        .to(paragraphDesktopRef.current, {});
     });
 
     return () => mm.revert();
   }, []);
 
   ////jsx
-  const mobileAndTabletJSX = (
+  return (
     <section title="aboutDetailsSection">
       <div
-        className={`flex flex-col items-center justify-center  ${
+        className={`flex flex-col xl:flex-row items-center xl:items-start justify-center xl:justify-between w-full xl:w-[1220px] mx-0 xl:mx-auto z-10 pb-0 xl:pb-8 bg-background_2_darker ${
           isFirstSectionThenNoTopMargin ? "" : "mt-[100%]"
         }`}
         ref={sectionRef}
       >
-        <div
-          className={`relative  ${
-            mediaSizeName === "mobile"
-              ? "w-[44px] h-[44px]"
-              : "w-[88px] h-[88px]"
-          } `}
-          ref={logoRef}
-        >
-          <div
-            className="absolute top-0 bottom-0 left-0 right-0 w-full h-full"
-            ref={logoRef}
-          >
-            <Image src={logoImageURL} alt="logo" width={128} height={128} />
-          </div>
-          <div
-            className={`absolute top-0 bottom-0 left-0 right-0 w-full h-full bg-background_2_darker ${clipPathName}`}
-          ></div>
-        </div>
-        <div className="invisible mt-2 font-style-h3 " ref={titleRef}>
-          {sectionPurposeName}
-        </div>
-        <div className="relative w-full md:w-[566px] ">
-          <div className="absolute w-full h-full ">
+        {window.innerWidth < 1224 && (
+          <Fragment>
             <div
-              className="mx-8 pt-[48px] text-center font-style-p invisible"
-              ref={paragraphRef}
+              className={`relative  ${
+                mediaSizeName === "mobile"
+                  ? "w-[44px] h-[44px]"
+                  : "w-[88px] h-[88px]"
+              } `}
+              ref={logoMobileAndTabletRef}
             >
-              <p>{paragraphText}</p>
+              <div
+                className="absolute top-0 bottom-0 left-0 right-0 w-full h-full"
+                ref={logoMobileAndTabletRef}
+              >
+                <Image src={logoImageURL} alt="logo" width={128} height={128} />
+              </div>
+              <div
+                className={`absolute top-0 bottom-0 left-0 right-0 w-full h-full bg-background_2_darker ${clipPathName}`}
+              ></div>
             </div>
-          </div>
-          <div className="absolute w-full h-full ">
             <div
-              className="mx-8 pt-[48px] text-center font-style-p invisible"
-              ref={graphsRef}
+              className="invisible mt-2 font-style-h3 "
+              ref={titleMobileAndTabletRef}
             >
-              {sliders.map((slider, index) => (
-                <Fragment key={index}>
-                  <AboutSlider
-                    sliderData={slider}
-                    // addSliderElement={addSlidersHandler}
-                  />
-                </Fragment>
-              ))}
+              {sectionPurposeName}
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-
-  const desktopJSX = (
-    <section title="aboutDetailsSection">
-      <div
-        className="flex items-start justify-between xl:w-[1220px] xl:mx-auto z-10 pb-8 bg-background_2_darker"
-        ref={sectionRef}
-      >
-        <div
-          className={`flex flex-col items-start justify-start ml-[40px] w-[570px]`}
-        >
-          <div className="relative w-[44px] h-[44px]" ref={logoRef}>
-            <div className="absolute top-0 bottom-0 left-0 right-0 w-fill h-fill">
-              <Image src={logoImageURL} alt="logo" width={128} height={128} />
-            </div>
-            <div
-              className={`absolute top-0 bottom-0 left-0 right-0 w-fill h-fill bg-background_2_darker ${clipPathName}`}
-            ></div>
-          </div>
-          <div className="mt-2 font-style-h3" ref={titleRef}>
-            {sectionPurposeName}
-          </div>
-          <div className="relative w-full ">
-            <div className="absolute w-full h-full">
-              <div className="pt-[48px] font-style-p" ref={paragraphRef}>
-                <p>{paragraphText}</p>
+            <div className="relative w-full md:w-[566px] ">
+              <div className="absolute w-full h-full ">
+                <div
+                  className="mx-8 pt-[48px] text-center font-style-p invisible"
+                  ref={paragraphMobileAndTabletRef}
+                >
+                  <p>{paragraphText}</p>
+                </div>
+              </div>
+              <div className="absolute w-full h-full ">
+                <div
+                  className="mx-8 pt-[48px] text-center font-style-p invisible"
+                  ref={graphsMobileAndTabletRef}
+                >
+                  {sliders.map((slider, index) => (
+                    <Fragment key={index}>
+                      <AboutSlider
+                        sliderData={slider}
+                        isAnimateStripes={isAnimateStripes}
+                        // addSliderElement={addSlidersHandler}
+                      />
+                    </Fragment>
+                  ))}
+                </div>
               </div>
             </div>
-          </div>
-        </div>
-        <div className="w-[570px] mr-[23px]">
-          <div className="h-fill w-fill mt-[134px]">
-            <div className="font-style-p" ref={graphsRef}>
-              {sliders.map((slider, index) => (
-                <Fragment key={index}>
-                  <AboutSlider
-                    sliderData={slider}
-                    // addSliderElement={addSlidersHandler}
-                    mediaSizeName={mediaSizeName}
+          </Fragment>
+        )}
+
+        {window.innerWidth >= 1224 && (
+          <Fragment>
+            <div
+              className={`flex flex-col items-start justify-start ml-[40px] w-[570px]`}
+            >
+              <div className="relative w-[44px] h-[44px]" ref={logoDesktopRef}>
+                <div className="absolute top-0 bottom-0 left-0 right-0 w-fill h-fill">
+                  <Image
+                    src={logoImageURL}
+                    alt="logo"
+                    width={128}
+                    height={128}
                   />
-                </Fragment>
-              ))}
+                </div>
+                <div
+                  className={`absolute top-0 bottom-0 left-0 right-0 w-fill h-fill bg-background_2_darker ${clipPathName}`}
+                ></div>
+              </div>
+              <div className="mt-2 font-style-h3" ref={titleDesktopRef}>
+                {sectionPurposeName}
+              </div>
+              <div className="relative w-full ">
+                <div className="absolute w-full h-full">
+                  <div
+                    className="pt-[48px] font-style-p"
+                    ref={paragraphDesktopRef}
+                  >
+                    <p>{paragraphText}</p>
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
+            <div className="w-[570px] mr-[23px]">
+              <div className="h-fill w-fill mt-[134px]">
+                <div className="font-style-p" ref={graphsDesktopRef}>
+                  {sliders.map((slider, index) => (
+                    <Fragment key={index}>
+                      <AboutSlider
+                        sliderData={slider}
+                        // addSliderElement={addSlidersHandler}
+                        mediaSizeName={mediaSizeName}
+                        isAnimateStripes={isAnimateStripes}
+                      />
+                    </Fragment>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </Fragment>
+        )}
       </div>
     </section>
   );
-
-  return mediaSizeName !== "desktop" ? mobileAndTabletJSX : desktopJSX;
 };
 
 export default AboutDetails;

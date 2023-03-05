@@ -2,23 +2,39 @@
 
 import React, { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
-import { TAddSliderToAnimation } from "../../types/typings";
 
 type Props = {
   percentage: number;
-  // addSliderElement: TAddSliderToAnimation;
+  isAnimateStripes: boolean;
 };
 
 const AboutSliderStripe = (props: Props) => {
   ////vars
-  const { percentage } = props;
+  const { percentage, isAnimateStripes } = props;
   let yellowStripeRef = useRef<HTMLDivElement>(null);
   let backgroundStripeRef = useRef<HTMLDivElement>(null);
 
-  /* add all sliders to parent array */
-  // useLayoutEffect(() => {
-  //   addSliderElement({ element: yellowStripeRef, percentage });
-  // }, []);
+  useLayoutEffect(() => {
+    const ctx = gsap.context(() => {
+      let anim = gsap.fromTo(
+        yellowStripeRef.current,
+        {
+          scaleX: 0,
+          autoAlpha: 0,
+        },
+        {
+          scaleX: percentage / 100,
+          autoAlpha: 1,
+          duration: 2,
+          ease: "power4.inOut",
+          paused: true,
+        }
+      );
+      if (isAnimateStripes) anim.play();
+    });
+
+    return () => ctx.revert();
+  }, [isAnimateStripes]);
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {

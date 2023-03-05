@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React, { useLayoutEffect, useRef, useState } from "react";
 
-import CredentialItem from "../components/aboutPage/CredentialItem";
+import AboutCredentialItem from "./AboutCredentialItem__old";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import data from "../data/data.json";

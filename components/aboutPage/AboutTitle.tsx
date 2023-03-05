@@ -13,7 +13,6 @@ const AboutTitle = () => {
   ////animation
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
-      /** ABOUT text animation */
       gsap.to(titleRef.current, {
         scale: 33,
         opacity: 0,

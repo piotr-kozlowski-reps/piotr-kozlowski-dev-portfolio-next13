@@ -5,7 +5,7 @@ import React, { useLayoutEffect, useRef } from "react";
 import {
   TCredentialsInfoSet,
   TTimelineFunctionsToBeNested,
-} from "../../types/typings";
+} from "../types/typings";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -17,7 +17,7 @@ type Props = {
 };
 
 gsap.registerPlugin(ScrollTrigger);
-const CredentialItem = (props: Props) => {
+const AboutCredentialItem = (props: Props) => {
   ////vars
   const { credentialInfoSet, addTimeline } = props;
   const {
@@ -45,45 +45,6 @@ const CredentialItem = (props: Props) => {
 
     addTimeline(tlCredentialItem);
   }, []);
-
-  // useLayoutEffect(() => {
-  //   const ctx = gsap.context(() => {
-  //     let mm = gsap.matchMedia();
-
-  //     const credentialTl = gsap.timeline({
-  //       // scrollTrigger: {
-  //       // trigger: credentialItemRef.current,
-  //       // start: "center center",
-  //       // end: "bottom center",
-  //       // toggleActions: "restart reverse none none",
-  //       // markers: true,
-  //       // pin: true,
-  //       // scrub: 0.8,
-  //       // },
-  //     });
-
-  //     credentialTl
-  //       .addLabel("start")
-  //       .from(
-  //         credentialItemRef.current,
-  //         { autoAlpha: 0, scaleY: 0, ease: "power4.inOut", duration: 0.2 },
-  //         "start"
-  //       )
-  //       .fromTo(
-  //         credentialTopLineRef.current,
-  //         { autoAlpha: 0, duration: 0.4 },
-  //         { autoAlpha: 1 },
-  //         "start"
-  //       )
-  //       .fromTo(
-  //         credentialTopBackgroundRef.current,
-  //         { autoAlpha: 0, duration: 0.2 },
-  //         { autoAlpha: 1 },
-  //         "start"
-  //       );
-  //   });
-  //   return () => ctx.revert();
-  // }, []);
 
   ////jsx
   return (
@@ -146,4 +107,4 @@ const CredentialItem = (props: Props) => {
   );
 };
 
-export default CredentialItem;
+export default AboutCredentialItem;

@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React, { useLayoutEffect, useRef, useState } from "react";
 
-import CredentialItem from "./CredentialItem";
+import AboutCredentialItem from "../../old/AboutCredentialItem__old";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import data from "../../data/data.json";
@@ -38,147 +38,160 @@ const AboutCredentials = () => {
   const credentialParagraphRef = useRef<HTMLDivElement>(null);
 
   ////animations
-  //animationFunctions
-  // function credentialAnimationIn() {
-  //   let tl = gsap.timeline();
+  useLayoutEffect(() => {
+    let mm = gsap.matchMedia();
 
-  //   tl.addLabel("credential1Start")
-  //     .fromTo(
-  //       credentialPortraitRef.current,
-  //       { autoAlpha: 0, scale: 0 },
-  //       { autoAlpha: 1, scale: 1 },
-  //       "credential1Start"
-  //     )
-  //     .fromTo(
-  //       credentialParagraphRef.current,
-  //       { autoAlpha: 0, x: "100vw" },
-  //       { autoAlpha: 1, x: 0 },
-  //       "credential1Start"
-  //     );
-  //   return tl;
-  // }
+    //helper functions
+    function createTl() {
+      return gsap.timeline({
+        scrollTrigger: {
+          trigger: credentialItemsSectionRef.current,
+          start: () => "center center",
+          end: () => "+=" + credentialItemsSectionRef.current!.offsetHeight * 8,
+          // markers: true,
+          pin: true,
+          scrub: 0.8,
+        },
+      });
+    }
+    function credentialAnimationIn() {
+      let tl = gsap.timeline();
 
-  // function credentialAnimationOut() {
-  //   let tl = gsap.timeline();
+      tl.addLabel("credential1Start")
+        .fromTo(
+          credentialPortraitRef.current,
+          { autoAlpha: 0, scale: 0 },
+          { autoAlpha: 1, scale: 1 },
+          "credential1Start"
+        )
+        .fromTo(
+          credentialParagraphRef.current,
+          { autoAlpha: 0, x: "100vw" },
+          { autoAlpha: 1, x: 0 },
+          "credential1Start"
+        );
+      return tl;
+    }
+    function credentialAnimationOut() {
+      let tl = gsap.timeline();
 
-  //   tl.addLabel("credential1Start")
-  //     .to(
-  //       credentialPortraitRef.current,
-  //       { autoAlpha: 0, scale: 0 },
-  //       "credential1Start"
-  //     )
-  //     .to(
-  //       credentialParagraphRef.current,
-  //       { autoAlpha: 0, x: "-100vw" },
-  //       "credential1Start"
-  //     );
-  //   return tl;
-  // }
+      tl.addLabel("credential1Start")
+        .to(
+          credentialPortraitRef.current,
+          { autoAlpha: 0, scale: 0 },
+          "credential1Start"
+        )
+        .to(
+          credentialParagraphRef.current,
+          { autoAlpha: 0, x: "-100vw" },
+          "credential1Start"
+        );
+      return tl;
+    }
+    function animate(tl: gsap.core.Timeline) {
+      tl.addLabel("fadeIn")
+        .fromTo(
+          credentialItemsSectionRef.current,
+          { autoAlpha: 0 },
+          { autoAlpha: 1 }
+        )
+        .addLabel("credential0")
+        .call(() => {
+          setCredentialIndex(() => 0);
+          apiBackgroundAnimation.set({
+            backgroundFill: morphBackgroundFill[0],
+            backgroundStroke: morphBackgroundStroke[0],
+          });
+        })
+        .add(credentialAnimationIn())
+        .to(credentialItemsSectionRef.current, {})
+        .add(credentialAnimationOut())
+        .call(() => {
+          apiBackgroundAnimation.start({
+            backgroundFill: morphBackgroundFill[0],
+            backgroundStroke: morphBackgroundStroke[0],
+          });
+          setCredentialIndex(() => 0);
+        })
+        .addLabel("credential1")
+        .call(() => {
+          setCredentialIndex(() => 1);
+          apiBackgroundAnimation.start({
+            backgroundFill: morphBackgroundFill[1],
+            backgroundStroke: morphBackgroundStroke[1],
+          });
+        })
+        .add(credentialAnimationIn())
+        .to(credentialItemsSectionRef.current, {})
+        .add(credentialAnimationOut())
+        .call(() => {
+          apiBackgroundAnimation.start({
+            backgroundFill: morphBackgroundFill[1],
+            backgroundStroke: morphBackgroundStroke[1],
+          });
+          setCredentialIndex(() => 1);
+        })
+        .addLabel("credential2")
+        .call(() => {
+          setCredentialIndex(() => 2);
+          apiBackgroundAnimation.start({
+            backgroundFill: morphBackgroundFill[2],
+            backgroundStroke: morphBackgroundStroke[2],
+          });
+        })
+        .add(credentialAnimationIn())
+        .to(credentialItemsSectionRef.current, {})
+        .add(credentialAnimationOut())
+        .call(() => {
+          apiBackgroundAnimation.start({
+            backgroundFill: morphBackgroundFill[2],
+            backgroundStroke: morphBackgroundStroke[2],
+          });
+          setCredentialIndex(() => 2);
+        })
+        .addLabel("credential3")
+        .call(() => {
+          setCredentialIndex(() => 3);
+          apiBackgroundAnimation.start({
+            backgroundFill: morphBackgroundFill[3],
+            backgroundStroke: morphBackgroundStroke[3],
+          });
+        })
+        .add(credentialAnimationIn())
+        .to(credentialItemsSectionRef.current, {})
+        .add(credentialAnimationOut())
+        .call(() => {
+          apiBackgroundAnimation.start({
+            backgroundFill: morphBackgroundFill[3],
+            backgroundStroke: morphBackgroundStroke[3],
+          });
+          setCredentialIndex(() => 3);
+        })
+        .addLabel("finalFadeOut")
+        .fromTo(
+          credentialItemsSectionRef.current,
+          { autoAlpha: 1 },
+          { autoAlpha: 0 }
+        );
+    }
 
-  //final effect
-  // useLayoutEffect(() => {
-  //   const ctx = gsap.context(() => {
-  //     let mm = gsap.matchMedia();
+    mm.add("(max-width: 768px)", () => {
+      const tl = createTl();
+      animate(tl);
+    });
 
-  //     const credentialTl = gsap.timeline({
-  //       scrollTrigger: {
-  //         trigger: credentialItemsSectionRef.current,
-  //         start: () => "center center",
-  //         end: () => "+=" + credentialItemsSectionRef.current!.offsetHeight * 8,
-  //         markers: true,
-  //         pin: true,
-  //         scrub: 0.8,
-  //       },
-  //     });
+    mm.add("(min-width: 769px) and (max-width: 1223px)", () => {
+      const tl = createTl();
+      animate(tl);
+    });
 
-  //     credentialTl
-  //       .addLabel("fadeIn")
-  //       .fromTo(
-  //         credentialItemsSectionRef.current,
-  //         { autoAlpha: 0 },
-  //         { autoAlpha: 1 }
-  //       )
-  //       .addLabel("credential0")
-  //       .call(() => {
-  //         setCredentialIndex(() => 0);
-  //         apiBackgroundAnimation.set({
-  //           backgroundFill: morphBackgroundFill[0],
-  //           backgroundStroke: morphBackgroundStroke[0],
-  //         });
-  //       })
-  //       .add(credentialAnimationIn())
-  //       .to(credentialItemsSectionRef.current, {})
-  //       .add(credentialAnimationOut())
-  //       .call(() => {
-  //         apiBackgroundAnimation.start({
-  //           backgroundFill: morphBackgroundFill[0],
-  //           backgroundStroke: morphBackgroundStroke[0],
-  //         });
-  //         setCredentialIndex(() => 0);
-  //       })
-  //       .addLabel("credential1")
-  //       .call(() => {
-  //         setCredentialIndex(() => 1);
-  //         apiBackgroundAnimation.start({
-  //           backgroundFill: morphBackgroundFill[1],
-  //           backgroundStroke: morphBackgroundStroke[1],
-  //         });
-  //       })
-  //       .add(credentialAnimationIn())
-  //       .to(credentialItemsSectionRef.current, {})
-  //       .add(credentialAnimationOut())
-  //       .call(() => {
-  //         apiBackgroundAnimation.start({
-  //           backgroundFill: morphBackgroundFill[1],
-  //           backgroundStroke: morphBackgroundStroke[1],
-  //         });
-  //         setCredentialIndex(() => 1);
-  //       })
-  //       .addLabel("credential2")
-  //       .call(() => {
-  //         setCredentialIndex(() => 2);
-  //         apiBackgroundAnimation.start({
-  //           backgroundFill: morphBackgroundFill[2],
-  //           backgroundStroke: morphBackgroundStroke[2],
-  //         });
-  //       })
-  //       .add(credentialAnimationIn())
-  //       .to(credentialItemsSectionRef.current, {})
-  //       .add(credentialAnimationOut())
-  //       .call(() => {
-  //         apiBackgroundAnimation.start({
-  //           backgroundFill: morphBackgroundFill[2],
-  //           backgroundStroke: morphBackgroundStroke[2],
-  //         });
-  //         setCredentialIndex(() => 2);
-  //       })
-  //       .addLabel("credential3")
-  //       .call(() => {
-  //         setCredentialIndex(() => 3);
-  //         apiBackgroundAnimation.start({
-  //           backgroundFill: morphBackgroundFill[3],
-  //           backgroundStroke: morphBackgroundStroke[3],
-  //         });
-  //       })
-  //       .add(credentialAnimationIn())
-  //       .to(credentialItemsSectionRef.current, {})
-  //       .add(credentialAnimationOut())
-  //       .call(() => {
-  //         apiBackgroundAnimation.start({
-  //           backgroundFill: morphBackgroundFill[3],
-  //           backgroundStroke: morphBackgroundStroke[3],
-  //         });
-  //         setCredentialIndex(() => 3);
-  //       })
-  //       .addLabel("finalFadeOut")
-  //       .fromTo(
-  //         credentialItemsSectionRef.current,
-  //         { autoAlpha: 1 },
-  //         { autoAlpha: 0 }
-  //       );
-  //   });
-  //   return () => ctx.revert();
-  // }, []);
+    mm.add("(min-width: 1224px)", () => {
+      const tl = createTl();
+      animate(tl);
+    });
+
+    return () => mm.revert();
+  }, []);
 
   ////jsx
   return (
@@ -187,7 +200,7 @@ const AboutCredentials = () => {
       ref={credentialItemsSectionRef}
     >
       <div className="flex flex-col items-center justify-center w-full h-full ">
-        <div className="relative">
+        <div className="relative w-full xl:w-[566px]">
           <div className="absolute top-0 left-0 w-full h-full -z-10">
             <svg
               width="100%"
@@ -208,7 +221,7 @@ const AboutCredentials = () => {
             </svg>
           </div>
           <div
-            className="w-[44px] h-[44px] mx-auto invisible"
+            className="w-[44px] md:w-[88px] xl:w-[128px] h-[44px] md:h-[88px] xl:h-[128px] mx-auto invisible"
             ref={credentialPortraitRef}
           >
             <Image
@@ -220,7 +233,7 @@ const AboutCredentials = () => {
           </div>
           <div className="">
             <p
-              className="invisible mx-8 mt-4 text-center font-style-sm z-60"
+              className="invisible mx-8 mt-4 mb-0 text-center md:mb-4 md:mt-8 xl:mb-16 font-style-sm xl:font-style-p z-60"
               ref={credentialParagraphRef}
             >
               {credentialItems[credentialIndex].credentialText}

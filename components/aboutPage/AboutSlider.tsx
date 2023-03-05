@@ -1,23 +1,19 @@
 "use client";
 
 import React from "react";
-import {
-  TAddSliderToAnimation,
-  TMediaSizeNames,
-  TSliderData,
-} from "../../types/typings";
+import { TMediaSizeNames, TSliderData } from "../../types/typings";
 import AboutSliderStripe from "./AboutSliderStripe";
 
 type Props = {
   sliderData: TSliderData;
-  // addSliderElement: TAddSliderToAnimation;
   mediaSizeName?: TMediaSizeNames;
+  isAnimateStripes: boolean;
 };
 
 const AboutSlider = (props: Props) => {
   ////vars
   const { mainTitle, additionalInfo, percentage } = props.sliderData;
-  const { mediaSizeName } = props;
+  const { mediaSizeName, isAnimateStripes } = props;
 
   ////jsx
   {
@@ -33,7 +29,7 @@ const AboutSlider = (props: Props) => {
         <div className="-mt-1 font-style-xs">{additionalInfo}</div>
         <AboutSliderStripe
           percentage={percentage}
-          // addSliderElement={addSliderElement}
+          isAnimateStripes={isAnimateStripes}
         />
       </div>
     ) : (
@@ -47,7 +43,7 @@ const AboutSlider = (props: Props) => {
         <div className="font-style-h4">{mainTitle}</div>
         <AboutSliderStripe
           percentage={percentage}
-          // addSliderElement={addSliderElement}
+          isAnimateStripes={isAnimateStripes}
         />
       </div>
     );

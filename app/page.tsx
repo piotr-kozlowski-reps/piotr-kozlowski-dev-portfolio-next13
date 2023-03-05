@@ -16,6 +16,7 @@ import HomePageFooter from "../components/homePage/HomePageFooter";
 import AboutSection from "../components/aboutPage/AboutSection";
 import useScrollPositionToDefineSectionAndChangeLinks from "../hooks/useScrollPositionToDefineSectionAndChangeLinks";
 import useDeviceSize from "../hooks/useDeviceSize";
+import ProjectsSection from "../components/projectsPage/ProjectsSection";
 
 gsap.registerPlugin(ScrollTrigger);
 const Home = () => {
@@ -41,7 +42,7 @@ const Home = () => {
       contactRef
     );
 
-  //TODO: delete afterwards
+  // TODO: delete afterwards;
   // useLayoutEffect(() => {
   //   projectsRef.current!.scrollIntoView();
   // }, [projectsRef.current]);
@@ -131,19 +132,13 @@ const Home = () => {
 
       <section title="about_section">
         <div className=" bg-background_2_darker" ref={aboutRef}>
-          <AboutSection
-            tl={tlAboutSection}
-            sectionsBeforePercentage={homeSectionHPercentage}
-          />
+          <AboutSection />
         </div>
       </section>
 
       <section title="projects_section">
-        <div
-          className="w-screen h-screen bg-background_2_darker"
-          ref={projectsRef}
-        >
-          projects
+        <div className=" bg-background_1_lighter" ref={projectsRef}>
+          <ProjectsSection />
         </div>
       </section>
 
