@@ -1,36 +1,84 @@
 "use client";
 
 import Image from "next/image";
-import React, { useLayoutEffect, useRef } from "react";
+import React, { useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import useIsomorphicLayoutEffect from "../../hooks/useIsomorphicLayoutEffect";
 
 gsap.registerPlugin(ScrollTrigger);
 const ProjectsTitle = () => {
   ////vars
   const titleProjectsRef = useRef<HTMLDivElement>(null);
 
-  ////animation
-  useLayoutEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.to(titleProjectsRef.current, {
-        // scale: 33,
-        autoAlpha: 0,
-        ease: "power4.inOut",
+  //animation
+  // useIsomorphicLayoutEffect(() => {
+  //   const ctx = gsap.context(() => {
+  //     gsap.to(titleProjectsRef.current, {
+  //       // scale: 33,
+  //       autoAlpha: 0,
+  //       ease: "power4.inOut",
+  //       scrollTrigger: {
+  //         trigger: titleProjectsRef.current,
+  //         start: () => `top top`,
+  //         end: () => `bottom top`,
+  //         markers: true,
+  //         pin: true,
+  //         scrub: 0.8,
+  //         invalidateOnRefresh: true,
+  //       },
+  //     });
+  //   });
+
+  //   return () => {
+  //     ctx.revert();
+  //   };
+  // }, []);
+  // }, [window.innerWidth, window.innerHeight]);
+
+  useIsomorphicLayoutEffect(() => {
+    const mm = gsap.matchMedia();
+
+    function createTl(ref: React.RefObject<HTMLDivElement>) {
+      return gsap.timeline({
         scrollTrigger: {
-          trigger: titleProjectsRef.current,
+          trigger: ref.current,
           start: () => `top top`,
           end: () => `bottom top`,
-          markers: true,
+          // markers: true,
           pin: true,
           scrub: 0.8,
           invalidateOnRefresh: true,
         },
       });
+    }
+
+    function animate(tl: gsap.core.Timeline) {
+      tl.to(titleProjectsRef.current, {
+        autoAlpha: 0,
+        scale: 50,
+        ease: "power4.inOut",
+        transformOrigin: "10% 60%",
+      });
+    }
+
+    mm.add("(max-width: 768px)", () => {
+      const tl = createTl(titleProjectsRef);
+      animate(tl);
+    });
+
+    mm.add("(min-width: 769px) and (max-width: 1223px)", () => {
+      const tl = createTl(titleProjectsRef);
+      animate(tl);
+    });
+
+    mm.add("(min-width: 1224px)", () => {
+      const tl = createTl(titleProjectsRef);
+      animate(tl);
     });
 
     return () => {
-      ctx.revert();
+      mm.revert();
     };
   }, []);
 

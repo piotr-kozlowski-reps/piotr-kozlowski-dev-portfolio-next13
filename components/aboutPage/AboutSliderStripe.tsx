@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useLayoutEffect, useRef } from "react";
+import React, { useRef } from "react";
+import useIsomorphicLayoutEffect from "../../hooks/useIsomorphicLayoutEffect";
 import gsap from "gsap";
 
 type Props = {
@@ -14,7 +15,7 @@ const AboutSliderStripe = (props: Props) => {
   let yellowStripeRef = useRef<HTMLDivElement>(null);
   let backgroundStripeRef = useRef<HTMLDivElement>(null);
 
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     const ctx = gsap.context(() => {
       let anim = gsap.fromTo(
         yellowStripeRef.current,
@@ -36,7 +37,7 @@ const AboutSliderStripe = (props: Props) => {
     return () => ctx.revert();
   }, [isAnimateStripes]);
 
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     const ctx = gsap.context(() => {
       gsap.fromTo(
         backgroundStripeRef.current,

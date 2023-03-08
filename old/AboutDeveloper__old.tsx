@@ -1,12 +1,13 @@
 "use client";
 
 import Image from "next/image";
-import React, { Fragment, useLayoutEffect, useRef, useState } from "react";
+import React, { Fragment, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import data from "../../data/data.json";
-import AboutSlider from "./AboutSlider";
-import { TSliderData } from "../../types/typings";
+import data from "../data/data.json";
+import AboutSlider from "../components/aboutPage/AboutSlider";
+import { TSliderData } from "../types/typings";
+import useIsomorphicLayoutEffect from "../hooks/useIsomorphicLayoutEffect";
 
 gsap.registerPlugin(ScrollTrigger);
 const AboutDeveloper = () => {
@@ -31,7 +32,7 @@ const AboutDeveloper = () => {
   };
 
   ////animation
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     const ctx = gsap.context(() => {
       const tlDeveloperSection = gsap.timeline({
         scrollTrigger: {
@@ -161,7 +162,8 @@ const AboutDeveloper = () => {
                 <Fragment key={index}>
                   <AboutSlider
                     sliderData={slider}
-                    addSliderElement={addSlidersDeveloperHandler}
+                    // addSliderElement={addSlidersDeveloperHandler}
+                    isAnimateStripes={true}
                   />
                 </Fragment>
               ))}

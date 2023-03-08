@@ -2,7 +2,8 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
 import Link from "next/link";
-import React, { Fragment, useLayoutEffect, useRef } from "react";
+import React, { Fragment, useRef } from "react";
+import useIsomorphicLayoutEffect from "../../hooks/useIsomorphicLayoutEffect";
 
 type Props = {
   tl: gsap.core.Timeline;
@@ -23,7 +24,7 @@ const HomePageImageRevealing = (props: Props) => {
   const designText = useRef<HTMLDivElement>(null);
   const developText = useRef<HTMLDivElement>(null);
 
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     const ctx = gsap.context(() => {
       if (isFirstRender > 1) {
         tl.addLabel("design")
@@ -60,7 +61,7 @@ const HomePageImageRevealing = (props: Props) => {
     return () => ctx.revert();
   }, [tl]);
 
-  // useLayoutEffect(() => {
+  // useIsomorphicLayoutEffect(() => {
   //   if (isFirstRender > 1) {
   //     tl.fromTo(
   //       imageBackground_innerDiv.current,
@@ -84,7 +85,7 @@ const HomePageImageRevealing = (props: Props) => {
   //   duration: 0.3,
   // };
 
-  // useLayoutEffect(() => {
+  // useIsomorphicLayoutEffect(() => {
   //   gsap.utils.toArray(".comparisonSection").forEach((section) => {
   //     let tl = gsap.timeline({
   //       scrollTrigger: {

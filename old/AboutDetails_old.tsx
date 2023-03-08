@@ -1,12 +1,13 @@
 "use client";
 
 import Image from "next/image";
-import React, { Fragment, useLayoutEffect, useRef } from "react";
+import React, { Fragment, useRef } from "react";
 import gsap from "gsap";
 import AboutSlider from "../components/aboutPage/AboutSlider";
 import { TDetailsInfoSet } from "../types/typings";
 import { generatePropertiesForTimelineInEveryResolution } from "../utils/animations";
 import useDeviceSize from "../hooks/useDeviceSize";
+import useIsomorphicLayoutEffect from "../hooks/useIsomorphicLayoutEffect";
 
 type Props = {
   detailsInfoSet: TDetailsInfoSet;
@@ -60,7 +61,7 @@ const AboutDetails = (props: Props) => {
   };
 
   ////animation
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     const ctx = gsap.context(() => {
       let aboutDetailsSectionTimeline: gsap.core.Timeline;
       let mm = gsap.matchMedia();
@@ -231,6 +232,7 @@ const AboutDetails = (props: Props) => {
                 <Fragment key={index}>
                   <AboutSlider
                     sliderData={slider}
+                    isAnimateStripes={true}
                     // addSliderElement={addSlidersNonDesktopHandler}
                   />
                 </Fragment>
@@ -288,6 +290,7 @@ const AboutDetails = (props: Props) => {
                     sliderData={slider}
                     // addSliderElement={addSlidersDesktopHandler}
                     mediaSizeName={mediaSizeName}
+                    isAnimateStripes={true}
                   />
                 </Fragment>
               ))}

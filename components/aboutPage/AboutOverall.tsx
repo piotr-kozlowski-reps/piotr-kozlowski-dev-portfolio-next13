@@ -1,10 +1,11 @@
 "use client";
 
 import Image from "next/image";
-import React, { useLayoutEffect, useRef } from "react";
+import React, { useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import useDeviceSize from "../../hooks/useDeviceSize";
+import useIsomorphicLayoutEffect from "../../hooks/useIsomorphicLayoutEffect";
 
 gsap.registerPlugin(ScrollTrigger);
 const AboutOverall = () => {
@@ -19,7 +20,7 @@ const AboutOverall = () => {
   const [width, height, mediaSizeName] = useDeviceSize();
 
   ////animation
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     let mm = gsap.matchMedia();
 
     //animation details

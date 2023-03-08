@@ -1,10 +1,4 @@
-import React, {
-  Fragment,
-  RefObject,
-  useLayoutEffect,
-  useRef,
-  useState,
-} from "react";
+import React, { Fragment, RefObject, useRef, useState } from "react";
 import gsap from "gsap";
 
 import { TDetailsInfoSet } from "../../types/typings";
@@ -12,6 +6,7 @@ import useDeviceSize from "../../hooks/useDeviceSize";
 import Image from "next/image";
 import AboutSlider from "./AboutSlider";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import useIsomorphicLayoutEffect from "../../hooks/useIsomorphicLayoutEffect";
 
 type Props = {
   detailsInfoSet: TDetailsInfoSet;
@@ -44,7 +39,7 @@ const AboutDetails = (props: Props) => {
   const graphsDesktopRef = useRef<HTMLDivElement>(null);
 
   ////animation
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     let mm = gsap.matchMedia();
 
     function createTl(
@@ -192,7 +187,7 @@ const AboutDetails = (props: Props) => {
         }`}
         ref={sectionRef}
       >
-        {window.innerWidth < 1224 && (
+        {window.innerWidth < 1224 ? (
           <Fragment>
             <div
               className={`relative  ${
@@ -245,9 +240,9 @@ const AboutDetails = (props: Props) => {
               </div>
             </div>
           </Fragment>
-        )}
+        ) : null}
 
-        {window.innerWidth >= 1224 && (
+        {window.innerWidth >= 1224 ? (
           <Fragment>
             <div
               className={`flex flex-col items-start justify-start ml-[40px] w-[570px]`}
@@ -296,7 +291,7 @@ const AboutDetails = (props: Props) => {
               </div>
             </div>
           </Fragment>
-        )}
+        ) : null}
       </div>
     </section>
   );

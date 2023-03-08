@@ -2,7 +2,8 @@
 
 import gsap from "gsap";
 import Image from "next/image";
-import React, { useLayoutEffect, useRef } from "react";
+import React, { useRef } from "react";
+import useIsomorphicLayoutEffect from "../../hooks/useIsomorphicLayoutEffect";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -11,7 +12,7 @@ const AboutTitle = () => {
   const titleRef = useRef<HTMLDivElement>(null);
 
   ////animation
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     const ctx = gsap.context(() => {
       gsap.to(titleRef.current, {
         scale: 33,

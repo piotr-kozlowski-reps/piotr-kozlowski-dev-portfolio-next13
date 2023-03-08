@@ -1,9 +1,10 @@
 import Image from "next/image";
-import React, { Fragment, useLayoutEffect, useRef } from "react";
-import useDeviceSize from "../../hooks/useDeviceSize";
-import { TDetailsInfoSet } from "../../types/typings";
-import { generatePropertiesForTimelineInEveryResolution } from "../../utils/animations";
-import AboutSlider from "./AboutSlider";
+import React, { Fragment, useRef } from "react";
+import useDeviceSize from "../hooks/useDeviceSize";
+import { TDetailsInfoSet } from "../types/typings";
+import { generatePropertiesForTimelineInEveryResolution } from "../utils/animations";
+import AboutSlider from "../components/aboutPage/AboutSlider";
+import useIsomorphicLayoutEffect from "../hooks/useIsomorphicLayoutEffect";
 import gsap from "gsap";
 
 type Props = {
@@ -43,7 +44,7 @@ const AboutDetailsMobileAndTablet = (props: Props) => {
   };
 
   ////animation
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     let mm = gsap.matchMedia();
 
     const aboutDetailsSectionAnimation = (

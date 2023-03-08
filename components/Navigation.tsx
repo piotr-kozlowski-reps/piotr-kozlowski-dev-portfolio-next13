@@ -1,12 +1,6 @@
 "use client";
 
-import React, {
-  FunctionComponent,
-  useCallback,
-  useLayoutEffect,
-  useRef,
-  useState,
-} from "react";
+import React, { FunctionComponent, useCallback, useRef, useState } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -22,6 +16,7 @@ import {
 } from "../utils/animations";
 import Link from "next/link";
 import { TWhichSectionIsActive } from "../types/typings";
+import useIsomorphicLayoutEffect from "../hooks/useIsomorphicLayoutEffect";
 
 /** avoid start animation when site starts in mobile mode
  * "(max-width: 768px)" animation when starts only when number of renders is more than initial 2
@@ -209,7 +204,7 @@ const Navigation: FunctionComponent<Props> = (props) => {
 
   ////side effects
   /** Triggering animation of Hamburger Icon when media query changes */
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     const ctx = gsap.context(() => {
       let mm = gsap.matchMedia();
 
@@ -279,7 +274,7 @@ const Navigation: FunctionComponent<Props> = (props) => {
   }, []);
 
   /** Getting rid of mobile menu when media query changes to bigger than mobile */
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     if (!isLessThanOrEqualMdSize() && isShowingMobileNavigation.current) {
       console.log("hide navigation");
       hideElementsInXAnimation([XIconRef.current!], 0, 0.4, 0.04, 0, 0);

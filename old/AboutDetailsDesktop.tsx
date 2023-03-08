@@ -1,8 +1,9 @@
 import Image from "next/image";
-import React, { Fragment, useLayoutEffect, useRef } from "react";
-import useDeviceSize from "../../hooks/useDeviceSize";
-import { TDetailsInfoSet } from "../../types/typings";
-import AboutSlider from "./AboutSlider";
+import React, { Fragment, useRef } from "react";
+import useDeviceSize from "../hooks/useDeviceSize";
+import { TDetailsInfoSet } from "../types/typings";
+import AboutSlider from "../components/aboutPage/AboutSlider";
+import useIsomorphicLayoutEffect from "../hooks/useIsomorphicLayoutEffect";
 import gsap from "gsap";
 
 type Props = {
@@ -41,7 +42,7 @@ const AboutDetailsDesktop = (props: Props) => {
   };
 
   ////animation
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     const ctx = gsap.context((self) => {
       //tl
       const tl = gsap.timeline({

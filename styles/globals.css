@@ -77,6 +77,10 @@ body {
     @apply font-mainFont text-[16px] text-main_white uppercase tracking-tight;
   }
 
+  .font-style-project-number {
+    @apply font-mainFont text-[175px] text-background_2_darker tracking-tight;
+  }
+
   .font-style-p {
     @apply font-mainFont text-[22px] text-main_white tracking-tight;
   }
@@ -86,6 +90,7 @@ body {
   .font-style-xs {
     @apply font-mainFont text-[10px] text-main_white tracking-wide;
   }
+
   .font-initially-invisible-white-p {
     @apply font-mainFont text-[22px] text-main_white invisible tracking-tight;
   }

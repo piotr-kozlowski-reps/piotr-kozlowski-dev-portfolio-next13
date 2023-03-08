@@ -1,7 +1,8 @@
-import React, { useLayoutEffect, useRef } from "react";
+import React, { useRef } from "react";
 import useDeviceSize from "../../hooks/useDeviceSize";
 import Image from "next/image";
 import gsap from "gsap";
+import useIsomorphicLayoutEffect from "../../hooks/useIsomorphicLayoutEffect";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -16,7 +17,7 @@ const HomePageFooter = () => {
 
   ////effects
   /** ClipPaths background in Footer */
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     const ctx = gsap.context(() => {
       let mm = gsap.matchMedia();
 
@@ -38,7 +39,7 @@ const HomePageFooter = () => {
   }, []);
 
   /** Mouse teasing animation */
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     const ctx = gsap.context(() => {
       gsap.from(mouseRef.current, {
         y: -4,
@@ -54,7 +55,7 @@ const HomePageFooter = () => {
 
   /** Footer Pinned With ScrollTrigger */
 
-  // useLayoutEffect(() => {
+  // useIsomorphicLayoutEffect(() => {
   //   const tl = gsap.timeline({
   //     scrollTrigger: {
   //       trigger: triggerDiv,

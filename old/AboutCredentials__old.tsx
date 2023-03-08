@@ -1,11 +1,12 @@
 import Image from "next/image";
-import React, { useLayoutEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 
 import AboutCredentialItem from "./AboutCredentialItem__old";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import data from "../data/data.json";
 import { animated, useSpring } from "@react-spring/web";
+import useIsomorphicLayoutEffect from "../hooks/useIsomorphicLayoutEffect";
 
 gsap.registerPlugin(ScrollTrigger);
 const AboutCredentialsOld = () => {
@@ -117,7 +118,7 @@ const AboutCredentialsOld = () => {
   }
 
   ////animations
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     const ctx = gsap.context(() => {
       let mm = gsap.matchMedia();
 

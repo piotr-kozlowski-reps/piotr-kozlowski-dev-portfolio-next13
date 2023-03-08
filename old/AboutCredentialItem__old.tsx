@@ -1,13 +1,14 @@
 "use client";
 
 import Image from "next/image";
-import React, { useLayoutEffect, useRef } from "react";
+import React, { useRef } from "react";
 import {
   TCredentialsInfoSet,
   TTimelineFunctionsToBeNested,
 } from "../types/typings";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import useIsomorphicLayoutEffect from "../../hooks/useIsomorphicLayoutEffect";
 
 type Props = {
   credentialInfoSet: TCredentialsInfoSet;
@@ -32,7 +33,7 @@ const AboutCredentialItem = (props: Props) => {
   const credentialTopLineRef = useRef<HTMLDivElement>(null);
   const credentialTopBackgroundRef = useRef<HTMLDivElement>(null);
 
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     function tlCredentialItem() {
       let tl = gsap.timeline();
       tl.fromTo(

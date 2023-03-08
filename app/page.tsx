@@ -1,12 +1,6 @@
 "use client";
 
-import React, {
-  Fragment,
-  useEffect,
-  useLayoutEffect,
-  useRef,
-  useState,
-} from "react";
+import React, { Fragment, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -17,6 +11,7 @@ import AboutSection from "../components/aboutPage/AboutSection";
 import useScrollPositionToDefineSectionAndChangeLinks from "../hooks/useScrollPositionToDefineSectionAndChangeLinks";
 import useDeviceSize from "../hooks/useDeviceSize";
 import ProjectsSection from "../components/projectsPage/ProjectsSection";
+import useIsomorphicLayoutEffect from "../hooks/useIsomorphicLayoutEffect";
 
 gsap.registerPlugin(ScrollTrigger);
 const Home = () => {
@@ -43,12 +38,12 @@ const Home = () => {
     );
 
   // TODO: delete afterwards;
-  // useLayoutEffect(() => {
-  //   projectsRef.current!.scrollIntoView();
-  // }, [projectsRef.current]);
+  useIsomorphicLayoutEffect(() => {
+    projectsRef.current!.scrollIntoView();
+  }, [projectsRef.current]);
 
   // /** Footer Pinned With ScrollTrigger */
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     const ctx = gsap.context(() => {
       setTlHomeSection(
         gsap.timeline({
@@ -68,7 +63,7 @@ const Home = () => {
   }, []);
 
   /** gradient on menu background when scrolling to about part */
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     const ctx = gsap.context(() => {
       gsap.from(menuBackgroundRef.current!, {
         autoAlpha: 0,
@@ -90,7 +85,6 @@ const Home = () => {
     <Fragment>
       {/* Fixed Navigation */}
       <div className="fixed top-0 w-screen h-screen z-max">
-        {/* Background for fading when navigating with links */}
         <div
           className="absolute top-0 left-0 invisible w-screen h-screen bg-background_2_darker right-4 z-max"
           ref={backgroundFadeRef}
