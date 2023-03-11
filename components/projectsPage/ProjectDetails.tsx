@@ -14,6 +14,11 @@ const ProjectDetails = () => {
   const projectRef = useRef<HTMLDivElement>(null);
   const backgroundDescriptionRef = useRef<HTMLDivElement>(null);
   const projectNumberRef = useRef<HTMLDivElement>(null);
+  const projectNameRef = useRef<HTMLDivElement>(null);
+  const projectDescriptionNameRef = useRef<HTMLDivElement>(null);
+  const projectTechnologiesNameRef = useRef<HTMLDivElement>(null);
+  const githubNameRef = useRef<HTMLDivElement>(null);
+  const viewSiteNameRef = useRef<HTMLDivElement>(null);
 
   ////utils
   //TODO: delete later
@@ -22,27 +27,26 @@ const ProjectDetails = () => {
   }
 
   ////animations
-  function createTl(ref: React.RefObject<HTMLDivElement>) {
-    return gsap.timeline({
-      scrollTrigger: {
-        trigger: ref.current,
-        start: () => `top top`,
-        end: () => `+=400%`,
-        markers: true,
-        pin: true,
-        scrub: 0.8,
-        invalidateOnRefresh: true,
-      },
-    });
-  }
-  //project number
   useIsomorphicLayoutEffect(() => {
     const mm = gsap.matchMedia();
 
     mm.add("(max-width: 768px)", () => {
-      const tl = createTl(projectRef);
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: projectRef.current,
+          start: () => `top top`,
+          end: () => `+=400%`,
+          markers: true,
+          pin: true,
+          scrub: 0.8,
+          invalidateOnRefresh: true,
+        },
+      });
 
-      tl.to(projectRef.current, { autoAlpha: 0.5 });
+      tl.addLabel("start")
+        .to(projectNumberRef.current, { autoAlpha: 1 }, "start")
+        .to(backgroundDescriptionRef.current, { autoAlpha: 1 }, "start")
+        .to(projectNameRef.current, { autoAlpha: 1 });
     });
 
     return () => {
@@ -50,16 +54,54 @@ const ProjectDetails = () => {
     };
   }, []);
 
+  // useIsomorphicLayoutEffect(() => {
+  //   const mm = gsap.matchMedia();
+
+  //   mm.add("(max-width: 768px)", () => {
+  //     const tl = gsap.timeline({
+  //       scrollTrigger: {
+  //         trigger: projectRef.current,
+  //         start: () => `top top`,
+  //         end: () => `+=400%`,
+  //         markers: true,
+  //         pin: true,
+  //         scrub: 0.8,
+  //         invalidateOnRefresh: true,
+  //       },
+  //     });
+  //     tl.to(backgroundDescriptionRef.current, { autoAlpha: 1 }).to(
+  //       projectNameRef.current,
+  //       { autoAlpha: 1 }
+  //     );
+  //   });
+
+  //   return () => {
+  //     mm.revert();
+  //   };
+  // }, []);
+
   ////jsx
   return (
     <section title="projectSection">
       <div
-        className="relative flex flex-col items-start justify-center w-full h-screen"
+        className="relative flex flex-col items-start justify-center w-full h-screen -mt-[100vh]"
         ref={projectRef}
       >
+        <div className="absolute w-full h-full -z-10">
+          <div className="mx-8">
+            <Image
+              src="/ante_portfolio_desktop_0001.jpg"
+              alt="project description background"
+              width={1214}
+              height={3176}
+              className=""
+              // className=" xl:ml-[9px] pl-[31px] pr-[31px] xl:pl-0 xl:pr-0"
+            />
+          </div>
+        </div>
         <div className="w-[256px] h-[384px] ml-8 relative">
           <div
-            className="absolute top-0 left-0 w-full h-full"
+            className="absolute top-0 left-0 invisible w-full h-full"
             ref={backgroundDescriptionRef}
           >
             <Image
@@ -72,7 +114,7 @@ const ProjectDetails = () => {
             />
           </div>
           <div
-            className="absolute top-0 left-0 h-32 w-[149px]"
+            className="absolute top-0 left-0 h-32 w-[149px] invisible"
             ref={projectNumberRef}
           >
             <Image
@@ -84,8 +126,16 @@ const ProjectDetails = () => {
             />
           </div>
           <div className="absolute mt-[26px] ml-4 w-fill h-fill">
-            <p className="mb-4 font-style-h3 text-main_color">ante portfolio</p>
-            <p className="font-style-p">
+            <p
+              className="invisible mb-4 font-style-h3 text-main_color"
+              ref={projectNameRef}
+            >
+              ante portfolio
+            </p>
+            <p
+              className="invisible font-style-p"
+              ref={projectDescriptionNameRef}
+            >
               Portfolio website of a 3d part of my work-related activities.
               Architectural visualizations in most cases.
             </p>
@@ -93,11 +143,17 @@ const ProjectDetails = () => {
 
           {/* icons bottom */}
           <div className="absolute bottom-0 mb-[20px] ml-[6px] z-max">
-            <div className="ml-[10px] font-style-xs pb-8 text-main_white opacity-40">
+            <div
+              className="ml-[10px] font-style-xs pb-8 text-main_white opacity-40 invisible"
+              ref={projectTechnologiesNameRef}
+            >
               react redux formik gsap node express
             </div>
             <div className="flex items-center justify-start ">
-              <div className="w-[44px] h-[44px] relative">
+              <div
+                className="w-[44px] h-[44px] relative invisible"
+                ref={githubNameRef}
+              >
                 <div
                   className="cursor-pointer icon-link z-max"
                   // ref={githubRef}
@@ -136,7 +192,10 @@ const ProjectDetails = () => {
                 </div>
               </div>
 
-              <div className="w-[44px] h-[44px] relative">
+              <div
+                className="w-[44px] h-[44px] relative invisible"
+                ref={viewSiteNameRef}
+              >
                 <div
                   className="cursor-pointer icon-link z-max"
                   // ref={githubRef}
