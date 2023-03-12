@@ -86,14 +86,14 @@ const Home = () => {
       {/* Fixed Navigation */}
       <div className="fixed top-0 w-screen h-screen z-max">
         <div
-          className="absolute top-0 left-0 invisible w-screen h-screen bg-background_2_darker right-4 z-max"
+          className="absolute top-0 left-0 invisible w-screen h-screen z-max bg-background_2_darker right-4"
           ref={backgroundFadeRef}
         ></div>
         <div
           className="absolute z-0 w-full h-[108px] bg-gradient-to-b from-background_2_darker via-background_2_darker"
           ref={menuBackgroundRef}
         ></div>
-        <div className="xl:w-[1220px] xl:h-full relative xl:mx-auto z-10">
+        <div className="xl:w-[1220px] xl:h-full relative xl:mx-auto z-max">
           <Navigation
             aboutSection={aboutRef.current!}
             projectsSection={projectsRef.current!}

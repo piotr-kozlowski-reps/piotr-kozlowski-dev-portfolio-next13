@@ -601,7 +601,7 @@ const Navigation: FunctionComponent<Props> = (props) => {
           >
             <div
               ref={hamburgerIconRef}
-              className="cursor-pointer z-max md:cursor-default"
+              className="cursor-pointer md:cursor-default"
             >
               <Image
                 src="/hamburger.svg"

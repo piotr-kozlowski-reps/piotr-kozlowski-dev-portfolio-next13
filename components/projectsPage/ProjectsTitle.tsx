@@ -11,31 +11,7 @@ const ProjectsTitle = () => {
   ////vars
   const titleProjectsRef = useRef<HTMLDivElement>(null);
 
-  //animation
-  // useIsomorphicLayoutEffect(() => {
-  //   const ctx = gsap.context(() => {
-  //     gsap.to(titleProjectsRef.current, {
-  //       // scale: 33,
-  //       autoAlpha: 0,
-  //       ease: "power4.inOut",
-  //       scrollTrigger: {
-  //         trigger: titleProjectsRef.current,
-  //         start: () => `top top`,
-  //         end: () => `bottom top`,
-  //         markers: true,
-  //         pin: true,
-  //         scrub: 0.8,
-  //         invalidateOnRefresh: true,
-  //       },
-  //     });
-  //   });
-
-  //   return () => {
-  //     ctx.revert();
-  //   };
-  // }, []);
-  // }, [window.innerWidth, window.innerHeight]);
-
+  ////animations
   useIsomorphicLayoutEffect(() => {
     const mm = gsap.matchMedia();
 
@@ -44,10 +20,11 @@ const ProjectsTitle = () => {
         scrollTrigger: {
           trigger: ref.current,
           start: () => `top top`,
-          end: () => `bottom top`,
+          // end: () => `bottom top`,
+          end: () => `+=170%`,
           // markers: true,
           pin: true,
-          scrub: 0.8,
+          scrub: 0.4,
           invalidateOnRefresh: true,
         },
       });
@@ -55,6 +32,8 @@ const ProjectsTitle = () => {
 
     function animate(tl: gsap.core.Timeline) {
       tl.to(titleProjectsRef.current, {
+        autoAlpha: 1,
+      }).to(titleProjectsRef.current, {
         autoAlpha: 0,
         scale: 50,
         ease: "power4.inOut",
@@ -85,11 +64,8 @@ const ProjectsTitle = () => {
   ////jsx
   return (
     <section title="projectsTitle">
-      <div
-        className="w-screen h-screen bg-main_color z-60"
-        ref={titleProjectsRef}
-      >
-        <div className="relative flex flex-col items-center justify-center w-screen h-screen z-60 ">
+      <div className="w-screen h-screen bg-main_color" ref={titleProjectsRef}>
+        <div className="relative flex flex-col items-center justify-center w-screen h-screen">
           <Image
             src="portfolio.svg"
             alt="projects text"

@@ -33,6 +33,7 @@ module.exports = {
       },
       zIndex: {
         60: 60,
+        100: 100,
         max: 1000,
       },
       fontFamily: {

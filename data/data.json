@@ -1,40 +1,54 @@
 {
-  "aboutSlidersDeveloper": [
-    {
-      "mainTitle": "html / css",
-      "additionalInfo": "Tailwind",
-      "percentage": 75
-    },
-    {
-      "mainTitle": "JAVASCRIPT / TYPESCRIPT ",
-      "additionalInfo": "",
-      "percentage": 72
-    },
-    {
-      "mainTitle": "FRAMEWORKS",
-      "additionalInfo": "React | Next | Express",
-      "percentage": 62
-    },
-    { "mainTitle": "NODE", "additionalInfo": "", "percentage": 46 },
-    { "mainTitle": "JAVA", "additionalInfo": "", "percentage": 28 }
-  ],
-  "aboutSlidersDesigner": [
-    {
-      "mainTitle": "3d graphics",
-      "additionalInfo": "3D Studio MAX | Corona | Vray",
-      "percentage": 97
-    },
-    {
-      "mainTitle": "raster",
-      "additionalInfo": "Photoshop | Figma | LightRoom",
-      "percentage": 97
-    },
-    {
-      "mainTitle": "video",
-      "additionalInfo": "Premiere | AfterEffects | Resolve",
-      "percentage": 82
-    }
-  ],
+  "developerDetails": {
+    "sliders": [
+      {
+        "mainTitle": "html / css",
+        "additionalInfo": "Tailwind",
+        "percentage": 75
+      },
+      {
+        "mainTitle": "JAVASCRIPT / TYPESCRIPT ",
+        "additionalInfo": "",
+        "percentage": 72
+      },
+      {
+        "mainTitle": "FRAMEWORKS",
+        "additionalInfo": "React | Next | Express",
+        "percentage": 62
+      },
+      { "mainTitle": "NODE", "additionalInfo": "", "percentage": 46 },
+      { "mainTitle": "JAVA", "additionalInfo": "", "percentage": 28 }
+    ],
+    "logoImageURL": "/logo_only_graph_transparency.png",
+    "clipPathName": "clip-path-logo-right-triangle",
+    "sectionPurposeName": "developer",
+    "paragraphText": "Lorem ipsum ....I'm a passionate Front-End Developer with +6 years of experience in developing websites that have a main focus on search functionality. I have extensive experience with JavaScript, CSS and HTML as well as using libraries and frameworks such as jQuery and Bootstrap.",
+    "isFirstSectionThenNoTopMargin": true
+  },
+  "designerDetails": {
+    "sliders": [
+      {
+        "mainTitle": "3d graphics",
+        "additionalInfo": "3D Studio MAX | Corona | Vray",
+        "percentage": 97
+      },
+      {
+        "mainTitle": "raster",
+        "additionalInfo": "Photoshop | Figma | LightRoom",
+        "percentage": 97
+      },
+      {
+        "mainTitle": "video",
+        "additionalInfo": "Premiere | AfterEffects | Resolve",
+        "percentage": 82
+      }
+    ],
+    "logoImageURL": "/logo_only_graph_transparency.png",
+    "clipPathName": "clip-path-logo-left-triangle",
+    "sectionPurposeName": "designer",
+    "paragraphText": "Lorem ipsum ....I'm a passionate Front-End Developer with +6 years of experience in developing websites that have a main focus on search functionality. I have extensive experience with JavaScript, CSS and HTML as well as using libraries and frameworks such as jQuery and Bootstrap.",
+    "isFirstSectionThenNoTopMargin": false
+  },
   "credentialItems": [
     {
       "portraitImgUrl": "/portrait_000.png",
@@ -51,6 +65,76 @@
     {
       "portraitImgUrl": "/portrait_003.png",
       "credentialText": "lorem impsum...fourth text here and new graphics should be provided. I really love that, but there seems to be issues like for example he, is too old. I really love that, but there seems to be issues like for example he, is too old. I really love that, but there seems to be issues like for example he, is too old. asdfvskdjfkv sdfnsdnf svdifvnsd fvosidf vsdfovn s dfv, but there seems to be issues like for example he, is too old. I really love that, but there seems to be issues like for example he, is too old. asdfvskdjfkv sdfnsdnf svdifvnsd fvosidf . asdfvskdjfkv sdfnsdnf svdifvnsd fvosidf."
+    }
+  ],
+  "projectsDetails": [
+    {
+      "numberImageURL": "01.svg",
+      "projectImages": [
+        {
+          "imageUrl": "/ante_portfolio_desktop_0001.jpg",
+          "width": 1214,
+          "height": 3176
+        },
+        {
+          "imageUrl": "/ante_portfolio_desktop_0002.jpg",
+          "width": 1214,
+          "height": 3509
+        },
+        {
+          "imageUrl": "/ante_portfolio_desktop_0003.jpg",
+          "width": 1214,
+          "height": 2792
+        },
+        {
+          "imageUrl": "/ante_portfolio_mobile_0001.jpg",
+          "width": 553,
+          "height": 3191
+        }
+      ],
+      "projectInfo": {
+        "projectName": "ante portfolio",
+        "projectDescription": "Portfolio website of a 3d part of my work-related activities. Architectural visualizations in most cases.",
+        "projectTechnologiesUsed": "react redux formik gsap node express",
+        "isClickableGithubIcon": true,
+        "githubURL": "https://github.com/piotr-kozlowski-reps/ante_app__react",
+        "isClickableSeeWWWIcon": true,
+        "seeWWWURL": "www.ante.pl"
+      }
+    },
+    {
+      "numberImageURL": "02.svg",
+      "projectImages": [
+        {
+          "imageUrl": "/dev_portfolio_desktop_0001.jpg",
+          "width": 1285,
+          "height": 3535
+        },
+        {
+          "imageUrl": "/dev_portfolio_desktop_0002.jpg",
+          "width": 1285,
+          "height": 3020
+        },
+        {
+          "imageUrl": "/dev_portfolio_desktop_0003.jpg",
+          "width": 1285,
+          "height": 3249
+        },
+        {
+          "imageUrl": "/dev_portfolio_mobile_0001.jpg",
+          "width": 522,
+          "height": 4000
+        }
+      ],
+      "projectInfo": {
+        "projectName": "Dev Portfolio",
+        "projectDescription": "It's a bit awkward to put my dev portfolio into my dev portfolio. But I made it ... so here it is.",
+        "projectTechnologiesUsed": "next gsap/scrollTrigger",
+        "isClickableGithubIcon": true,
+        "githubURL": "https://github.com/piotr-kozlowski-reps/ante-dev-portfolio-next13",
+        "isClickableSeeWWWIcon": false,
+        "seeWWWURL": ""
+      }
     }
   ]
 }

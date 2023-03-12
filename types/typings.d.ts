@@ -19,7 +19,7 @@ export type TAddSliderToAnimation = (el: {
 }) => void;
 
 export type TDetailsInfoSet = {
-  slidersData: TSliderData[];
+  // slidersData: TSliderData[];
   logoImageURL: string;
   clipPathName: string;
   sectionPurposeName: string;
@@ -39,3 +39,44 @@ export type TCredentialsInfoSet = {
 export type TTimelineFunctionsToBeNested = () => gsap.core.Timeline;
 
 export type TMediaSizeNames = "mobile" | "tablet" | "desktop";
+
+/**
+ * @param {String} numberImageURL url to file with number image
+ * @param {TProjectImage} projectImages needs 4 elements: 3 desktop long images and 1 mobile
+ * @param {TProjectInfo} projectInfo object with project information
+ * @param {boolean} isClickableGithubIcon 
+ * @param {string} githubURL 
+
+ */
+export type TProjectDetails = {
+  numberImageURL: string;
+  projectImages: TProjectImage[];
+  projectInfo: TProjectInfo;
+};
+
+/**
+ * @param {string} projectName
+ * @param {string} projectDescription
+ * @param {string} projectTechnologiesUsed
+ */
+export type TProjectInfo = {
+  projectName: string;
+  projectDescription: string;
+  projectTechnologiesUsed: string;
+  isClickableGithubIcon: boolean;
+  githubURL: string;
+  isClickableSeeWWWIcon: boolean;
+  seeWWWURL: string;
+};
+
+/**
+ * @param {String} imageUrl url to image file
+ * @param {number} width width of image in pixels
+ * @param {number} height height of image in pixels
+ * @description !! remember first 3 images are big desktop ones, 4th is narrower /mobile
+ */
+export type TProjectImage = {
+  imageUrl: string;
+  width: number;
+  height: number;
+};
