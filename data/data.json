@@ -129,7 +129,7 @@
       "projectInfo": {
         "projectName": "Dev Portfolio",
         "projectDescription": "It's a bit awkward to put my dev portfolio into my dev portfolio. But I made it ... so here it is.",
-        "projectTechnologiesUsed": "next gsap/scrollTrigger",
+        "projectTechnologiesUsed": "next gsap/scrollTrigger tailwindCSS",
         "isClickableGithubIcon": true,
         "githubURL": "https://github.com/piotr-kozlowski-reps/ante-dev-portfolio-next13",
         "isClickableSeeWWWIcon": false,

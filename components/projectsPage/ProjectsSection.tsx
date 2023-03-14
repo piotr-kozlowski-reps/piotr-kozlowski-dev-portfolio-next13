@@ -8,8 +8,6 @@ import { TProjectDetails } from "../../types/typings";
 import Image from "next/image";
 
 const ProjectsSection = () => {
-  console.log(data);
-
   ////vars
   const projectsDetails: TProjectDetails[] = data.projectsDetails;
 

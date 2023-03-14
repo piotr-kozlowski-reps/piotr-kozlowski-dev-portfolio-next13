@@ -23,7 +23,8 @@ module.exports = {
         background_2_darker: "#26292E",
         main_white: "#DDDFE4",
         main_color: "#FCEB41",
-        main_white_50: "#17181c",
+        // main_white_50: "#17181c",
+        main_white_50: "#7B7D81",
       },
       spacing: {
         "26px": "26px",
@@ -44,6 +45,9 @@ module.exports = {
       },
       screens: {
         xl: "1224px",
+      },
+      boxShadow: {
+        "input-shadow": "0px 0px 8px 2px rgba(33,36,41,0.3)",
       },
     },
   },

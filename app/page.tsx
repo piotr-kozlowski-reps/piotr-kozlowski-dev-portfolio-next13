@@ -12,6 +12,7 @@ import useScrollPositionToDefineSectionAndChangeLinks from "../hooks/useScrollPo
 import useDeviceSize from "../hooks/useDeviceSize";
 import ProjectsSection from "../components/projectsPage/ProjectsSection";
 import useIsomorphicLayoutEffect from "../hooks/useIsomorphicLayoutEffect";
+import ContactSection from "../components/contactPage/ContactSection";
 
 gsap.registerPlugin(ScrollTrigger);
 const Home = () => {
@@ -141,7 +142,7 @@ const Home = () => {
           className="w-screen h-screen bg-background_2_darker"
           ref={contactRef}
         >
-          contact
+          <ContactSection />
         </div>
       </section>
 
@@ -151,6 +152,23 @@ const Home = () => {
           Footer
           <br />
           footer
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
         </div>
       </section>
     </Fragment>
