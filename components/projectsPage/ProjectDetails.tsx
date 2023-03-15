@@ -275,7 +275,7 @@ const ProjectDetails = (props: Props) => {
           </div>
 
           {/* icons bottom */}
-          <div className="absolute bottom-0 mb-[20px] ml-[6px] z-max">
+          <div className="absolute bottom-0 mb-[20px] ml-[6px] z-100">
             <div
               className="ml-[10px] font-style-xs pb-8 text-main_white opacity-40 invisible"
               ref={projectTechnologiesNameRef}
@@ -324,7 +324,7 @@ const ProjectDetails = (props: Props) => {
                     </Link>
                   </div>
                 ) : (
-                  <div className="cursor-default opacity-20 z-max">
+                  <div className="cursor-default opacity-20 z-100">
                     <Image
                       src="gitHub.svg"
                       alt="github icon"
@@ -336,12 +336,12 @@ const ProjectDetails = (props: Props) => {
               </div>
 
               <div
-                className="w-[44px] h-[44px] relative invisible z-max"
+                className="w-[44px] h-[44px] relative invisible z-100"
                 ref={viewSiteNameRef}
               >
                 {isClickableSeeWWWIcon ? (
                   <div
-                    className="cursor-pointer icon-link z-max"
+                    className="cursor-pointer icon-link z-100"
                     // ref={githubRef}
                     onMouseOver={() => {
                       setIsGoToSite(true);
@@ -350,14 +350,14 @@ const ProjectDetails = (props: Props) => {
                       setIsGoToSite(false);
                     }}
                   >
-                    <Link href="/" className="z-max">
+                    <Link href="/" className="z-100">
                       {isGoToSite ? (
                         <Image
                           src="eye_hover.svg"
                           alt="eye icon hover"
                           width={44}
                           height={44}
-                          className="z-max"
+                          className="z-100"
                           onClick={alertHandler.bind(
                             null,
                             "go to site - not implemented"
@@ -369,7 +369,7 @@ const ProjectDetails = (props: Props) => {
                           alt="eye icon"
                           width={44}
                           height={44}
-                          className="z-max"
+                          className="z-100"
                           onClick={alertHandler.bind(
                             null,
                             "go to site - not implemented"
@@ -379,7 +379,7 @@ const ProjectDetails = (props: Props) => {
                     </Link>
                   </div>
                 ) : (
-                  <div className="cursor-default opacity-20 z-max">
+                  <div className="cursor-default opacity-20 z-100">
                     <Image
                       src="eye.svg"
                       alt="github icon"

@@ -67,6 +67,8 @@ const Navigation: FunctionComponent<Props> = (props) => {
   let mobile_linkedinRef = useRef<HTMLDivElement>(null);
   let mobileSeparatorRef = useRef<HTMLDivElement>(null);
 
+  console.log(isShowingMobileNavigation.current);
+
   ////utils
   //TODO: delete later
   function alertHandler(message: string) {
@@ -287,7 +289,13 @@ const Navigation: FunctionComponent<Props> = (props) => {
   return (
     <React.Fragment>
       {/* mobile - menu - start */}
-      <div className="absolute top-0 left-0 z-50 w-screen h-screen xl:w-fit xl:h-fit">
+      <div
+        className="absolute top-0 left-0 z-50 w-screen h-screen xl:w-fit xl:h-fit"
+        // style={{ visibility: "visible" }}
+        style={{
+          visibility: isShowingMobileNavigation.current ? "visible" : "hidden",
+        }}
+      >
         <div className="relative w-screen h-screen xl:w-fit xl:h-fit">
           <div
             className="absolute top-0 left-0 z-50 w-screen h-screen bg-background_1_lighter clip-path-mobile-menu-bg1 xl:w-fit xl:h-fit"
@@ -373,34 +381,79 @@ const Navigation: FunctionComponent<Props> = (props) => {
                 priority={true}
               />
             </div>
+
             <div className="flex -mr-[3px] mt-1">
-              <div ref={mobile_githubRef} className="invisible">
+              <div
+                ref={mobile_githubRef}
+                className="invisible"
+                onMouseOver={() => {
+                  setIsGithubHover(true);
+                }}
+                onMouseLeave={() => {
+                  setIsGithubHover(false);
+                }}
+              >
                 <Link href="/">
-                  <Image
-                    src="gitHub.svg"
-                    alt="github icon"
-                    width={44}
-                    height={44}
-                    onClick={alertHandler.bind(
-                      null,
-                      "github - not implemented"
-                    )}
-                  />
+                  {isGithubHover ? (
+                    <Image
+                      src="gitHub_hover.svg"
+                      alt="github icon"
+                      width={44}
+                      height={44}
+                      onClick={alertHandler.bind(
+                        null,
+                        "github - not implemented"
+                      )}
+                    />
+                  ) : (
+                    <Image
+                      src="gitHub.svg"
+                      alt="github icon"
+                      width={44}
+                      height={44}
+                      onClick={alertHandler.bind(
+                        null,
+                        "github - not implemented"
+                      )}
+                    />
+                  )}
                 </Link>
               </div>
 
-              <div ref={mobile_linkedinRef} className="invisible">
+              <div
+                ref={mobile_linkedinRef}
+                className="invisible"
+                onMouseOver={() => {
+                  setIsLinkedInHover(true);
+                }}
+                onMouseLeave={() => {
+                  setIsLinkedInHover(false);
+                }}
+              >
                 <Link href="/">
-                  <Image
-                    src="linkedIn.svg"
-                    alt="linkedIn icon"
-                    width={44}
-                    height={44}
-                    onClick={alertHandler.bind(
-                      null,
-                      "linkedIn - not implemented"
-                    )}
-                  />
+                  {isLinkedInHover ? (
+                    <Image
+                      src="linkedIn_hover.svg"
+                      alt="linkedIn icon"
+                      width={44}
+                      height={44}
+                      onClick={alertHandler.bind(
+                        null,
+                        "linkedIn - not implemented"
+                      )}
+                    />
+                  ) : (
+                    <Image
+                      src="linkedIn.svg"
+                      alt="linkedIn icon"
+                      width={44}
+                      height={44}
+                      onClick={alertHandler.bind(
+                        null,
+                        "linkedIn - not implemented"
+                      )}
+                    />
+                  )}
                 </Link>
               </div>
             </div>
@@ -515,7 +568,7 @@ const Navigation: FunctionComponent<Props> = (props) => {
 
           {/* tablet and desktop - socials - start */}
           <div
-            className="absolute opacity-0 cursor-pointer top-11 right-57px z-max icon-link"
+            className="absolute opacity-0 cursor-pointer top-11 right-57px z-200 icon-link"
             ref={githubRef}
             onMouseOver={() => {
               setIsGithubHover(true);
@@ -546,7 +599,7 @@ const Navigation: FunctionComponent<Props> = (props) => {
           </div>
 
           <div
-            className="absolute opacity-0 cursor-pointer top-42px right-26px z-max icon-link"
+            className="absolute opacity-0 cursor-pointer top-42px right-26px z-200 icon-link"
             ref={linkedinRef}
             onMouseOver={() => {
               setIsLinkedInHover(true);
@@ -596,12 +649,12 @@ const Navigation: FunctionComponent<Props> = (props) => {
 
           {/* hamburger / separator icons - start */}
           <div
-            className="absolute w-16 top-8 right-1 md:z-50"
+            className="absolute w-16 top-8 z-200 right-1 md:z-50"
             onClick={toggleHamburgerIcon}
           >
             <div
               ref={hamburgerIconRef}
-              className="cursor-pointer md:cursor-default"
+              className="cursor-pointer md:cursor-default "
             >
               <Image
                 src="/hamburger.svg"
@@ -614,7 +667,7 @@ const Navigation: FunctionComponent<Props> = (props) => {
           </div>
 
           <div
-            className="absolute w-16 top-8 right-1 z-max md:z-50 "
+            className="absolute w-16 top-8 right-1 z-200 md:z-50 "
             onClick={toggleHamburgerIcon}
           >
             <div ref={XIconRef} className="opacity-0 ">
@@ -629,7 +682,7 @@ const Navigation: FunctionComponent<Props> = (props) => {
             </div>
           </div>
 
-          <div className="absolute w-16 top-8 right-1 z-100">
+          <div className="absolute z-50 w-16 top-8 right-1">
             <div ref={separatorIconRef} className="opacity-0">
               <Image
                 src="/separator.svg"
