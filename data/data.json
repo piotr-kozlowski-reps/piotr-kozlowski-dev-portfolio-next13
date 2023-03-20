@@ -1,4 +1,5 @@
 {
+  "githubMainLink": "https://github.com/piotr-kozlowski-reps?tab=repositories",
   "developerDetails": {
     "sliders": [
       {
@@ -96,10 +97,20 @@
         "projectName": "ante portfolio",
         "projectDescription": "Portfolio website of a 3d part of my work-related activities. Architectural visualizations in most cases.",
         "projectTechnologiesUsed": "react redux formik gsap node express",
-        "isClickableGithubIcon": true,
-        "githubURL": "https://github.com/piotr-kozlowski-reps/ante_app__react",
-        "isClickableSeeWWWIcon": true,
-        "seeWWWURL": "www.ante.pl"
+        "links": {
+          "github": {
+            "isClickableGithub": true,
+            "githubTooltipText": "check github repositories",
+            "isOneLinkOnly_ifFalseThenIsModal": false,
+            "githubModalChooser": "antePortfolioGithubModal"
+          },
+          "seeWWW": {
+            "isClickableSeeWWW": true,
+            "seeWWWTooltipText": "see the project page",
+            "isOneLinkOnly_ifFalseThenIsModal": false,
+            "seeWWWModalContent": "<div className='mx-auto mt-16 font-style-sm'>seeWWW modal content</div>"
+          }
+        }
       }
     },
     {
@@ -130,10 +141,18 @@
         "projectName": "Dev Portfolio",
         "projectDescription": "It's a bit awkward to put my dev portfolio into my dev portfolio. But I made it ... so here it is.",
         "projectTechnologiesUsed": "next gsap/scrollTrigger tailwindCSS",
-        "isClickableGithubIcon": true,
-        "githubURL": "https://github.com/piotr-kozlowski-reps/ante-dev-portfolio-next13",
-        "isClickableSeeWWWIcon": false,
-        "seeWWWURL": ""
+        "links": {
+          "github": {
+            "isClickableGithub": true,
+            "githubTooltipText": "check github repository",
+            "isOneLinkOrModal": "oneLink",
+            "githubURL": "https://github.com/piotr-kozlowski-reps/ante-dev-portfolio-next13"
+          },
+          "seeWWW": {
+            "isClickableSeeWWW": false,
+            "seeWWWTooltipText": "you're already on the project page"
+          }
+        }
       }
     }
   ]

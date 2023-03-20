@@ -63,10 +63,26 @@ export type TProjectInfo = {
   projectName: string;
   projectDescription: string;
   projectTechnologiesUsed: string;
-  isClickableGithubIcon: boolean;
-  githubURL: string;
-  isClickableSeeWWWIcon: boolean;
-  seeWWWURL: string;
+  links: {
+    github: TGithubDetails;
+    seeWWW: TSeeWWWDetails;
+  };
+};
+
+export type TGithubDetails = {
+  isClickableGithub: boolean;
+  githubTooltipText: string;
+  isOneLinkOnly_ifFalseThenIsModal?: boolean;
+  githubURL?: string;
+  githubModalContent?: string;
+};
+
+export type TSeeWWWDetails = {
+  isClickableSeeWWW: boolean;
+  seeWWWTooltipText: string;
+  isOneLinkOnly_ifNotThenIsModal?: boolean;
+  seeWWWURL?: string;
+  seeWWWModalContent?: string;
 };
 
 /**
@@ -79,4 +95,19 @@ export type TProjectImage = {
   imageUrl: string;
   width: number;
   height: number;
+};
+
+export interface INotification {
+  title: string;
+  message: string;
+  status: "success" | "error";
+}
+
+export type TModalState = {
+  isShowModal: boolean;
+  modalChooser: TModalsChooser | null;
+};
+
+export type TModalsChooser = {
+  modalChooser: "antePortfolioGithubModal";
 };

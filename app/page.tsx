@@ -4,7 +4,7 @@ import React, { Fragment, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-import Navigation from "../components/Navigation";
+import Navigation from "../components/ui/Navigation";
 import HomePageImageRevealing from "../components/homePage/HomePageImageRevealing";
 import HomePageFooter from "../components/homePage/HomePageFooter";
 import AboutSection from "../components/aboutPage/AboutSection";
@@ -13,10 +13,18 @@ import useDeviceSize from "../hooks/useDeviceSize";
 import ProjectsSection from "../components/projectsPage/ProjectsSection";
 import useIsomorphicLayoutEffect from "../hooks/useIsomorphicLayoutEffect";
 import ContactSection from "../components/contactPage/ContactSection";
+import Modal from "../components/ui/Modal";
+import { useModalState } from "../globalState/ModalState";
+import DOMPurify from "dompurify";
+import ModalsJSXes from "../globalState/ModalsJSXes";
 
 gsap.registerPlugin(ScrollTrigger);
 const Home = () => {
   ////vars
+  const modalState = useModalState();
+
+  console.log(modalState.getModalContent());
+
   const [tlHomeSection, setTlHomeSection] = useState(() => gsap.timeline());
   const [tlAboutSection, setTlAboutSection] = useState(() => gsap.timeline());
   const [width, height] = useDeviceSize();
@@ -29,6 +37,9 @@ const Home = () => {
   const backgroundFadeRef = useRef<HTMLDivElement>(null);
 
   const homeSectionHPercentage = 0; //500 was to make nice home page section, needs to be reorganised to make rest of the animations possible
+
+  //modal
+  const [isModalVisible, setIsModalVisible] = useState(true);
 
   /** get object defining in which section we are currently based on Scroll Y position */
   const { whichSectionIsActive } =
@@ -81,9 +92,46 @@ const Home = () => {
     return () => ctx.revert();
   }, []);
 
+  ////temporary modal interior
+  const githubModalInterior: string = `
+    <div className="flex flex-col border-t border-main_color bg-background_1_lighter">
+      <div className="mx-auto mt-16 font-style-sm">
+        Which part of the project code would you like to see?
+      </div>
+      <div className="block mx-auto mt-8 mb-8 button-outline">
+        <a
+          href="https://github.com/piotr-kozlowski-reps/ante_app__react"
+          target="_blank"
+          rel="noopener"
+        >
+          frontend
+        </a>
+      </div>
+      <div className="block mx-auto mb-16 button-outline">
+        <a
+          href="https://github.com/piotr-kozlowski-reps/-ante_app__backend"
+          target="_blank"
+          rel="noopener"
+        >
+          backend
+        </a>
+      </div>
+    </div>`;
+
+  console.log(JSON.stringify(githubModalInterior));
+
   ////jsx
   return (
     <Fragment>
+      {/* modal */}
+      {modalState.getIsShowModal() ? (
+        <Modal
+          show={isModalVisible}
+          onCancel={() => modalState.setIsShowModal(false)}
+        >
+          <ModalsJSXes modalChooser={modalState.ge} />
+        </Modal>
+      ) : null}
       {/* Fixed Navigation */}
       {/* <div className="fixed top-0 w-screen h-screen z-100"> */}
       <div className="fixed top-0 w-screen h-32 z-100">

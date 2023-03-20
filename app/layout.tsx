@@ -1,9 +1,8 @@
-"use client";
-
 import "../styles/globals.css";
 import { inDevEnvironment } from "../utils/inDevEnvironment";
 
 import localFont from "@next/font/local";
+import Modal from "../components/ui/Modal";
 const mainFont = localFont({
   src: [
     {
@@ -43,6 +42,10 @@ export default function RootLayout({
           inDevEnvironment ? "debug-screens" : ""
         } scrollbar scrollbar-w-2 scrollbar-thumb-background_1_lighter scrollbar-thumb-rounded-lg scrollbar-track-background_2_darker `}
       >
+        <div id="loading-hook"></div>
+        <div id="backdrop-hook"></div>
+        <div id="modal-hook"></div>
+
         {children}
       </body>
     </html>

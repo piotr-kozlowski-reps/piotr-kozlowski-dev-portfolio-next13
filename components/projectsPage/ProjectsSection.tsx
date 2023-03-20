@@ -17,9 +17,10 @@ const ProjectsSection = () => {
       <div className="overflow-x-hidden overflow-y-hidden">
         <ProjectsTitle />
       </div>
-      {projectsDetails.map((project, index) => (
+      <ProjectDetails projectDetails={projectsDetails[0]} />
+      {/* {projectsDetails.map((project, index) => (
         <ProjectDetails projectDetails={project} key={index} />
-      ))}
+      ))} */}
       <div className="h-[93px] w-full">
         <svg
           width="100%"

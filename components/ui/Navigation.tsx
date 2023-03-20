@@ -4,7 +4,7 @@ import React, { FunctionComponent, useCallback, useRef, useState } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import useDeviceSize from "../hooks/useDeviceSize";
+import useDeviceSize from "../../hooks/useDeviceSize";
 import {
   hamburgerIntoSeparatorAnimation,
   hamburgerIntoXAnimation,
@@ -13,10 +13,11 @@ import {
   revealElementsInXAnimation,
   separatorIntoHamburgerAnimation,
   XIntoHamburgerAnimation,
-} from "../utils/animations";
+} from "../../utils/animations";
 import Link from "next/link";
-import { TWhichSectionIsActive } from "../types/typings";
-import useIsomorphicLayoutEffect from "../hooks/useIsomorphicLayoutEffect";
+import { TWhichSectionIsActive } from "../../types/typings";
+import useIsomorphicLayoutEffect from "../../hooks/useIsomorphicLayoutEffect";
+import data from "../../data/data.json";
 
 /** avoid start animation when site starts in mobile mode
  * "(max-width: 768px)" animation when starts only when number of renders is more than initial 2
@@ -42,6 +43,8 @@ const Navigation: FunctionComponent<Props> = (props) => {
     whichSectionIsActive,
   } = props;
 
+  const { githubMainLink } = data;
+
   const [isHamburger, setIsHamburger] = useState(true);
   let isShowingMobileNavigation = useRef(false);
   const [width, height] = useDeviceSize();
@@ -66,8 +69,6 @@ const Navigation: FunctionComponent<Props> = (props) => {
   let mobile_githubRef = useRef<HTMLDivElement>(null);
   let mobile_linkedinRef = useRef<HTMLDivElement>(null);
   let mobileSeparatorRef = useRef<HTMLDivElement>(null);
-
-  console.log(isShowingMobileNavigation.current);
 
   ////utils
   //TODO: delete later
@@ -393,17 +394,13 @@ const Navigation: FunctionComponent<Props> = (props) => {
                   setIsGithubHover(false);
                 }}
               >
-                <Link href="/">
+                <a href={githubMainLink} target="_blank" rel="noopener">
                   {isGithubHover ? (
                     <Image
                       src="gitHub_hover.svg"
                       alt="github icon"
                       width={44}
                       height={44}
-                      onClick={alertHandler.bind(
-                        null,
-                        "github - not implemented"
-                      )}
                     />
                   ) : (
                     <Image
@@ -411,13 +408,9 @@ const Navigation: FunctionComponent<Props> = (props) => {
                       alt="github icon"
                       width={44}
                       height={44}
-                      onClick={alertHandler.bind(
-                        null,
-                        "github - not implemented"
-                      )}
                     />
                   )}
-                </Link>
+                </a>
               </div>
 
               <div
@@ -577,14 +570,14 @@ const Navigation: FunctionComponent<Props> = (props) => {
               setIsGithubHover(false);
             }}
           >
-            <Link href="/">
+            <a href={githubMainLink} target="_blank" rel="noopener">
               {isGithubHover ? (
                 <Image
                   src="gitHub_hover.svg"
                   alt="github icon hover"
                   width={21}
                   height={21}
-                  onClick={alertHandler.bind(null, "github - not implemented")}
+                  // onClick={alertHandler.bind(null, "github - not implemented")}
                 />
               ) : (
                 <Image
@@ -592,10 +585,10 @@ const Navigation: FunctionComponent<Props> = (props) => {
                   alt="github icon"
                   width={21}
                   height={21}
-                  onClick={alertHandler.bind(null, "github - not implemented")}
+                  // onClick={alertHandler.bind(null, "github - not implemented")}
                 />
               )}
-            </Link>
+            </a>
           </div>
 
           <div

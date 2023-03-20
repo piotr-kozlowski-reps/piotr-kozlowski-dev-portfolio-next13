@@ -60,6 +60,14 @@ body {
     width: 60%;
   }
 
+  /* buttons */
+  .button-outline {
+    @apply px-8 py-4 font-semibold uppercase border rounded-md cursor-pointer border-main_color font-style-sm bg-background_1_lighter shadow-input-shadow hover:bg-main_color hover:text-background_2_darker hover:shadow-lg;
+  }
+  .button-fill {
+    @apply px-8 py-4 font-bold uppercase border rounded-md cursor-pointer border-main_color font-style-p bg-main_color shadow-input-shadow hover:bg-main_color text-background_2_darker hover:shadow-button-hover hover:text-background_1_lighter;
+  }
+
   /* mobile - link */
   .mobile-link {
     @apply uppercase text-[22px] text-main_white font-mainFont font-medium tracking-tightest px-2 pt-2 pb-2 cursor-pointer hover:text-main_color;
@@ -69,7 +77,6 @@ body {
   }
 
   /*fonts*/
-
   .font-style-h3 {
     @apply font-mainFont text-[22px] text-main_white uppercase tracking-tight font-semibold;
   }

@@ -5,6 +5,9 @@ import useIsomorphicLayoutEffect from "../../hooks/useIsomorphicLayoutEffect";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { TProjectDetails } from "../../types/typings";
+import Tooltip from "../ui/Tooltip";
+import { useModalState } from "../../globalState/ModalState";
+import ProjectDescriptionLink from "./ProjectDescriptionLink";
 
 type Props = {
   projectDetails: TProjectDetails;
@@ -14,18 +17,8 @@ gsap.registerPlugin(ScrollTrigger);
 const ProjectDetails = (props: Props) => {
   ////vars
   const { numberImageURL, projectImages, projectInfo } = props.projectDetails;
-  const {
-    projectName,
-    projectDescription,
-    projectTechnologiesUsed,
-    isClickableGithubIcon,
-    githubURL,
-    isClickableSeeWWWIcon,
-    seeWWWURL,
-  } = projectInfo;
-
-  const [isGithubHover, setIsGithubHover] = useState(false);
-  const [isGoToSite, setIsGoToSite] = useState(false);
+  const { projectName, projectDescription, projectTechnologiesUsed, links } =
+    projectInfo;
 
   const projectRef = useRef<HTMLDivElement>(null);
   const backgroundDescriptionRef = useRef<HTMLDivElement>(null);
@@ -283,112 +276,22 @@ const ProjectDetails = (props: Props) => {
               {projectTechnologiesUsed}
             </div>
             <div className="flex items-center justify-start ">
-              <div
-                className="w-[44px] h-[44px] relative invisible"
+              <ProjectDescriptionLink
+                linkDetails={links.github}
                 ref={githubNameRef}
-              >
-                {isClickableGithubIcon ? (
-                  <div
-                    className="cursor-pointer icon-link"
-                    onMouseOver={() => {
-                      setIsGithubHover(true);
-                    }}
-                    onMouseLeave={() => {
-                      setIsGithubHover(false);
-                    }}
-                  >
-                    <Link href={githubURL}>
-                      {isGithubHover ? (
-                        <Image
-                          src="gitHub_hover.svg"
-                          alt="github icon hover"
-                          width={44}
-                          height={44}
-                          onClick={alertHandler.bind(
-                            null,
-                            "github - not implemented"
-                          )}
-                        />
-                      ) : (
-                        <Image
-                          src="gitHub.svg"
-                          alt="github icon"
-                          width={44}
-                          height={44}
-                          onClick={alertHandler.bind(
-                            null,
-                            "github - not implemented"
-                          )}
-                        />
-                      )}
-                    </Link>
-                  </div>
-                ) : (
-                  <div className="cursor-default opacity-20 z-100">
-                    <Image
-                      src="gitHub.svg"
-                      alt="github icon"
-                      width={44}
-                      height={44}
-                    />
-                  </div>
-                )}
-              </div>
-
-              <div
-                className="w-[44px] h-[44px] relative invisible z-100"
+                iconBaseUrl="gitHub.svg"
+                iconBaseAlt="github icon"
+                iconHoverUrl="gitHub_hover.svg"
+                iconHoverAlt="github icon hover"
+              />
+              <ProjectDescriptionLink
+                linkDetails={links.seeWWW}
                 ref={viewSiteNameRef}
-              >
-                {isClickableSeeWWWIcon ? (
-                  <div
-                    className="cursor-pointer icon-link z-100"
-                    // ref={githubRef}
-                    onMouseOver={() => {
-                      setIsGoToSite(true);
-                    }}
-                    onMouseLeave={() => {
-                      setIsGoToSite(false);
-                    }}
-                  >
-                    <Link href="/" className="z-100">
-                      {isGoToSite ? (
-                        <Image
-                          src="eye_hover.svg"
-                          alt="eye icon hover"
-                          width={44}
-                          height={44}
-                          className="z-100"
-                          onClick={alertHandler.bind(
-                            null,
-                            "go to site - not implemented"
-                          )}
-                        />
-                      ) : (
-                        <Image
-                          src="eye.svg"
-                          alt="eye icon"
-                          width={44}
-                          height={44}
-                          className="z-100"
-                          onClick={alertHandler.bind(
-                            null,
-                            "go to site - not implemented"
-                          )}
-                        />
-                      )}
-                    </Link>
-                  </div>
-                ) : (
-                  <div className="cursor-default opacity-20 z-100">
-                    <Image
-                      src="eye.svg"
-                      alt="github icon"
-                      width={44}
-                      height={44}
-                    />
-                  </div>
-                )}
-              </div>
+                iconBaseUrl="eye.svg"
+                iconBaseAlt="eye icon"
+                iconHoverUrl="eye_hover.svg"
+                iconHoverAlt="eye icon hover"
+              />
             </div>
           </div>
         </div>

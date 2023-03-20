@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+
 module.exports = {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx}",
@@ -49,6 +50,7 @@ module.exports = {
       },
       boxShadow: {
         "input-shadow": "0px 0px 8px 2px rgba(33,36,41,0.3)",
+        "button-hover": "0px 0px 8px 2px rgba(252,235,35,0.3)",
       },
     },
   },
