@@ -23,7 +23,7 @@ const Home = () => {
   ////vars
   const modalState = useModalState();
 
-  console.log(modalState.getModalContent());
+  console.log(modalState.getModalChooser());
 
   const [tlHomeSection, setTlHomeSection] = useState(() => gsap.timeline());
   const [tlAboutSection, setTlAboutSection] = useState(() => gsap.timeline());
@@ -92,34 +92,6 @@ const Home = () => {
     return () => ctx.revert();
   }, []);
 
-  ////temporary modal interior
-  const githubModalInterior: string = `
-    <div className="flex flex-col border-t border-main_color bg-background_1_lighter">
-      <div className="mx-auto mt-16 font-style-sm">
-        Which part of the project code would you like to see?
-      </div>
-      <div className="block mx-auto mt-8 mb-8 button-outline">
-        <a
-          href="https://github.com/piotr-kozlowski-reps/ante_app__react"
-          target="_blank"
-          rel="noopener"
-        >
-          frontend
-        </a>
-      </div>
-      <div className="block mx-auto mb-16 button-outline">
-        <a
-          href="https://github.com/piotr-kozlowski-reps/-ante_app__backend"
-          target="_blank"
-          rel="noopener"
-        >
-          backend
-        </a>
-      </div>
-    </div>`;
-
-  console.log(JSON.stringify(githubModalInterior));
-
   ////jsx
   return (
     <Fragment>
@@ -129,7 +101,8 @@ const Home = () => {
           show={isModalVisible}
           onCancel={() => modalState.setIsShowModal(false)}
         >
-          <ModalsJSXes modalChooser={modalState.ge} />
+          <div>dfvsdfvd</div>
+          {/* <ModalsJSXes modalChooser={modalState.ge} /> */}
         </Modal>
       ) : null}
       {/* Fixed Navigation */}

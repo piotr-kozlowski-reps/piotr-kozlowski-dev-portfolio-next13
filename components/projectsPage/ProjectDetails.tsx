@@ -11,6 +11,7 @@ import ProjectDescriptionLink from "./ProjectDescriptionLink";
 
 type Props = {
   projectDetails: TProjectDetails;
+  githubModal?: JSX.Element;
 };
 
 gsap.registerPlugin(ScrollTrigger);

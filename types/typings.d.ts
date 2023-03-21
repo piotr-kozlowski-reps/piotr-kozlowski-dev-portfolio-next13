@@ -105,7 +105,6 @@ export interface INotification {
 
 export type TModalState = {
   isShowModal: boolean;
-  modalChooser: TModalsChooser | null;
 };
 
 export type TModalsChooser = {

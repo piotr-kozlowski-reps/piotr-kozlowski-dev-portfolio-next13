@@ -102,7 +102,7 @@
             "isClickableGithub": true,
             "githubTooltipText": "check github repositories",
             "isOneLinkOnly_ifFalseThenIsModal": false,
-            "githubModalChooser": "antePortfolioGithubModal"
+            "githubModalContent": "<div className='mx-auto mt-16 font-style-sm'>github modal content</div>"
           },
           "seeWWW": {
             "isClickableSeeWWW": true,
