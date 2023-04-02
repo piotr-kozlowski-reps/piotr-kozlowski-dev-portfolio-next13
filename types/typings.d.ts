@@ -80,7 +80,7 @@ export type TGithubDetails = {
 export type TSeeWWWDetails = {
   isClickableSeeWWW: boolean;
   seeWWWTooltipText: string;
-  isOneLinkOnly_ifNotThenIsModal?: boolean;
+  isOneLinkOnly_ifFalseThenIsModal?: boolean;
   seeWWWURL?: string;
   seeWWWModalContent?: string;
 };
@@ -105,8 +105,24 @@ export interface INotification {
 
 export type TModalState = {
   isShowModal: boolean;
+  modalContent: string;
+  defaultErrorModalContent: string;
 };
 
 export type TModalsChooser = {
   modalChooser: "antePortfolioGithubModal";
+};
+
+//form
+type TInputFormState = {
+  inputValue: string;
+  isTestPassed: boolean;
+  isDirty: boolean;
+  isValid: boolean;
+  errorMessage: string;
+};
+
+type TInputFormStatePassedOnInit = {
+  inputValue: string;
+  isValid?: boolean;
 };

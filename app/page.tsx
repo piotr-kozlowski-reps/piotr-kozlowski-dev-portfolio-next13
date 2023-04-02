@@ -15,15 +15,13 @@ import useIsomorphicLayoutEffect from "../hooks/useIsomorphicLayoutEffect";
 import ContactSection from "../components/contactPage/ContactSection";
 import Modal from "../components/ui/Modal";
 import { useModalState } from "../globalState/ModalState";
-import DOMPurify from "dompurify";
-import ModalsJSXes from "../globalState/ModalsJSXes";
 
 gsap.registerPlugin(ScrollTrigger);
 const Home = () => {
   ////vars
   const modalState = useModalState();
 
-  console.log(modalState.getModalChooser());
+  // console.log(modalState.getModalChooser());
 
   const [tlHomeSection, setTlHomeSection] = useState(() => gsap.timeline());
   const [tlAboutSection, setTlAboutSection] = useState(() => gsap.timeline());
@@ -35,6 +33,7 @@ const Home = () => {
   const projectsRef = useRef<HTMLDivElement>(null);
   const contactRef = useRef<HTMLDivElement>(null);
   const backgroundFadeRef = useRef<HTMLDivElement>(null);
+  const modalRef = useRef<HTMLDivElement>(null);
 
   const homeSectionHPercentage = 0; //500 was to make nice home page section, needs to be reorganised to make rest of the animations possible
 
@@ -51,8 +50,8 @@ const Home = () => {
 
   // TODO: delete afterwards;
   useIsomorphicLayoutEffect(() => {
-    projectsRef.current!.scrollIntoView();
-  }, [projectsRef.current]);
+    contactRef.current!.scrollIntoView();
+  }, [contactRef.current]);
 
   // /** Footer Pinned With ScrollTrigger */
   useIsomorphicLayoutEffect(() => {
@@ -92,17 +91,33 @@ const Home = () => {
     return () => ctx.revert();
   }, []);
 
+  function onCancelHandler() {
+    gsap.fromTo(
+      modalRef.current,
+      { autoAlpha: 1, y: 0, filter: "blur(0px)" },
+      {
+        autoAlpha: 0,
+        y: "-100vh",
+        filter: "blur(20px)",
+        duration: 0.3,
+        onComplete: () => modalState.setIsShowModal(false),
+      }
+    );
+  }
+
+  // const modalInteriorTest: string =
+  //   '<div class="flex flex-col border-t border-main_color bg-background_1_lighter">\r\n          <div class="mx-auto mt-16 font-style-sm">\r\n            Which part of the project code would you like to see?\r\n          </div>\r\n          <div class="block mx-auto mt-[25px] mb-8 button-outline">\r\n            <a\r\n              href="https://github.com/piotr-kozlowski-reps/ante_app__react"\r\n              target="_blank"\r\n              rel="noopener"\r\n            >\r\n              frontend\r\n            </a>\r\n          </div>\r\n          <div class="block mx-auto mb-16 button-outline">\r\n            <a\r\n              href="https://github.com/piotr-kozlowski-reps/-ante_app__backend"\r\n              target="_blank"\r\n              rel="noopener"\r\n            >\r\n              backend\r\n            </a>\r\n          </div>\r\n        </div>';
+
   ////jsx
   return (
     <Fragment>
       {/* modal */}
       {modalState.getIsShowModal() ? (
-        <Modal
-          show={isModalVisible}
-          onCancel={() => modalState.setIsShowModal(false)}
-        >
-          <div>dfvsdfvd</div>
-          {/* <ModalsJSXes modalChooser={modalState.ge} /> */}
+        <Modal show={isModalVisible} onCancel={onCancelHandler} ref={modalRef}>
+          <div
+            dangerouslySetInnerHTML={{ __html: modalState.getModalContent() }}
+          ></div>
+          {/* <div dangerouslySetInnerHTML={{ __html: modalInteriorTest }}></div> */}
         </Modal>
       ) : null}
       {/* Fixed Navigation */}

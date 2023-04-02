@@ -4,6 +4,7 @@ import Tooltip from "../ui/Tooltip";
 import { useModalState } from "../../globalState/ModalState";
 import { TGithubDetails, TSeeWWWDetails } from "../../types/typings";
 import DOMPurify from "dompurify";
+import { useRouter } from "next/navigation";
 
 type Props = {
   linkDetails: TGithubDetails | TSeeWWWDetails;
@@ -29,6 +30,8 @@ const ProjectDescriptionLink = forwardRef<HTMLDivElement, Props>(
       iconHoverUrl,
       iconHoverAlt,
     } = props;
+
+    const router = useRouter();
 
     const modalState = useModalState();
     const [isIconHovered, setIsIconHovered] = useState(false);
@@ -57,25 +60,109 @@ const ProjectDescriptionLink = forwardRef<HTMLDivElement, Props>(
           tooltipText: linkDetailsTyped.seeWWWTooltipText,
           isIconClickable: linkDetailsTyped.isClickableSeeWWW,
           isOneLinkOnly_ifFalseThenIsModal:
-            linkDetailsTyped.isOneLinkOnly_ifNotThenIsModal,
+            linkDetailsTyped.isOneLinkOnly_ifFalseThenIsModal,
         };
       }
     }
     const linkDetailsExtracted: TLinkDetails =
       mapPropertiesOfLinkDetailsDependingOnType(linkDetails);
 
+    const openInNewTab = (url: string) => {
+      const newWindow = window.open(url, "_blank", "noopener,noreferrer");
+      if (newWindow) newWindow.opener = null;
+    };
+
     ////modal details and trigger or simple link behavior
     const onMouseUpHandler = () => {
-      //show modal for githubLink
-      if (
-        isGithubLinkDetails(linkDetails) &&
-        !(linkDetails as TGithubDetails).isOneLinkOnly_ifFalseThenIsModal
-      ) {
-        modalState.setModalContent(
-          (linkDetails as TGithubDetails).githubModalContent!
-        );
-        modalState.setIsShowModal(true);
+      //githubLinks
+      if (isGithubLinkDetails(linkDetails)) {
+        const linkDetailsTyped: TGithubDetails = linkDetails as TGithubDetails;
+
+        //show modal for githubLink
+        if (
+          !linkDetailsTyped.isOneLinkOnly_ifFalseThenIsModal &&
+          linkDetailsTyped.githubModalContent
+        ) {
+          modalState.setModalContent(
+            DOMPurify.sanitize(
+              linkDetailsTyped.githubModalContent,
+              { ADD_ATTR: ["target"] }
+              // function (node: any) {
+              //   if ("target" in node) {
+              //     node.setAttribute("target", "_blank");
+              //     node.setAttribute("rel", "noopener");
+              //   }
+              //   // ADD_ATTR: ["target"],
+              // }
+            )
+          );
+          modalState.setIsShowModal(true);
+        }
+
+        // direct link for githubLink
+        if (
+          linkDetailsTyped.isOneLinkOnly_ifFalseThenIsModal &&
+          linkDetailsTyped.githubURL
+        ) {
+          openInNewTab(linkDetailsTyped.githubURL);
+        }
+
+        // show Modal when not enough data is provided
+        if (
+          (linkDetailsTyped.isOneLinkOnly_ifFalseThenIsModal &&
+            !linkDetailsTyped.githubURL) ||
+          (!linkDetailsTyped.isOneLinkOnly_ifFalseThenIsModal &&
+            !linkDetailsTyped.githubModalContent)
+        ) {
+          modalState.setModalContent(modalState.getDefaultErrorModalContent());
+          modalState.setIsShowModal(true);
+        }
       }
+
+      if (isSeeWWWLinkDetails(linkDetails)) {
+        const linkDetailsTyped: TSeeWWWDetails = linkDetails as TSeeWWWDetails;
+
+        //show modal for seeWWW
+        if (
+          !linkDetailsTyped.isOneLinkOnly_ifFalseThenIsModal &&
+          linkDetailsTyped.seeWWWModalContent
+        ) {
+          modalState.setModalContent(
+            DOMPurify.sanitize(
+              linkDetailsTyped.seeWWWModalContent,
+              { ADD_ATTR: ["target"] }
+              // function (node: any) {
+              //   if ("target" in node) {
+              //     node.setAttribute("target", "_blank");
+              //     node.setAttribute("rel", "noopener");
+              //   }
+              //   // ADD_ATTR: ["target"],
+              // }
+            )
+          );
+          modalState.setIsShowModal(true);
+        }
+
+        // direct link for githubLink
+        if (
+          linkDetailsTyped.isOneLinkOnly_ifFalseThenIsModal &&
+          linkDetailsTyped.seeWWWURL
+        ) {
+          openInNewTab(linkDetailsTyped.seeWWWURL);
+        }
+
+        // show Modal when not enough data is provided
+        if (
+          (linkDetailsTyped.isOneLinkOnly_ifFalseThenIsModal &&
+            !linkDetailsTyped.seeWWWURL) ||
+          (!linkDetailsTyped.isOneLinkOnly_ifFalseThenIsModal &&
+            !linkDetailsTyped.seeWWWModalContent)
+        ) {
+          modalState.setModalContent(modalState.getDefaultErrorModalContent());
+          modalState.setIsShowModal(true);
+        }
+      }
+
       return () => {};
     };
 

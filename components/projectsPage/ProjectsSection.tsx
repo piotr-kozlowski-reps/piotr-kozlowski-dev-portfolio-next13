@@ -17,14 +17,17 @@ const ProjectsSection = () => {
       <div className="mx-auto mt-16 font-style-sm">
         Which part of the project code would you like to see?
       </div>
-      <div className="block mx-auto mt-8 mb-8 button-outline">
-        <a
-          href="https://github.com/piotr-kozlowski-reps/ante_app__react"
-          target="_blank"
-          rel="noopener"
-        >
-          frontend
-        </a>
+      <div className="block button-outline bg-red-500">
+        <div className="">
+          <a
+            href="https://github.com/piotr-kozlowski-reps/ante_app__react"
+            target="_blank"
+            rel="noopener"
+            className="mt-20"
+          >
+            frontend
+          </a>
+        </div>
       </div>
       <div className="block mx-auto mb-16 button-outline">
         <a
@@ -44,13 +47,10 @@ const ProjectsSection = () => {
       <div className="overflow-x-hidden overflow-y-hidden">
         <ProjectsTitle />
       </div>
-      <ProjectDetails
-        projectDetails={projectsDetails[0]}
-        githubModal={githubModalInterior}
-      />
-      {/* {projectsDetails.map((project, index) => (
+      {/* <ProjectDetails projectDetails={projectsDetails[0]} /> */}
+      {projectsDetails.map((project, index) => (
         <ProjectDetails projectDetails={project} key={index} />
-      ))} */}
+      ))}
       <div className="h-[93px] w-full">
         <svg
           width="100%"

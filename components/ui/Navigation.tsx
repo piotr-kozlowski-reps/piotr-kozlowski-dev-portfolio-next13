@@ -212,8 +212,6 @@ const Navigation: FunctionComponent<Props> = (props) => {
       let mm = gsap.matchMedia();
 
       mm.add("(max-width: 768px)", () => {
-        console.log("(max-width: 768px)");
-
         if (isFirstRender <= 1) {
           hideElementsInXAnimationInitialForMobileView_Invisibly(
             [
@@ -279,7 +277,6 @@ const Navigation: FunctionComponent<Props> = (props) => {
   /** Getting rid of mobile menu when media query changes to bigger than mobile */
   useIsomorphicLayoutEffect(() => {
     if (!isLessThanOrEqualMdSize() && isShowingMobileNavigation.current) {
-      console.log("hide navigation");
       hideElementsInXAnimation([XIconRef.current!], 0, 0.4, 0.04, 0, 0);
       setIsHamburger(true);
       hideMobileNavigation();

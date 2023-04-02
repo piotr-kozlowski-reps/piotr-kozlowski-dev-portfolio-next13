@@ -26,7 +26,7 @@ const AboutSliderStripe = (props: Props) => {
         {
           scaleX: percentage / 100,
           autoAlpha: 1,
-          duration: 2,
+          duration: 1,
           ease: "power4.inOut",
           paused: true,
         }
