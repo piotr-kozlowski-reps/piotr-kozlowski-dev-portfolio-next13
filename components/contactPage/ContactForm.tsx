@@ -5,9 +5,13 @@ import {
   checkIfNotEmpty,
   checkIfIsEmail,
 } from "../../utils/formInputsChecking";
+import { useModalState } from "../../globalState/ModalState";
+import useTimeout from "../../hooks/useTimeout";
 
 const ContactForm = () => {
   ////vars
+  const modalState = useModalState();
+
   const [nameInput, nameDispatch] = useFormInput(
     { inputValue: "" },
     checkIfNotEmpty,
@@ -26,15 +30,51 @@ const ContactForm = () => {
     "Message is required."
   );
 
-  function formSubmitHandler(event: FormEvent<HTMLFormElement>) {
+  ////logic
+  async function formSubmitHandler(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
-    console.log("submitting");
-    console.log(nameInput.inputValue);
-    console.log(emailInput.inputValue);
-    console.log(messageInput.inputValue);
+    try {
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/contact`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name: nameInput.inputValue,
+            email: emailInput.inputValue,
+            message: messageInput.inputValue,
+          }),
+        }
+      );
 
-    clearFormInputs();
+      const data = await response.json();
+
+      if (response.ok && data.message) {
+        showModalWithPositiveInfo(data.message);
+        clearFormInputs();
+      } else {
+        showModalWithNegativeInfo(data.message || "");
+      }
+    } catch (error) {
+      console.error(error);
+      showModalWithNegativeInfo("Some error has occurred.");
+    }
+  }
+
+  function showModalWithPositiveInfo(message: string) {
+    modalState.setModalContent("<div>text from JSX.Element</div>");
+    modalState.setIsShowModal(true);
+
+    // console.log("showModalWithPositiveInfo");
+    // console.log(message);
+  }
+
+  function showModalWithNegativeInfo(message: string) {
+    console.log("showModalWithNegativeInfo");
+    console.log(message);
   }
 
   function clearFormInputs() {
@@ -43,13 +83,12 @@ const ContactForm = () => {
     messageDispatch({ type: REDUCER_ACTION_TYPE.CLEAR_FORM_INPUT });
   }
 
-  const isAnyInputDirty =
-    nameInput.isDirty || emailInput.isDirty || messageInput.isDirty;
-  const isEnabled =
-    nameInput.isValid &&
-    emailInput.isValid &&
-    messageInput.isValid &&
-    isAnyInputDirty;
+  //is send button enaibled
+  const isDirty =
+    nameInput.isDirty && emailInput.isDirty && messageInput.isDirty;
+  const isValid =
+    nameInput.isValid && emailInput.isValid && messageInput.isValid;
+  const isEnabled = isDirty && isValid;
 
   ////jsx
   return (

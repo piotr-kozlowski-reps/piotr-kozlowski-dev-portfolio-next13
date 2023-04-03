@@ -108,16 +108,25 @@ const Home = () => {
   // const modalInteriorTest: string =
   //   '<div class="flex flex-col border-t border-main_color bg-background_1_lighter">\r\n          <div class="mx-auto mt-16 font-style-sm">\r\n            Which part of the project code would you like to see?\r\n          </div>\r\n          <div class="block mx-auto mt-[25px] mb-8 button-outline">\r\n            <a\r\n              href="https://github.com/piotr-kozlowski-reps/ante_app__react"\r\n              target="_blank"\r\n              rel="noopener"\r\n            >\r\n              frontend\r\n            </a>\r\n          </div>\r\n          <div class="block mx-auto mb-16 button-outline">\r\n            <a\r\n              href="https://github.com/piotr-kozlowski-reps/-ante_app__backend"\r\n              target="_blank"\r\n              rel="noopener"\r\n            >\r\n              backend\r\n            </a>\r\n          </div>\r\n        </div>';
 
+  console.log(modalState.getModalContent());
+
   ////jsx
   return (
     <Fragment>
       {/* modal */}
       {modalState.getIsShowModal() ? (
         <Modal show={isModalVisible} onCancel={onCancelHandler} ref={modalRef}>
-          <div
-            dangerouslySetInnerHTML={{ __html: modalState.getModalContent() }}
-          ></div>
+          {/* <div
+            dangerouslySetInnerHTML={{
+              __html: modalState.getModalContent(),
+            }}
+          ></div> */}
           {/* <div dangerouslySetInnerHTML={{ __html: modalInteriorTest }}></div> */}
+          <div className="flex flex-col border-t border-main_color bg-background_1_lighter">
+            <div className="mx-auto my-16 font-style-sm">
+              <p>Thank you. Your message has been sent.</p>
+            </div>
+          </div>
         </Modal>
       ) : null}
       {/* Fixed Navigation */}

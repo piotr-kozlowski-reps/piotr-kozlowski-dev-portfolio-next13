@@ -126,3 +126,9 @@ type TInputFormStatePassedOnInit = {
   inputValue: string;
   isValid?: boolean;
 };
+
+type TContactFormJson = {
+  name: string;
+  email: string;
+  message: string;
+};
