@@ -105,8 +105,10 @@ export interface INotification {
 
 export type TModalState = {
   isShowModal: boolean;
-  modalContent: string;
+  modalContent: string | JSX.Element;
   defaultErrorModalContent: string;
+  timeoutInMilliseconds: number;
+  isError: boolean;
 };
 
 export type TModalsChooser = {

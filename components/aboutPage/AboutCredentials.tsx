@@ -201,7 +201,7 @@ const AboutCredentials = () => {
       ref={credentialItemsSectionRef}
     >
       <div className="flex flex-col items-center justify-center w-full h-full ">
-        <div className="relative w-full xl:w-[566px]">
+        <div className="relative w-full xl:w-container_small">
           <div className="absolute top-0 left-0 w-full h-full -z-10">
             <svg
               width="100%"

@@ -1,3 +1,5 @@
+"use client";
+
 import React, { Fragment, RefObject, useRef, useState } from "react";
 import gsap from "gsap";
 

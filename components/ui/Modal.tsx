@@ -1,8 +1,10 @@
 import React, { forwardRef, Fragment, useLayoutEffect, useRef } from "react";
 import Backdrop from "./Backdrop";
 import gsap from "gsap";
+import clsx from "clsx";
 
 interface ModalProps {
+  isError: boolean;
   show: boolean;
   onCancel: () => void;
   children: JSX.Element;
@@ -49,7 +51,11 @@ const ModalOverlay = forwardRef(
         <div ref={modalRef}>
           {props.children}
           <button
-            className="invisible w-full button-fill"
+            className={clsx(
+              "invisible w-full",
+              { "button-fill": !props.isError },
+              { "button-error": props.isError }
+            )}
             onClick={props.onCancel}
             ref={modalCTAButtonRef}
           >

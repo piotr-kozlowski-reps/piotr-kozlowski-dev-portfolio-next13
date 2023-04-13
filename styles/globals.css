@@ -83,6 +83,10 @@ textarea::-webkit-scrollbar-corner {
     @apply px-8 pt-[6px] pb-[7px] font-bold uppercase border rounded-md cursor-pointer border-main_color font-style-p bg-main_color shadow-input-shadow hover:bg-main_color text-background_2_darker hover:shadow-button-hover hover:text-background_1_lighter disabled:hover:shadow-input-shadow disabled:bg-main_white_50 disabled:border-main_white_50 disabled:hover:text-background_2_darker;
   }
 
+  .button-error {
+    @apply button-fill bg-error border-error hover:bg-error hover:shadow-button-hover-error hover:text-main_white;
+  }
+
   /* mobile - link */
   .mobile-link {
     @apply uppercase text-[22px] text-main_white font-mainFont font-medium tracking-tightest px-2 pt-2 pb-2 cursor-pointer hover:text-main_color;
@@ -154,4 +158,44 @@ test-images {
   height: 100%;
   position: absolute;
   top: 0;
+}
+
+/* loader */
+.loader {
+  width: 24px;
+  height: 24px;
+  position: relative;
+  overflow: hidden;
+}
+.loader:before {
+  content: "";
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  left: 0;
+  top: 4px;
+  border: 5px solid #0000;
+  border-color: #26292e #26292e #0000 #0000;
+  border-radius: 50%;
+  box-sizing: border-box;
+  animation: rotate 3s ease-in-out infinite;
+  transform: rotate(-200deg);
+}
+@keyframes rotate {
+  0% {
+    border-width: 10px;
+  }
+  25% {
+    border-width: 3px;
+  }
+  50% {
+    transform: rotate(115deg);
+    border-width: 10px;
+  }
+  75% {
+    border-width: 3px;
+  }
+  100% {
+    border-width: 10px;
+  }
 }

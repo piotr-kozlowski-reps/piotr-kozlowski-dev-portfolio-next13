@@ -83,19 +83,11 @@ const ProjectDescriptionLink = forwardRef<HTMLDivElement, Props>(
           !linkDetailsTyped.isOneLinkOnly_ifFalseThenIsModal &&
           linkDetailsTyped.githubModalContent
         ) {
-          modalState.setModalContent(
-            DOMPurify.sanitize(
-              linkDetailsTyped.githubModalContent,
-              { ADD_ATTR: ["target"] }
-              // function (node: any) {
-              //   if ("target" in node) {
-              //     node.setAttribute("target", "_blank");
-              //     node.setAttribute("rel", "noopener");
-              //   }
-              //   // ADD_ATTR: ["target"],
-              // }
-            )
+          const modalContent = DOMPurify.sanitize(
+            linkDetailsTyped.githubModalContent,
+            { ADD_ATTR: ["target"] }
           );
+          modalState.setModalData(modalContent, 0, false);
           modalState.setIsShowModal(true);
         }
 
@@ -114,7 +106,11 @@ const ProjectDescriptionLink = forwardRef<HTMLDivElement, Props>(
           (!linkDetailsTyped.isOneLinkOnly_ifFalseThenIsModal &&
             !linkDetailsTyped.githubModalContent)
         ) {
-          modalState.setModalContent(modalState.getDefaultErrorModalContent());
+          modalState.setModalData(
+            modalState.getModalData().defaultErrorModalContent,
+            0,
+            false
+          );
           modalState.setIsShowModal(true);
         }
       }
@@ -127,19 +123,11 @@ const ProjectDescriptionLink = forwardRef<HTMLDivElement, Props>(
           !linkDetailsTyped.isOneLinkOnly_ifFalseThenIsModal &&
           linkDetailsTyped.seeWWWModalContent
         ) {
-          modalState.setModalContent(
-            DOMPurify.sanitize(
-              linkDetailsTyped.seeWWWModalContent,
-              { ADD_ATTR: ["target"] }
-              // function (node: any) {
-              //   if ("target" in node) {
-              //     node.setAttribute("target", "_blank");
-              //     node.setAttribute("rel", "noopener");
-              //   }
-              //   // ADD_ATTR: ["target"],
-              // }
-            )
+          const modalContent = DOMPurify.sanitize(
+            linkDetailsTyped.seeWWWModalContent,
+            { ADD_ATTR: ["target"] }
           );
+          modalState.setModalData(modalContent, 0, false);
           modalState.setIsShowModal(true);
         }
 
@@ -158,7 +146,12 @@ const ProjectDescriptionLink = forwardRef<HTMLDivElement, Props>(
           (!linkDetailsTyped.isOneLinkOnly_ifFalseThenIsModal &&
             !linkDetailsTyped.seeWWWModalContent)
         ) {
-          modalState.setModalContent(modalState.getDefaultErrorModalContent());
+          modalState.setModalData(
+            modalState.getModalData().defaultErrorModalContent,
+            0,
+            false
+          );
+          modalState.setIsShowModal(true);
           modalState.setIsShowModal(true);
         }
       }

@@ -1,38 +1,126 @@
-import React, { ChangeEvent, FormEvent } from "react";
-import { REDUCER_ACTION_TYPE, useFormInput } from "../../hooks/useFormInput";
+import React, {
+  FormEvent,
+  Fragment,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from "react";
+import {
+  Reducer_Action,
+  REDUCER_ACTION_TYPE,
+  useFormInput,
+} from "../../hooks/useFormInput";
 import InputField from "../ui/InputField";
 import {
   checkIfNotEmpty,
   checkIfIsEmail,
 } from "../../utils/formInputsChecking";
 import { useModalState } from "../../globalState/ModalState";
-import useTimeout from "../../hooks/useTimeout";
+import useIsomorphicLayoutEffect from "../../hooks/useIsomorphicLayoutEffect";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
+gsap.registerPlugin(ScrollTrigger);
 const ContactForm = () => {
   ////vars
   const modalState = useModalState();
+  const [isLoading, setIsLoading] = useState(false);
 
   const [nameInput, nameDispatch] = useFormInput(
     { inputValue: "" },
     checkIfNotEmpty,
     "Name is required."
   );
-
   const [emailInput, emailDispatch] = useFormInput(
     { inputValue: "" },
     checkIfIsEmail,
     "The email provided has the wrong format."
   );
-
   const [messageInput, messageDispatch] = useFormInput(
     { inputValue: "" },
     checkIfNotEmpty,
     "Message is required."
   );
 
+  //refs
+  const contactFormRef = useRef<HTMLDivElement>(null);
+  const contactGETINTOUCHRef = useRef<HTMLParagraphElement>(null);
+  const contactSmallAdditionTextRef = useRef<HTMLParagraphElement>(null);
+
+  //animation
+  useIsomorphicLayoutEffect(() => {
+    let mm = gsap.matchMedia();
+
+    // timeline
+    function createTl(ref: React.RefObject<HTMLDivElement>) {
+      return gsap.timeline({
+        scrollTrigger: {
+          trigger: ref.current,
+          // start: () => "top top",
+          // end: () => "+=5000",
+          markers: true,
+          // scrub: 0.8,
+          pin: true,
+          // anticipatePin: 1,
+          invalidateOnRefresh: true,
+        },
+      });
+    }
+
+    // animation
+    // const animate = (tl: gsap.core.Timeline) => {
+    //   tl.addLabel("start").fromTo(
+    //     contactFormRef.current,
+    //     { autoAlpha: 0 },
+    //     { autoAlpha: 1 }
+    //     // { autoAlpha: 0, x: "100vw" },
+    //     // { autoAlpha: 1, x: 0 }
+    //   );
+    // };
+
+    mm.add("(max-width: 768px)", () => {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: contactFormRef.current,
+          markers: true,
+          pin: true,
+          invalidateOnRefresh: true,
+        },
+      });
+    });
+    mm.add("(min-width: 769px) and (max-width: 1223px)", () => {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: contactFormRef.current,
+          markers: true,
+          pin: true,
+          invalidateOnRefresh: true,
+        },
+      });
+    });
+
+    mm.add("(min-width: 1224px)", () => {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: contactFormRef.current,
+          markers: true,
+          pin: true,
+          invalidateOnRefresh: true,
+        },
+      });
+    });
+
+    //clear and revert
+    return () => {
+      mm.revert();
+    };
+  }, []);
+
   ////logic
   async function formSubmitHandler(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+
+    setIsLoading(true);
 
     try {
       const response = await fetch(
@@ -58,24 +146,49 @@ const ContactForm = () => {
       } else {
         showModalWithNegativeInfo(data.message || "");
       }
+      setIsLoading(false);
     } catch (error) {
       console.error(error);
+      setIsLoading(false);
       showModalWithNegativeInfo("Some error has occurred.");
     }
   }
 
   function showModalWithPositiveInfo(message: string) {
-    modalState.setModalContent("<div>text from JSX.Element</div>");
+    const modalContent = (
+      <div className="flex flex-col border-t border-main_color bg-background_1_lighter">
+        <div className="mx-auto my-16 font-style-sm">
+          <p>{message}</p>
+        </div>
+      </div>
+    );
+    modalState.setModalData(modalContent, 2500, false);
     modalState.setIsShowModal(true);
-
-    // console.log("showModalWithPositiveInfo");
-    // console.log(message);
   }
 
   function showModalWithNegativeInfo(message: string) {
-    console.log("showModalWithNegativeInfo");
-    console.log(message);
+    const modalContent = (
+      <div className="flex flex-col border-t border-error bg-background_1_lighter">
+        <div className="mx-auto my-16 font-style-sm text-error">
+          <p>{message}</p>
+        </div>
+      </div>
+    );
+
+    modalState.setModalData(modalContent, 2500, true);
+    modalState.setIsShowModal(true);
   }
+
+  const inputDispatcher = (
+    value: string,
+    dispatcher: React.Dispatch<Reducer_Action>
+  ) => {
+    dispatcher({ type: REDUCER_ACTION_TYPE.SET_IS_DIRTY });
+    dispatcher({
+      type: REDUCER_ACTION_TYPE.SET_INPUT_STATE,
+      payload: value,
+    });
+  };
 
   function clearFormInputs() {
     nameDispatch({ type: REDUCER_ACTION_TYPE.CLEAR_FORM_INPUT });
@@ -83,7 +196,7 @@ const ContactForm = () => {
     messageDispatch({ type: REDUCER_ACTION_TYPE.CLEAR_FORM_INPUT });
   }
 
-  //is send button enaibled
+  //is send button enabled
   const isDirty =
     nameInput.isDirty && emailInput.isDirty && messageInput.isDirty;
   const isValid =
@@ -92,69 +205,81 @@ const ContactForm = () => {
 
   ////jsx
   return (
-    <form onSubmit={formSubmitHandler}>
-      <InputField
-        id="name"
-        name="Name:"
-        placeholder="enter your name"
-        value={nameInput.inputValue}
-        onChange={(e) => {
-          nameDispatch({ type: REDUCER_ACTION_TYPE.SET_IS_DIRTY });
-          nameDispatch({
-            type: REDUCER_ACTION_TYPE.SET_INPUT_STATE,
-            payload: e.target.value,
-          });
-        }}
-        onBlur={(e) => {
-          nameDispatch({ type: REDUCER_ACTION_TYPE.SET_IS_DIRTY });
-        }}
-        inputData={nameInput}
-      />
-      <InputField
-        id="email"
-        name="E-mail:"
-        placeholder="enter your e-mail"
-        value={emailInput.inputValue}
-        onChange={(e) => {
-          emailDispatch({ type: REDUCER_ACTION_TYPE.SET_IS_DIRTY });
-          emailDispatch({
-            type: REDUCER_ACTION_TYPE.SET_INPUT_STATE,
-            payload: e.target.value,
-          });
-        }}
-        onBlur={(e) => {
-          emailDispatch({ type: REDUCER_ACTION_TYPE.SET_IS_DIRTY });
-        }}
-        inputData={emailInput}
-      />
+    <div
+      className="flex flex-col items-center justify-center w-full h-full overflow-x-hidden overflow-y-hidden bg-red-700 md:w-container_small md:mx-auto"
+      ref={contactFormRef}
+    >
+      <div className="w-full mb-8 ml-16">
+        <p className="font-style-h3" ref={contactGETINTOUCHRef}>
+          GET IN TOUCH
+        </p>
+        <p
+          className="font-style-xs -mt-[4px] mb-[22px]"
+          ref={contactSmallAdditionTextRef}
+        >
+          an idea? a question? a project to help with?
+        </p>
+      </div>
+      <div className="w-full ml-16">
+        <form onSubmit={formSubmitHandler}>
+          <InputField
+            id="name"
+            name="Name:"
+            placeholder="enter your name"
+            value={nameInput.inputValue}
+            onChange={(e) => {
+              inputDispatcher(e.target.value, nameDispatch);
+            }}
+            onBlur={(e) => {
+              nameDispatch({ type: REDUCER_ACTION_TYPE.SET_IS_DIRTY });
+            }}
+            inputData={nameInput}
+          />
+          <InputField
+            id="email"
+            name="E-mail:"
+            placeholder="enter your e-mail"
+            value={emailInput.inputValue}
+            onChange={(e) => {
+              inputDispatcher(e.target.value, emailDispatch);
+            }}
+            onBlur={(e) => {
+              emailDispatch({ type: REDUCER_ACTION_TYPE.SET_IS_DIRTY });
+            }}
+            inputData={emailInput}
+          />
 
-      <InputField
-        id="message"
-        name="Message:"
-        isTextarea={true}
-        placeholder="enter your message"
-        value={messageInput.inputValue}
-        onChange={(e) => {
-          messageDispatch({ type: REDUCER_ACTION_TYPE.SET_IS_DIRTY });
-          messageDispatch({
-            type: REDUCER_ACTION_TYPE.SET_INPUT_STATE,
-            payload: e.target.value,
-          });
-        }}
-        onBlur={(e) => {
-          messageDispatch({ type: REDUCER_ACTION_TYPE.SET_IS_DIRTY });
-        }}
-        inputData={messageInput}
-      />
+          <InputField
+            id="message"
+            name="Message:"
+            isTextarea={true}
+            placeholder="enter your message"
+            value={messageInput.inputValue}
+            onChange={(e) => {
+              inputDispatcher(e.target.value, messageDispatch);
+            }}
+            onBlur={(e) => {
+              messageDispatch({ type: REDUCER_ACTION_TYPE.SET_IS_DIRTY });
+            }}
+            inputData={messageInput}
+          />
 
-      <button
-        type="submit"
-        className="w-[calc(100%-64px)] button-fill disabled:cursor-default mt-8"
-        disabled={!isEnabled}
-      >
-        send
-      </button>
-    </form>
+          <button
+            type="submit"
+            className="w-[calc(100%-64px)] button-fill disabled:cursor-default mt-8"
+            disabled={!isEnabled || isLoading}
+          >
+            {isLoading ? (
+              <span className="loader">
+                <span className="text-main_white_50">load</span>
+              </span>
+            ) : (
+              "send"
+            )}
+          </button>
+        </form>
+      </div>
+    </div>
   );
 };
 

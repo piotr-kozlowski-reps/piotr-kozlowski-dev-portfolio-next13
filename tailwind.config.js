@@ -51,6 +51,10 @@ module.exports = {
       boxShadow: {
         "input-shadow": "0px 0px 16px 2px rgba(33,36,41,0.6)",
         "button-hover": "0px 0px 8px 2px rgba(252,235,35,0.3)",
+        "button-hover-error": "0px 0px 8px 2px rgba(227,21,23,0.3)",
+      },
+      width: {
+        container_small: "566px",
       },
     },
   },

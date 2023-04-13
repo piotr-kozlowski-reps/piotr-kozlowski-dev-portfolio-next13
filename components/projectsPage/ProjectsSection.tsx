@@ -5,7 +5,6 @@ import ProjectDetails from "./ProjectDetails";
 import ProjectsTitle from "./ProjectsTitle";
 import data from "../../data/data.json";
 import { TProjectDetails } from "../../types/typings";
-import Image from "next/image";
 
 const ProjectsSection = () => {
   ////vars
@@ -17,7 +16,7 @@ const ProjectsSection = () => {
       <div className="mx-auto mt-16 font-style-sm">
         Which part of the project code would you like to see?
       </div>
-      <div className="block button-outline bg-red-500">
+      <div className="block bg-red-500 button-outline">
         <div className="">
           <a
             href="https://github.com/piotr-kozlowski-reps/ante_app__react"

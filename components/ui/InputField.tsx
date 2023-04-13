@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from "react";
+import React, { ChangeEvent, FormEventHandler } from "react";
 import { TInputFormState } from "../../types/typings";
 import clsx from "clsx";
 
@@ -50,6 +50,7 @@ const InputField = (props: Props) => {
             name={name}
             placeholder={placeholder}
             value={value}
+            autoComplete="off"
             onChange={onChange}
             onBlur={onBlur}
             className={clsx(
@@ -70,6 +71,7 @@ const InputField = (props: Props) => {
             name={name}
             placeholder={placeholder}
             value={value}
+            autoComplete="off"
             onChange={onChange}
             onBlur={onBlur}
             className={clsx(
