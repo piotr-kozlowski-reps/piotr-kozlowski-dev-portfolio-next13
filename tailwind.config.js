@@ -55,6 +55,7 @@ module.exports = {
       },
       width: {
         container_small: "566px",
+        container: "1220px",
       },
     },
   },

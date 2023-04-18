@@ -119,7 +119,7 @@ const AboutDetailsDesktop = (props: Props) => {
   return (
     <section title="aboutDetailsSection">
       <div
-        className="flex items-start justify-between xl:w-[1220px] xl:mx-auto z-10 pb-8 bg-background_2_darker"
+        className="z-10 flex items-start justify-between pb-8 xl:w-container xl:mx-auto bg-background_2_darker"
         ref={sectionRef}
       >
         <div

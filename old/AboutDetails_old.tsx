@@ -246,7 +246,7 @@ const AboutDetails = (props: Props) => {
 
   const desktopJSX = (
     <section title="aboutDetailsSection">
-      <div className="flex items-start justify-between xl:w-[1220px] xl:mx-auto z-10">
+      <div className="z-10 flex items-start justify-between xl:w-container xl:mx-auto">
         <div
           className={`flex flex-col items-start justify-start ml-8 w-[570px] ${
             isFirstSectionThenNoTopMargin ? "" : "mt-[200%]"

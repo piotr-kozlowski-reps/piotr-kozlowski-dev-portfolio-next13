@@ -184,7 +184,7 @@ const AboutDetails = (props: Props) => {
   return (
     <section title="aboutDetailsSection">
       <div
-        className={`flex flex-col xl:flex-row items-center xl:items-start justify-center xl:justify-between w-full xl:w-[1220px] mx-0 xl:mx-auto z-10 pb-0 xl:pb-8 bg-background_2_darker ${
+        className={`flex flex-col xl:flex-row items-center xl:items-start justify-center xl:justify-between w-full xl:w-container mx-0 xl:mx-auto z-10 pb-0 xl:pb-8 bg-background_2_darker ${
           isFirstSectionThenNoTopMargin ? "" : "mt-[100%]"
         }`}
         ref={sectionRef}

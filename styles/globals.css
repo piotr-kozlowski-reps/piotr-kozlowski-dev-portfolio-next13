@@ -95,6 +95,10 @@ textarea::-webkit-scrollbar-corner {
     @apply uppercase text-[22px] text-main_color font-mainFont font-medium tracking-tightest px-2 pt-2 pb-2 cursor-pointer;
   }
 
+  .mobile-link-small {
+    @apply px-2 pt-2 pb-2 font-medium tracking-tight cursor-pointer text-main_white font-style-p hover:text-main_color;
+  }
+
   /*fonts*/
   .font-style-h3 {
     @apply font-mainFont text-[22px] text-main_white uppercase tracking-tight font-semibold;

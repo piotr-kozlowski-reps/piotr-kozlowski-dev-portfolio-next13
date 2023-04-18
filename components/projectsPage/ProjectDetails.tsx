@@ -116,7 +116,7 @@ const ProjectDetails = (props: Props) => {
         .fromTo(
           image4Ref.current,
           { filter: "blur(0px)", y: "-10vh" },
-          { filter: "blur(10px)", y: howMuchMoveImages },
+          { filter: `blur(${blurAmount * 2}px)`, y: howMuchMoveImages },
           "description"
         )
         .to(backgroundDescriptionRef.current, { autoAlpha: 1 }, "description")
@@ -159,7 +159,7 @@ const ProjectDetails = (props: Props) => {
 
     mm.add("(min-width: 1224px)", () => {
       const tl = createTl();
-      animate(tl, "-180vh", 3);
+      animate(tl, "-180vh", 1);
     });
 
     return () => {
@@ -171,7 +171,7 @@ const ProjectDetails = (props: Props) => {
   return (
     <section title="projectSection">
       <div
-        className="relative flex flex-col items-start justify-center w-full h-screen -mt-[100vh] overflow-y-hidden xl:w-[1220px] xl:mx-auto z-40"
+        className="relative flex flex-col items-start justify-center w-full h-screen -mt-[100vh] overflow-y-hidden xl:w-container xl:mx-auto z-40"
         ref={projectRef}
       >
         {/* images start */}

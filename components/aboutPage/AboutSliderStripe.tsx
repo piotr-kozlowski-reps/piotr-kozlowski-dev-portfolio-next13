@@ -20,7 +20,7 @@ const AboutSliderStripe = (props: Props) => {
       let anim = gsap.fromTo(
         yellowStripeRef.current,
         {
-          scaleX: 0,
+          scaleX: 1,
           autoAlpha: 0,
         },
         {

@@ -15,6 +15,7 @@ import useIsomorphicLayoutEffect from "../hooks/useIsomorphicLayoutEffect";
 import ContactSection from "../components/contactPage/ContactSection";
 import Modal from "../components/ui/Modal";
 import { useModalState } from "../globalState/ModalState";
+import Footer from "../components/footer/Footer";
 
 gsap.registerPlugin(ScrollTrigger);
 const Home = () => {
@@ -128,12 +129,6 @@ const Home = () => {
           ) : (
             (modalState.getModalData().modalContent as JSX.Element)
           )}
-          {/* <div
-            dangerouslySetInnerHTML={{
-              __html: modalState.getModalContent(),
-            }}
-          ></div> */}
-          {/* <div dangerouslySetInnerHTML={{ __html: modalInteriorTest }}></div> */}
           {/* <div className="flex flex-col border-t border-error bg-background_1_lighter">
             <div className="mx-auto my-16 font-style-sm text-error">
               <p>Thank you. Your message has been sent.</p>
@@ -152,7 +147,7 @@ const Home = () => {
           className="absolute z-0 w-full h-[108px] bg-gradient-to-b from-background_2_darker via-background_2_darker"
           ref={menuBackgroundRef}
         ></div>
-        <div className="xl:w-[1220px] xl:h-full relative xl:mx-auto z-100 ">
+        <div className="relative xl:w-container xl:h-full xl:mx-auto z-100 ">
           <Navigation
             aboutSection={aboutRef.current!}
             projectsSection={projectsRef.current!}
@@ -196,37 +191,14 @@ const Home = () => {
       </section>
 
       <section title="contact_section">
-        <div
-          className="w-screen h-screen bg-background_2_darker"
-          ref={contactRef}
-        >
+        <div className="w-screen bg-background_2_darker" ref={contactRef}>
           <ContactSection />
         </div>
       </section>
 
-      {/* Footer Section */}
       <section title="footer_section">
         <div className="w-screen bg-background_2_darker">
-          Footer
-          <br />
-          footer
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
+          <Footer />
         </div>
       </section>
     </Fragment>
