@@ -26,12 +26,7 @@ const AboutOverall = () => {
     //animation details
     const overAllSectionAnimation = (tl: gsap.core.Timeline) => {
       tl.addLabel("start")
-        .to(overAllSectionLogoRef.current, { autoAlpha: 1 }, "start")
-        .to(
-          overAllSectionLogoLeftClippingMaskRef.current!,
-          { autoAlpha: 0 },
-          "start"
-        )
+        .to(overAllSectionRef.current, { autoAlpha: 1 }, "start")
         .to(
           gsap.utils.toArray(
             overAllSectionP1Ref.current!.getElementsByClassName(
@@ -41,21 +36,23 @@ const AboutOverall = () => {
           { autoAlpha: 1 },
           "start"
         )
+        .addLabel("firstSetLogoAndMainText")
+        .to(
+          overAllSectionLogoLeftClippingMaskRef.current,
+          { autoAlpha: 1 },
+          "firstSetLogoAndMainText"
+        )
         .to(
           gsap.utils.toArray(
             overAllSectionP1Ref.current!.getElementsByClassName(
               "font-initially-invisible-white-p"
             )
           ),
-          { autoAlpha: 1 }
+          { autoAlpha: 1 },
+          "firstSetLogoAndMainText"
         )
         .addLabel("secondParagraph")
         .to(
-          overAllSectionLogoRightClippingMaskRef.current!,
-          { autoAlpha: 0 },
-          "secondParagraph"
-        )
-        .to(
           gsap.utils.toArray(
             overAllSectionP2Ref.current!.getElementsByClassName(
               "font-initially-invisible-yellow-p"
@@ -64,13 +61,20 @@ const AboutOverall = () => {
           { autoAlpha: 1 },
           "secondParagraph"
         )
+        .addLabel("secondSetLogoAndMainText")
+        .to(
+          overAllSectionLogoRightClippingMaskRef.current!,
+          { autoAlpha: 1 },
+          "secondSetLogoAndMainText"
+        )
         .to(
           gsap.utils.toArray(
             overAllSectionP2Ref.current!.getElementsByClassName(
               "font-initially-invisible-white-p"
             )
           ),
-          { autoAlpha: 1 }
+          { autoAlpha: 1 },
+          "secondSetLogoAndMainText"
         )
         .to(overAllSectionRef.current, { autoAlpha: 0, x: "-100%" });
     };
@@ -119,7 +123,7 @@ const AboutOverall = () => {
   return (
     <section title="overAll">
       <div
-        className={`flex flex-col items-center justify-start ${
+        className={`flex flex-col items-center justify-start invisible ${
           mediaSizeName === "mobile" ? "-mt-[280%]" : "-mt-[140vh]"
         }`}
         ref={overAllSectionRef}
@@ -145,13 +149,27 @@ const AboutOverall = () => {
             />
           </div>
           <div
-            className="absolute top-0 bottom-0 left-0 right-0 w-full h-full bg-background_2_darker clip-path-logo-left-triangle"
+            className="absolute top-0 bottom-0 left-0 right-0 invisible w-full h-full"
             ref={overAllSectionLogoLeftClippingMaskRef}
-          ></div>
+          >
+            <Image
+              src="/logo_only_graph_transparency__developer.png"
+              alt="logo"
+              width={128}
+              height={128}
+            />
+          </div>
           <div
-            className="absolute top-0 bottom-0 left-0 right-0 w-full h-full bg-background_2_darker clip-path-logo-right-triangle"
+            className="absolute top-0 bottom-0 left-0 right-0 invisible w-full h-full"
             ref={overAllSectionLogoRightClippingMaskRef}
-          ></div>
+          >
+            <Image
+              src="/logo_only_graph_transparency__designer.png"
+              alt="logo"
+              width={128}
+              height={128}
+            />
+          </div>
         </div>
         <div className="mx-8 md:mx-0 w-fill md:w-[566px] pt-[48px] text-center font-style-p ">
           <p ref={overAllSectionP1Ref}>
@@ -178,7 +196,7 @@ const AboutOverall = () => {
               ("reliable" is still visible on screen above, so it seems
               redundant!). Have you noticed visual connection with parallel
               appearing "designer" logo part? Appealing? (I'm not convinced,
-              ...reconsider...)
+              ...reconsider!)
             </span>
           </p>
         </div>

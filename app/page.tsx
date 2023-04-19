@@ -1,6 +1,6 @@
 "use client";
 
-import React, { Fragment, useRef, useState } from "react";
+import React, { Fragment, useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -27,7 +27,7 @@ const Home = () => {
   const [width, height] = useDeviceSize();
   const actualProgress = useRef(0);
 
-  const wholeAppRef = useRef<HTMLDivElement>(null);
+  //refs
   const menuBackgroundRef = useRef<HTMLDivElement>(null);
   const homeRef = useRef<HTMLDivElement>(null);
   const aboutRef = useRef<HTMLDivElement>(null);
@@ -36,10 +36,35 @@ const Home = () => {
   const backgroundFadeRef = useRef<HTMLDivElement>(null);
   const modalRef = useRef<HTMLDivElement>(null);
 
-  const homeSectionHPercentage = 0; //500 was to make nice home page section, needs to be reorganised to make rest of the animations possible
-
   //modal
   const [isModalVisible, setIsModalVisible] = useState(true);
+
+  const homeSectionHPercentage = 0; //500 was to make nice home page section, needs to be reorganised to make rest of the animations possible
+
+  //////////////
+  const [wasTooSmallHeightWarningVisible, setWasTooSmallHeightWarningVisible] =
+    useState(false);
+  useEffect(() => {
+    console.log(height);
+    if (!wasTooSmallHeightWarningVisible && height !== 0 && height <= 720) {
+      console.log("height modal effect -> inside");
+      //show modal
+      const modalContent = (
+        <div className="flex flex-col border-t border-main_color bg-background_1_lighter">
+          <div className="mx-auto my-16 font-style-sm">
+            <p>Jakiś text</p>
+          </div>
+        </div>
+      );
+      modalState.setModalData(modalContent, 0, false);
+      modalState.setIsShowModal(true);
+
+      setWasTooSmallHeightWarningVisible(true);
+    }
+
+    console.log("height modal effect");
+  }, [height]);
+  //////////////////////
 
   /** get object defining in which section we are currently based on Scroll Y position */
   const { whichSectionIsActive } =
