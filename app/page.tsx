@@ -22,12 +22,12 @@ const Home = () => {
   ////vars
   const modalState = useModalState();
 
-  // console.log(modalState.getModalChooser());
-
   const [tlHomeSection, setTlHomeSection] = useState(() => gsap.timeline());
   const [tlAboutSection, setTlAboutSection] = useState(() => gsap.timeline());
   const [width, height] = useDeviceSize();
+  const actualProgress = useRef(0);
 
+  const wholeAppRef = useRef<HTMLDivElement>(null);
   const menuBackgroundRef = useRef<HTMLDivElement>(null);
   const homeRef = useRef<HTMLDivElement>(null);
   const aboutRef = useRef<HTMLDivElement>(null);
@@ -54,7 +54,38 @@ const Home = () => {
   //   contactRef.current!.scrollIntoView();
   // }, [contactRef.current]);
 
-  // /** Footer Pinned With ScrollTrigger */
+  /** Main scrollTrigger to maintain progress when window resize */
+  // useIsomorphicLayoutEffect(() => {
+  //   const mainScrollTriggerToMaintainProgress = ScrollTrigger.create({
+  //     trigger: wholeAppRef.current,
+  //     start: "top, top",
+  //     end: "bottom bottom",
+  //     onUpdate: (self) => {
+  //       console.log(self.progress);
+  //       actualProgress.current = self.progress;
+  //     },
+  //     invalidateOnRefresh: true,
+  //   });
+
+  //   const resizeHandler = () => {
+  //     console.log("resizeHandlerFunction");
+  //     console.log("resizeHandler: ", actualProgress.current);
+  //   };
+
+  //   window.addEventListener("resize", resizeHandler);
+  //   // ScrollTrigger.addEventListener("refresh", () =>
+  //   //   mainScrollTriggerToMaintainProgress.scroll(
+  //   //     actualProgress.current * ScrollTrigger.maxScroll(window)
+  //   //   )
+  //   // );
+
+  //   //cleanUp
+  //   return () => {
+  //     window.removeEventListener("resize", resizeHandler);
+  //   };
+  // }, []);
+
+  /** Footer Pinned With ScrollTrigger */
   useIsomorphicLayoutEffect(() => {
     const ctx = gsap.context(() => {
       setTlHomeSection(
@@ -106,9 +137,6 @@ const Home = () => {
     );
   }
 
-  // const modalInteriorTest: string =
-  //   '<div class="flex flex-col border-t border-main_color bg-background_1_lighter">\r\n          <div class="mx-auto mt-16 font-style-sm">\r\n            Which part of the project code would you like to see?\r\n          </div>\r\n          <div class="block mx-auto mt-[25px] mb-8 button-outline">\r\n            <a\r\n              href="https://github.com/piotr-kozlowski-reps/ante_app__react"\r\n              target="_blank"\r\n              rel="noopener"\r\n            >\r\n              frontend\r\n            </a>\r\n          </div>\r\n          <div class="block mx-auto mb-16 button-outline">\r\n            <a\r\n              href="https://github.com/piotr-kozlowski-reps/-ante_app__backend"\r\n              target="_blank"\r\n              rel="noopener"\r\n            >\r\n              backend\r\n            </a>\r\n          </div>\r\n        </div>';
-
   ////jsx
   return (
     <Fragment>
@@ -129,6 +157,9 @@ const Home = () => {
           ) : (
             (modalState.getModalData().modalContent as JSX.Element)
           )}
+
+          {/* to test modal look paste here below some JSX and check how it looks: */}
+
           {/* <div className="flex flex-col border-t border-error bg-background_1_lighter">
             <div className="mx-auto my-16 font-style-sm text-error">
               <p>Thank you. Your message has been sent.</p>
@@ -137,7 +168,6 @@ const Home = () => {
         </Modal>
       ) : null}
       {/* Fixed Navigation */}
-      {/* <div className="fixed top-0 w-screen h-screen z-100"> */}
       <div className="fixed top-0 w-screen h-32 z-100">
         <div
           className="absolute top-0 left-0 invisible w-screen h-screen z-100 bg-background_2_darker right-4"
@@ -162,15 +192,15 @@ const Home = () => {
         <div className="w-full h-full bg-background_1_lighter ">
           <div
             className="relative flex flex-col justify-between h-screen bg-background_1_lighter "
-            style={
-              {
-                // backgroundImage: `url("/opening_page_mobile.png")`,
-                // backgroundImage: `url("/opening_page_tablet.png")`,
-                // backgroundImage: `url("/opening_page_desktop.png")`,
-                // backgroundImage: `url("/opening_page___mobile_Menu.png")`,
-                // backgroundImage: `url("/about_developer.png")`,
-              }
-            }
+            // style={
+            // {
+            // backgroundImage: `url("/opening_page_mobile.png")`,
+            // backgroundImage: `url("/opening_page_tablet.png")`,
+            // backgroundImage: `url("/opening_page_desktop.png")`,
+            // backgroundImage: `url("/opening_page___mobile_Menu.png")`,
+            // backgroundImage: `url("/about_developer.png")`,
+            // }
+            // }
           >
             <HomePageImageRevealing tl={tlHomeSection} />
             <HomePageFooter />

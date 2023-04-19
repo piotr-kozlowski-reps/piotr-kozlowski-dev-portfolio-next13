@@ -149,7 +149,7 @@ const ProjectDetails = (props: Props) => {
 
     mm.add("(max-width: 768px)", () => {
       const tl = createTl();
-      animate(tl, "-60vh", 10);
+      animate(tl, "-60vh", 1);
     });
 
     mm.add("(min-width: 769px) and (max-width: 1223px)", () => {

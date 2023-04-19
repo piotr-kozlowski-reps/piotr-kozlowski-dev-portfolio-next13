@@ -1,8 +1,7 @@
 import "../styles/globals.css";
 import { inDevEnvironment } from "../utils/inDevEnvironment";
-
 import localFont from "@next/font/local";
-import Modal from "../components/ui/Modal";
+
 const mainFont = localFont({
   src: [
     {
@@ -34,6 +33,7 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  ////jsx
   return (
     <html className="overflow-y-scroll">
       <head />

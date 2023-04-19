@@ -21,7 +21,7 @@ const AboutSliderStripe = (props: Props) => {
         yellowStripeRef.current,
         {
           scaleX: 1,
-          autoAlpha: 0,
+          autoAlpha: 0.4,
         },
         {
           scaleX: percentage / 100,
