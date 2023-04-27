@@ -27,33 +27,32 @@ const HomePageImageRevealing = (props: Props) => {
   useIsomorphicLayoutEffect(() => {
     const ctx = gsap.context(() => {
       if (isFirstRender > 1) {
-        tl.addLabel("design")
-          .fromTo(
-            imageBackgroundBase.current,
-            { opacity: 1, ease: "power4.inOut" },
-            { opacity: 0 }
-          )
-          .fromTo(
-            imageBackgroundDesign.current,
-            { opacity: 0 },
-            { opacity: 1 },
-            "design"
-          )
-          .fromTo(designText.current, { opacity: 0 }, { opacity: 1 }, "design")
-          .addLabel("develop")
-          .fromTo(
-            imageBackgroundDevelop.current,
-            { opacity: 0 },
-            { opacity: 1 },
-            "develop"
-          )
-          .fromTo(designText.current, { opacity: 1 }, { opacity: 0 }, "develop")
-          .fromTo(
-            developText.current,
-            { opacity: 0 },
-            { opacity: 1 },
-            "develop"
-          );
+        tl.addLabel("design").fromTo(
+          imageBackgroundBase.current,
+          { opacity: 0, ease: "power4.inOut" },
+          { opacity: 1 }
+        );
+        // .fromTo(
+        //   imageBackgroundDesign.current,
+        //   { opacity: 0 },
+        //   { opacity: 1 },
+        //   "design"
+        // )
+        // .fromTo(designText.current, { opacity: 0 }, { opacity: 1 }, "design")
+        // .addLabel("develop")
+        // .fromTo(
+        //   imageBackgroundDevelop.current,
+        //   { opacity: 0 },
+        //   { opacity: 1 },
+        //   "develop"
+        // )
+        // .fromTo(designText.current, { opacity: 1 }, { opacity: 0 }, "develop")
+        // .fromTo(
+        //   developText.current,
+        //   { opacity: 0 },
+        //   { opacity: 1 },
+        //   "develop"
+        // );
       }
     });
 
@@ -122,11 +121,13 @@ const HomePageImageRevealing = (props: Props) => {
       <div
         className="absolute top-0 bottom-0 left-0 right-0 z-20 h-screen bg-center bg-no-repeat bg-cover "
         style={{
-          backgroundImage: `url("/bg-landing-page.jpg")`,
+          // backgroundImage: `url("/bg-landing-page___oba.jpg")`,
+          backgroundImage: `url("/bg-landing-page___developer.jpg")`,
+          // backgroundImage: `url("/bg-landing-page___designer.jpg")`,
         }}
         ref={imageBackgroundBase}
       ></div>
-      <div className="absolute top-0 bottom-0 left-0 right-0 z-20 h-screen bg-center bg-no-repeat bg-cover afterImage_outer ">
+      <div className="absolute top-0 bottom-0 left-0 right-0 z-20 invisible h-screen bg-center bg-no-repeat bg-cover afterImage_outer ">
         <div
           className="z-30 w-full h-full bg-center bg-no-repeat bg-cover afterImage_inner "
           style={{

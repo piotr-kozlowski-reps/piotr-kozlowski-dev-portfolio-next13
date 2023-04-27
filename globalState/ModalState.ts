@@ -60,24 +60,5 @@ export function useModalState() {
         state.timeoutInMilliseconds.set(timeoutInMilliseconds),
         state.isError.set(isError);
     },
-
-    // getModalContent() {
-    //   return state.modalContent.get({ noproxy: true });
-    // },
-    // setModalContent(modalContent: string | JSX.Element) {
-    //   state.modalContent.set(modalContent);
-    // },
-    // setModalTimeout(timeoutInMilliseconds: number) {
-    //   state.timeoutInMilliseconds.set(timeoutInMilliseconds);
-    // },
-    // getDefaultErrorModalContent() {
-    //   return state.defaultErrorModalContent.get();
-    // },
-    // setIsError(modalContent: string | JSX.Element) {
-    //   state.modalContent.set(modalContent);
-    // },
-    // setIsError(timeoutInMilliseconds: number) {
-    //   state.timeoutInMilliseconds.set(timeoutInMilliseconds);
-    // },
   };
 }

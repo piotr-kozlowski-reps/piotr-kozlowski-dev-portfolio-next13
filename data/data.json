@@ -5,25 +5,25 @@
       {
         "mainTitle": "html / css",
         "additionalInfo": "Tailwind",
-        "percentage": 75
+        "percentage": 90
       },
       {
         "mainTitle": "JAVASCRIPT / TYPESCRIPT ",
         "additionalInfo": "",
-        "percentage": 72
+        "percentage": 82
       },
       {
         "mainTitle": "FRAMEWORKS",
         "additionalInfo": "React | Next | Express",
-        "percentage": 62
+        "percentage": 80
       },
-      { "mainTitle": "NODE", "additionalInfo": "", "percentage": 46 },
+      { "mainTitle": "NODE", "additionalInfo": "", "percentage": 56 },
       { "mainTitle": "JAVA", "additionalInfo": "", "percentage": 28 }
     ],
     "logoImageURL": "/logo_only_graph_transparency.png",
     "clipPathName": "clip-path-logo-right-triangle",
     "sectionPurposeName": "developer",
-    "paragraphText": "Lorem ipsum ....I'm a passionate Front-End Developer with +6 years of experience in developing websites that have a main focus on search functionality. I have extensive experience with JavaScript, CSS and HTML as well as using libraries and frameworks such as jQuery and Bootstrap.",
+    "paragraphText": " <p>\r\n                    <span class=\"underline\">I'm</span> /\r\n                    <span class=\"underline\">I wish I could be</span>\r\n                    <span class=\"text-main_white_50\">\r\n                      \r\n                      (delete as appropriate)\r\n                    </span>\r\n                    a front-end developer.\r\n                  </p>\r\n                  <p>\r\n                    I really like this. It's annoying and relaxing in the same\r\n                    moment, since when you do it (finally) in a right manner -\r\n                    it works (that certainty is not so common elsewhere).\r\n                  </p>\r\n                  <br />\r\n                  <p class=\"font-style-xs\">\r\n                    * And yes... I also do this for money.\r\n                  </p>",
     "isFirstSectionThenNoTopMargin": true
   },
   "designerDetails": {

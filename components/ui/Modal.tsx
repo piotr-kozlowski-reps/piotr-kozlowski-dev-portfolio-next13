@@ -2,6 +2,7 @@ import React, { forwardRef, Fragment, useLayoutEffect, useRef } from "react";
 import Backdrop from "./Backdrop";
 import gsap from "gsap";
 import clsx from "clsx";
+import useDeviceSize from "../../hooks/useDeviceSize";
 
 interface ModalProps {
   isError: boolean;
@@ -14,6 +15,7 @@ gsap.registerPlugin();
 const ModalOverlay = forwardRef(
   (props: ModalProps, ref: React.ForwardedRef<HTMLDivElement>) => {
     ////vars
+    const [width, height, mediaSizeName] = useDeviceSize();
     const modalRef = useRef<HTMLDivElement>(null);
     const modalCTAButtonRef = useRef<HTMLButtonElement>(null);
     // ref = modalRef;
@@ -45,7 +47,11 @@ const ModalOverlay = forwardRef(
     ////jsx
     return (
       <div
-        className="fixed ml-8 mr-[24px] z-200 top-[226px] md:top-[256px] left-0 right-0  md:w-[566px] md:ml-auto md:mr-auto"
+        className={clsx(
+          "fixed ml-8 mr-[24px] z-200  left-0 right-0 md:w-[566px] md:ml-auto md:mr-auto",
+          { "top-[64px] md:top-[64px]": height <= 720 },
+          { "top-[226px] md:top-[256px]": height > 721 }
+        )}
         ref={ref}
       >
         <div ref={modalRef}>

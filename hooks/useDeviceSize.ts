@@ -7,7 +7,6 @@ import { TMediaSizeNames } from "../types/typings";
  * height: number
  * mediaSizeName: "mobile" | "tablet" | "desktop"
  */
-
 const useDeviceSize = (): [number, number, TMediaSizeNames] => {
   ////vars
   const [width, setWidth] = useState(0);

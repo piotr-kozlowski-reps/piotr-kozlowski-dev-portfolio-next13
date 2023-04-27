@@ -221,7 +221,11 @@ const AboutDetails = (props: Props) => {
                   className="mx-8 pt-[48px] text-center font-style-p invisible"
                   ref={paragraphMobileAndTabletRef}
                 >
-                  <p>{paragraphText}</p>
+                  <div
+                    dangerouslySetInnerHTML={{
+                      __html: paragraphText,
+                    }}
+                  ></div>
                 </div>
               </div>
               <div className="absolute w-full h-full ">
@@ -271,7 +275,11 @@ const AboutDetails = (props: Props) => {
                     className="pt-[48px] font-style-p"
                     ref={paragraphDesktopRef}
                   >
-                    <p>{paragraphText}</p>
+                    <div
+                      dangerouslySetInnerHTML={{
+                        __html: paragraphText,
+                      }}
+                    ></div>
                   </div>
                 </div>
               </div>
