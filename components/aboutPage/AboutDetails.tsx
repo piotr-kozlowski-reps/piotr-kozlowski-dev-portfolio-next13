@@ -226,6 +226,19 @@ const AboutDetails = (props: Props) => {
                       __html: paragraphText,
                     }}
                   ></div>
+                  {/* <p>
+                    That's what I've been doing for living for past few years. A
+                    graphic designer for almost every dimension, but 3rd
+                    dimension suits me most.
+                  </p>
+                  <p>
+                    However "most" doesn't mean entirely, I have knowledge of
+                    majority* of graphic programs that are widely used.
+                  </p>
+                  <p className="font-style-xs">
+                    <br />* Even Midjourney, that makes me redundant in some
+                    areas ('winter is coming ...')
+                  </p> */}
                 </div>
               </div>
               <div className="absolute w-full h-full ">

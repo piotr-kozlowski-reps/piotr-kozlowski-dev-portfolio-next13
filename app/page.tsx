@@ -17,12 +17,12 @@ import Modal from "../components/ui/Modal";
 import { useModalState } from "../globalState/ModalState";
 import Footer from "../components/footer/Footer";
 import useShowModalWhenHeightIsTooSmall from "../hooks/useShowModalWhenHeightIsTooSmall";
+import HomeSection from "../components/homePage/HomeSection";
 
 gsap.registerPlugin(ScrollTrigger);
 const Home = () => {
   ////vars
   const [tlHomeSection, setTlHomeSection] = useState(() => gsap.timeline());
-  const [tlAboutSection, setTlAboutSection] = useState(() => gsap.timeline());
   const [width, height] = useDeviceSize();
   const actualProgress = useRef(0);
 
@@ -161,7 +161,6 @@ const Home = () => {
           )}
 
           {/* to test modal look paste here below some JSX and check how it looks: */}
-
           {/* <div className="flex flex-col border-t border-error bg-background_1_lighter">
             <div className="mx-auto my-16 font-style-sm text-error">
               <p>Thank you. Your message has been sent.</p>
@@ -204,11 +203,19 @@ const Home = () => {
             // }
             // }
           >
-            <HomePageImageRevealing tl={tlHomeSection} />
+            <HomePageImageRevealing />
             <HomePageFooter />
           </div>
         </div>
       </section>
+
+      {/* <section
+        ref={homeRef}
+        title="home_section"
+        className="bg-background_1_lighter"
+      >
+        <HomeSection />
+      </section> */}
 
       <section title="about_section">
         <div className=" bg-background_2_darker" ref={aboutRef}>
