@@ -309,23 +309,65 @@ const HomePageImageRevealing = () => {
           className="absolute top-0 bottom-0 left-0 right-0 z-20 h-screen bg-center bg-no-repeat bg-cover"
           style={{
             backgroundImage: `url("/bg-landing-page___designer.jpg")`,
+            clipPath: "url(#d-mask)",
           }}
           ref={imageBackgroundBase}
         ></div>
 
-        {/* <div className="absolute top-0 bottom-0 left-0 right-0 z-20 h-screen bg-center bg-no-repeat bg-cover">
-          <div
-            className="absolute px-8 scale-[220%] -translate-x-1/2 -translate-y-1/2 md:scale-125 xl:scale-75 top-1/2 left-1/2 invisible"
-            ref={asRef}
-          >
-            <Image
-              src="/big_d.svg"
-              alt="project image"
-              width={1024}
-              height={1024}
-            />
+        <div className="absolute top-0 bottom-0 left-0 right-0 z-20 h-screen bg-center bg-no-repeat bg-cover">
+          <div className="absolute px-8 scale-[220%] -translate-x-1/2 -translate-y-1/2 md:scale-125 xl:scale-75 top-1/2 left-1/2">
+            <svg
+              width="310"
+              height="364"
+              viewBox="0 0 310 364"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <clipPath id="d-mask">
+                <path
+                  d="M0.400002 364V0.47998H124.304C175.504 0.47998 219.195 18.2293 255.376 53.728C291.557 89.2267 309.648 132.064 309.648 182.24C309.648 232.416 291.557 275.253 255.376 310.752C219.195 346.251 175.504 364 124.304 364H0.400002ZM81.808 289.248H124.304C154.341 289.248 178.917 279.008 198.032 258.528C217.488 237.707 227.216 212.277 227.216 182.24C227.216 152.203 217.488 126.944 198.032 106.464C178.917 85.6427 154.341 75.232 124.304 75.232H81.808V289.248Z"
+                  fill="#FCEB41"
+                />
+              </clipPath>
+            </svg>
           </div>
-        </div> */}
+        </div>
+
+        {/* 
+          <svg
+            width="310"
+            height="364"
+            viewBox="0 0 310 364"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <clipPath
+              id="d-mask"
+              // className="absolute px-8 scale-[100%] -translate-x-1/2 -translate-y-1/2 md:scale-150 xl:scale-125 top-1/2 left-1/2 bottom-0 right-0 z-20 h-screen bg-center bg-no-repeat bg-cover"
+            >
+              <path
+                d="M0.400002 364V0.47998H124.304C175.504 0.47998 219.195 18.2293 255.376 53.728C291.557 89.2267 309.648 132.064 309.648 182.24C309.648 232.416 291.557 275.253 255.376 310.752C219.195 346.251 175.504 364 124.304 364H0.400002ZM81.808 289.248H124.304C154.341 289.248 178.917 279.008 198.032 258.528C217.488 237.707 227.216 212.277 227.216 182.24C227.216 152.203 217.488 126.944 198.032 106.464C178.917 85.6427 154.341 75.232 124.304 75.232H81.808V289.248Z"
+                fill="#FCEB41"
+                className="mx-auto"
+              />
+            </clipPath>
+          </svg>
+     */}
+
+        {/* <svg
+          width="321"
+          height="189"
+          viewBox="0 0 321 189"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <clipPath id="d-mask">
+            <path
+              d="M0.0539975 185L77.878 3.23999H114.742L192.566 185H150.07L133.942 146.6H58.678L42.55 185H0.0539975ZM96.31 56.744L73.27 111.272H119.094L96.31 56.744ZM255.662 188.072C241.326 188.072 228.27 185.256 216.494 179.624C204.889 173.821 195.502 165.8 188.334 155.56L219.566 129.192C224.003 135.507 229.635 140.541 236.462 144.296C243.459 148.051 250.371 149.928 257.198 149.928C263.854 149.928 269.145 148.563 273.07 145.832C277.166 142.931 279.214 139.261 279.214 134.824C279.214 130.216 277.251 126.205 273.326 122.792C269.401 119.379 262.915 116.136 253.87 113.064L241.07 108.712C210.521 98.472 195.246 80.9787 195.246 56.232C195.246 38.9947 201.049 25.3413 212.654 15.272C224.43 5.20265 239.534 0.167984 257.966 0.167984C281.518 0.167984 301.059 8.53065 316.59 25.256L289.966 53.416C281.603 43.3467 271.107 38.312 258.478 38.312C252.505 38.312 247.299 39.5067 242.862 41.896C238.595 44.2853 236.462 47.6987 236.462 52.136C236.462 56.744 238.51 60.4987 242.606 63.4C246.702 66.1307 254.041 69.3733 264.622 73.128L277.422 77.736C306.435 88.1467 320.857 106.237 320.686 132.008C320.686 148.563 314.542 162.045 302.254 172.456C290.137 182.867 274.606 188.072 255.662 188.072Z"
+              fill="#FCEB41"
+            />
+          </clipPath>
+        </svg> */}
       </div>
 
       {/* <div className="absolute top-0 bottom-0 left-0 right-0 z-20 invisible h-screen bg-center bg-no-repeat bg-cover afterImage_outer ">
