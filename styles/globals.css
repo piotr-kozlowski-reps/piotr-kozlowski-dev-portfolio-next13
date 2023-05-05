@@ -204,10 +204,15 @@ test-images {
   }
 }
 
-#d-mask {
+#designer-image {
+  -webkit-mask-image: url("#mask") no-repeat center / contain;
+  mask-image: url("#mask") no-repeat center / contain;
+}
+
+/* #d-mask {
   position: absolute;
   height: 100%;
   width: 100%;
   margin-left: 2rem;
   padding-right: 2rem;
-}
+} */

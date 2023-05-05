@@ -3,6 +3,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
 import Link from "next/link";
 import React, { Fragment, useRef } from "react";
+import useDeviceSize from "../../hooks/useDeviceSize";
 import useIsomorphicLayoutEffect from "../../hooks/useIsomorphicLayoutEffect";
 
 // type Props = {
@@ -17,57 +18,109 @@ let isFirstRender = 0;
 gsap.registerPlugin(ScrollTrigger);
 const HomePageImageRevealing = () => {
   ////vars
+  const [width, height, mediaSizeName] = useDeviceSize();
+
   const wholeSectionRef = useRef<HTMLDivElement>(null);
   const imageBackgroundBase = useRef<HTMLDivElement>(null);
+
+  const yellowColorBase = useRef<HTMLDivElement>(null);
+  const clippathDMaskRef = useRef<SVGClipPathElement>(null);
+
   const bigDRef = useRef<HTMLImageElement>(null);
   const asRef = useRef<HTMLImageElement>(null);
   const developerRef = useRef<HTMLImageElement>(null);
 
+  const pathRef = useRef<SVGPathElement>(null);
+
   ////animation
   useIsomorphicLayoutEffect(() => {
+    //utils
+    const centerInXAxis = (
+      imageBackgroundBase: HTMLDivElement,
+      svgPath: SVGPathElement
+    ) => {
+      return (
+        Math.floor(imageBackgroundBase.clientWidth / 2) -
+        Math.floor(svgPath.getBBox().width / 2)
+      );
+    };
+
+    const centerInYAxis = (
+      imageBackgroundBase: HTMLDivElement,
+      svgPath: SVGPathElement
+    ) => {
+      return (
+        Math.floor(imageBackgroundBase.clientHeight / 2) -
+        Math.floor(svgPath.getBBox().height / 2)
+      );
+    };
+
+    //context
     const ctx = gsap.context(() => {
       /** durationMultiplier: number => 1 is no change, every duration is multiplied by this factor */
       function textSliderFromRightAnimation(
-        target: gsap.TweenTarget,
+        clipPath: SVGClipPathElement,
+        imageBase: HTMLDivElement,
+        path: SVGPathElement,
         durationMultiplier: number
       ) {
-        const tlFirstSetTexts = gsap.timeline();
-        tlFirstSetTexts
-          .fromTo(
-            target,
-            {
-              x: "100vh",
-              autoAlpha: 0,
-              filter: "blur(20px)",
-            },
-            {
-              x: 0,
-              autoAlpha: 1,
-              filter: "blur(0px)",
-              duration: 0.5 * durationMultiplier,
-              ease: "expo",
-            }
-          )
-          .to(target, {
+        const tlTextSliderFromRight = gsap.timeline();
+        tl.fromTo(
+          clipPath,
+          {
+            x: centerInXAxis(imageBase, path) + width,
+            y: centerInYAxis(imageBase, path),
+            scale: 1.4,
+            transformOrigin: "50% 50%",
+            autoAlpha: 0,
+            filter: "blur(20px)",
+          },
+
+          {
+            x: centerInXAxis(imageBase, path),
+            y: centerInYAxis(imageBase, path),
+            scale: 1.4,
+            autoAlpha: 1,
+            filter: "blur(0px)",
+            duration: 0.5 * durationMultiplier,
+            ease: "expo",
+          }
+        )
+          .to(clipPath, {
             duration: 0.6 * durationMultiplier,
           })
           .fromTo(
-            target,
+            clipPath,
             {
-              x: 0,
-              autoAlpha: 1,
               filter: "blur(0px)",
+              autoAlpha: 1,
+              x: centerInXAxis(imageBase, path),
             },
             {
-              x: 0,
-              autoAlpha: 0,
+              x: centerInXAxis(imageBase, path) - width,
               filter: "blur(30px)",
+              autoAlpha: 0,
               duration: 0.5 * durationMultiplier,
               ease: "expo",
             }
           );
+        // .fromTo(
+        //   target,
+        //   {
+        //     x: 0,
+        //     autoAlpha: 1,
+        //     filter: "blur(0px)",
+        //   },
+        //   {
+        //     x: 0,
+        //     autoAlpha: 0,
+        //     filter: "blur(30px)",
+        //     duration: 0.5 * durationMultiplier,
+        //     ease: "expo",
+        //   }
+        // );
 
-        return tlFirstSetTexts;
+        return tlTextSliderFromRight;
       }
       function mainTextAnimation(
         target: gsap.TweenTarget,
@@ -117,27 +170,63 @@ const HomePageImageRevealing = () => {
       }
 
       //main Timeline
-      const allElementsMoveToBeInvisible = [
-        bigDRef.current,
-        asRef.current,
-        developerRef.current,
+      const allElementsMoveToBeInvisible: SVGClipPathElement[] = [
+        // yellowColorBase.current!,
+        clippathDMaskRef.current!,
+        // developerRef.current,
       ];
       const tl = gsap.timeline({ repeat: -1, repeatDelay: 1 });
 
+      // tl.fromTo(
+      //   clippathRef.current,
+      //   {
+      //     x: centerInXAxis(imageBackgroundBase.current!, pathRef.current!),
+      //     y: centerInYAxis(imageBackgroundBase.current!, pathRef.current!),
+      //     scale: 1.4,
+      //     transformOrigin: "50% 50%",
+      //   },
+
+      //   {
+      //     x: centerInXAxis(imageBackgroundBase.current!, pathRef.current!),
+      //     y: centerInYAxis(imageBackgroundBase.current!, pathRef.current!),
+      //     scale: 1.4,
+      //   }
+      // );
+
       // tl.add(mainTextAnimation(developerRef.current, 1));
 
-      // tl.fromTo(
-      //   allElementsMoveToBeInvisible,
-      //   { x: "100vh" },
-      //   { x: "100vh", duration: 2 }
+      tl.fromTo(
+        allElementsMoveToBeInvisible,
+        {
+          x: centerInXAxis(yellowColorBase.current!, pathRef.current!) + width,
+        },
+        {
+          x: centerInXAxis(yellowColorBase.current!, pathRef.current!) + width,
+          duration: 2,
+        }
+      ).add(
+        textSliderFromRightAnimation(
+          clippathDMaskRef.current!,
+          yellowColorBase.current!,
+          pathRef.current!,
+          0.9
+        )
+      );
+
+      // .add(
+      //   textSliderFromRightAnimation(
+      //     bigDRef.current,
+      //     yellowColorBase.current!,
+      //     pathRef.current!,
+      //     0.9
+      //   )
       // )
-      //   .add(textSliderFromRightAnimation(bigDRef.current, 0.9))
       //   .add(textSliderFromRightAnimation(asRef.current, 0.8), "-=0.5")
       //   .add(mainTextAnimation(developerRef.current, 1.1), "-=0.5");
     });
 
     return () => ctx.revert();
-  }, []);
+  }, [width, height]);
 
   // useIsomorphicLayoutEffect(() => {
   //   const mm = gsap.matchMedia();
@@ -257,7 +346,7 @@ const HomePageImageRevealing = () => {
   ////jsx
   return (
     <Fragment>
-      <div className="relative z-20 w-screen h-300vh" ref={wholeSectionRef}>
+      <div className="relative z-20 w-screen h-screen" ref={wholeSectionRef}>
         <div
           className="absolute top-0 bottom-0 left-0 right-0 z-20 h-screen bg-center bg-no-repeat bg-cover"
           style={{
@@ -266,7 +355,33 @@ const HomePageImageRevealing = () => {
           ref={imageBackgroundBase}
         ></div>
 
-        <div className="absolute top-0 bottom-0 left-0 right-0 z-20 h-screen bg-center bg-no-repeat bg-cover">
+        <div
+          className="absolute top-0 bottom-0 left-0 right-0 z-20 h-screen bg-center bg-no-repeat bg-cover"
+          style={{
+            backgroundColor: `#FCEB41`,
+            clipPath: "url(#d-mask)",
+          }}
+          ref={yellowColorBase}
+        ></div>
+
+        <svg
+          width="100%"
+          height="100%"
+          viewBox="0 0 100 100"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className="absolute top-0 left-0 h-screen"
+        >
+          <clipPath id="d-mask" ref={clippathDMaskRef}>
+            <path
+              d="M0.400002 364V0.47998H124.304C175.504 0.47998 219.195 18.2293 255.376 53.728C291.557 89.2267 309.648 132.064 309.648 182.24C309.648 232.416 291.557 275.253 255.376 310.752C219.195 346.251 175.504 364 124.304 364H0.400002ZM81.808 289.248H124.304C154.341 289.248 178.917 279.008 198.032 258.528C217.488 237.707 227.216 212.277 227.216 182.24C227.216 152.203 217.488 126.944 198.032 106.464C178.917 85.6427 154.341 75.232 124.304 75.232H81.808V289.248Z"
+              fill="#FCEB41"
+              ref={pathRef}
+            />
+          </clipPath>
+        </svg>
+
+        {/* <div className="absolute top-0 bottom-0 left-0 right-0 z-20 h-screen bg-center bg-no-repeat bg-cover">
           <div className="absolute px-8 scale-[220%] -translate-x-1/2 -translate-y-1/2 md:scale-110 xl:scale-75 top-1/2 left-1/2">
             <Image
               src="/big_d.svg"
@@ -277,9 +392,9 @@ const HomePageImageRevealing = () => {
               ref={bigDRef}
             />
           </div>
-        </div>
+        </div> */}
 
-        <div className="absolute top-0 bottom-0 left-0 right-0 z-20 h-screen bg-center bg-no-repeat bg-cover">
+        {/* <div className="absolute top-0 bottom-0 left-0 right-0 z-20 h-screen bg-center bg-no-repeat bg-cover">
           <div className="absolute px-8 scale-[220%] -translate-x-1/2 -translate-y-1/2 md:scale-125 xl:scale-75 top-1/2 left-1/2">
             <Image
               src="/as.svg"
@@ -290,9 +405,9 @@ const HomePageImageRevealing = () => {
               ref={asRef}
             />
           </div>
-        </div>
+        </div> */}
 
-        <div className="absolute top-0 bottom-0 left-0 right-0 z-20 h-screen bg-center bg-no-repeat bg-cover">
+        {/* <div className="absolute top-0 bottom-0 left-0 right-0 z-20 h-screen bg-center bg-no-repeat bg-cover">
           <div className="absolute px-8 scale-[220%] -translate-x-1/2 -translate-y-1/2 md:scale-150 xl:scale-125 top-1/2 left-1/2">
             <Image
               src="/developer.svg"
@@ -303,35 +418,62 @@ const HomePageImageRevealing = () => {
               ref={developerRef}
             />
           </div>
-        </div>
+        </div> */}
 
-        <div
+        {/* <div
           className="absolute top-0 bottom-0 left-0 right-0 z-20 h-screen bg-center bg-no-repeat bg-cover"
           style={{
             backgroundImage: `url("/bg-landing-page___designer.jpg")`,
             clipPath: "url(#d-mask)",
           }}
           ref={imageBackgroundBase}
-        ></div>
+        ></div> */}
 
-        <div className="absolute top-0 bottom-0 left-0 right-0 z-20 h-screen bg-center bg-no-repeat bg-cover">
-          <div className="absolute px-8 scale-[220%] -translate-x-1/2 -translate-y-1/2 md:scale-125 xl:scale-75 top-1/2 left-1/2">
-            <svg
-              width="310"
-              height="364"
-              viewBox="0 0 310 364"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <clipPath id="d-mask">
-                <path
-                  d="M0.400002 364V0.47998H124.304C175.504 0.47998 219.195 18.2293 255.376 53.728C291.557 89.2267 309.648 132.064 309.648 182.24C309.648 232.416 291.557 275.253 255.376 310.752C219.195 346.251 175.504 364 124.304 364H0.400002ZM81.808 289.248H124.304C154.341 289.248 178.917 279.008 198.032 258.528C217.488 237.707 227.216 212.277 227.216 182.24C227.216 152.203 217.488 126.944 198.032 106.464C178.917 85.6427 154.341 75.232 124.304 75.232H81.808V289.248Z"
-                  fill="#FCEB41"
-                />
-              </clipPath>
-            </svg>
-          </div>
-        </div>
+        {/* <svg
+          width="100%"
+          height="100%"
+          viewBox="0 0 100 100"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className="absolute top-0 left-0 h-screen"
+        >
+          <clipPath id="d-mask" ref={clippathRef}>
+            <path
+              d="M0.400002 364V0.47998H124.304C175.504 0.47998 219.195 18.2293 255.376 53.728C291.557 89.2267 309.648 132.064 309.648 182.24C309.648 232.416 291.557 275.253 255.376 310.752C219.195 346.251 175.504 364 124.304 364H0.400002ZM81.808 289.248H124.304C154.341 289.248 178.917 279.008 198.032 258.528C217.488 237.707 227.216 212.277 227.216 182.24C227.216 152.203 217.488 126.944 198.032 106.464C178.917 85.6427 154.341 75.232 124.304 75.232H81.808V289.248Z"
+              fill="#FCEB41"
+              ref={pathRef}
+            />
+          </clipPath>
+        </svg> */}
+
+        {/* ------------------------------- */}
+
+        {/* <svg
+          height="100%"
+          width="100%"
+          className="absolute top-0 left-0 h-screen"
+        >
+          <defs>
+            <mask id="test-mask" x="0" y="0" height="100%" width="100%">
+              <rect x="0" y="0" height="100%" width="100%" />
+              <path
+                x="50%"
+                y="50%"
+                height="100%"
+                width="100%"
+                viewBox="0 0 310 364"
+                xmlns="http://www.w3.org/2000/svg"
+                textAnchor="middle"
+                d="M0.400002 364V0.47998H124.304C175.504 0.47998 219.195 18.2293 255.376 53.728C291.557 89.2267 309.648 132.064 309.648 182.24C309.648 232.416 291.557 275.253 255.376 310.752C219.195 346.251 175.504 364 124.304 364H0.400002ZM81.808 289.248H124.304C154.341 289.248 178.917 279.008 198.032 258.528C217.488 237.707 227.216 212.277 227.216 182.24C227.216 152.203 217.488 126.944 198.032 106.464C178.917 85.6427 154.341 75.232 124.304 75.232H81.808V289.248Z"
+                fill="#FCEB41"
+              />
+               <text x="50%" y="50%" fill="red" textAnchor="middle">
+                I love SVG!
+              </text> 
+            </mask>
+          </defs>
+          <rect x="0" y="0" height="100%" width="100%" />
+        </svg> */}
 
         {/* 
           <svg
