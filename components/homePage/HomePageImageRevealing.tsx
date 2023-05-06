@@ -23,14 +23,16 @@ const HomePageImageRevealing = () => {
   const wholeSectionRef = useRef<HTMLDivElement>(null);
   const imageBackgroundBase = useRef<HTMLDivElement>(null);
 
-  const yellowColorBase = useRef<HTMLDivElement>(null);
+  const yellowColorBaseForD = useRef<HTMLDivElement>(null);
+  const yellowColorBaseForAS = useRef<HTMLDivElement>(null);
   const clippathDMaskRef = useRef<SVGClipPathElement>(null);
+  const clippathASMaskRef = useRef<SVGClipPathElement>(null);
+  const pathDRef = useRef<SVGPathElement>(null);
+  const pathASRef = useRef<SVGPathElement>(null);
 
   const bigDRef = useRef<HTMLImageElement>(null);
   const asRef = useRef<HTMLImageElement>(null);
   const developerRef = useRef<HTMLImageElement>(null);
-
-  const pathRef = useRef<SVGPathElement>(null);
 
   ////animation
   useIsomorphicLayoutEffect(() => {
@@ -72,7 +74,7 @@ const HomePageImageRevealing = () => {
             y: centerInYAxis(imageBase, path),
             scale: 1.4,
             transformOrigin: "50% 50%",
-            autoAlpha: 0,
+            opacity: 0,
             filter: "blur(20px)",
           },
 
@@ -80,7 +82,7 @@ const HomePageImageRevealing = () => {
             x: centerInXAxis(imageBase, path),
             y: centerInYAxis(imageBase, path),
             scale: 1.4,
-            autoAlpha: 1,
+            opacity: 1,
             filter: "blur(0px)",
             duration: 0.5 * durationMultiplier,
             ease: "expo",
@@ -171,177 +173,50 @@ const HomePageImageRevealing = () => {
 
       //main Timeline
       const allElementsMoveToBeInvisible: SVGClipPathElement[] = [
-        // yellowColorBase.current!,
+        clippathASMaskRef.current!,
         clippathDMaskRef.current!,
         // developerRef.current,
       ];
       const tl = gsap.timeline({ repeat: -1, repeatDelay: 1 });
 
-      // tl.fromTo(
-      //   clippathRef.current,
-      //   {
-      //     x: centerInXAxis(imageBackgroundBase.current!, pathRef.current!),
-      //     y: centerInYAxis(imageBackgroundBase.current!, pathRef.current!),
-      //     scale: 1.4,
-      //     transformOrigin: "50% 50%",
-      //   },
-
-      //   {
-      //     x: centerInXAxis(imageBackgroundBase.current!, pathRef.current!),
-      //     y: centerInYAxis(imageBackgroundBase.current!, pathRef.current!),
-      //     scale: 1.4,
-      //   }
-      // );
-
-      // tl.add(mainTextAnimation(developerRef.current, 1));
-
       tl.fromTo(
         allElementsMoveToBeInvisible,
         {
-          x: centerInXAxis(yellowColorBase.current!, pathRef.current!) + width,
+          x:
+            centerInXAxis(yellowColorBaseForD.current!, pathDRef.current!) +
+            width,
         },
         {
-          x: centerInXAxis(yellowColorBase.current!, pathRef.current!) + width,
+          x:
+            centerInXAxis(yellowColorBaseForD.current!, pathDRef.current!) +
+            width,
           duration: 2,
         }
-      ).add(
-        textSliderFromRightAnimation(
-          clippathDMaskRef.current!,
-          yellowColorBase.current!,
-          pathRef.current!,
-          0.9
+      )
+        .add(
+          textSliderFromRightAnimation(
+            clippathDMaskRef.current!,
+            yellowColorBaseForD.current!,
+            pathDRef.current!,
+            0.9
+          )
         )
-      );
+        .add(
+          textSliderFromRightAnimation(
+            clippathASMaskRef.current!,
+            yellowColorBaseForAS.current!,
+            pathASRef.current!,
+            0.8
+          ),
+          "-=0.5"
+        );
 
-      // .add(
-      //   textSliderFromRightAnimation(
-      //     bigDRef.current,
-      //     yellowColorBase.current!,
-      //     pathRef.current!,
-      //     0.9
-      //   )
-      // )
       //   .add(textSliderFromRightAnimation(asRef.current, 0.8), "-=0.5")
       //   .add(mainTextAnimation(developerRef.current, 1.1), "-=0.5");
     });
 
     return () => ctx.revert();
   }, [width, height]);
-
-  // useIsomorphicLayoutEffect(() => {
-  //   const mm = gsap.matchMedia();
-
-  //   function createTl() {
-  //     return gsap.timeline({
-  //       scrollTrigger: {
-  //         trigger: wholeSectionRef.current,
-  //         start: () => "top top",
-  //         end: () => "+=300%",
-  //         markers: true,
-  //         pin: true,
-  //       },
-  //     });
-  //   }
-
-  //   mm.add("(max-width: 768px)", () => {
-  //     const tl = createTl();
-  //   });
-  //   mm.add("(min-width: 769px) and (max-width: 1223px)", () => {});
-  //   mm.add("(min-width: 1224px)", () => {});
-
-  //   return () => mm.revert();
-  // }, []);
-
-  // useIsomorphicLayoutEffect(() => {
-  //   const ctx = gsap.context(() => {
-  //     // if (isFirstRender > 1) {
-  //       // tl.addLabel("design").fromTo(
-  //       //   imageBackgroundBase.current,
-  //       //   { opacity: 0, ease: "power4.inOut" },
-  //       //   { opacity: 1 }
-  //       // );
-  //       // .fromTo(
-  //       //   imageBackgroundDesign.current,
-  //       //   { opacity: 0 },
-  //       //   { opacity: 1 },
-  //       //   "design"
-  //       // )
-  //       // .fromTo(designText.current, { opacity: 0 }, { opacity: 1 }, "design")
-  //       // .addLabel("develop")
-  //       // .fromTo(
-  //       //   imageBackgroundDevelop.current,
-  //       //   { opacity: 0 },
-  //       //   { opacity: 1 },
-  //       //   "develop"
-  //       // )
-  //       // .fromTo(designText.current, { opacity: 1 }, { opacity: 0 }, "develop")
-  //       // .fromTo(
-  //       //   developText.current,
-  //       //   { opacity: 0 },
-  //       //   { opacity: 1 },
-  //       //   "develop"
-  //       // );
-  //     }
-  //   // });
-
-  //   // isFirstRender += 1;
-  //   return () => ctx.revert();
-  // }, []);
-
-  // useIsomorphicLayoutEffect(() => {
-  //   if (isFirstRender > 1) {
-  //     tl.fromTo(
-  //       imageBackground_innerDiv.current,
-  //       {
-  //         clipPath: "polygon(100% 0%, 100% 0%, 100% 100%, 100% 100%)",
-  //       },
-  //       {
-  //         clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
-  //       }
-  //     );
-  //   }
-  //   isFirstRender += 1;
-  // }, [tl]);
-
-  // const background1Start: gsap.TweenVars = {
-  //   clipPath: "polygon(100% 0%, 100% 0%, 100% 100%, 100% 19%)",
-  //   duration: 0.3,
-  // };
-  // const background1End: gsap.TweenVars = {
-  //   clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
-  //   duration: 0.3,
-  // };
-
-  // useIsomorphicLayoutEffect(() => {
-  //   gsap.utils.toArray(".comparisonSection").forEach((section) => {
-  //     let tl = gsap.timeline({
-  //       scrollTrigger: {
-  //         trigger: imageSectionRef.current!,
-  //         start: "top top",
-  //         // makes the height of the scrolling (while pinning) match the width, thus the speed remains constant (vertical/horizontal)
-  //         end: () => "+=" + imageSectionRef.current!.offsetWidth,
-  //         markers: true,
-  //         scrub: 4,
-  //         // pin: true,
-  //         // anticipatePin: 1,
-  //       },
-  //       defaults: { ease: "none" },
-  //     });
-  //     // animate the container one way...
-  //     tl.fromTo(
-  //       imageSectionRef.current!.querySelector(".afterImage"),
-  //       { xPercent: 100, x: 0 },
-  //       { xPercent: 0 }
-  //     )
-  //       // ...and the image the opposite way (at the same time)
-  //       .fromTo(
-  //         imageSectionRef.current!.querySelector(".afterImage img"),
-  //         { xPercent: -100, x: 0 },
-  //         { xPercent: 0 },
-  //         0
-  //       );
-  //   });
-  // }, []);
 
   ////jsx
   return (
@@ -361,7 +236,16 @@ const HomePageImageRevealing = () => {
             backgroundColor: `#FCEB41`,
             clipPath: "url(#d-mask)",
           }}
-          ref={yellowColorBase}
+          ref={yellowColorBaseForD}
+        ></div>
+
+        <div
+          className="absolute top-0 bottom-0 left-0 right-0 z-20 h-screen bg-center bg-no-repeat bg-cover"
+          style={{
+            backgroundColor: `#FCEB41`,
+            clipPath: "url(#as-mask)",
+          }}
+          ref={yellowColorBaseForAS}
         ></div>
 
         <svg
@@ -372,11 +256,25 @@ const HomePageImageRevealing = () => {
           xmlns="http://www.w3.org/2000/svg"
           className="absolute top-0 left-0 h-screen"
         >
-          <clipPath id="d-mask" ref={clippathDMaskRef}>
+          <clipPath
+            id="d-mask"
+            ref={clippathDMaskRef}
+            className="absolute top-0 left-0 h-screen"
+          >
             <path
               d="M0.400002 364V0.47998H124.304C175.504 0.47998 219.195 18.2293 255.376 53.728C291.557 89.2267 309.648 132.064 309.648 182.24C309.648 232.416 291.557 275.253 255.376 310.752C219.195 346.251 175.504 364 124.304 364H0.400002ZM81.808 289.248H124.304C154.341 289.248 178.917 279.008 198.032 258.528C217.488 237.707 227.216 212.277 227.216 182.24C227.216 152.203 217.488 126.944 198.032 106.464C178.917 85.6427 154.341 75.232 124.304 75.232H81.808V289.248Z"
               fill="#FCEB41"
-              ref={pathRef}
+              ref={pathDRef}
+            />
+          </clipPath>
+          <clipPath
+            id="as-mask"
+            ref={clippathASMaskRef}
+            className="absolute top-0 left-0 h-screen"
+          >
+            <path
+              d="M0.0539975 185L77.878 3.23999H114.742L192.566 185H150.07L133.942 146.6H58.678L42.55 185H0.0539975ZM96.31 56.744L73.27 111.272H119.094L96.31 56.744ZM255.662 188.072C241.326 188.072 228.27 185.256 216.494 179.624C204.889 173.821 195.502 165.8 188.334 155.56L219.566 129.192C224.003 135.507 229.635 140.541 236.462 144.296C243.459 148.051 250.371 149.928 257.198 149.928C263.854 149.928 269.145 148.563 273.07 145.832C277.166 142.931 279.214 139.261 279.214 134.824C279.214 130.216 277.251 126.205 273.326 122.792C269.401 119.379 262.915 116.136 253.87 113.064L241.07 108.712C210.521 98.472 195.246 80.9787 195.246 56.232C195.246 38.9947 201.049 25.3413 212.654 15.272C224.43 5.20265 239.534 0.167984 257.966 0.167984C281.518 0.167984 301.059 8.53065 316.59 25.256L289.966 53.416C281.603 43.3467 271.107 38.312 258.478 38.312C252.505 38.312 247.299 39.5067 242.862 41.896C238.595 44.2853 236.462 47.6987 236.462 52.136C236.462 56.744 238.51 60.4987 242.606 63.4C246.702 66.1307 254.041 69.3733 264.622 73.128L277.422 77.736C306.435 88.1467 320.857 106.237 320.686 132.008C320.686 148.563 314.542 162.045 302.254 172.456C290.137 182.867 274.606 188.072 255.662 188.072Z"
+              ref={pathASRef}
             />
           </clipPath>
         </svg>
@@ -573,3 +471,118 @@ const HomePageImageRevealing = () => {
 };
 
 export default HomePageImageRevealing;
+
+// useIsomorphicLayoutEffect(() => {
+//   const mm = gsap.matchMedia();
+
+//   function createTl() {
+//     return gsap.timeline({
+//       scrollTrigger: {
+//         trigger: wholeSectionRef.current,
+//         start: () => "top top",
+//         end: () => "+=300%",
+//         markers: true,
+//         pin: true,
+//       },
+//     });
+//   }
+
+//   mm.add("(max-width: 768px)", () => {
+//     const tl = createTl();
+//   });
+//   mm.add("(min-width: 769px) and (max-width: 1223px)", () => {});
+//   mm.add("(min-width: 1224px)", () => {});
+
+//   return () => mm.revert();
+// }, []);
+
+// useIsomorphicLayoutEffect(() => {
+//   const ctx = gsap.context(() => {
+//     // if (isFirstRender > 1) {
+//       // tl.addLabel("design").fromTo(
+//       //   imageBackgroundBase.current,
+//       //   { opacity: 0, ease: "power4.inOut" },
+//       //   { opacity: 1 }
+//       // );
+//       // .fromTo(
+//       //   imageBackgroundDesign.current,
+//       //   { opacity: 0 },
+//       //   { opacity: 1 },
+//       //   "design"
+//       // )
+//       // .fromTo(designText.current, { opacity: 0 }, { opacity: 1 }, "design")
+//       // .addLabel("develop")
+//       // .fromTo(
+//       //   imageBackgroundDevelop.current,
+//       //   { opacity: 0 },
+//       //   { opacity: 1 },
+//       //   "develop"
+//       // )
+//       // .fromTo(designText.current, { opacity: 1 }, { opacity: 0 }, "develop")
+//       // .fromTo(
+//       //   developText.current,
+//       //   { opacity: 0 },
+//       //   { opacity: 1 },
+//       //   "develop"
+//       // );
+//     }
+//   // });
+
+//   // isFirstRender += 1;
+//   return () => ctx.revert();
+// }, []);
+
+// useIsomorphicLayoutEffect(() => {
+//   if (isFirstRender > 1) {
+//     tl.fromTo(
+//       imageBackground_innerDiv.current,
+//       {
+//         clipPath: "polygon(100% 0%, 100% 0%, 100% 100%, 100% 100%)",
+//       },
+//       {
+//         clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
+//       }
+//     );
+//   }
+//   isFirstRender += 1;
+// }, [tl]);
+
+// const background1Start: gsap.TweenVars = {
+//   clipPath: "polygon(100% 0%, 100% 0%, 100% 100%, 100% 19%)",
+//   duration: 0.3,
+// };
+// const background1End: gsap.TweenVars = {
+//   clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
+//   duration: 0.3,
+// };
+
+// useIsomorphicLayoutEffect(() => {
+//   gsap.utils.toArray(".comparisonSection").forEach((section) => {
+//     let tl = gsap.timeline({
+//       scrollTrigger: {
+//         trigger: imageSectionRef.current!,
+//         start: "top top",
+//         // makes the height of the scrolling (while pinning) match the width, thus the speed remains constant (vertical/horizontal)
+//         end: () => "+=" + imageSectionRef.current!.offsetWidth,
+//         markers: true,
+//         scrub: 4,
+//         // pin: true,
+//         // anticipatePin: 1,
+//       },
+//       defaults: { ease: "none" },
+//     });
+//     // animate the container one way...
+//     tl.fromTo(
+//       imageSectionRef.current!.querySelector(".afterImage"),
+//       { xPercent: 100, x: 0 },
+//       { xPercent: 0 }
+//     )
+//       // ...and the image the opposite way (at the same time)
+//       .fromTo(
+//         imageSectionRef.current!.querySelector(".afterImage img"),
+//         { xPercent: -100, x: 0 },
+//         { xPercent: 0 },
+//         0
+//       );
+//   });
+// }, []);
