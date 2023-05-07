@@ -74,12 +74,12 @@ const ContactForm = () => {
         .fromTo(
           contactFormRef.current,
           { autoAlpha: 0, x: "100vw" },
-          { autoAlpha: 1, x: 0, duration: 0.6 }
+          { autoAlpha: 1, x: 0, duration: 0.2 }
         )
         .fromTo(
           [contactGETINTOUCHRef.current, contactSmallAdditionTextRef.current],
           { autoAlpha: 0, x: "100vw" },
-          { autoAlpha: 1, x: 0, duration: 0.4, stagger: 0.15 },
+          { autoAlpha: 1, x: 0, duration: 0.15, stagger: 0.05 },
           "start"
         )
         .fromTo(
@@ -89,8 +89,8 @@ const ContactForm = () => {
             messageInputRef.current,
           ],
           { autoAlpha: 0, x: "100vw" },
-          { autoAlpha: 1, x: 0, duration: 0.4, stagger: 0.15 },
-          "start+=0.2"
+          { autoAlpha: 1, x: 0, duration: 0.15, stagger: 0.05 },
+          "start+=0.1"
         );
     };
 

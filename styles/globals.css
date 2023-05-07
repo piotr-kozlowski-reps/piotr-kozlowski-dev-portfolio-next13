@@ -209,6 +209,10 @@ test-images {
   mask-image: url("#mask") no-repeat center / contain;
 }
 
+.back-to-invisibility {
+  visibility: hidden;
+}
+
 /* #d-mask {
   position: absolute;
   height: 100%;
