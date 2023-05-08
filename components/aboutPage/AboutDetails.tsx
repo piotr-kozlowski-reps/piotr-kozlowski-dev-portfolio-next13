@@ -190,7 +190,8 @@ const AboutDetails = (props: Props) => {
         }`}
         ref={sectionRef}
       >
-        {typeof window !== "undefined" && window.innerWidth < 1224 ? (
+        {/* {typeof window !== "undefined" && window.innerWidth < 1224 ? ( */}
+        {width < 1224 ? (
           <Fragment>
             <div
               className={`relative  ${
@@ -206,9 +207,9 @@ const AboutDetails = (props: Props) => {
               >
                 <Image src={logoImageURL} alt="logo" width={128} height={128} />
               </div>
-              <div
+              {/* <div
                 className={`absolute top-0 bottom-0 left-0 right-0 w-full h-full bg-background_2_darker ${clipPathName}`}
-              ></div>
+              ></div> */}
             </div>
             <div
               className="invisible mt-2 font-style-h3 "
@@ -248,7 +249,8 @@ const AboutDetails = (props: Props) => {
           </Fragment>
         ) : null}
 
-        {typeof window !== "undefined" && window.innerWidth >= 1224 ? (
+        {/* {typeof window !== "undefined" && window.innerWidth >= 1224 ? ( */}
+        {width >= 1224 ? (
           <Fragment>
             <div
               className={`flex flex-col items-start justify-start ml-[40px] w-[570px]`}
@@ -262,9 +264,9 @@ const AboutDetails = (props: Props) => {
                     height={128}
                   />
                 </div>
-                <div
+                {/* <div
                   className={`absolute top-0 bottom-0 left-0 right-0 w-fill h-fill bg-background_2_darker ${clipPathName}`}
-                ></div>
+                ></div> */}
               </div>
               <div className="mt-2 font-style-h3" ref={titleDesktopRef}>
                 {sectionPurposeName}

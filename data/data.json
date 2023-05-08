@@ -20,7 +20,7 @@
       { "mainTitle": "NODE", "additionalInfo": "", "percentage": 56 },
       { "mainTitle": "JAVA", "additionalInfo": "", "percentage": 28 }
     ],
-    "logoImageURL": "/logo_only_graph_transparency.png",
+    "logoImageURL": "/logo_only_graph_transparency__developer.png",
     "clipPathName": "clip-path-logo-right-triangle",
     "sectionPurposeName": "developer",
     "paragraphText": " <p>\r\n                    <span class=\"underline\">I'm</span> /\r\n                    <span class=\"underline\">I wish I could be</span>\r\n                    <span class=\"text-main_white_50\">\r\n                      \r\n                      (delete as appropriate)\r\n                    </span>\r\n                    a front-end developer.\r\n                  </p>\r\n                  <p>\r\n                    I really like this. It's annoying and relaxing in the same\r\n                    moment, since when you do it (finally) in a right manner -\r\n                    it works (that certainty is not so common elsewhere).\r\n                  </p>\r\n                  <br />\r\n                  <p class=\"font-style-xs\">\r\n                    * And yes... I also do this for money.\r\n                  </p>",
@@ -44,7 +44,7 @@
         "percentage": 82
       }
     ],
-    "logoImageURL": "/logo_only_graph_transparency.png",
+    "logoImageURL": "/logo_only_graph_transparency__designer.png",
     "clipPathName": "clip-path-logo-left-triangle",
     "sectionPurposeName": "designer",
     "paragraphText": "<p>\r\n                    That's what I've been doing for living for past few years. A\r\n                    graphic designer for almost every dimension, but 3rd\r\n                    dimension suits me most.\r\n                  </p>\r\n                  <p>\r\n                    However \"most\" doesn't mean entirely, I have knowledge of\r\n                    majority* of graphic programs that are widely used.\r\n                  </p>\r\n                  <p class=\"font-style-xs\">\r\n                    <br />* Even Midjourney, that makes me redundant in some\r\n                    areas ('winter is coming ...')\r\n                  </p>",

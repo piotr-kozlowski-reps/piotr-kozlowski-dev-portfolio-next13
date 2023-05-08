@@ -19,7 +19,6 @@ export type TAddSliderToAnimation = (el: {
 }) => void;
 
 export type TDetailsInfoSet = {
-  // slidersData: TSliderData[];
   logoImageURL: string;
   clipPathName: string;
   sectionPurposeName: string;
