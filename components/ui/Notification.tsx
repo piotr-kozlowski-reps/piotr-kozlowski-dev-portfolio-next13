@@ -36,7 +36,7 @@ const Notification = (props: INotification) => {
   ////jsx
   return (
     <Fragment>
-      <Backdrop />
+      {/* <Backdrop /> */}
       <NotificationOverlay notificationInfo={props} />
     </Fragment>
   );

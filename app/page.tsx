@@ -17,7 +17,6 @@ import Modal from "../components/ui/Modal";
 import { useModalState } from "../globalState/ModalState";
 import Footer from "../components/footer/Footer";
 import useShowModalWhenHeightIsTooSmall from "../hooks/useShowModalWhenHeightIsTooSmall";
-import HomeSection from "../components/homePage/HomeSection";
 
 gsap.registerPlugin(ScrollTrigger);
 const Home = () => {

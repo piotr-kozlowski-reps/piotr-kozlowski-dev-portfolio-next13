@@ -1,6 +1,5 @@
 import React, { Fragment, useRef, useState } from "react";
 import gsap from "gsap";
-import useIsomorphicLayoutEffect from "../hooks/useIsomorphicLayoutEffect";
 
 type Props = {
   children: JSX.Element;

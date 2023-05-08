@@ -1,6 +1,6 @@
 "use client";
 
-import React, { Fragment, RefObject, useRef, useState } from "react";
+import React, { Fragment, useRef, useState } from "react";
 import gsap from "gsap";
 
 import { TDetailsInfoSet } from "../../types/typings";
@@ -189,7 +189,7 @@ const AboutDetails = (props: Props) => {
         }`}
         ref={sectionRef}
       >
-        {window.innerWidth < 1224 ? (
+        {typeof window !== "undefined" && window.innerWidth < 1224 ? (
           <Fragment>
             <div
               className={`relative  ${
@@ -261,7 +261,7 @@ const AboutDetails = (props: Props) => {
           </Fragment>
         ) : null}
 
-        {window.innerWidth >= 1224 ? (
+        {typeof window !== "undefined" && window.innerWidth >= 1224 ? (
           <Fragment>
             <div
               className={`flex flex-col items-start justify-start ml-[40px] w-[570px]`}

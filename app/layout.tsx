@@ -1,5 +1,6 @@
 import "../styles/globals.css";
 import { inDevEnvironment } from "../utils/inDevEnvironment";
+import { Metadata } from "next";
 import localFont from "@next/font/local";
 
 const mainFont = localFont({
@@ -27,6 +28,24 @@ const mainFont = localFont({
   ],
   variable: "--mainFont",
 });
+
+export const metadata: Metadata = {
+  title: "Piotr Kozłowski - developer/designer portfolio.",
+  description:
+    "Piotr Kozłowski - portfolio. Front-end developer (javascript, typescript, react, nextjs) | Back-end developer (node / java) | Designer.",
+  keywords: [
+    "frontend",
+    "developer",
+    "javascript",
+    "typescript",
+    "react",
+    "nextjs",
+    "backend",
+    "node",
+    "java",
+    "designer",
+  ],
+};
 
 export default function RootLayout({
   children,

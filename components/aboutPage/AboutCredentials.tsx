@@ -1,7 +1,6 @@
 import Image from "next/image";
 import React, { useRef, useState } from "react";
 
-import AboutCredentialItem from "../../old/AboutCredentialItem__old";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import data from "../../data/data.json";
