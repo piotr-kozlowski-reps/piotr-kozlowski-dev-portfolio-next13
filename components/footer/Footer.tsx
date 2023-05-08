@@ -54,7 +54,7 @@ const Footer = () => {
               />
             ) : (
               <Image
-                src="gitHub.svg"
+                src="github.svg"
                 alt="github icon"
                 width={44}
                 height={44}
@@ -140,7 +140,7 @@ const Footer = () => {
                   />
                 ) : (
                   <Image
-                    src="gitHub.svg"
+                    src="github.svg"
                     alt="github icon"
                     width={21}
                     height={21}

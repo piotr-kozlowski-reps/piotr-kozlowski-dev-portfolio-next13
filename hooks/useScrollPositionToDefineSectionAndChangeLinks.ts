@@ -28,10 +28,10 @@ const useScrollPositionToDefineSectionAndChangeLinks = (
       contactRef.current
     );
 
-    console.log("useScrollPosition: ");
-    console.log("scrollYPosition: ", scrollYPosition);
-    console.log("aboutTopPosition: ", aboutTopPosition);
-    console.log("projectsTopPosition: ", projectsTopPosition);
+    // console.log("useScrollPosition: ");
+    // console.log("scrollYPosition: ", scrollYPosition);
+    // console.log("aboutTopPosition: ", aboutTopPosition);
+    // console.log("projectsTopPosition: ", projectsTopPosition);
 
     if (aboutTopPosition && projectsTopPosition && contactTopPosition) {
       //homeSection

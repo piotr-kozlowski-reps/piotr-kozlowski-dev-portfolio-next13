@@ -279,7 +279,7 @@ const ProjectDetails = (props: Props) => {
               <ProjectDescriptionLink
                 linkDetails={links.github}
                 ref={githubNameRef}
-                iconBaseUrl="gitHub.svg"
+                iconBaseUrl="github.svg"
                 iconBaseAlt="github icon"
                 iconHoverUrl="gitHub_hover.svg"
                 iconHoverAlt="github icon hover"
