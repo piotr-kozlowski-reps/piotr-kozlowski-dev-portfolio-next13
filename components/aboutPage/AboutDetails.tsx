@@ -140,42 +140,45 @@ const AboutDetails = (props: Props) => {
       //tl
       const tl = createTl(sectionRef, 204, 450);
 
+      console.log("desktop");
+      console.log(logoDesktopRef.current);
+
       tl.addLabel("start")
         .call(() => {
           setIsAnimateStripes(false);
         })
         .fromTo(
-          logoDesktopRef.current,
+          logoDesktopRef.current!,
           { autoAlpha: 0 },
           { autoAlpha: 1 },
           "start"
-        )
-        .fromTo(
-          titleDesktopRef.current,
-          { autoAlpha: 0, x: "-100vw" },
-          { autoAlpha: 1, x: 0 },
-          "start"
-        )
-        .fromTo(
-          paragraphDesktopRef.current,
-          { autoAlpha: 0, x: "-100vw" },
-          { autoAlpha: 1, x: 0 },
-          "start"
-        )
-        .call(() => {
-          setIsAnimateStripes(true);
-        })
-        .addLabel("secondParagraph")
-        .fromTo(
-          graphsDesktopRef.current,
-          { autoAlpha: 0, x: "100vw" },
-          {
-            autoAlpha: 1,
-            x: 0,
-          },
-          "secondParagraph"
-        )
-        .to(paragraphDesktopRef.current, {});
+        );
+      // .fromTo(
+      //   titleDesktopRef.current,
+      //   { autoAlpha: 0, x: "-100vw" },
+      //   { autoAlpha: 1, x: 0 },
+      //   "start"
+      // )
+      // .fromTo(
+      //   paragraphDesktopRef.current,
+      //   { autoAlpha: 0, x: "-100vw" },
+      //   { autoAlpha: 1, x: 0 },
+      //   "start"
+      // )
+      // .call(() => {
+      //   setIsAnimateStripes(true);
+      // })
+      // .addLabel("secondParagraph");
+      // .fromTo(
+      //   graphsDesktopRef.current,
+      //   { autoAlpha: 0, x: "100vw" },
+      //   {
+      //     autoAlpha: 1,
+      //     x: 0,
+      //   },
+      //   "secondParagraph"
+      // )
+      // .to(paragraphDesktopRef.current, {});
     });
 
     return () => mm.revert();
@@ -199,7 +202,7 @@ const AboutDetails = (props: Props) => {
                   ? "w-[44px] h-[44px]"
                   : "w-[88px] h-[88px]"
               } `}
-              ref={logoMobileAndTabletRef}
+              // ref={logoMobileAndTabletRef}
             >
               <div
                 className="absolute top-0 bottom-0 left-0 right-0 w-full h-full"
@@ -249,8 +252,8 @@ const AboutDetails = (props: Props) => {
           </Fragment>
         ) : null}
 
-        {/* {typeof window !== "undefined" && window.innerWidth >= 1224 ? ( */}
-        {width >= 1224 ? (
+        {/* {width >= 1224 ? ( */}
+        {typeof window !== "undefined" && window.innerWidth >= 1224 ? (
           <Fragment>
             <div
               className={`flex flex-col items-start justify-start ml-[40px] w-[570px]`}
