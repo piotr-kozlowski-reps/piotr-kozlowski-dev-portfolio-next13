@@ -9,6 +9,7 @@ import Image from "next/image";
 import AboutSlider from "./AboutSlider";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import useIsomorphicLayoutEffect from "../../hooks/useIsomorphicLayoutEffect";
+import clsx from "clsx";
 
 type Props = {
   detailsInfoSet: TDetailsInfoSet;
@@ -31,7 +32,8 @@ const AboutDetails = (props: Props) => {
 
   const [width, height, mediaSizeName] = useDeviceSize();
 
-  const sectionRef = useRef<HTMLDivElement>(null);
+  const sectionDesktopRef = useRef<HTMLDivElement>(null);
+  const sectionModalRef = useRef<HTMLDivElement>(null);
   const logoMobileAndTabletRef = useRef<HTMLDivElement>(null);
   const logoDesktopRef = useRef<HTMLDivElement>(null);
   const titleMobileAndTabletRef = useRef<HTMLDivElement>(null);
@@ -127,18 +129,18 @@ const AboutDetails = (props: Props) => {
     }
 
     mm.add("(max-width: 768px)", () => {
-      const tl = createTl(sectionRef, 172, 450);
+      const tl = createTl(sectionModalRef, 172, 450);
       animateMobileAndTablet(tl);
     });
 
     mm.add("(min-width: 769px) and (max-width: 1223px)", () => {
-      const tl = createTl(sectionRef, 204, 500);
+      const tl = createTl(sectionModalRef, 204, 500);
       animateMobileAndTablet(tl);
     });
 
     mm.add("(min-width: 1224px)", () => {
       //tl
-      const tl = createTl(sectionRef, 204, 450);
+      const tl = createTl(sectionDesktopRef, 204, 450);
 
       console.log("desktop");
       console.log(logoDesktopRef.current);
@@ -152,33 +154,33 @@ const AboutDetails = (props: Props) => {
           { autoAlpha: 0 },
           { autoAlpha: 1 },
           "start"
-        );
-      // .fromTo(
-      //   titleDesktopRef.current,
-      //   { autoAlpha: 0, x: "-100vw" },
-      //   { autoAlpha: 1, x: 0 },
-      //   "start"
-      // )
-      // .fromTo(
-      //   paragraphDesktopRef.current,
-      //   { autoAlpha: 0, x: "-100vw" },
-      //   { autoAlpha: 1, x: 0 },
-      //   "start"
-      // )
-      // .call(() => {
-      //   setIsAnimateStripes(true);
-      // })
-      // .addLabel("secondParagraph");
-      // .fromTo(
-      //   graphsDesktopRef.current,
-      //   { autoAlpha: 0, x: "100vw" },
-      //   {
-      //     autoAlpha: 1,
-      //     x: 0,
-      //   },
-      //   "secondParagraph"
-      // )
-      // .to(paragraphDesktopRef.current, {});
+        )
+        .fromTo(
+          titleDesktopRef.current,
+          { autoAlpha: 0, x: "-100vw" },
+          { autoAlpha: 1, x: 0 },
+          "start"
+        )
+        .fromTo(
+          paragraphDesktopRef.current,
+          { autoAlpha: 0, x: "-100vw" },
+          { autoAlpha: 1, x: 0 },
+          "start"
+        )
+        .call(() => {
+          setIsAnimateStripes(true);
+        })
+        .addLabel("secondParagraph")
+        .fromTo(
+          graphsDesktopRef.current,
+          { autoAlpha: 0, x: "100vw" },
+          {
+            autoAlpha: 1,
+            x: 0,
+          },
+          "secondParagraph"
+        )
+        .to(paragraphDesktopRef.current, {});
     });
 
     return () => mm.revert();
@@ -187,126 +189,121 @@ const AboutDetails = (props: Props) => {
   ////jsx
   return (
     <section title="aboutDetailsSection">
+      {/* {width < 1224  = start */}
       <div
-        className={`flex flex-col xl:flex-row items-center xl:items-start justify-center xl:justify-between w-full xl:w-container mx-0 xl:mx-auto z-10 pb-0 xl:pb-8 bg-background_2_darker ${
-          isFirstSectionThenNoTopMargin ? "" : "mt-[100%]"
-        }`}
-        ref={sectionRef}
+        className={clsx(
+          `flex flex-col xl:flex-row items-center xl:items-start justify-center xl:justify-between w-full xl:w-container mx-0 xl:mx-auto z-10 pb-0 xl:pb-8 bg-background_2_darker`,
+          { "mt-[100%]": !isFirstSectionThenNoTopMargin },
+          { invisible: width >= 1224 }
+        )}
+        ref={sectionModalRef}
       >
         {/* {typeof window !== "undefined" && window.innerWidth < 1224 ? ( */}
-        {width < 1224 ? (
-          <Fragment>
-            <div
-              className={`relative  ${
-                mediaSizeName === "mobile"
-                  ? "w-[44px] h-[44px]"
-                  : "w-[88px] h-[88px]"
-              } `}
-              // ref={logoMobileAndTabletRef}
-            >
-              <div
-                className="absolute top-0 bottom-0 left-0 right-0 w-full h-full"
-                ref={logoMobileAndTabletRef}
-              >
-                <Image src={logoImageURL} alt="logo" width={128} height={128} />
-              </div>
-              {/* <div
-                className={`absolute top-0 bottom-0 left-0 right-0 w-full h-full bg-background_2_darker ${clipPathName}`}
-              ></div> */}
-            </div>
-            <div
-              className="invisible mt-2 font-style-h3 "
-              ref={titleMobileAndTabletRef}
-            >
-              {sectionPurposeName}
-            </div>
-            <div className="relative w-full md:w-[566px] ">
-              <div className="absolute w-full h-full ">
-                <div
-                  className="mx-8 pt-[48px] text-center font-style-p invisible"
-                  ref={paragraphMobileAndTabletRef}
-                >
-                  <div
-                    dangerouslySetInnerHTML={{
-                      __html: paragraphText,
-                    }}
-                  ></div>
-                </div>
-              </div>
-              <div className="absolute w-full h-full ">
-                <div
-                  className="mx-8 pt-[48px] text-center font-style-p invisible"
-                  ref={graphsMobileAndTabletRef}
-                >
-                  {sliders.map((slider, index) => (
-                    <Fragment key={index}>
-                      <AboutSlider
-                        sliderData={slider}
-                        isAnimateStripes={isAnimateStripes}
-                      />
-                    </Fragment>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </Fragment>
-        ) : null}
 
-        {/* {width >= 1224 ? ( */}
-        {typeof window !== "undefined" && window.innerWidth >= 1224 ? (
-          <Fragment>
+        <Fragment>
+          <div
+            className={`relative  ${
+              mediaSizeName === "mobile"
+                ? "w-[44px] h-[44px]"
+                : "w-[88px] h-[88px]"
+            } `}
+            // ref={logoMobileAndTabletRef}
+          >
             <div
-              className={`flex flex-col items-start justify-start ml-[40px] w-[570px]`}
+              className="absolute top-0 bottom-0 left-0 right-0 w-full h-full"
+              ref={logoMobileAndTabletRef}
             >
-              <div className="relative w-[44px] h-[44px]" ref={logoDesktopRef}>
-                <div className="absolute top-0 bottom-0 left-0 right-0 w-fill h-fill">
-                  <Image
-                    src={logoImageURL}
-                    alt="logo"
-                    width={128}
-                    height={128}
-                  />
-                </div>
-                {/* <div
-                  className={`absolute top-0 bottom-0 left-0 right-0 w-fill h-fill bg-background_2_darker ${clipPathName}`}
-                ></div> */}
-              </div>
-              <div className="mt-2 font-style-h3" ref={titleDesktopRef}>
-                {sectionPurposeName}
-              </div>
-              <div className="relative w-full ">
-                <div className="absolute w-full h-full">
-                  <div
-                    className="pt-[48px] font-style-p"
-                    ref={paragraphDesktopRef}
-                  >
-                    <div
-                      dangerouslySetInnerHTML={{
-                        __html: paragraphText,
-                      }}
-                    ></div>
-                  </div>
-                </div>
+              <Image src={logoImageURL} alt="logo" width={128} height={128} />
+            </div>
+          </div>
+          <div
+            className="invisible mt-2 font-style-h3 "
+            ref={titleMobileAndTabletRef}
+          >
+            {sectionPurposeName}
+          </div>
+          <div className="relative w-full md:w-[566px] ">
+            <div className="absolute w-full h-full ">
+              <div
+                className="mx-8 pt-[48px] text-center font-style-p invisible"
+                ref={paragraphMobileAndTabletRef}
+              >
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: paragraphText,
+                  }}
+                ></div>
               </div>
             </div>
-            <div className="w-[570px] mr-[23px]">
-              <div className="h-fill w-fill mt-[134px]">
-                <div className="font-style-p" ref={graphsDesktopRef}>
-                  {sliders.map((slider, index) => (
-                    <Fragment key={index}>
-                      <AboutSlider
-                        sliderData={slider}
-                        mediaSizeName={mediaSizeName}
-                        isAnimateStripes={isAnimateStripes}
-                      />
-                    </Fragment>
-                  ))}
-                </div>
+            <div className="absolute w-full h-full ">
+              <div
+                className="mx-8 pt-[48px] text-center font-style-p invisible"
+                ref={graphsMobileAndTabletRef}
+              >
+                {sliders.map((slider, index) => (
+                  <Fragment key={index}>
+                    <AboutSlider
+                      sliderData={slider}
+                      isAnimateStripes={isAnimateStripes}
+                    />
+                  </Fragment>
+                ))}
               </div>
             </div>
-          </Fragment>
-        ) : null}
+          </div>
+        </Fragment>
       </div>
+      {/* {width < 1224  = end */}
+
+      {/* {width >= 1224  = start */}
+      <div
+        className={clsx(
+          `flex flex-col xl:flex-row items-center xl:items-start justify-center xl:justify-between w-full xl:w-container mx-0 xl:mx-auto z-10 pb-0 xl:pb-8 bg-background_2_darker)`,
+          { "mt-[100%]": !isFirstSectionThenNoTopMargin },
+          { invisible: width < 1224 }
+        )}
+        ref={sectionDesktopRef}
+      >
+        <div
+          className={`flex flex-col items-start justify-start ml-[40px] w-[570px]`}
+        >
+          <div className="relative w-[44px] h-[44px]" ref={logoDesktopRef}>
+            <div className="absolute top-0 bottom-0 left-0 right-0 w-fill h-fill">
+              <Image src={logoImageURL} alt="logo" width={128} height={128} />
+            </div>
+          </div>
+          <div className="mt-2 font-style-h3" ref={titleDesktopRef}>
+            {sectionPurposeName}
+          </div>
+          <div className="relative w-full ">
+            <div className="absolute w-full h-full">
+              <div className="pt-[48px] font-style-p" ref={paragraphDesktopRef}>
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: paragraphText,
+                  }}
+                ></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="w-[570px] mr-[23px]">
+          <div className="h-fill w-fill mt-[134px]">
+            <div className="font-style-p" ref={graphsDesktopRef}>
+              {sliders.map((slider, index) => (
+                <Fragment key={index}>
+                  <AboutSlider
+                    sliderData={slider}
+                    mediaSizeName={mediaSizeName}
+                    isAnimateStripes={isAnimateStripes}
+                  />
+                </Fragment>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* {width >= 1224  = end */}
     </section>
   );
 };
