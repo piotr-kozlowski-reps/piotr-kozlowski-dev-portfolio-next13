@@ -53,19 +53,15 @@
   "credentialItems": [
     {
       "portraitImgUrl": "/portrait_000.png",
-      "credentialText": "lorem impsum...I really love that, but there seems to be issues like for example he, is too old. I really love that, but there seems to be issues like for example he, is too old. I really love that, but there seems to be issues like for example he, is too old. ."
+      "credentialText": "<p class=\"mt-8 md:mt-0\">\r\n                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;I have had the\r\n                pleasure of working with Piotr for some time now and can\r\n                confidently say that he is one of the most reliable and devoted\r\n                developers I have ever worked with. His attention to detail and\r\n                commitment to delivering top-notch results (within his\r\n                abilities) is truly impressive.\r\n              </p>\r\n              <p class=\"mt-8\">\r\n                <p class=\"font-style-xs\">\r\n                  (ChatGPT with a prompt: \"write testimonial for a\r\n                  developer, around 2 sentences, saying that he is reliable and\r\n                  devoted\".)\r\n                </p>\r\n                <p class=\"font-style-xs\">\r\n                  Unbelievable tool ... and it's astonishing how well it knows\r\n                  me and how honest it is!\r\n                </p>\r\n              </p>"
     },
     {
       "portraitImgUrl": "/portrait_001.png",
-      "credentialText": "lorem impsum...second text here and new graphics should be provided. I really love that, but there seems to be issues like for example he, is too old. I really love that, but there seems to be issues like for example he, is too old. I really love that, but there seems to be issues like for example he, is too old. asdfvskdjfkv sdfnsdnf svdifvnsd fvosidf vsdfovn s dfv"
+      "credentialText": "<p class=\"mt-8 md:mt-0\">\r\n                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;I'm Piotr's son. He proposed to me 14.99 EUR to write a\r\n                beautiful testimonial. For such an amount, however, do not\r\n                expect too much.\r\n              </p>\r\n              <p>\r\n                He's OK. He's old. He keeps word &#128543;. He's sometimes\r\n                funny.\r\n              </p>\r\n              <p class=\"mt-4 font-style-xs\">(Kajetan Kozłowski)</p> "
     },
     {
       "portraitImgUrl": "/portrait_002.png",
-      "credentialText": "lorem impsum...third text here and new graphics should be provided. I really love that, but there seems to be issues like for example he, is too old. I really love that, but there seems to be issues like for example he."
-    },
-    {
-      "portraitImgUrl": "/portrait_003.png",
-      "credentialText": "lorem impsum...fourth text here and new graphics should be provided. I really love that, but there seems to be issues like for example he, is too old. I really love that, but there seems to be issues like for example he, is too old. I really love that, but there seems to be issues like for example he, is too old. asdfvskdjfkv sdfnsdnf svdifvnsd fvosidf vsdfovn s dfv, but there seems to be issues like for example he, is too old. I really love that, but there seems to be issues like for example he, is too old. asdfvskdjfkv sdfnsdnf svdifvnsd fvosidf . asdfvskdjfkv sdfnsdnf svdifvnsd fvosidf."
+      "credentialText": "<p class=\"mt-8 md:mt-0\">\r\n                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;We've known each other for so long that I can't write anything\r\n                bad even if I wanted. But I don't want.\r\n              </p>\r\n              <p>\r\n                He's the type of guy that if he says \"I'll do it\" ... he... will\r\n                do it. Lovely attitude.\r\n              </p>\r\n              <p class=\"mt-4 font-style-xs\">\r\n                (Adam Gburek - KEbeth Studio)\r\n              </p>"
     }
   ],
   "projectsDetails": [

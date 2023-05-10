@@ -16,13 +16,11 @@ const AboutCredentials = () => {
 
   //initial Morph
   const morphBackgroundFill = [
-    "M0 11V259L180 215.5L360 172V0L215 45.5L0 11Z",
     "M0 24V212.5L180 260L360 236V41.5L215 1L0 24Z",
     "M0 0V259L122.5 224.5L360 241V15.5L202 47L0 0Z",
     "M0 25V192.5L138.5 237L360 259V42L249 0L0 25Z",
   ];
   const morphBackgroundStroke = [
-    "M215 45.125L107.5 28.0625L32 16",
     "M328 32.5L276 18L215 1",
     "M328 238.5L230 232L122.5 224.5",
     "M139 237L92.5 222.5L32 203",
@@ -149,24 +147,24 @@ const AboutCredentials = () => {
           });
           setCredentialIndex(() => 2);
         })
-        .addLabel("credential3")
-        .call(() => {
-          setCredentialIndex(() => 3);
-          apiBackgroundAnimation.start({
-            backgroundFill: morphBackgroundFill[3],
-            backgroundStroke: morphBackgroundStroke[3],
-          });
-        })
-        .add(credentialAnimationIn())
-        .to(credentialItemsSectionRef.current, {})
-        .add(credentialAnimationOut())
-        .call(() => {
-          apiBackgroundAnimation.start({
-            backgroundFill: morphBackgroundFill[3],
-            backgroundStroke: morphBackgroundStroke[3],
-          });
-          setCredentialIndex(() => 3);
-        })
+        // .addLabel("credential3")
+        // .call(() => {
+        //   setCredentialIndex(() => 3);
+        //   apiBackgroundAnimation.start({
+        //     backgroundFill: morphBackgroundFill[3],
+        //     backgroundStroke: morphBackgroundStroke[3],
+        //   });
+        // })
+        // .add(credentialAnimationIn())
+        // .to(credentialItemsSectionRef.current, {})
+        // .add(credentialAnimationOut())
+        // .call(() => {
+        //   apiBackgroundAnimation.start({
+        //     backgroundFill: morphBackgroundFill[3],
+        //     backgroundStroke: morphBackgroundStroke[3],
+        //   });
+        //   setCredentialIndex(() => 3);
+        // })
         .addLabel("finalFadeOut")
         .fromTo(
           credentialItemsSectionRef.current,
@@ -231,14 +229,15 @@ const AboutCredentials = () => {
               alt="credentials portrait"
             />
           </div>
-          <div className="">
-            <p
-              className="invisible mx-8 mt-4 mb-0 text-center md:mb-4 md:mt-8 xl:mb-16 font-style-sm xl:font-style-p z-60"
-              ref={credentialParagraphRef}
-            >
-              {credentialItems[credentialIndex].credentialText}
-            </p>
-          </div>
+
+          <div
+            className="invisible mx-8 mt-4 mb-0 text-center md:mb-4 md:mt-8 xl:mb-16 font-style-sm xl:font-style-p z-60"
+            dangerouslySetInnerHTML={{
+              __html: credentialItems[credentialIndex].credentialText as string,
+            }}
+            ref={credentialParagraphRef}
+          ></div>
+
           <div className="w-full h-[88px]"></div>
         </div>
       </div>

@@ -140,10 +140,7 @@ const AboutDetails = (props: Props) => {
 
     mm.add("(min-width: 1224px)", () => {
       //tl
-      const tl = createTl(sectionDesktopRef, 204, 450);
-
-      console.log("desktop");
-      console.log(logoDesktopRef.current);
+      const tl = createTl(sectionDesktopRef, 204, 350);
 
       tl.addLabel("start")
         .call(() => {
@@ -198,60 +195,56 @@ const AboutDetails = (props: Props) => {
         )}
         ref={sectionModalRef}
       >
-        {/* {typeof window !== "undefined" && window.innerWidth < 1224 ? ( */}
-
-        <Fragment>
+        <div
+          className={`relative  ${
+            mediaSizeName === "mobile"
+              ? "w-[44px] h-[44px]"
+              : "w-[88px] h-[88px]"
+          } `}
+          // ref={logoMobileAndTabletRef}
+        >
           <div
-            className={`relative  ${
-              mediaSizeName === "mobile"
-                ? "w-[44px] h-[44px]"
-                : "w-[88px] h-[88px]"
-            } `}
-            // ref={logoMobileAndTabletRef}
+            className="absolute top-0 bottom-0 left-0 right-0 w-full h-full"
+            ref={logoMobileAndTabletRef}
           >
+            <Image src={logoImageURL} alt="logo" width={128} height={128} />
+          </div>
+        </div>
+        <div
+          className="invisible mt-2 font-style-h3 "
+          ref={titleMobileAndTabletRef}
+        >
+          {sectionPurposeName}
+        </div>
+        <div className="relative w-full md:w-[566px] ">
+          <div className="absolute w-full h-full ">
             <div
-              className="absolute top-0 bottom-0 left-0 right-0 w-full h-full"
-              ref={logoMobileAndTabletRef}
+              className="mx-8 pt-[48px] text-center font-style-p invisible"
+              ref={paragraphMobileAndTabletRef}
             >
-              <Image src={logoImageURL} alt="logo" width={128} height={128} />
-            </div>
-          </div>
-          <div
-            className="invisible mt-2 font-style-h3 "
-            ref={titleMobileAndTabletRef}
-          >
-            {sectionPurposeName}
-          </div>
-          <div className="relative w-full md:w-[566px] ">
-            <div className="absolute w-full h-full ">
               <div
-                className="mx-8 pt-[48px] text-center font-style-p invisible"
-                ref={paragraphMobileAndTabletRef}
-              >
-                <div
-                  dangerouslySetInnerHTML={{
-                    __html: paragraphText,
-                  }}
-                ></div>
-              </div>
-            </div>
-            <div className="absolute w-full h-full ">
-              <div
-                className="mx-8 pt-[48px] text-center font-style-p invisible"
-                ref={graphsMobileAndTabletRef}
-              >
-                {sliders.map((slider, index) => (
-                  <Fragment key={index}>
-                    <AboutSlider
-                      sliderData={slider}
-                      isAnimateStripes={isAnimateStripes}
-                    />
-                  </Fragment>
-                ))}
-              </div>
+                dangerouslySetInnerHTML={{
+                  __html: paragraphText,
+                }}
+              ></div>
             </div>
           </div>
-        </Fragment>
+          <div className="absolute w-full h-full ">
+            <div
+              className="mx-8 pt-[48px] text-center font-style-p invisible"
+              ref={graphsMobileAndTabletRef}
+            >
+              {sliders.map((slider, index) => (
+                <Fragment key={index}>
+                  <AboutSlider
+                    sliderData={slider}
+                    isAnimateStripes={isAnimateStripes}
+                  />
+                </Fragment>
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
       {/* {width < 1224  = end */}
 
@@ -259,7 +252,7 @@ const AboutDetails = (props: Props) => {
       <div
         className={clsx(
           `flex flex-col xl:flex-row items-center xl:items-start justify-center xl:justify-between w-full xl:w-container mx-0 xl:mx-auto z-10 pb-0 xl:pb-8 bg-background_2_darker)`,
-          { "mt-[100%]": !isFirstSectionThenNoTopMargin },
+          // { "mt-[50%]": !isFirstSectionThenNoTopMargin },
           { invisible: width < 1224 }
         )}
         ref={sectionDesktopRef}

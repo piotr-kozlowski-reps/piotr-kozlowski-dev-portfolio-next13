@@ -29,8 +29,6 @@ const mainFont = localFont({
   variable: "--mainFont",
 });
 
-console.log("mainFont: ", mainFont);
-
 export const metadata: Metadata = {
   title: "Piotr Kozłowski - developer/designer portfolio.",
   description:
