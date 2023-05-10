@@ -6,28 +6,30 @@ import localFont from "next/font/local";
 const mainFont = localFont({
   src: [
     {
-      path: "EuclidCircularBLight.ttf",
+      path: "/EuclidCircularBLight.ttf",
       style: "light",
     },
     {
-      path: "EuclidCircularBMedium.ttf",
+      path: "/EuclidCircularBMedium.ttf",
       style: "medium",
     },
     {
-      path: "EuclidCircularBRegular.ttf",
+      path: "/EuclidCircularBRegular.ttf",
       style: "regular",
     },
     {
-      path: "EuclidCircularBSemiBold.ttf",
+      path: "/EuclidCircularBSemiBold.ttf",
       style: "semibold",
     },
     {
-      path: "EuclidCircularBBold.ttf",
+      path: "/EuclidCircularBBold.ttf",
       style: "bold",
     },
   ],
   variable: "--mainFont",
 });
+
+console.log("mainFont: ", mainFont);
 
 export const metadata: Metadata = {
   title: "Piotr Kozłowski - developer/designer portfolio.",
@@ -57,7 +59,7 @@ export default function RootLayout({
     <html className="overflow-y-scroll">
       <head />
       <body
-        className={`overflow-x-hidden ${mainFont.variable} ${
+        className={`overflow-x-hidden ${mainFont.variable} font-mainFont ${
           inDevEnvironment ? "debug-screens" : ""
         } scrollbar scrollbar-w-2 scrollbar-thumb-background_1_lighter scrollbar-thumb-rounded-lg scrollbar-track-background_2_darker `}
       >

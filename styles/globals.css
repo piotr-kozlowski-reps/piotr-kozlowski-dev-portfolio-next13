@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  scrollbar-color: #2c2f36 #26292e !important;
+  scrollbar-width: thin;
+}
+
 *,
 *::before,
 *::after {
@@ -32,10 +37,10 @@ textarea::-webkit-scrollbar-corner {
 @layer components {
   /* link */
   .link {
-    @apply uppercase text-[18px] text-main_white font-mainFont font-medium tracking-tightest px-2 pt-2 pb-0 cursor-pointer hover:text-main_color;
+    @apply uppercase text-[18px] text-main_white font-mainFont font-semibold tracking-tightest px-2 pt-2 pb-0 cursor-pointer hover:text-main_color;
   }
   .link-active {
-    @apply uppercase text-[18px] text-main_color font-mainFont font-medium tracking-tightest px-2 pt-2 pb-0;
+    @apply uppercase text-[18px] text-main_color font-mainFont font-semibold tracking-tightest px-2 pt-2 pb-0;
   }
   .link::after,
   .link-active::after {
@@ -89,10 +94,10 @@ textarea::-webkit-scrollbar-corner {
 
   /* mobile - link */
   .mobile-link {
-    @apply uppercase text-[22px] text-main_white font-mainFont font-medium tracking-tightest px-2 pt-2 pb-2 cursor-pointer hover:text-main_color;
+    @apply uppercase text-[22px] text-main_white font-mainFont font-semibold tracking-tightest px-2 pt-2 pb-2 cursor-pointer hover:text-main_color;
   }
   .mobile-link-active {
-    @apply uppercase text-[22px] text-main_color font-mainFont font-medium tracking-tightest px-2 pt-2 pb-2 cursor-pointer;
+    @apply uppercase text-[22px] text-main_color font-mainFont font-semibold tracking-tightest px-2 pt-2 pb-2 cursor-pointer;
   }
 
   .mobile-link-small {
