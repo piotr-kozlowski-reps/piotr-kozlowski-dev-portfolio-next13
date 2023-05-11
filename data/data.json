@@ -66,7 +66,7 @@
   ],
   "projectsDetails": [
     {
-      "numberImageURL": "01.svg",
+      "numberImageURL": "/001.png",
       "projectImages": [
         {
           "imageUrl": "/ante_portfolio_desktop_0001.jpg",
@@ -111,7 +111,7 @@
       }
     },
     {
-      "numberImageURL": "02.svg",
+      "numberImageURL": "/002.png",
       "projectImages": [
         {
           "imageUrl": "/dev_portfolio_desktop_0001.jpg",

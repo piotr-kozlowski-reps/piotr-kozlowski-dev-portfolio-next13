@@ -81,72 +81,76 @@ const ProjectDetails = (props: Props) => {
             y: howMuchMoveImages,
             autoAlpha: 0,
           }
+        )
+        .fromTo(
+          image2Ref.current,
+          { autoAlpha: 0, y: "50vh" },
+          { autoAlpha: 1, y: "-10vh", ease: "power4.in" },
+          "-=90%"
+        )
+        .fromTo(
+          image2Ref.current,
+          { filter: "blur(0px)", y: "-10vh", autoAlpha: 1 },
+          {
+            filter: `blur(${blurAmount}px)`,
+            y: howMuchMoveImages,
+            autoAlpha: 0,
+          }
+        )
+        .fromTo(
+          image3Ref.current,
+          { autoAlpha: 0, y: "50vh" },
+          { autoAlpha: 1, y: "-10vh", ease: "power4.in" },
+          "-=90%"
+        )
+        .fromTo(
+          image3Ref.current,
+          { filter: "blur(0px)", y: "-10vh" },
+          { filter: `blur(${blurAmount}px)`, y: howMuchMoveImages }
+        )
+        .fromTo(
+          image4Ref.current,
+          { autoAlpha: 0, y: "50vh" },
+          { autoAlpha: 1, y: "-10vh", ease: "power4.in" },
+          "-=90%"
+        )
+        .addLabel("description")
+        .fromTo(
+          image4Ref.current,
+          { filter: "blur(0px)", y: "-10vh" },
+          { filter: `blur(${blurAmount * 2}px)`, y: howMuchMoveImages },
+          "description"
+        )
+        .to(backgroundDescriptionRef.current, { autoAlpha: 1 }, "description")
+        .fromTo(
+          projectNameRef.current,
+          { filter: "blur(5px)", x: "-100vh", autoAlpha: 0 },
+          { filter: "blur(0px)", x: 0, autoAlpha: 1, ease: "power4.inOut" },
+          "description"
+        )
+        .fromTo(
+          projectTechnologiesNameRef.current,
+          { filter: "blur(5px)", x: "-100vh", autoAlpha: 0 },
+          { filter: "blur(0px)", x: 0, autoAlpha: 1, ease: "power4.inOut" },
+          "description"
+        )
+        .addLabel("descriptionAndScale")
+        .fromTo(
+          [
+            githubNameRef.current,
+            viewSiteNameRef.current,
+            projectDescriptionRef.current,
+          ],
+          { filter: "blur(5px)", x: "-100vh", autoAlpha: 0 },
+          { filter: "blur(0px)", x: 0, autoAlpha: 1, ease: "power4.inOut" },
+          "descriptionAndScale"
+        )
+        .to(projectRef.current, { autoAlpha: 1 })
+        .fromTo(
+          projectRef.current,
+          { y: "0", autoAlpha: 1 },
+          { y: "-50vh", autoAlpha: 0 }
         );
-      // .fromTo(
-      //   image2Ref.current,
-      //   { autoAlpha: 0, y: "50vh" },
-      //   { autoAlpha: 1, y: "-10vh", ease: "power4.in" },
-      //   "-=90%"
-      // )
-      // .fromTo(
-      //   image2Ref.current,
-      //   { filter: "blur(0px)", y: "-10vh", autoAlpha: 1 },
-      //   {
-      //     filter: `blur(${blurAmount}px)`,
-      //     y: howMuchMoveImages,
-      //     autoAlpha: 0,
-      //   }
-      // )
-      // .fromTo(
-      //   image3Ref.current,
-      //   { autoAlpha: 0, y: "50vh" },
-      //   { autoAlpha: 1, y: "-10vh", ease: "power4.in" },
-      //   "-=90%"
-      // )
-      // .fromTo(
-      //   image3Ref.current,
-      //   { filter: "blur(0px)", y: "-10vh" },
-      //   { filter: `blur(${blurAmount}px)`, y: howMuchMoveImages }
-      // )
-      // .fromTo(
-      //   image4Ref.current,
-      //   { autoAlpha: 0, y: "50vh" },
-      //   { autoAlpha: 1, y: "-10vh", ease: "power4.in" },
-      //   "-=90%"
-      // )
-      // .addLabel("description")
-      // .fromTo(
-      //   image4Ref.current,
-      //   { filter: "blur(0px)", y: "-10vh" },
-      //   { filter: `blur(${blurAmount * 2}px)`, y: howMuchMoveImages },
-      //   "description"
-      // )
-      // .to(backgroundDescriptionRef.current, { autoAlpha: 1 }, "description")
-      // .fromTo(
-      //   projectNameRef.current,
-      //   { filter: "blur(5px)", x: "-100vh", autoAlpha: 0 },
-      //   { filter: "blur(0px)", x: 0, autoAlpha: 1, ease: "power4.inOut" },
-      //   "description"
-      // )
-      // .fromTo(
-      //   projectTechnologiesNameRef.current,
-      //   { filter: "blur(5px)", x: "-100vh", autoAlpha: 0 },
-      //   { filter: "blur(0px)", x: 0, autoAlpha: 1, ease: "power4.inOut" },
-      //   "description"
-      // )
-      // .addLabel("descriptionAndScale")
-      // .fromTo(
-      //   [
-      //     githubNameRef.current,
-      //     viewSiteNameRef.current,
-      //     projectDescriptionRef.current,
-      //   ],
-      //   { filter: "blur(5px)", x: "-100vh", autoAlpha: 0 },
-      //   { filter: "blur(0px)", x: 0, autoAlpha: 1, ease: "power4.inOut" },
-      //   "descriptionAndScale"
-      // )
-      // .to(projectRef.current, { autoAlpha: 1 })
-      // .to(projectRef.current, { y: "-50vh", autoAlpha: 0 });
     };
 
     mm.add("(max-width: 768px)", () => {
@@ -243,7 +247,8 @@ const ProjectDetails = (props: Props) => {
             </svg>
           </div>
           <div
-            className="absolute top-0 left-0 h-32 w-[149px] invisible"
+            // className="absolute top-0 left-0 invisible h-32"
+            className="absolute top-0 left-0 h-36 w-[201px] invisible"
             ref={projectNumberRef}
           >
             <Image
@@ -251,8 +256,14 @@ const ProjectDetails = (props: Props) => {
               alt="project number"
               width={400}
               height={400}
-              // className=" xl:ml-[9px] pl-[31px] pr-[31px] xl:pl-0 xl:pr-0"
             />
+            {/* <Image
+              src={numberImageURL}
+              alt="project number"
+              width={400}
+              height={400}
+              // className=" xl:ml-[9px] pl-[31px] pr-[31px] xl:pl-0 xl:pr-0"
+            /> */}
           </div>
           <div className="absolute mt-[26px] ml-4 w-fill h-fill">
             <p
