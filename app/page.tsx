@@ -1,6 +1,6 @@
 "use client";
 
-import React, { Fragment, useEffect, useRef, useState } from "react";
+import React, { Fragment, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -24,10 +24,39 @@ const Home = () => {
   ////vars
   const [tlHomeSection, setTlHomeSection] = useState(() => gsap.timeline());
   const [width, height] = useDeviceSize();
+  const [isSafariState, setIsSafariState] = useState(false);
   const actualProgress = useRef(0);
 
+  //modal
   const modalState = useModalState();
-  useShowModalWhenProblemOccurs(height);
+  const [isModalVisible, setIsModalVisible] = useState(true);
+
+  useIsomorphicLayoutEffect(() => {
+    if (isSafari) {
+      setIsSafariState(true);
+    }
+  }, []);
+
+  //modal when height is too small
+  const conditionIfHeightIsTooSmall = height !== 0 && height <= 720;
+  const modalWhenHeightIsTooSmallContent = (
+    <div className="flex flex-col border-t border-main_color bg-background_1_lighter">
+      <div className="mx-auto my-16 font-style-sm ">
+        <p className="mx-8 text-center">
+          This site was thought to consume more pixels in vertical direction.
+        </p>
+        <p className="mx-8 text-center">
+          It needs that so badly, that looking at it, when window height is
+          lower than 720 pixels, can injure your eye with painfully invisible
+          content.
+        </p>
+      </div>
+    </div>
+  );
+  useShowModalWhenProblemOccurs(
+    conditionIfHeightIsTooSmall,
+    modalWhenHeightIsTooSmallContent
+  );
 
   //refs
   const menuBackgroundRef = useRef<HTMLDivElement>(null);
@@ -38,9 +67,6 @@ const Home = () => {
   const backgroundFadeRef = useRef<HTMLDivElement>(null);
   const modalRef = useRef<HTMLDivElement>(null);
 
-  //modal
-  const [isModalVisible, setIsModalVisible] = useState(true);
-
   const homeSectionHPercentage = 0; //500 was to make nice home page section, needs to be reorganised to make rest of the animations possible
 
   /** get object defining in which section we are currently based on Scroll Y position */
@@ -50,8 +76,6 @@ const Home = () => {
       projectsRef,
       contactRef
     );
-
-  console.log({ isSafari });
 
   // TODO: delete afterwards;
   // useIsomorphicLayoutEffect(() => {
@@ -144,6 +168,32 @@ const Home = () => {
   ////jsx
   return (
     <Fragment>
+      {/* isSafari */}
+      {/* {isSafariState ? (
+        <div
+          className="fixed top-0 bottom-0 left-0 right-0 w-screen h-full z-max"
+          style={{ backgroundColor: "#26292E", height: "100%", width: "100%" }}
+        >
+          <div className="flex flex-col border-t border-main_color">
+            <div
+              className="mx-auto my-32 font-style-sm"
+              style={{ color: "#FCEB41" }}
+            >
+              <p className="mx-8 text-center">
+                Unfortunately, Safari, for some reason, hates this site.
+                <br />
+                So ... in Safari I can offer you only this text. I know it isn't
+                too much.
+                <br />I can add one emoji: 😄.
+                <br />
+                <br />
+                If possible, I ask you to change the browser to Chrome, Firefox,
+                Opera...
+              </p>
+            </div>
+          </div>
+        </div>
+      ) : null} */}
       {/* modal */}
       {modalState.getIsShowModal() ? (
         <Modal

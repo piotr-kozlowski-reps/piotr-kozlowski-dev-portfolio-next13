@@ -6,7 +6,7 @@ import React, { Fragment, useRef, useState } from "react";
 import useDeviceSize from "../../hooks/useDeviceSize";
 import useIsomorphicLayoutEffect from "../../hooks/useIsomorphicLayoutEffect";
 import { TMediaSizeNames } from "../../types/typings";
-import { isFirefox } from "react-device-detect";
+import { isFirefox, isSafari } from "react-device-detect";
 
 /** avoid start animation when site starts in mobile mode
  * "(max-width: 768px)" animation when starts only when number of renders is more than initial 2
@@ -43,7 +43,7 @@ const HomePageImageRevealing = () => {
 
   //// preventing hydration Error - setting the value via useEffect
   useIsomorphicLayoutEffect(() => {
-    isFirefox
+    isFirefox || isSafari
       ? setTranslateX("translate(-156,25)")
       : setTranslateX("translate(0,0)");
   }, []);
