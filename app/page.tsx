@@ -16,7 +16,8 @@ import ContactSection from "../components/contactPage/ContactSection";
 import Modal from "../components/ui/Modal";
 import { useModalState } from "../globalState/ModalState";
 import Footer from "../components/footer/Footer";
-import useShowModalWhenHeightIsTooSmall from "../hooks/useShowModalWhenHeightIsTooSmall";
+import useShowModalWhenProblemOccurs from "../hooks/useShowModalWhenProblemOccurs";
+import { isSafari } from "react-device-detect";
 
 gsap.registerPlugin(ScrollTrigger);
 const Home = () => {
@@ -26,7 +27,7 @@ const Home = () => {
   const actualProgress = useRef(0);
 
   const modalState = useModalState();
-  useShowModalWhenHeightIsTooSmall(height);
+  useShowModalWhenProblemOccurs(height);
 
   //refs
   const menuBackgroundRef = useRef<HTMLDivElement>(null);
@@ -49,6 +50,8 @@ const Home = () => {
       projectsRef,
       contactRef
     );
+
+  console.log({ isSafari });
 
   // TODO: delete afterwards;
   // useIsomorphicLayoutEffect(() => {

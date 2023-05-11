@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useModalState } from "../globalState/ModalState";
 
-const useShowModalWhenHeightIsTooSmall = (height: number) => {
+const useShowModalWhenProblemOccurs = (height: number) => {
   ////vars
   const modalState = useModalState();
   const [wasTooSmallHeightWarningVisible, setWasTooSmallHeightWarningVisible] =
@@ -32,4 +32,4 @@ const useShowModalWhenHeightIsTooSmall = (height: number) => {
   }, [height]);
 };
 
-export default useShowModalWhenHeightIsTooSmall;
+export default useShowModalWhenProblemOccurs;

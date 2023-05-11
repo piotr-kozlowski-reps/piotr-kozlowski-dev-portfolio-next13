@@ -19,6 +19,16 @@ body {
   margin: 0;
 }
 
+/* svg * {
+  transform-box: fill-box;
+}
+
+svg clipPath {
+  -webkit-transform-origin: 50% 50%;
+  transform-origin: 50% 50%;
+  -moz-transform-origin: 250px 250px;
+} */
+
 /* textarea scrollbar */
 textarea::-webkit-scrollbar {
   width: 8px;

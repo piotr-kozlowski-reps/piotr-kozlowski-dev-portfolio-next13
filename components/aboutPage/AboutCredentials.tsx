@@ -147,24 +147,6 @@ const AboutCredentials = () => {
           });
           setCredentialIndex(() => 2);
         })
-        // .addLabel("credential3")
-        // .call(() => {
-        //   setCredentialIndex(() => 3);
-        //   apiBackgroundAnimation.start({
-        //     backgroundFill: morphBackgroundFill[3],
-        //     backgroundStroke: morphBackgroundStroke[3],
-        //   });
-        // })
-        // .add(credentialAnimationIn())
-        // .to(credentialItemsSectionRef.current, {})
-        // .add(credentialAnimationOut())
-        // .call(() => {
-        //   apiBackgroundAnimation.start({
-        //     backgroundFill: morphBackgroundFill[3],
-        //     backgroundStroke: morphBackgroundStroke[3],
-        //   });
-        //   setCredentialIndex(() => 3);
-        // })
         .addLabel("finalFadeOut")
         .fromTo(
           credentialItemsSectionRef.current,
