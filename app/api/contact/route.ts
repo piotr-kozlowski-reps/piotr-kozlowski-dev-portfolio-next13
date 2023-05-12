@@ -65,19 +65,21 @@ export async function POST(request: Request) {
     text: outputInternalEmailAsPlainText, // plain text body
     html: outputInternalEmailAsHTML, // html body
   };
-  transporter.sendMail(mailOptions, (error, info) => {
-    if (error) {
-      console.error(error);
-      return NextResponse.json(
-        {
-          message:
-            "Some issue with automatically sending email has occurred. Please try again.",
-        },
-        { status: 400 }
-      );
-    }
-    console.log("Message sent: %s", info.messageId);
-    console.log("Preview url: %s", nodemailer.getTestMessageUrl(info));
+  await new Promise((resolve, reject) => {
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        console.error(error);
+        return NextResponse.json(
+          {
+            message:
+              "Some issue with automatically sending email has occurred. Please try again.",
+          },
+          { status: 400 }
+        );
+      }
+      console.log("Message sent: %s", info.messageId);
+      console.log("Preview url: %s", nodemailer.getTestMessageUrl(info));
+    });
   });
 
   //external email
@@ -120,19 +122,22 @@ export async function POST(request: Request) {
     text: outputClientEmailAsPlainText, // plain text body
     html: outputClientEmailAsHtmlEn, // html body
   };
-  transporter.sendMail(automaticMailOptions, (error, info) => {
-    if (error) {
-      console.error(error);
-      return NextResponse.json(
-        {
-          message:
-            "Some issue with automatically sending email has occurred. Please try again.",
-        },
-        { status: 400 }
-      );
-    }
-    console.log("Message sent: %s", info.messageId);
-    console.log("Preview url: %s", nodemailer.getTestMessageUrl(info));
+
+  await new Promise((resolve, reject) => {
+    transporter.sendMail(automaticMailOptions, (error, info) => {
+      if (error) {
+        console.error(error);
+        return NextResponse.json(
+          {
+            message:
+              "Some issue with automatically sending email has occurred. Please try again.",
+          },
+          { status: 400 }
+        );
+      }
+      console.log("Message sent: %s", info.messageId);
+      console.log("Preview url: %s", nodemailer.getTestMessageUrl(info));
+    });
   });
 
   return NextResponse.json({
