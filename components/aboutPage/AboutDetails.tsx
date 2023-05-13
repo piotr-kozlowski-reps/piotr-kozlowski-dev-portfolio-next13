@@ -129,7 +129,7 @@ const AboutDetails = (props: Props) => {
     }
 
     mm.add("(max-width: 768px)", () => {
-      const tl = createTl(sectionModalRef, 110, 450);
+      const tl = createTl(sectionModalRef, 132, 450);
       animateMobileAndTablet(tl);
     });
 
