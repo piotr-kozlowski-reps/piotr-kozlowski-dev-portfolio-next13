@@ -81,6 +81,15 @@ export async function POST(request: Request) {
   //     console.log("Preview url: %s", nodemailer.getTestMessageUrl(info));
   //   });
   // };
+
+  /** solution to problem with Vercel: https://stackoverflow.com/questions/65631481/nodemailer-in-vercel-not-sending-email-in-production  
+   * Especially last enter:
+   * 
+   * You need to remove the callback from the nodemailer sendEmail function otherwise it does not return a promise... this cause the script in vercel to be terminated earlier hence not email being sent!
+
+    If callback argument is not set then the method returns a Promise object. Nodemailer itself does not use Promises internally but it wraps the return into a Promise for convenience.
+
+   */
   const sendInternalEmail = async () => {
     await transporter.sendMail(mailOptions);
   };
@@ -138,26 +147,25 @@ export async function POST(request: Request) {
     text: outputClientEmailAsPlainText, // plain text body
     html: outputClientEmailAsHtmlEn, // html body
   };
+
+  /** info above with solution to vercel problem */
   const sendOutputClientEmail = async () => {
-    await transporter.sendMail(automaticMailOptions, (error, info) => {
-      if (error) {
-        console.error(error);
-        return NextResponse.json(
-          {
-            message:
-              "Some issue with automatically sending email has occurred. Please try again.",
-          },
-          { status: 400 }
-        );
-      }
-      console.log("Message sent: %s", info.messageId);
-      console.log("Preview url: %s", nodemailer.getTestMessageUrl(info));
-    });
+    await transporter.sendMail(automaticMailOptions);
   };
+
   try {
     await sendOutputClientEmail();
+
+    console.log("External Email sent");
   } catch (error) {
     console.error(error);
+    return NextResponse.json(
+      {
+        message:
+          "Some issue with automatically sending email has occurred. Please try again.",
+      },
+      { status: 400 }
+    );
   }
 
   return NextResponse.json({
