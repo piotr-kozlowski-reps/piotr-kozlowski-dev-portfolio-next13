@@ -129,7 +129,7 @@ const AboutDetails = (props: Props) => {
     }
 
     mm.add("(max-width: 768px)", () => {
-      const tl = createTl(sectionModalRef, 172, 450);
+      const tl = createTl(sectionModalRef, 110, 450);
       animateMobileAndTablet(tl);
     });
 
@@ -211,7 +211,7 @@ const AboutDetails = (props: Props) => {
           </div>
         </div>
         <div
-          className="invisible mt-2 font-style-h3 "
+          className="invisible mt-[7px] font-style-h3 "
           ref={titleMobileAndTabletRef}
         >
           {sectionPurposeName}
@@ -219,7 +219,7 @@ const AboutDetails = (props: Props) => {
         <div className="relative w-full md:w-[566px] ">
           <div className="absolute w-full h-full ">
             <div
-              className="mx-8 pt-[48px] text-center font-style-p invisible"
+              className="mx-8 pt-[39px] text-center font-style-p invisible"
               ref={paragraphMobileAndTabletRef}
             >
               <div
@@ -231,7 +231,7 @@ const AboutDetails = (props: Props) => {
           </div>
           <div className="absolute w-full h-full ">
             <div
-              className="mx-8 pt-[48px] text-center font-style-p invisible"
+              className="mx-8 pt-[41px] text-center font-style-p invisible"
               ref={graphsMobileAndTabletRef}
             >
               {sliders.map((slider, index) => (

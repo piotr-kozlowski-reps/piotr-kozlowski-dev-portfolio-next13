@@ -19,7 +19,7 @@ const AboutSlider = (props: Props) => {
   {
     return additionalInfo ? (
       <div
-        className={`flex mb-8 flex-col ${
+        className={`flex mb-[25px] md:mb-8 flex-col ${
           mediaSizeName === "desktop"
             ? "items-start justify-center"
             : "items-center justify-center"

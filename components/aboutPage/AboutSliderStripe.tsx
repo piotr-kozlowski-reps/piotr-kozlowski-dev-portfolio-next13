@@ -57,7 +57,7 @@ const AboutSliderStripe = (props: Props) => {
 
   ////jsx
   return (
-    <div className="relative w-full h-1 mt-4">
+    <div className="relative w-full h-1 mt-[12px] md:mt-4">
       <div
         className="absolute top-0 left-0 w-full h-full bg-background_1_lighter"
         ref={backgroundStripeRef}
