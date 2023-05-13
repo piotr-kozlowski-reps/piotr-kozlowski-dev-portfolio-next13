@@ -65,26 +65,37 @@ export async function POST(request: Request) {
     text: outputInternalEmailAsPlainText, // plain text body
     html: outputInternalEmailAsHTML, // html body
   };
+  // const sendInternalEmail = async () => {
+  //   await transporter.sendMail(mailOptions, (error, info) => {
+  //     if (error) {
+  //       console.error(error);
+  //       return NextResponse.json(
+  //         {
+  //           message:
+  //             "Some issue with automatically sending email has occurred. Please try again.",
+  //         },
+  //         { status: 400 }
+  //       );
+  //     }
+  //     console.log("Message sent: %s", info.messageId);
+  //     console.log("Preview url: %s", nodemailer.getTestMessageUrl(info));
+  //   });
+  // };
   const sendInternalEmail = async () => {
-    await transporter.sendMail(mailOptions, (error, info) => {
-      if (error) {
-        console.error(error);
-        return NextResponse.json(
-          {
-            message:
-              "Some issue with automatically sending email has occurred. Please try again.",
-          },
-          { status: 400 }
-        );
-      }
-      console.log("Message sent: %s", info.messageId);
-      console.log("Preview url: %s", nodemailer.getTestMessageUrl(info));
-    });
+    await transporter.sendMail(mailOptions);
   };
   try {
     await sendInternalEmail();
+    console.log("Internal Email sent");
   } catch (error) {
     console.error(error);
+    return NextResponse.json(
+      {
+        message:
+          "Some issue with automatically sending email has occurred. Please try again.",
+      },
+      { status: 400 }
+    );
   }
 
   //external email
