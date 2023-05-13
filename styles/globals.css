@@ -143,10 +143,10 @@ textarea::-webkit-scrollbar-corner {
   }
 
   .font-initially-invisible-white-p {
-    @apply font-mainFont text-[22px] text-main_white invisible tracking-tight;
+    @apply font-mainFont text-[20px] text-main_white invisible tracking-tight;
   }
   .font-initially-invisible-yellow-p {
-    @apply font-mainFont text-[22px] text-main_color invisible tracking-tight;
+    @apply font-mainFont text-[20px] text-main_color invisible tracking-tight;
   }
 }
 

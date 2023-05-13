@@ -84,7 +84,8 @@ const AboutOverall = () => {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: overAllSectionRef.current,
-          start: () => `top 172px`,
+          // start: () => `top 172px`,
+          start: () => `top 132px`,
           end: () => `+=350%`,
           pin: true,
           scrub: 0.8,
@@ -171,7 +172,7 @@ const AboutOverall = () => {
             />
           </div>
         </div>
-        <div className="mx-8 md:mx-0 w-fill md:w-[566px] pt-[48px] text-center font-style-p ">
+        <div className="mx-8 md:mx-0 w-fill md:w-[566px] pt-[22px] md:pt-[48px] text-center font-style-p ">
           <p ref={overAllSectionP1Ref}>
             <span className="font-initially-invisible-white-p">
               Here comes text that is never read by anyone, ever. Main keywords
@@ -184,7 +185,7 @@ const AboutOverall = () => {
             <span className="font-initially-invisible-yellow-p">reliable</span>
             <span className="font-initially-invisible-white-p">.</span>
           </p>
-          <p ref={overAllSectionP2Ref}>
+          <p ref={overAllSectionP2Ref} className="-mt-[19px] md:mt-0">
             <br />
             <span className="font-initially-invisible-white-p">
               Another never read part, with keywords:{" "}
