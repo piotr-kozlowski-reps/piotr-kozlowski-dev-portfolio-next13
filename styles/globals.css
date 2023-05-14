@@ -136,7 +136,7 @@ textarea::-webkit-scrollbar-corner {
     @apply font-mainFont font-semibold text-[17px] text-main_white tracking-tight;
   }
   .font-style-sm-firefox {
-    @apply font-mainFont font-semibold text-[15px] text-main_white tracking-tight;
+    @apply font-mainFont font-semibold text-[14px] text-main_white tracking-tight;
   }
   .font-style-xs {
     @apply font-mainFont text-[10px] text-main_white tracking-wide font-semibold;
