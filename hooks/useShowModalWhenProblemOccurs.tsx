@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { useModalState } from "../globalState/ModalState";
 
-const useShowModalWhenProblemOccurs = (
-  conditionResult: boolean,
+const useShowModalWhenHeightIsTooSMall = (
+  height: number,
+  width: number,
   modalContent: JSX.Element
 ) => {
   ////vars
@@ -10,14 +11,19 @@ const useShowModalWhenProblemOccurs = (
   const [wasModalWarningVisible, setWasModalWarningVisible] = useState(false);
 
   useEffect(() => {
-    if (!wasModalWarningVisible && conditionResult) {
-      //show modal
+    const isforDesktopsMinimalHeightIs720px =
+      !wasModalWarningVisible && height !== 0 && height <= 720 && width > 768;
 
+    const isforMobileMinimalHeightIs600px =
+      !wasModalWarningVisible && height !== 0 && height <= 600 && width <= 768;
+
+    if (isforDesktopsMinimalHeightIs720px || isforMobileMinimalHeightIs600px) {
+      //show modal
       modalState.setModalData(modalContent, 0, false);
       modalState.setIsShowModal(true);
       setWasModalWarningVisible(true);
     }
-  }, []);
+  }, [height, width]);
 };
 
-export default useShowModalWhenProblemOccurs;
+export default useShowModalWhenHeightIsTooSMall;

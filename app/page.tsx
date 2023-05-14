@@ -16,7 +16,7 @@ import ContactSection from "../components/contactPage/ContactSection";
 import Modal from "../components/ui/Modal";
 import { useModalState } from "../globalState/ModalState";
 import Footer from "../components/footer/Footer";
-import useShowModalWhenProblemOccurs from "../hooks/useShowModalWhenProblemOccurs";
+import useShowModalWhenHeightIsTooSMall from "../hooks/useShowModalWhenProblemOccurs";
 import { isSafari } from "react-device-detect";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -24,21 +24,13 @@ const Home = () => {
   ////vars
   const [tlHomeSection, setTlHomeSection] = useState(() => gsap.timeline());
   const [width, height] = useDeviceSize();
-  const [isSafariState, setIsSafariState] = useState(false);
   const actualProgress = useRef(0);
 
   //modal
   const modalState = useModalState();
   const [isModalVisible, setIsModalVisible] = useState(true);
 
-  useIsomorphicLayoutEffect(() => {
-    if (isSafari) {
-      setIsSafariState(true);
-    }
-  }, []);
-
   //modal when height is too small
-  const conditionIfHeightIsTooSmall = height !== 0 && height <= 720;
   const modalWhenHeightIsTooSmallContent = (
     <div className="flex flex-col border-t border-main_color bg-background_1_lighter">
       <div className="mx-auto my-16 font-style-sm ">
@@ -53,8 +45,9 @@ const Home = () => {
       </div>
     </div>
   );
-  useShowModalWhenProblemOccurs(
-    conditionIfHeightIsTooSmall,
+  useShowModalWhenHeightIsTooSMall(
+    height,
+    width,
     modalWhenHeightIsTooSmallContent
   );
 
