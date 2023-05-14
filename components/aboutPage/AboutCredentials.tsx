@@ -6,13 +6,23 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import data from "../../data/data.json";
 import { animated, useSpring } from "@react-spring/web";
 import useIsomorphicLayoutEffect from "../../hooks/useIsomorphicLayoutEffect";
+import { isFirefox } from "react-device-detect";
 
 gsap.registerPlugin(ScrollTrigger);
 const AboutCredentials = () => {
   ////vars
   const { credentialItems } = data;
-
   const [credentialIndex, setCredentialIndex] = useState(0);
+  const [classesWhenFirefox, setClassesWhenFirefox] = useState(
+    "invisible mx-8 mt-4 mb-0 text-center md:mb-4 md:mt-8 xl:mb-16 font-style-sm xl:font-style-p z-60"
+  );
+  useIsomorphicLayoutEffect(() => {
+    if (isFirefox) {
+      setClassesWhenFirefox(
+        "font-style-sm-firefox invisible mx-8 mt-4 mb-0 text-center md:mb-4 md:mt-8 xl:mb-16 md:font-style-sm xl:font-style-p z-60"
+      );
+    }
+  }, []);
 
   //initial Morph
   const morphBackgroundFill = [
@@ -213,7 +223,7 @@ const AboutCredentials = () => {
           </div>
 
           <div
-            className="invisible mx-8 mt-4 mb-0 text-center md:mb-4 md:mt-8 xl:mb-16 font-style-sm xl:font-style-p z-60"
+            className={classesWhenFirefox}
             dangerouslySetInnerHTML={{
               __html: credentialItems[credentialIndex].credentialText as string,
             }}
