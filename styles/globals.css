@@ -152,10 +152,10 @@ textarea::-webkit-scrollbar-corner {
     @apply font-mainFont text-[20px] text-main_color invisible tracking-tight;
   }
   .font-initially-invisible-white-p-firefox {
-    @apply font-mainFont text-[18px] text-main_white invisible tracking-tight leading-tight;
+    @apply invisible text-[16px] tracking-tight font-mainFont text-main_white;
   }
   .font-initially-invisible-yellow-p-firefox {
-    @apply font-mainFont text-[18px] text-main_color invisible tracking-tight leading-tight;
+    @apply font-mainFont text-[16px] text-main_color invisible tracking-tight;
   }
 }
 
