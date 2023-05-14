@@ -1,11 +1,13 @@
 "use client";
 
 import Image from "next/image";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import useDeviceSize from "../../hooks/useDeviceSize";
 import useIsomorphicLayoutEffect from "../../hooks/useIsomorphicLayoutEffect";
+import { isFirefox } from "react-device-detect";
+import clsx from "clsx";
 
 gsap.registerPlugin(ScrollTrigger);
 const AboutOverall = () => {
@@ -19,6 +21,23 @@ const AboutOverall = () => {
 
   const [width, height, mediaSizeName] = useDeviceSize();
 
+  const [classNameForMainWhite, setClassNameForMainWhite] = useState(
+    "font-initially-invisible-white-p white-text-part"
+  );
+  const [classNameForYellow, setClassNameForYellow] = useState(
+    "font-initially-invisible-yellow-p yellow-text-part"
+  );
+  useIsomorphicLayoutEffect(() => {
+    if (isFirefox) {
+      setClassNameForMainWhite(
+        "font-initially-invisible-white-p-firefox md:font-initially-invisible-white-p white-text-part"
+      );
+      setClassNameForYellow(
+        "font-initially-invisible-yellow-p-firefox md:font-initially-invisible-yellow-p yellow-text-part"
+      );
+    }
+  }, []);
+
   ////animation
   useIsomorphicLayoutEffect(() => {
     let mm = gsap.matchMedia();
@@ -30,7 +49,7 @@ const AboutOverall = () => {
         .to(
           gsap.utils.toArray(
             overAllSectionP1Ref.current!.getElementsByClassName(
-              "font-initially-invisible-yellow-p"
+              "yellow-text-part"
             )
           ),
           { autoAlpha: 1 },
@@ -45,7 +64,7 @@ const AboutOverall = () => {
         .to(
           gsap.utils.toArray(
             overAllSectionP1Ref.current!.getElementsByClassName(
-              "font-initially-invisible-white-p"
+              "white-text-part"
             )
           ),
           { autoAlpha: 1 },
@@ -55,7 +74,7 @@ const AboutOverall = () => {
         .to(
           gsap.utils.toArray(
             overAllSectionP2Ref.current!.getElementsByClassName(
-              "font-initially-invisible-yellow-p"
+              "yellow-text-part"
             )
           ),
           { autoAlpha: 1 },
@@ -70,7 +89,7 @@ const AboutOverall = () => {
         .to(
           gsap.utils.toArray(
             overAllSectionP2Ref.current!.getElementsByClassName(
-              "font-initially-invisible-white-p"
+              "white-text-part"
             )
           ),
           { autoAlpha: 1 },
@@ -174,26 +193,26 @@ const AboutOverall = () => {
         </div>
         <div className="mx-8 md:mx-0 w-fill md:w-[566px] pt-[22px] md:pt-[48px] text-center font-style-p ">
           <p ref={overAllSectionP1Ref}>
-            <span className="font-initially-invisible-white-p">
+            <span className={classNameForMainWhite}>
               Here comes text that is never read by anyone, ever. Main keywords
               I wish to emphasize are:{" "}
             </span>
-            <span className="font-initially-invisible-yellow-p">front-end</span>
-            <span className="font-initially-invisible-white-p">, </span>
-            <span className="font-initially-invisible-yellow-p">developer</span>
-            <span className="font-initially-invisible-white-p"> and </span>
-            <span className="font-initially-invisible-yellow-p">reliable</span>
-            <span className="font-initially-invisible-white-p">.</span>
+            <span className={classNameForYellow}>front-end</span>
+            <span className={classNameForMainWhite}>, </span>
+            <span className={classNameForYellow}>developer</span>
+            <span className={classNameForMainWhite}> and </span>
+            <span className={classNameForYellow}>reliable</span>
+            <span className={classNameForMainWhite}>.</span>
           </p>
           <p ref={overAllSectionP2Ref} className="-mt-[19px] md:mt-0">
             <br />
-            <span className="font-initially-invisible-white-p">
+            <span className={classNameForMainWhite}>
               Another never read part, with keywords:{" "}
             </span>
-            <span className="font-initially-invisible-yellow-p">designer</span>
-            <span className="font-initially-invisible-white-p">, </span>
-            <span className="font-initially-invisible-yellow-p">reliable </span>
-            <span className="font-initially-invisible-white-p">
+            <span className={classNameForYellow}>designer</span>
+            <span className={classNameForMainWhite}>, </span>
+            <span className={classNameForYellow}>reliable </span>
+            <span className={classNameForMainWhite}>
               ("reliable" is still visible on screen above, so it seems
               redundant!). Have you noticed visual connection with parallel
               appearing "designer" logo part? Appealing? (I'm not convinced,

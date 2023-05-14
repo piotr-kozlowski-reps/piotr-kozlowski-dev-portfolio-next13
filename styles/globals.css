@@ -129,6 +129,9 @@ textarea::-webkit-scrollbar-corner {
   .font-style-p {
     @apply font-mainFont text-[22px] text-main_white tracking-tight;
   }
+  .font-style-p-firefox {
+    @apply font-mainFont text-[18px] text-main_white tracking-tight;
+  }
   .font-style-sm {
     @apply font-mainFont font-semibold text-[17px] text-main_white tracking-tight;
   }
@@ -147,6 +150,12 @@ textarea::-webkit-scrollbar-corner {
   }
   .font-initially-invisible-yellow-p {
     @apply font-mainFont text-[20px] text-main_color invisible tracking-tight;
+  }
+  .font-initially-invisible-white-p-firefox {
+    @apply font-mainFont text-[16px] text-main_white invisible tracking-tight;
+  }
+  .font-initially-invisible-yellow-p-firefox {
+    @apply font-mainFont text-[16px] text-main_color invisible tracking-tight;
   }
 }
 
