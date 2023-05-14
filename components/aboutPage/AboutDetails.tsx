@@ -10,6 +10,7 @@ import AboutSlider from "./AboutSlider";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import useIsomorphicLayoutEffect from "../../hooks/useIsomorphicLayoutEffect";
 import clsx from "clsx";
+import { isFirefox } from "react-device-detect";
 
 type Props = {
   detailsInfoSet: TDetailsInfoSet;
@@ -42,6 +43,17 @@ const AboutDetails = (props: Props) => {
   const paragraphDesktopRef = useRef<HTMLDivElement>(null);
   const graphsMobileAndTabletRef = useRef<HTMLDivElement>(null);
   const graphsDesktopRef = useRef<HTMLDivElement>(null);
+
+  const [classesWhenFirefox, setClassesWhenFirefox] = useState(
+    "mx-8 pt-[39px] text-center font-style-p invisible"
+  );
+  useIsomorphicLayoutEffect(() => {
+    if (isFirefox) {
+      setClassesWhenFirefox(
+        "mx-8 pt-[39px] text-center md:font-style-p invisible font-style-p-firefox"
+      );
+    }
+  }, []);
 
   ////animation
   useIsomorphicLayoutEffect(() => {
@@ -219,7 +231,7 @@ const AboutDetails = (props: Props) => {
         <div className="relative w-full md:w-[566px] ">
           <div className="absolute w-full h-full ">
             <div
-              className="mx-8 pt-[39px] text-center font-style-p invisible"
+              className={classesWhenFirefox}
               ref={paragraphMobileAndTabletRef}
             >
               <div
