@@ -8,6 +8,7 @@ import { TProjectDetails } from "../../types/typings";
 import Tooltip from "../ui/Tooltip";
 import { useModalState } from "../../globalState/ModalState";
 import ProjectDescriptionLink from "./ProjectDescriptionLink";
+import { isFirefox } from "react-device-detect";
 
 type Props = {
   projectDetails: TProjectDetails;
@@ -33,6 +34,43 @@ const ProjectDetails = (props: Props) => {
   const image2Ref = useRef<HTMLDivElement>(null);
   const image3Ref = useRef<HTMLDivElement>(null);
   const image4Ref = useRef<HTMLDivElement>(null);
+
+  //firefox classes (font's needs to be smaller)
+  const [classesProjectNameWhenFirefox, setClassesProjectNameWhenFirefox] =
+    useState("invisible mb-4 font-style-h3 text-main_color");
+  useIsomorphicLayoutEffect(() => {
+    if (isFirefox) {
+      setClassesProjectNameWhenFirefox(
+        "invisible mb-4 font-style-h3-firefox md:font-style-h3 text-main_color"
+      );
+    }
+  }, []);
+
+  const [
+    classesProjectDescriptionWhenFirefox,
+    setClassesProjectDescriptionWhenFirefox,
+  ] = useState("invisible mr-8 font-style-sm");
+  useIsomorphicLayoutEffect(() => {
+    if (isFirefox) {
+      setClassesProjectDescriptionWhenFirefox(
+        "invisible mr-8 font-style-sm-firefox md:font-style-sm"
+      );
+    }
+  }, []);
+
+  const [
+    classesProjectTechnologiesWhenFirefox,
+    setClassesProjectTechnologiesWhenFirefox,
+  ] = useState(
+    "ml-[10px] font-style-xs pb-8 text-main_white opacity-40 invisible"
+  );
+  useIsomorphicLayoutEffect(() => {
+    if (isFirefox) {
+      setClassesProjectTechnologiesWhenFirefox(
+        "ml-[10px] font-style-xs-firefox md:font-style-xs pb-8 text-main_white opacity-40 invisible"
+      );
+    }
+  }, []);
 
   ////utils
   //TODO: delete later
@@ -257,23 +295,13 @@ const ProjectDetails = (props: Props) => {
               width={400}
               height={400}
             />
-            {/* <Image
-              src={numberImageURL}
-              alt="project number"
-              width={400}
-              height={400}
-              // className=" xl:ml-[9px] pl-[31px] pr-[31px] xl:pl-0 xl:pr-0"
-            /> */}
           </div>
           <div className="absolute mt-[26px] ml-4 w-fill h-fill">
-            <p
-              className="invisible mb-4 font-style-h3 text-main_color"
-              ref={projectNameRef}
-            >
+            <p className={classesProjectNameWhenFirefox} ref={projectNameRef}>
               {projectName}
             </p>
             <p
-              className="invisible mr-8 font-style-sm"
+              className={classesProjectDescriptionWhenFirefox}
               ref={projectDescriptionRef}
             >
               {projectDescription}
@@ -283,7 +311,7 @@ const ProjectDetails = (props: Props) => {
           {/* icons bottom */}
           <div className="absolute bottom-0 mb-[20px] ml-[6px] z-100">
             <div
-              className="ml-[10px] font-style-xs pb-8 text-main_white opacity-40 invisible"
+              className={classesProjectTechnologiesWhenFirefox}
               ref={projectTechnologiesNameRef}
             >
               {projectTechnologiesUsed}

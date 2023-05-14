@@ -118,6 +118,9 @@ textarea::-webkit-scrollbar-corner {
   .font-style-h3 {
     @apply font-mainFont text-[22px] text-main_white uppercase tracking-tight font-semibold;
   }
+  .font-style-h3-firefox {
+    @apply font-mainFont text-[19px] text-main_white uppercase tracking-tight font-semibold;
+  }
   .font-style-h4 {
     @apply font-mainFont text-[16px] text-main_white uppercase tracking-tight;
   }
@@ -140,6 +143,9 @@ textarea::-webkit-scrollbar-corner {
   }
   .font-style-xs {
     @apply font-mainFont text-[10px] text-main_white tracking-wide font-semibold;
+  }
+  .font-style-xs-firefox {
+    @apply font-mainFont text-[8px] text-main_white tracking-wide font-semibold;
   }
   .font-style-formLabels {
     @apply font-mainFont text-[14px] font-semibold text-main_white_50 tracking-tight;
