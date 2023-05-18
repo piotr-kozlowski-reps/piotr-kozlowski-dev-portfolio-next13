@@ -23,13 +23,14 @@ export async function POST(request: Request) {
     );
   }
 
-  //// if data is correct send email to me and contact sender
+  console.log(Number(process.env.NODEMAILER_PORT));
 
+  //// if data is correct send email to me and contact sender
   //Nodemailer
   const transporter = nodemailer.createTransport({
     host: process.env.NODEMAILER_HOST,
     port: Number(process.env.NODEMAILER_PORT),
-    secure: true, // true for 465, false for other ports
+    secure: false, // true for 465, false for other ports
     auth: {
       user: process.env.NODEMAILER_USER,
       pass: process.env.NODEMAILER_PASS,
