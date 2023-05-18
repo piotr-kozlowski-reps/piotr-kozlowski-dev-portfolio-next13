@@ -17,14 +17,16 @@ import Modal from "../components/ui/Modal";
 import { useModalState } from "../globalState/ModalState";
 import Footer from "../components/footer/Footer";
 import useShowModalWhenHeightIsTooSMall from "../hooks/useShowModalWhenProblemOccurs";
-import { isSafari } from "react-device-detect";
+
+// let progress = 0;
+let actualProgress = 0;
 
 gsap.registerPlugin(ScrollTrigger);
 const Home = () => {
   ////vars
   const [tlHomeSection, setTlHomeSection] = useState(() => gsap.timeline());
   const [width, height] = useDeviceSize();
-  const actualProgress = useRef(0);
+  // const actualProgress = useRef(0);
 
   //modal
   const modalState = useModalState();
@@ -76,6 +78,35 @@ const Home = () => {
   // }, [contactRef.current]);
 
   /** Main scrollTrigger to maintain progress when window resize */
+  const mainScrollTrigger = ScrollTrigger.create({
+    trigger: "body",
+    start: 0,
+    end: "bottom bottom",
+    onUpdate: (self) => {
+      console.log(self.progress);
+    },
+    invalidateOnRefresh: true,
+  });
+
+  // useIsomorphicLayoutEffect(() => {
+  //   // ScrollTrigger.addEventListener("refreshInit", () => {
+  //   //   console.log("mainScrollTrigger.progress: ", mainScrollTrigger.progress);
+  //   //   actualProgress = mainScrollTrigger.progress;
+  //   //   console.log({ actualProgress });
+  //   // });
+
+  //   // ScrollTrigger.addEventListener("refresh", () => {
+  //   //   mainScrollTrigger.scroll(
+  //   //     actualProgress * ScrollTrigger.maxScroll(window)
+  //   //   );
+  //   // });
+
+  //   return () => {
+  //     // ScrollTrigger.removeEventListener("refreshInit");
+  //   };
+  // }, [height, width]);
+  // // (actualProgress = mainScrollTrigger.progress)
+
   // useIsomorphicLayoutEffect(() => {
   //   const mainScrollTriggerToMaintainProgress = ScrollTrigger.create({
   //     trigger: wholeAppRef.current,
@@ -161,32 +192,6 @@ const Home = () => {
   ////jsx
   return (
     <Fragment>
-      {/* isSafari */}
-      {/* {isSafariState ? (
-        <div
-          className="fixed top-0 bottom-0 left-0 right-0 w-screen h-full z-max"
-          style={{ backgroundColor: "#26292E", height: "100%", width: "100%" }}
-        >
-          <div className="flex flex-col border-t border-main_color">
-            <div
-              className="mx-auto my-32 font-style-sm"
-              style={{ color: "#FCEB41" }}
-            >
-              <p className="mx-8 text-center">
-                Unfortunately, Safari, for some reason, hates this site.
-                <br />
-                So ... in Safari I can offer you only this text. I know it isn't
-                too much.
-                <br />I can add one emoji: 😄.
-                <br />
-                <br />
-                If possible, I ask you to change the browser to Chrome, Firefox,
-                Opera...
-              </p>
-            </div>
-          </div>
-        </div>
-      ) : null} */}
       {/* modal */}
       {modalState.getIsShowModal() ? (
         <Modal
@@ -253,14 +258,6 @@ const Home = () => {
           </div>
         </div>
       </section>
-
-      {/* <section
-        ref={homeRef}
-        title="home_section"
-        className="bg-background_1_lighter"
-      >
-        <HomeSection />
-      </section> */}
 
       <section title="about_section">
         <div className=" bg-background_2_darker" ref={aboutRef}>
