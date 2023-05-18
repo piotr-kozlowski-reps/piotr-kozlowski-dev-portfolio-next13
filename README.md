@@ -67,6 +67,6 @@ Please find my resume here for a detailed overview of my education, work experie
 
 # <span style="color:#DDEFE4">Contact:</span>
 
-Feel free to contact me for any inquiries or opportunities. You can reach me via email at myEmail@here.com or through my LinkedIn profile here.
+Feel free to contact me for any inquiries or opportunities. You can reach me via email at piotr.kozlowski@dev.ante.pl or through my LinkedIn profile: https://www.linkedin.com/in/piotr-kozlowski-profile/.
 
 Thank you for visiting my portfolio!

@@ -11,7 +11,7 @@ const Footer = () => {
   const [width, height, mediaSizeName] = useDeviceSize();
   const [isLinkedInHover, setIsLinkedInHover] = useState(false);
   const [isGithubHover, setIsGithubHover] = useState(false);
-  const { githubMainLink } = data;
+  const { githubMainLink, linkedInLink } = data;
 
   ////utils
   //TODO: delete later
@@ -72,14 +72,13 @@ const Footer = () => {
             setIsLinkedInHover(false);
           }}
         >
-          <Link href="/">
+          <a href={linkedInLink} target="_blank" rel="noopener">
             {isLinkedInHover ? (
               <Image
                 src="linkedIn_hover.svg"
                 alt="linkedIn icon"
                 width={44}
                 height={44}
-                onClick={alertHandler.bind(null, "linkedIn - not implemented")}
               />
             ) : (
               <Image
@@ -87,10 +86,9 @@ const Footer = () => {
                 alt="linkedIn icon"
                 width={44}
                 height={44}
-                onClick={alertHandler.bind(null, "linkedIn - not implemented")}
               />
             )}
-          </Link>
+          </a>
         </div>
       </div>
 
@@ -158,17 +156,13 @@ const Footer = () => {
                 setIsLinkedInHover(false);
               }}
             >
-              <Link href="/">
+              <a href={linkedInLink} target="_blank" rel="noopener">
                 {isLinkedInHover ? (
                   <Image
                     src="linkedIn_hover.svg"
                     alt="linkedIn icon"
                     width={24}
                     height={24}
-                    onClick={alertHandler.bind(
-                      null,
-                      "linkedIn - not implemented"
-                    )}
                   />
                 ) : (
                   <Image
@@ -176,13 +170,9 @@ const Footer = () => {
                     alt="linkedIn icon"
                     width={24}
                     height={24}
-                    onClick={alertHandler.bind(
-                      null,
-                      "linkedIn - not implemented"
-                    )}
                   />
                 )}
-              </Link>
+              </a>
             </div>
           </div>
         </div>

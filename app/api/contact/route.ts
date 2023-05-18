@@ -65,22 +65,6 @@ export async function POST(request: Request) {
     text: outputInternalEmailAsPlainText, // plain text body
     html: outputInternalEmailAsHTML, // html body
   };
-  // const sendInternalEmail = async () => {
-  //   await transporter.sendMail(mailOptions, (error, info) => {
-  //     if (error) {
-  //       console.error(error);
-  //       return NextResponse.json(
-  //         {
-  //           message:
-  //             "Some issue with automatically sending email has occurred. Please try again.",
-  //         },
-  //         { status: 400 }
-  //       );
-  //     }
-  //     console.log("Message sent: %s", info.messageId);
-  //     console.log("Preview url: %s", nodemailer.getTestMessageUrl(info));
-  //   });
-  // };
 
   /** solution to problem with Vercel: https://stackoverflow.com/questions/65631481/nodemailer-in-vercel-not-sending-email-in-production  
    * Especially last enter:

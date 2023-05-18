@@ -43,7 +43,7 @@ const Navigation: FunctionComponent<Props> = (props) => {
     whichSectionIsActive,
   } = props;
 
-  const { githubMainLink } = data;
+  const { githubMainLink, linkedInLink } = data;
 
   const [isHamburger, setIsHamburger] = useState(true);
   let isShowingMobileNavigation = useRef(false);
@@ -420,17 +420,13 @@ const Navigation: FunctionComponent<Props> = (props) => {
                   setIsLinkedInHover(false);
                 }}
               >
-                <Link href="/">
+                <a href={linkedInLink} target="_blank" rel="noopener">
                   {isLinkedInHover ? (
                     <Image
                       src="linkedIn_hover.svg"
                       alt="linkedIn icon"
                       width={44}
                       height={44}
-                      onClick={alertHandler.bind(
-                        null,
-                        "linkedIn - not implemented"
-                      )}
                     />
                   ) : (
                     <Image
@@ -438,13 +434,9 @@ const Navigation: FunctionComponent<Props> = (props) => {
                       alt="linkedIn icon"
                       width={44}
                       height={44}
-                      onClick={alertHandler.bind(
-                        null,
-                        "linkedIn - not implemented"
-                      )}
                     />
                   )}
-                </Link>
+                </a>
               </div>
             </div>
           </ul>
@@ -574,7 +566,6 @@ const Navigation: FunctionComponent<Props> = (props) => {
                   alt="github icon hover"
                   width={21}
                   height={21}
-                  // onClick={alertHandler.bind(null, "github - not implemented")}
                 />
               ) : (
                 <Image
@@ -582,7 +573,6 @@ const Navigation: FunctionComponent<Props> = (props) => {
                   alt="github icon"
                   width={21}
                   height={21}
-                  // onClick={alertHandler.bind(null, "github - not implemented")}
                 />
               )}
             </a>
@@ -598,17 +588,13 @@ const Navigation: FunctionComponent<Props> = (props) => {
               setIsLinkedInHover(false);
             }}
           >
-            <Link href="/">
+            <a href={linkedInLink} target="_blank" rel="noopener">
               {isLinkedInHover ? (
                 <Image
                   src="linkedIn_hover.svg"
                   alt="linkedIn icon hover"
                   width={24}
                   height={24}
-                  onClick={alertHandler.bind(
-                    null,
-                    "linkedIn - not implemented"
-                  )}
                 />
               ) : (
                 <Image
@@ -616,13 +602,9 @@ const Navigation: FunctionComponent<Props> = (props) => {
                   alt="linkedIn icon"
                   width={24}
                   height={24}
-                  onClick={alertHandler.bind(
-                    null,
-                    "linkedIn - not implemented"
-                  )}
                 />
               )}
-            </Link>
+            </a>
           </div>
           {/* tablet and desktop - socials - end */}
 
