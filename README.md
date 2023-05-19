@@ -2,14 +2,15 @@
 
 Piotr Kozłowski - Developer Portfolio.
 
-I am a passionate developer with a strong background in web development. I specialize in building modern and scalable web applications using cutting-edge technologies.
+I am a passionate developer. I specialize in building modern and scalable web applications using cutting-edge technologies.
 
 Skills
 
-- Front-end: React, Next, HTML5, CSS3, Tailwind, JavaScript, TypeScript
-- Back-end: Node.js, Express, Java
-- Version Control: Git, GitHub
-- Testing: Jest, React Testing Library
+- JavaScript / TypeScript / React / Next.js, Redux, Formik, Jest / React Testing Library, Gsap, React-Query, i18, ...
+- Node.js / Express
+- HTML / CSS / Tailwind
+- Docker / Kubernetes
+- Java / Spring
 <!-- - Deployment & CI/CD: Docker, Jenkins, Heroku, AWS, Azure -->
 
 ##
@@ -29,9 +30,7 @@ react, redux, formik, gsap, node, express
 
 - sites:
 
-  - prod:
-
-    - https://react-http-9c2cf.web.app/
+  - https://react-http-9c2cf.web.app/
 
 - githubs:
 
@@ -49,12 +48,11 @@ react, redux, formik, gsap, node, express
 Piotr Kozłowski - Developer Portfolio.
 
 Technologies:<br>
-react, redux, formik, gsap, node, express
+next gsap/scrollTrigger tailwindCSS
 
 - sites:
 
-  - prod:
-    - ???? //TODO: production address
+  - https://dev.ante.pl/
 
 - github:
 
@@ -63,7 +61,7 @@ react, redux, formik, gsap, node, express
 
 # <span style="color:#DDEFE4">Resume:</span>
 
-Please find my resume here for a detailed overview of my education, work experience, skills, and achievements.
+Please find my resume [here](https://www.linkedin.com/in/piotr-kozlowski-profile/) for a detailed overview of my education, work experience, skills, and achievements.
 
 # <span style="color:#DDEFE4">Contact:</span>
 
