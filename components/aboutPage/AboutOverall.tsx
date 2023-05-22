@@ -140,7 +140,7 @@ const AboutOverall = () => {
 
   ////jsx
   return (
-    <section title="overAll">
+    <section title="overAll" data-testid="about-overall">
       <div
         className={`flex flex-col items-center justify-start invisible ${
           mediaSizeName === "mobile" ? "-mt-[280%]" : "-mt-[140vh]"
@@ -165,6 +165,7 @@ const AboutOverall = () => {
               alt="logo"
               width={128}
               height={128}
+              data-testid="about-overall-logo"
             />
           </div>
           <div
@@ -176,6 +177,7 @@ const AboutOverall = () => {
               alt="logo"
               width={128}
               height={128}
+              data-testid="about-overall-logo-developer"
             />
           </div>
           <div
@@ -187,10 +189,14 @@ const AboutOverall = () => {
               alt="logo"
               width={128}
               height={128}
+              data-testid="about-overall-logo-designer"
             />
           </div>
         </div>
-        <div className="mx-8 md:mx-0 w-fill md:w-[566px] pt-[22px] md:pt-[48px] text-center font-style-p ">
+        <div
+          className="mx-8 md:mx-0 w-fill md:w-[566px] pt-[22px] md:pt-[48px] text-center font-style-p"
+          data-testid="about-overall-text"
+        >
           <p ref={overAllSectionP1Ref}>
             <span className={classNameForMainWhite}>
               Here comes text that is never read by anyone, ever. Main keywords

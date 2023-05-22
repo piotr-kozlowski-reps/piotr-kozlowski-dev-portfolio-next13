@@ -204,6 +204,7 @@ const AboutDetails = (props: Props) => {
           { invisible: width >= 1224 }
         )}
         ref={sectionModalRef}
+        data-testid="about-overall-text-developer"
       >
         <div
           className={`relative  ${
@@ -265,6 +266,7 @@ const AboutDetails = (props: Props) => {
           { invisible: width < 1224 }
         )}
         ref={sectionDesktopRef}
+        data-testid="about-overall-text-developer"
       >
         <div
           className={`flex flex-col items-start justify-start ml-[40px] w-[570px]`}
