@@ -14,10 +14,7 @@ const Footer = () => {
 
   const isDesktop = mediaSizeName === "desktop";
   const nonDesktopContent = (
-    <div
-      className="flex flex-col items-center justify-center w-full h-full overflow-x-hidden overflow-y-hidden shadow-input-shadow"
-      data-testid="test1"
-    >
+    <div className="flex flex-col items-center justify-center w-full h-full overflow-x-hidden overflow-y-hidden shadow-input-shadow">
       <div className="w-[calc(100%-64px)] h-[1px] bg-main_white_50 "></div>
       <div className="mt-16 mb-6">
         <Image
@@ -28,7 +25,7 @@ const Footer = () => {
         />
       </div>
 
-      <EmailLink data-testid="test1" />
+      <EmailLink />
       <PhoneNumber />
 
       <div className="flex -mr-[3px] mt-[14px]">

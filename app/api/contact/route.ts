@@ -23,8 +23,6 @@ export async function POST(request: Request) {
     );
   }
 
-  console.log(Number(process.env.NODEMAILER_PORT));
-
   //// if data is correct send email to me and contact sender
   //Nodemailer
   const transporter = nodemailer.createTransport({
@@ -140,7 +138,6 @@ export async function POST(request: Request) {
 
   try {
     await sendOutputClientEmail();
-
     console.log("External Email sent");
   } catch (error) {
     console.error(error);

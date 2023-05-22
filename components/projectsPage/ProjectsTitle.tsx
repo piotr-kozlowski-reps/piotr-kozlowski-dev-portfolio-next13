@@ -20,9 +20,7 @@ const ProjectsTitle = () => {
         scrollTrigger: {
           trigger: ref.current,
           start: () => `top top`,
-          // end: () => `bottom top`,
           end: () => `+=170%`,
-          // markers: true,
           pin: true,
           scrub: 0.4,
           invalidateOnRefresh: true,

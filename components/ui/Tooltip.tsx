@@ -16,7 +16,6 @@ const Tooltip = ({ children, content }: Props) => {
     backgroundElement: React.RefObject<HTMLDivElement>,
     textElement: React.RefObject<HTMLSpanElement>
   ) => {
-    // const tl = gsap.timeline();
     gsap.fromTo(
       backgroundElement.current,
       { autoAlpha: 0, scaleX: 0 },

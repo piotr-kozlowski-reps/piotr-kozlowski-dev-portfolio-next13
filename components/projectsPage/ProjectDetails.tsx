@@ -32,7 +32,7 @@ const ProjectDetails = (props: Props) => {
   const image3Ref = useRef<HTMLDivElement>(null);
   const image4Ref = useRef<HTMLDivElement>(null);
 
-  //firefox classes (font's needs to be smaller)
+  //firefox classes (fonts need to be smaller)
   const [classesProjectNameWhenFirefox, setClassesProjectNameWhenFirefox] =
     useState("invisible mb-4 font-style-h3 text-main_color");
   useIsomorphicLayoutEffect(() => {
@@ -69,12 +69,6 @@ const ProjectDetails = (props: Props) => {
     }
   }, []);
 
-  ////utils
-  //TODO: delete later
-  // function alertHandler(message: string) {
-  //   alert(message);
-  // }
-
   ////animations
   useIsomorphicLayoutEffect(() => {
     const mm = gsap.matchMedia();
@@ -92,8 +86,6 @@ const ProjectDetails = (props: Props) => {
         },
       });
     };
-
-    console.log(projectNumberRef.current);
 
     const animate = (
       tl: gsap.core.Timeline,
@@ -282,7 +274,6 @@ const ProjectDetails = (props: Props) => {
             </svg>
           </div>
           <div
-            // className="absolute top-0 left-0 invisible h-32"
             className="absolute top-0 left-0 h-36 w-[201px] invisible"
             ref={projectNumberRef}
           >

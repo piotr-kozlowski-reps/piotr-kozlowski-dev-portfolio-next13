@@ -70,12 +70,6 @@ const Navigation: FunctionComponent<Props> = (props) => {
   const mobile_linkedinRef = useRef<HTMLDivElement>(null);
   const mobileSeparatorRef = useRef<HTMLDivElement>(null);
 
-  ////utils
-  //TODO: delete later
-  // function alertHandler(message: string) {
-  //   alert(message);
-  // }
-
   ////logic
   const isLessThanOrEqualMdSize = useCallback(() => {
     return width <= 768 ? true : false;
@@ -205,7 +199,6 @@ const Navigation: FunctionComponent<Props> = (props) => {
     );
   }
 
-  ////side effects
   /** Triggering animation of Hamburger Icon when media query changes */
   useIsomorphicLayoutEffect(() => {
     const ctx = gsap.context(() => {
@@ -289,7 +282,6 @@ const Navigation: FunctionComponent<Props> = (props) => {
       {/* mobile - menu - start */}
       <div
         className="absolute top-0 left-0 z-50 w-screen h-screen xl:w-fit xl:h-fit"
-        // style={{ visibility: "visible" }}
         style={{
           visibility: isShowingMobileNavigation.current ? "visible" : "hidden",
         }}

@@ -196,7 +196,7 @@ const AboutDetails = (props: Props) => {
   ////jsx
   return (
     <section title="aboutDetailsSection">
-      {/* {width < 1224  = start */}
+      {/* {width < 1224  -> start */}
       <div
         className={clsx(
           `flex flex-col xl:flex-row items-center xl:items-start justify-center xl:justify-between w-full xl:w-container mx-0 xl:mx-auto z-10 pb-0 xl:pb-8 bg-background_2_darker`,
@@ -211,7 +211,6 @@ const AboutDetails = (props: Props) => {
               ? "w-[44px] h-[44px]"
               : "w-[88px] h-[88px]"
           } `}
-          // ref={logoMobileAndTabletRef}
         >
           <div
             className="absolute top-0 bottom-0 left-0 right-0 w-full h-full"
@@ -256,9 +255,9 @@ const AboutDetails = (props: Props) => {
           </div>
         </div>
       </div>
-      {/* {width < 1224  = end */}
+      {/* {width < 1224  -> end */}
 
-      {/* {width >= 1224  = start */}
+      {/* {width >= 1224  -> start */}
       <div
         className={clsx(
           `flex flex-col xl:flex-row items-center xl:items-start justify-center xl:justify-between w-full xl:w-container mx-0 xl:mx-auto z-10 pb-0 xl:pb-8 bg-background_2_darker)`,
@@ -306,7 +305,7 @@ const AboutDetails = (props: Props) => {
           </div>
         </div>
       </div>
-      {/* {width >= 1224  = end */}
+      {/* {width >= 1224  -> end */}
     </section>
   );
 };

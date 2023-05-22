@@ -156,8 +156,6 @@ const ProjectDescriptionLink = forwardRef<HTMLDivElement, Props>(
           modalState.setIsShowModal(true);
         }
       }
-
-      // return () => {};
     };
 
     ////jsx

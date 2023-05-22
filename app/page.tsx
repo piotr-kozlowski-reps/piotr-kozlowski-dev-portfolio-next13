@@ -18,15 +18,11 @@ import { useModalState } from "../globalState/ModalState";
 import Footer from "../components/footer/Footer";
 import useShowModalWhenHeightIsTooSMall from "../hooks/useShowModalWhenProblemOccurs";
 
-// let progress = 0;
-// const actualProgress = 0;
-
 gsap.registerPlugin(ScrollTrigger);
 const Home = () => {
   ////vars
   const [_tlHomeSection, setTlHomeSection] = useState(() => gsap.timeline());
   const [width, height] = useDeviceSize();
-  // const actualProgress = useRef(0);
 
   //modal
   const modalState = useModalState();
@@ -41,7 +37,7 @@ const Home = () => {
         </p>
         <p className="mx-8 text-center">
           It needs that so badly, that looking at it, when window height is
-          lower than 720 pixels, can injure your eye with painfully invisible
+          lower than expected, can injure your eye with painfully invisible
           content.
         </p>
       </div>
@@ -71,11 +67,6 @@ const Home = () => {
       projectsRef,
       contactRef
     );
-
-  // TODO: delete afterwards;
-  // useIsomorphicLayoutEffect(() => {
-  //   contactRef.current!.scrollIntoView();
-  // }, [contactRef.current]);
 
   /** Main scrollTrigger to maintain progress when window resize */
   // const mainScrollTrigger = ScrollTrigger.create({
@@ -218,6 +209,7 @@ const Home = () => {
           </div> */}
         </Modal>
       ) : null}
+
       {/* Fixed Navigation */}
       <div className="fixed top-0 w-screen h-32 z-100">
         <div
@@ -241,18 +233,7 @@ const Home = () => {
 
       <section ref={homeRef} title="home_section">
         <div className="w-full h-full bg-background_1_lighter ">
-          <div
-            className="relative flex flex-col justify-between h-screen bg-background_1_lighter "
-            // style={
-            // {
-            // backgroundImage: `url("/opening_page_mobile.png")`,
-            // backgroundImage: `url("/opening_page_tablet.png")`,
-            // backgroundImage: `url("/opening_page_desktop.png")`,
-            // backgroundImage: `url("/opening_page___mobile_Menu.png")`,
-            // backgroundImage: `url("/about_developer.png")`,
-            // }
-            // }
-          >
+          <div className="relative flex flex-col justify-between h-screen bg-background_1_lighter ">
             <HomePageImageRevealing />
             <HomePageFooter />
           </div>

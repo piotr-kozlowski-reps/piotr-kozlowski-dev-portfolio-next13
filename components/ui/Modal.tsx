@@ -18,7 +18,6 @@ const ModalOverlay = forwardRef(
     const [_width, height, _mediaSizeName] = useDeviceSize();
     const modalRef = useRef<HTMLDivElement>(null);
     const modalCTAButtonRef = useRef<HTMLButtonElement>(null);
-    // ref = modalRef;
 
     ////animation
     useLayoutEffect(() => {
@@ -53,8 +52,9 @@ const ModalOverlay = forwardRef(
           { "top-[226px] md:top-[256px]": height > 721 }
         )}
         ref={ref}
+        data-testid="modal"
       >
-        <div ref={modalRef}>
+        <div ref={modalRef} data-testid="modal-inside">
           {props.children}
           <button
             className={clsx(

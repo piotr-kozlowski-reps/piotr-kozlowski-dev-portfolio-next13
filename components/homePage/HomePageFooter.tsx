@@ -8,7 +8,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 const HomePageFooter = () => {
   ///vars
-
   const [width, _height] = useDeviceSize();
 
   const footerRef = useRef<HTMLDivElement>(null);
@@ -52,58 +51,6 @@ const HomePageFooter = () => {
     });
     return () => ctx.revert();
   }, []);
-
-  /** Footer Pinned With ScrollTrigger */
-
-  // useIsomorphicLayoutEffect(() => {
-  //   const tl = gsap.timeline({
-  //     scrollTrigger: {
-  //       trigger: triggerDiv,
-  //       scrub: 1,
-  //       // pin: true,
-  //     },
-  //   });
-  // gsap.to(footerRef.current, {
-  //   scrollTrigger: {
-  //     trigger: triggerDiv,
-  //     start: 0,
-  //     end: () => {
-  //       return window.innerHeight;
-  //     },
-  //     markers: true,
-  //     scrub: true,
-  //     // pin: true,
-  //   },
-  // });
-  //   gsap.utils.toArray(".comparisonSection").forEach((section) => {
-  //     let tl = gsap.timeline({
-  //       scrollTrigger: {
-  //         trigger: imageSectionRef.current!,
-  //         start: "top top",
-  //         // makes the height of the scrolling (while pinning) match the width, thus the speed remains constant (vertical/horizontal)
-  //         end: () => "+=" + imageSectionRef.current!.offsetWidth,
-  //         markers: true,
-  //         scrub: 4,
-  //         // pin: true,
-  //         // anticipatePin: 1,
-  //       },
-  //       defaults: { ease: "none" },
-  //     });
-  //     // animate the container one way...
-  //     tl.fromTo(
-  //       imageSectionRef.current!.querySelector(".afterImage"),
-  //       { xPercent: 100, x: 0 },
-  //       { xPercent: 0 }
-  //     )
-  //       // ...and the image the opposite way (at the same time)
-  //       .fromTo(
-  //         imageSectionRef.current!.querySelector(".afterImage img"),
-  //         { xPercent: -100, x: 0 },
-  //         { xPercent: 0 },
-  //         0
-  //       );
-  //   });
-  // }, []);
 
   ////jsx
   return (
