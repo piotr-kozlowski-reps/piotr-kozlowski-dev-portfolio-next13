@@ -47,7 +47,7 @@ const AboutOverall = () => {
         .to(overAllSectionRef.current, { autoAlpha: 1 }, "start")
         .to(
           gsap.utils.toArray(
-            overAllSectionP1Ref.current.getElementsByClassName(
+            overAllSectionP1Ref.current!.getElementsByClassName(
               "yellow-text-part"
             )
           ),
