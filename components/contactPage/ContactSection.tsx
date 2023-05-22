@@ -1,4 +1,4 @@
-import React, { Fragment, useRef } from "react";
+import React from "react";
 import ContactForm from "./ContactForm";
 
 const ContactSection = () => {

@@ -2,16 +2,21 @@
 
 Piotr Kozłowski - Developer Portfolio.
 
-I am a passionate developer. I specialize in building modern and scalable web applications using cutting-edge technologies.
+I am a passionate developer/designer. I specialize in building modern and scalable web applications using cutting-edge technologies.
 
-Skills
+Skills developer:
 
 - JavaScript / TypeScript / React / Next.js, Redux, Formik, Jest / React Testing Library, Gsap, React-Query, i18, ...
 - Node.js / Express
 - HTML / CSS / Tailwind
 - Docker / Kubernetes
 - Java / Spring
-<!-- - Deployment & CI/CD: Docker, Jenkins, Heroku, AWS, Azure -->
+
+Skills designer:
+
+- 3D GRAPHICS: 3D Studio MAX | Corona | Vray
+- RASTER: Photoshop | Figma | LightRoom
+- VIDEO: Premiere | AfterEffects | Resolve
 
 ##
 

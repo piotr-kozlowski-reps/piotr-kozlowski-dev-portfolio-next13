@@ -1,9 +1,4 @@
-import React, {
-  ChangeEvent,
-  FormEventHandler,
-  forwardRef,
-  LegacyRef,
-} from "react";
+import React, { ChangeEvent, forwardRef, LegacyRef } from "react";
 import { TInputFormState } from "../../types/typings";
 import clsx from "clsx";
 
@@ -110,4 +105,5 @@ const InputField = forwardRef(
   }
 );
 
+InputField.displayName = "InputField";
 export default InputField;

@@ -1,4 +1,4 @@
-import React, { Fragment, useRef, useState } from "react";
+import React, { Fragment, useRef } from "react";
 import gsap from "gsap";
 
 type Props = {
@@ -65,12 +65,16 @@ const Tooltip = ({ children, content }: Props) => {
           onMouseOver={
             content
               ? onEnterHandler.bind(null, tooltipRef, tooltipTextRef)
-              : () => {}
+              : () => {
+                  console.log("onOverHandler");
+                }
           }
           onMouseLeave={
             content
               ? onLeaveHandler.bind(null, tooltipRef, tooltipTextRef)
-              : () => {}
+              : () => {
+                  console.log("onLeaveHandler");
+                }
           }
         >
           {children}

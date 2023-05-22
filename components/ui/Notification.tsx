@@ -1,6 +1,5 @@
 import React, { Fragment } from "react";
 import { INotification } from "../../types/typings";
-import Backdrop from "./Backdrop";
 import ReactDOM from "react-dom";
 
 interface Props {

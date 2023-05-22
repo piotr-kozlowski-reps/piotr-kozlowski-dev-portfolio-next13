@@ -59,7 +59,7 @@ export async function POST(request: Request) {
     >Contact details:
     Message: ${message}
     `;
-  let mailOptions = {
+  const mailOptions = {
     from: `"Nodemailer contact" <${process.env.NODEMAILER_USER}>`, // sender address
     to: `${process.env.NODEMAILER_TO_EMAIL}`, // list of receivers
     subject: "Piotr Kozłowski Developer Portfolio - Contact Form", // Subject line

@@ -11,7 +11,6 @@ const HomeSection = () => {
   ////vars
   const wholeSectionRef = useRef<HTMLDivElement>(null);
   const imageBackgroundBase = useRef<HTMLDivElement>(null);
-  const imageBackgroundReal = useRef<HTMLDivElement>(null);
 
   ////animation
   useIsomorphicLayoutEffect(() => {

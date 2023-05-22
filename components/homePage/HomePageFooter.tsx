@@ -9,7 +9,7 @@ gsap.registerPlugin(ScrollTrigger);
 const HomePageFooter = () => {
   ///vars
 
-  const [width, height] = useDeviceSize();
+  const [width, _height] = useDeviceSize();
 
   const footerRef = useRef<HTMLDivElement>(null);
   const footerBackgroundRef = useRef<HTMLDivElement>(null);
@@ -19,7 +19,7 @@ const HomePageFooter = () => {
   /** ClipPaths background in Footer */
   useIsomorphicLayoutEffect(() => {
     const ctx = gsap.context(() => {
-      let mm = gsap.matchMedia();
+      const mm = gsap.matchMedia();
 
       mm.add("(max-width: 768px)", () => {
         gsap.to(footerBackgroundRef.current, {

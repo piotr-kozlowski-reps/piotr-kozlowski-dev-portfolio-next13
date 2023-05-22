@@ -16,7 +16,7 @@ const useScrollPositionToDefineSectionAndChangeLinks = (
     });
 
   const checkWhatSectionIsActive = () => {
-    let scrollYPosition = window.scrollY;
+    const scrollYPosition = window.scrollY;
 
     const aboutTopPosition = defineTopPositionValueOfElementInDOM(
       aboutRef.current

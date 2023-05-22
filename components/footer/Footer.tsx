@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 import React, { useState } from "react";
 import data from "../../data/data.json";
 import PhoneNumber from "../contactPage/PhoneNumber";
@@ -8,19 +7,17 @@ import EmailLink from "../contactPage/EmailLink";
 
 const Footer = () => {
   ////vars
-  const [width, height, mediaSizeName] = useDeviceSize();
+  const [_height, _width, mediaSizeName] = useDeviceSize();
   const [isLinkedInHover, setIsLinkedInHover] = useState(false);
   const [isGithubHover, setIsGithubHover] = useState(false);
   const { githubMainLink, linkedInLink } = data;
 
-  ////utils
-  //TODO: delete later
-  function alertHandler(message: string) {
-    alert(message);
-  }
   const isDesktop = mediaSizeName === "desktop";
   const nonDesktopContent = (
-    <div className="flex flex-col items-center justify-center w-full h-full overflow-x-hidden overflow-y-hidden shadow-input-shadow">
+    <div
+      className="flex flex-col items-center justify-center w-full h-full overflow-x-hidden overflow-y-hidden shadow-input-shadow"
+      data-testid="test1"
+    >
       <div className="w-[calc(100%-64px)] h-[1px] bg-main_white_50 "></div>
       <div className="mt-16 mb-6">
         <Image
@@ -31,7 +28,7 @@ const Footer = () => {
         />
       </div>
 
-      <EmailLink />
+      <EmailLink data-testid="test1" />
       <PhoneNumber />
 
       <div className="flex -mr-[3px] mt-[14px]">
@@ -44,7 +41,7 @@ const Footer = () => {
             setIsGithubHover(false);
           }}
         >
-          <a href={githubMainLink} target="_blank" rel="noopener">
+          <a href={githubMainLink} target="_blank" rel="noopener noreferrer">
             {isGithubHover ? (
               <Image
                 src="gitHub_hover.svg"
@@ -64,7 +61,6 @@ const Footer = () => {
         </div>
 
         <div
-          className=""
           onMouseOver={() => {
             setIsLinkedInHover(true);
           }}
@@ -72,7 +68,7 @@ const Footer = () => {
             setIsLinkedInHover(false);
           }}
         >
-          <a href={linkedInLink} target="_blank" rel="noopener">
+          <a href={linkedInLink} target="_blank" rel="noopener noreferrer">
             {isLinkedInHover ? (
               <Image
                 src="linkedIn_hover.svg"
@@ -128,7 +124,11 @@ const Footer = () => {
                 setIsGithubHover(false);
               }}
             >
-              <a href={githubMainLink} target="_blank" rel="noopener">
+              <a
+                href={githubMainLink}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 {isGithubHover ? (
                   <Image
                     src="gitHub_hover.svg"
@@ -156,7 +156,7 @@ const Footer = () => {
                 setIsLinkedInHover(false);
               }}
             >
-              <a href={linkedInLink} target="_blank" rel="noopener">
+              <a href={linkedInLink} target="_blank" rel="noopener noreferrer">
                 {isLinkedInHover ? (
                   <Image
                     src="linkedIn_hover.svg"

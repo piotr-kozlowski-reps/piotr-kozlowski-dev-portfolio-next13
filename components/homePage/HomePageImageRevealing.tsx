@@ -11,7 +11,7 @@ import { isFirefox, isSafari } from "react-device-detect";
 /** avoid start animation when site starts in mobile mode
  * "(max-width: 768px)" animation when starts only when number of renders is more than initial 2
  * counts from 0 so: 0, 1, trigger */
-let isFirstRender = 0;
+const _isFirstRender = 0;
 
 gsap.registerPlugin(ScrollTrigger);
 const HomePageImageRevealing = () => {
@@ -84,122 +84,124 @@ const HomePageImageRevealing = () => {
     const ctx = gsap.context(() => {
       //tl makers
       /** durationMultiplier: number => 1 is no change, every duration is multiplied by this factor */
-      function textSliderFromRightAnimation(
-        clipPath: SVGClipPathElement,
-        imageBase: HTMLDivElement,
-        path: SVGPathElement,
-        durationMultiplier: number
-      ) {
-        const tlTextSliderFromRight = gsap.timeline();
-        tl.addLabel("start")
-          .fromTo(
-            clipPath,
-            {
-              x: centerInXAxis(imageBase, path) + 1.5 * width,
-              y: centerInYAxis(imageBase, path),
-              scale: calculateScaleAccordingToScreenWidth(width, mediaSizeName),
-              transformOrigin: "50px 50px",
-              opacity: 0,
-              filter: "blur(20px)",
-            },
-            {
-              x: centerInXAxis(imageBase, path),
-              y: centerInYAxis(imageBase, path),
-              scale: calculateScaleAccordingToScreenWidth(width, mediaSizeName),
-              opacity: 1,
-              filter: "blur(0px)",
-              duration: 0.5 * durationMultiplier,
-              ease: "expo",
-            },
-            "start"
-          )
-          .fromTo(
-            imageBase,
-            {
-              opacity: 0,
-            },
-            {
-              opacity: 1,
+      // function textSliderFromRightAnimation(
+      //   clipPath: SVGClipPathElement,
+      //   imageBase: HTMLDivElement,
+      //   path: SVGPathElement,
+      //   durationMultiplier: number
+      // ) {
+      //   const tlTextSliderFromRight = gsap.timeline();
+      //   tl.addLabel("start")
+      //     .fromTo(
+      //       clipPath,
+      //       {
+      //         x: centerInXAxis(imageBase, path) + 1.5 * width,
+      //         y: centerInYAxis(imageBase, path),
+      //         scale: calculateScaleAccordingToScreenWidth(width, mediaSizeName),
+      //         transformOrigin: "50px 50px",
+      //         opacity: 0,
+      //         filter: "blur(20px)",
+      //       },
+      //       {
+      //         x: centerInXAxis(imageBase, path),
+      //         y: centerInYAxis(imageBase, path),
+      //         scale: calculateScaleAccordingToScreenWidth(width, mediaSizeName),
+      //         opacity: 1,
+      //         filter: "blur(0px)",
+      //         duration: 0.5 * durationMultiplier,
+      //         ease: "expo",
+      //       },
+      //       "start"
+      //     )
+      //     .fromTo(
+      //       imageBase,
+      //       {
+      //         opacity: 0,
+      //       },
+      //       {
+      //         opacity: 1,
 
-              duration: 0.5 * durationMultiplier,
-              ease: "expo",
-            },
-            "start"
-          )
-          .to(clipPath, {
-            duration: 0.6 * durationMultiplier,
-          })
-          .fromTo(
-            clipPath,
-            {
-              filter: "blur(0px)",
-              autoAlpha: 1,
-              x: centerInXAxis(imageBase, path),
-            },
-            {
-              x: centerInXAxis(imageBase, path) - 1.5 * width,
-              filter: "blur(30px)",
-              autoAlpha: 0,
-              duration: 0.5 * durationMultiplier,
-              ease: "expo",
-            }
-          );
+      //         duration: 0.5 * durationMultiplier,
+      //         ease: "expo",
+      //       },
+      //       "start"
+      //     )
+      //     .to(clipPath, {
+      //       duration: 0.6 * durationMultiplier,
+      //     })
+      //     .fromTo(
+      //       clipPath,
+      //       {
+      //         filter: "blur(0px)",
+      //         autoAlpha: 1,
+      //         x: centerInXAxis(imageBase, path),
+      //       },
+      //       {
+      //         x: centerInXAxis(imageBase, path) - 1.5 * width,
+      //         filter: "blur(30px)",
+      //         autoAlpha: 0,
+      //         duration: 0.5 * durationMultiplier,
+      //         ease: "expo",
+      //       }
+      //     );
 
-        return tlTextSliderFromRight;
-      }
-      function mainTextAnimation(
-        clipPath: SVGClipPathElement,
-        imageBase: HTMLDivElement,
-        path: SVGPathElement,
-        durationMultiplier: number
-      ) {
-        const tl = gsap.timeline();
-        tl.addLabel("start")
-          .fromTo(
-            clipPath,
-            {
-              x: centerInXAxis(imageBase, path) + 1.5 * width,
-              y: centerInYAxis(imageBase, path),
-              scale: calculateScaleAccordingToScreenWidth(width, mediaSizeName),
-              transformOrigin: "50% 50%",
-              opacity: 0,
-              filter: "blur(20px)",
-            },
-            {
-              x: centerInXAxis(imageBase, path),
-              y: centerInYAxis(imageBase, path),
-              scale: calculateScaleAccordingToScreenWidth(width, mediaSizeName),
-              opacity: 1,
-              filter: "blur(0px)",
-              duration: 0.5 * durationMultiplier,
-              ease: "expo",
-            },
-            "start"
-          )
-          .to(clipPath, {
-            duration: 3 * durationMultiplier,
-            scaleY:
-              calculateScaleAccordingToScreenWidth(width, mediaSizeName) + 0.1,
-            scale:
-              calculateScaleAccordingToScreenWidth(width, mediaSizeName) + 0.1,
-            ease: "back",
-          })
-          .addLabel("end")
-          .to(clipPath, {
-            autoAlpha: 0,
-            filter: "blur(3px)",
-            scale: 50,
-            duration: 1 * durationMultiplier,
-            ease: "slow",
-          })
-          .to(
-            imageBase,
-            { opacity: 0, autoAlpha: 0, duration: 1 * durationMultiplier },
-            "end"
-          );
+      //   return tlTextSliderFromRight;
+      // }
 
-        return tl;
-      }
+      // function mainTextAnimation(
+      //   clipPath: SVGClipPathElement,
+      //   imageBase: HTMLDivElement,
+      //   path: SVGPathElement,
+      //   durationMultiplier: number
+      // ) {
+      //   const tl = gsap.timeline();
+      //   tl.addLabel("start")
+      //     .fromTo(
+      //       clipPath,
+      //       {
+      //         x: centerInXAxis(imageBase, path) + 1.5 * width,
+      //         y: centerInYAxis(imageBase, path),
+      //         scale: calculateScaleAccordingToScreenWidth(width, mediaSizeName),
+      //         transformOrigin: "50% 50%",
+      //         opacity: 0,
+      //         filter: "blur(20px)",
+      //       },
+      //       {
+      //         x: centerInXAxis(imageBase, path),
+      //         y: centerInYAxis(imageBase, path),
+      //         scale: calculateScaleAccordingToScreenWidth(width, mediaSizeName),
+      //         opacity: 1,
+      //         filter: "blur(0px)",
+      //         duration: 0.5 * durationMultiplier,
+      //         ease: "expo",
+      //       },
+      //       "start"
+      //     )
+      //     .to(clipPath, {
+      //       duration: 3 * durationMultiplier,
+      //       scaleY:
+      //         calculateScaleAccordingToScreenWidth(width, mediaSizeName) + 0.1,
+      //       scale:
+      //         calculateScaleAccordingToScreenWidth(width, mediaSizeName) + 0.1,
+      //       ease: "back",
+      //     })
+      //     .addLabel("end")
+      //     .to(clipPath, {
+      //       autoAlpha: 0,
+      //       filter: "blur(3px)",
+      //       scale: 50,
+      //       duration: 1 * durationMultiplier,
+      //       ease: "slow",
+      //     })
+      //     .to(
+      //       imageBase,
+      //       { opacity: 0, autoAlpha: 0, duration: 1 * durationMultiplier },
+      //       "end"
+      //     );
+
+      //   return tl;
+      // }
+
       /** fillAmount: number ->  form 0 to 1 */
       function mainTextAnimationWithFinalImageFullySeen(
         clipPath: SVGClipPathElement,

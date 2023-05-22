@@ -1,4 +1,4 @@
-import gsap, { Circ } from "gsap";
+import gsap from "gsap";
 
 // export function mouseEventsAnimationHandler(
 //   ref: React.RefObject<HTMLElement>,

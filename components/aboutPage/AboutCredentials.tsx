@@ -47,7 +47,7 @@ const AboutCredentials = () => {
 
   ////animations
   useIsomorphicLayoutEffect(() => {
-    let mm = gsap.matchMedia();
+    const mm = gsap.matchMedia();
 
     //helper functions
     function createTl() {
@@ -63,7 +63,7 @@ const AboutCredentials = () => {
       });
     }
     function credentialAnimationIn() {
-      let tl = gsap.timeline();
+      const tl = gsap.timeline();
 
       tl.addLabel("credential1Start")
         .fromTo(
@@ -81,7 +81,7 @@ const AboutCredentials = () => {
       return tl;
     }
     function credentialAnimationOut() {
-      let tl = gsap.timeline();
+      const tl = gsap.timeline();
 
       tl.addLabel("credential1Start")
         .to(

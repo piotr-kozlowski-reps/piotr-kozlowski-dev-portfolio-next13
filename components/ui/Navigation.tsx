@@ -46,35 +46,35 @@ const Navigation: FunctionComponent<Props> = (props) => {
   const { githubMainLink, linkedInLink } = data;
 
   const [isHamburger, setIsHamburger] = useState(true);
-  let isShowingMobileNavigation = useRef(false);
-  const [width, height] = useDeviceSize();
+  const isShowingMobileNavigation = useRef(false);
+  const [width, _height] = useDeviceSize();
   const [isLinkedInHover, setIsLinkedInHover] = useState(false);
   const [isGithubHover, setIsGithubHover] = useState(false);
 
-  let hamburgerIconRef = useRef<HTMLDivElement>(null);
-  let separatorIconRef = useRef<HTMLDivElement>(null);
-  let XIconRef = useRef<HTMLDivElement>(null);
-  let homeRef = useRef<HTMLLIElement>(null);
-  let aboutRef = useRef<HTMLLIElement>(null);
-  let projectsRef = useRef<HTMLLIElement>(null);
-  let contactRef = useRef<HTMLLIElement>(null);
-  let githubRef = useRef<HTMLDivElement>(null);
-  let linkedinRef = useRef<HTMLDivElement>(null);
-  let mobileMenuBackground1 = useRef<HTMLDivElement>(null);
-  let mobileMenuBackground2 = useRef<HTMLDivElement>(null);
-  let mobile_homeRef = useRef<HTMLLIElement>(null);
-  let mobile_aboutRef = useRef<HTMLLIElement>(null);
-  let mobile_projectsRef = useRef<HTMLLIElement>(null);
-  let mobile_contactRef = useRef<HTMLLIElement>(null);
-  let mobile_githubRef = useRef<HTMLDivElement>(null);
-  let mobile_linkedinRef = useRef<HTMLDivElement>(null);
-  let mobileSeparatorRef = useRef<HTMLDivElement>(null);
+  const hamburgerIconRef = useRef<HTMLDivElement>(null);
+  const separatorIconRef = useRef<HTMLDivElement>(null);
+  const XIconRef = useRef<HTMLDivElement>(null);
+  const homeRef = useRef<HTMLLIElement>(null);
+  const aboutRef = useRef<HTMLLIElement>(null);
+  const projectsRef = useRef<HTMLLIElement>(null);
+  const contactRef = useRef<HTMLLIElement>(null);
+  const githubRef = useRef<HTMLDivElement>(null);
+  const linkedinRef = useRef<HTMLDivElement>(null);
+  const mobileMenuBackground1 = useRef<HTMLDivElement>(null);
+  const mobileMenuBackground2 = useRef<HTMLDivElement>(null);
+  const mobile_homeRef = useRef<HTMLLIElement>(null);
+  const mobile_aboutRef = useRef<HTMLLIElement>(null);
+  const mobile_projectsRef = useRef<HTMLLIElement>(null);
+  const mobile_contactRef = useRef<HTMLLIElement>(null);
+  const mobile_githubRef = useRef<HTMLDivElement>(null);
+  const mobile_linkedinRef = useRef<HTMLDivElement>(null);
+  const mobileSeparatorRef = useRef<HTMLDivElement>(null);
 
   ////utils
   //TODO: delete later
-  function alertHandler(message: string) {
-    alert(message);
-  }
+  // function alertHandler(message: string) {
+  //   alert(message);
+  // }
 
   ////logic
   const isLessThanOrEqualMdSize = useCallback(() => {
@@ -209,7 +209,7 @@ const Navigation: FunctionComponent<Props> = (props) => {
   /** Triggering animation of Hamburger Icon when media query changes */
   useIsomorphicLayoutEffect(() => {
     const ctx = gsap.context(() => {
-      let mm = gsap.matchMedia();
+      const mm = gsap.matchMedia();
 
       mm.add("(max-width: 768px)", () => {
         if (isFirstRender <= 1) {
@@ -391,7 +391,11 @@ const Navigation: FunctionComponent<Props> = (props) => {
                   setIsGithubHover(false);
                 }}
               >
-                <a href={githubMainLink} target="_blank" rel="noopener">
+                <a
+                  href={githubMainLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   {isGithubHover ? (
                     <Image
                       src="gitHub_hover.svg"
@@ -420,7 +424,11 @@ const Navigation: FunctionComponent<Props> = (props) => {
                   setIsLinkedInHover(false);
                 }}
               >
-                <a href={linkedInLink} target="_blank" rel="noopener">
+                <a
+                  href={linkedInLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   {isLinkedInHover ? (
                     <Image
                       src="linkedIn_hover.svg"
@@ -559,7 +567,7 @@ const Navigation: FunctionComponent<Props> = (props) => {
               setIsGithubHover(false);
             }}
           >
-            <a href={githubMainLink} target="_blank" rel="noopener">
+            <a href={githubMainLink} target="_blank" rel="noopener noreferrer">
               {isGithubHover ? (
                 <Image
                   src="gitHub_hover.svg"
@@ -588,7 +596,7 @@ const Navigation: FunctionComponent<Props> = (props) => {
               setIsLinkedInHover(false);
             }}
           >
-            <a href={linkedInLink} target="_blank" rel="noopener">
+            <a href={linkedInLink} target="_blank" rel="noopener noreferrer">
               {isLinkedInHover ? (
                 <Image
                   src="linkedIn_hover.svg"

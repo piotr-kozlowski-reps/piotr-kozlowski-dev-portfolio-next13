@@ -19,18 +19,18 @@ import Footer from "../components/footer/Footer";
 import useShowModalWhenHeightIsTooSMall from "../hooks/useShowModalWhenProblemOccurs";
 
 // let progress = 0;
-let actualProgress = 0;
+// const actualProgress = 0;
 
 gsap.registerPlugin(ScrollTrigger);
 const Home = () => {
   ////vars
-  const [tlHomeSection, setTlHomeSection] = useState(() => gsap.timeline());
+  const [_tlHomeSection, setTlHomeSection] = useState(() => gsap.timeline());
   const [width, height] = useDeviceSize();
   // const actualProgress = useRef(0);
 
   //modal
   const modalState = useModalState();
-  const [isModalVisible, setIsModalVisible] = useState(true);
+  const [isModalVisible, _setIsModalVisible] = useState(true);
 
   //modal when height is too small
   const modalWhenHeightIsTooSmallContent = (
@@ -78,15 +78,15 @@ const Home = () => {
   // }, [contactRef.current]);
 
   /** Main scrollTrigger to maintain progress when window resize */
-  const mainScrollTrigger = ScrollTrigger.create({
-    trigger: "body",
-    start: 0,
-    end: "bottom bottom",
-    onUpdate: (self) => {
-      console.log(self.progress);
-    },
-    invalidateOnRefresh: true,
-  });
+  // const mainScrollTrigger = ScrollTrigger.create({
+  //   trigger: "body",
+  //   start: 0,
+  //   end: "bottom bottom",
+  //   onUpdate: (self) => {
+  //     console.log(self.progress);
+  //   },
+  //   invalidateOnRefresh: true,
+  // });
 
   // useIsomorphicLayoutEffect(() => {
   //   // ScrollTrigger.addEventListener("refreshInit", () => {

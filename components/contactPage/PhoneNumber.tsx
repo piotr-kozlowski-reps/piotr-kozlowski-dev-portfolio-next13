@@ -5,7 +5,7 @@ import useDeviceSize from "../../hooks/useDeviceSize";
 
 const PhoneNumber = () => {
   ////vars
-  const [width, height, mediaSizeName] = useDeviceSize();
+  const [_width, _height, mediaSizeName] = useDeviceSize();
   const [phoneDetails, setPhoneDetails] = useState({
     phoneLink: "/",
     phoneNumberDisplaying: "+48 ... show number",

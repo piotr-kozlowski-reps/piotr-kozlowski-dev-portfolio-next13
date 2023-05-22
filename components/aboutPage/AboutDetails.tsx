@@ -22,16 +22,14 @@ const AboutDetails = (props: Props) => {
   const {
     isFirstSectionThenNoTopMargin,
     logoImageURL,
-    clipPathName,
     sectionPurposeName,
     paragraphText,
     sliders,
   } = props.detailsInfoSet;
 
   const [isAnimateStripes, setIsAnimateStripes] = useState(false);
-  const [content, setContent] = useState();
 
-  const [width, height, mediaSizeName] = useDeviceSize();
+  const [width, _height, mediaSizeName] = useDeviceSize();
 
   const sectionDesktopRef = useRef<HTMLDivElement>(null);
   const sectionModalRef = useRef<HTMLDivElement>(null);
@@ -57,7 +55,7 @@ const AboutDetails = (props: Props) => {
 
   ////animation
   useIsomorphicLayoutEffect(() => {
-    let mm = gsap.matchMedia();
+    const mm = gsap.matchMedia();
 
     function createTl(
       ref: React.RefObject<HTMLDivElement>,
@@ -159,7 +157,7 @@ const AboutDetails = (props: Props) => {
           setIsAnimateStripes(false);
         })
         .fromTo(
-          logoDesktopRef.current!,
+          logoDesktopRef.current,
           { autoAlpha: 0 },
           { autoAlpha: 1 },
           "start"

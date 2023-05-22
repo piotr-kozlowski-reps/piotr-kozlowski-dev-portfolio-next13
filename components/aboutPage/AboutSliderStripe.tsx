@@ -12,12 +12,12 @@ type Props = {
 const AboutSliderStripe = (props: Props) => {
   ////vars
   const { percentage, isAnimateStripes } = props;
-  let yellowStripeRef = useRef<HTMLDivElement>(null);
-  let backgroundStripeRef = useRef<HTMLDivElement>(null);
+  const yellowStripeRef = useRef<HTMLDivElement>(null);
+  const backgroundStripeRef = useRef<HTMLDivElement>(null);
 
   useIsomorphicLayoutEffect(() => {
     const ctx = gsap.context(() => {
-      let anim = gsap.fromTo(
+      const anim = gsap.fromTo(
         yellowStripeRef.current,
         {
           scaleX: 1,

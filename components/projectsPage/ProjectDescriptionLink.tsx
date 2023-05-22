@@ -1,10 +1,9 @@
 import Image from "next/image";
-import React, { forwardRef, Fragment, useState } from "react";
+import React, { forwardRef, useState } from "react";
 import Tooltip from "../ui/Tooltip";
 import { useModalState } from "../../globalState/ModalState";
 import { TGithubDetails, TSeeWWWDetails } from "../../types/typings";
 import DOMPurify from "dompurify";
-import { useRouter } from "next/navigation";
 
 type Props = {
   linkDetails: TGithubDetails | TSeeWWWDetails;
@@ -31,17 +30,19 @@ const ProjectDescriptionLink = forwardRef<HTMLDivElement, Props>(
       iconHoverAlt,
     } = props;
 
-    const router = useRouter();
-
     const modalState = useModalState();
     const [isIconHovered, setIsIconHovered] = useState(false);
 
     ////extracting values according to types of input
-    function isGithubLinkDetails(link: Object): Boolean {
-      return link.hasOwnProperty("isClickableGithub") ? true : false;
+    function isGithubLinkDetails(link: object): boolean {
+      return Object.prototype.hasOwnProperty.call(link, "isClickableGithub")
+        ? true
+        : false;
     }
-    function isSeeWWWLinkDetails(link: Object): Boolean {
-      return link.hasOwnProperty("isClickableSeeWWW") ? true : false;
+    function isSeeWWWLinkDetails(link: object): boolean {
+      return Object.prototype.hasOwnProperty.call(link, "isClickableSeeWWW")
+        ? true
+        : false;
     }
     function mapPropertiesOfLinkDetailsDependingOnType(
       linkDetails: TGithubDetails | TSeeWWWDetails
@@ -156,7 +157,7 @@ const ProjectDescriptionLink = forwardRef<HTMLDivElement, Props>(
         }
       }
 
-      return () => {};
+      // return () => {};
     };
 
     ////jsx
@@ -207,4 +208,5 @@ const ProjectDescriptionLink = forwardRef<HTMLDivElement, Props>(
   }
 );
 
+ProjectDescriptionLink.displayName = "ProjectDescriptionLink";
 export default ProjectDescriptionLink;

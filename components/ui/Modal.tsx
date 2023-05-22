@@ -15,7 +15,7 @@ gsap.registerPlugin();
 const ModalOverlay = forwardRef(
   (props: ModalProps, ref: React.ForwardedRef<HTMLDivElement>) => {
     ////vars
-    const [width, height, mediaSizeName] = useDeviceSize();
+    const [_width, height, _mediaSizeName] = useDeviceSize();
     const modalRef = useRef<HTMLDivElement>(null);
     const modalCTAButtonRef = useRef<HTMLButtonElement>(null);
     // ref = modalRef;
@@ -73,6 +73,7 @@ const ModalOverlay = forwardRef(
   }
 );
 
+/* eslint-disable react/display-name */
 const Modal = forwardRef(
   (props: ModalProps, ref: React.ForwardedRef<HTMLDivElement>) => {
     ////jsx
@@ -85,4 +86,6 @@ const Modal = forwardRef(
   }
 );
 
+Modal.displayName = "Modal";
+ModalOverlay.displayName = "ModalOverlay";
 export default Modal;

@@ -1,12 +1,9 @@
 import Image from "next/image";
-import Link from "next/link";
 import React, { useRef, useState } from "react";
 import useIsomorphicLayoutEffect from "../../hooks/useIsomorphicLayoutEffect";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { TProjectDetails } from "../../types/typings";
-import Tooltip from "../ui/Tooltip";
-import { useModalState } from "../../globalState/ModalState";
 import ProjectDescriptionLink from "./ProjectDescriptionLink";
 import { isFirefox } from "react-device-detect";
 
@@ -74,9 +71,9 @@ const ProjectDetails = (props: Props) => {
 
   ////utils
   //TODO: delete later
-  function alertHandler(message: string) {
-    alert(message);
-  }
+  // function alertHandler(message: string) {
+  //   alert(message);
+  // }
 
   ////animations
   useIsomorphicLayoutEffect(() => {

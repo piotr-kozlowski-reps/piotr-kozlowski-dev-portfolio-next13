@@ -20,7 +20,7 @@ gsap.registerPlugin(ScrollTrigger);
 const ContactForm = () => {
   ////vars
   const modalState = useModalState();
-  const [width, height, mediaSizeName] = useDeviceSize();
+  const [_width, _height, mediaSizeName] = useDeviceSize();
   const [isLoading, setIsLoading] = useState(false);
 
   const [nameInput, nameDispatch] = useFormInput(
@@ -49,7 +49,7 @@ const ContactForm = () => {
 
   //animation
   useIsomorphicLayoutEffect(() => {
-    let mm = gsap.matchMedia();
+    const mm = gsap.matchMedia();
 
     // timeline
     function createTl(ref: React.RefObject<HTMLDivElement>) {
@@ -233,7 +233,7 @@ const ContactForm = () => {
               onChange={(e) => {
                 inputDispatcher(e.target.value, nameDispatch);
               }}
-              onBlur={(e) => {
+              onBlur={(_e) => {
                 nameDispatch({ type: REDUCER_ACTION_TYPE.SET_IS_DIRTY });
               }}
               inputData={nameInput}
@@ -247,7 +247,7 @@ const ContactForm = () => {
               onChange={(e) => {
                 inputDispatcher(e.target.value, emailDispatch);
               }}
-              onBlur={(e) => {
+              onBlur={(_e) => {
                 emailDispatch({ type: REDUCER_ACTION_TYPE.SET_IS_DIRTY });
               }}
               inputData={emailInput}
@@ -263,7 +263,7 @@ const ContactForm = () => {
               onChange={(e) => {
                 inputDispatcher(e.target.value, messageDispatch);
               }}
-              onBlur={(e) => {
+              onBlur={(_e) => {
                 messageDispatch({ type: REDUCER_ACTION_TYPE.SET_IS_DIRTY });
               }}
               inputData={messageInput}

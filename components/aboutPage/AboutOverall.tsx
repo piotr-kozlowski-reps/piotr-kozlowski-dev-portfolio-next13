@@ -7,7 +7,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import useDeviceSize from "../../hooks/useDeviceSize";
 import useIsomorphicLayoutEffect from "../../hooks/useIsomorphicLayoutEffect";
 import { isFirefox } from "react-device-detect";
-import clsx from "clsx";
 
 gsap.registerPlugin(ScrollTrigger);
 const AboutOverall = () => {
@@ -19,7 +18,7 @@ const AboutOverall = () => {
   const overAllSectionP1Ref = useRef<HTMLParagraphElement>(null);
   const overAllSectionP2Ref = useRef<HTMLParagraphElement>(null);
 
-  const [width, height, mediaSizeName] = useDeviceSize();
+  const [_width, _height, mediaSizeName] = useDeviceSize();
 
   const [classNameForMainWhite, setClassNameForMainWhite] = useState(
     "font-initially-invisible-white-p white-text-part"
@@ -40,7 +39,7 @@ const AboutOverall = () => {
 
   ////animation
   useIsomorphicLayoutEffect(() => {
-    let mm = gsap.matchMedia();
+    const mm = gsap.matchMedia();
 
     //animation details
     const overAllSectionAnimation = (tl: gsap.core.Timeline) => {
@@ -48,7 +47,7 @@ const AboutOverall = () => {
         .to(overAllSectionRef.current, { autoAlpha: 1 }, "start")
         .to(
           gsap.utils.toArray(
-            overAllSectionP1Ref.current!.getElementsByClassName(
+            overAllSectionP1Ref.current.getElementsByClassName(
               "yellow-text-part"
             )
           ),
@@ -213,10 +212,10 @@ const AboutOverall = () => {
             <span className={classNameForMainWhite}>, </span>
             <span className={classNameForYellow}>reliable </span>
             <span className={classNameForMainWhite}>
-              ("reliable" is still visible on screen above, so it seems
-              redundant!). Have you noticed visual connection with parallel
-              appearing "designer" logo part? Appealing? (I'm not convinced,
-              ...reconsider!)
+              (&quot;reliable&quot; is still visible on screen above, so it
+              seems redundant!). Have you noticed visual connection with
+              parallel appearing &quot;designer&quot; logo part? Appealing?
+              (I&apos;m not convinced, ...reconsider!)
             </span>
           </p>
         </div>
