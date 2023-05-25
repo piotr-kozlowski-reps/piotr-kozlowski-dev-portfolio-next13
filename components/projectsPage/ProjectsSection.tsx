@@ -19,7 +19,7 @@ const ProjectsSection = () => {
       {projectsDetails.map((project, index) => (
         <ProjectDetails projectDetails={project} key={index} />
       ))}
-      <div className="h-[93px] w-full">
+      <div className="h-[93px] w-full" data-testid="projects-section">
         <svg
           width="100%"
           height="93"

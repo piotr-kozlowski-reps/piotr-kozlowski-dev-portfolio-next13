@@ -70,6 +70,7 @@ const ProjectsTitle = () => {
             width={1160}
             height={2000}
             className=" xl:ml-[4px] pl-[31px] pr-[31px] xl:pl-0 xl:pr-[3px]"
+            data-testid="projects-section-title"
           />
           <div className="absolute top-0 left-0 w-full h-[180px]">
             <svg

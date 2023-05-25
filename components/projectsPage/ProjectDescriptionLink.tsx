@@ -187,6 +187,7 @@ const ProjectDescriptionLink = forwardRef<HTMLDivElement, Props>(
                   alt={iconBaseAlt}
                   width={44}
                   height={44}
+                  data-testid="project-github-icon"
                 />
               )}
             </div>
@@ -197,6 +198,7 @@ const ProjectDescriptionLink = forwardRef<HTMLDivElement, Props>(
                 alt={iconBaseAlt}
                 width={44}
                 height={44}
+                data-testid="project-github-icon"
               />
             </div>
           )}

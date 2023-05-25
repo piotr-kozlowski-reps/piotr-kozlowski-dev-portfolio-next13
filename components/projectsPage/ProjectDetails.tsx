@@ -202,7 +202,7 @@ const ProjectDetails = (props: Props) => {
 
   ////jsx
   return (
-    <section title="projectSection">
+    <section title="projectDetailsSection">
       <div
         className="relative flex flex-col items-start justify-center w-full h-screen -mt-[100vh] overflow-y-hidden xl:w-container xl:mx-auto z-40"
         ref={projectRef}
@@ -215,6 +215,7 @@ const ProjectDetails = (props: Props) => {
               alt="project image"
               width={projectImages[0].width}
               height={projectImages[0].height}
+              data-testid="projects-image-001"
             />
           </div>
         </div>
@@ -225,6 +226,7 @@ const ProjectDetails = (props: Props) => {
               alt="project image"
               width={projectImages[1].width}
               height={projectImages[1].height}
+              data-testid="projects-image-002"
             />
           </div>
         </div>
@@ -235,6 +237,7 @@ const ProjectDetails = (props: Props) => {
               alt="project image"
               width={projectImages[2].width}
               height={projectImages[2].height}
+              data-testid="projects-image-003"
             />
           </div>
         </div>
@@ -249,6 +252,7 @@ const ProjectDetails = (props: Props) => {
               width={projectImages[3].width}
               height={projectImages[3].height}
               className="absolute right-0 md:right-0 mr-[24px] md:mr-[120px]"
+              data-testid="projects-image-004"
             />
           </div>
         </div>
@@ -282,28 +286,36 @@ const ProjectDetails = (props: Props) => {
               alt="project number"
               width={400}
               height={400}
+              data-testid="projects-numbers-image"
             />
           </div>
           <div className="absolute mt-[26px] ml-4 w-fill h-fill">
-            <p className={classesProjectNameWhenFirefox} ref={projectNameRef}>
+            <p
+              className={classesProjectNameWhenFirefox}
+              ref={projectNameRef}
+              data-testid="project-title"
+            >
               {projectName}
             </p>
             <p
               className={classesProjectDescriptionWhenFirefox}
               ref={projectDescriptionRef}
+              data-testid="project-description"
             >
               {projectDescription}
             </p>
           </div>
 
-          {/* icons bottom */}
           <div className="absolute bottom-0 mb-[20px] ml-[6px] z-100">
             <div
               className={classesProjectTechnologiesWhenFirefox}
               ref={projectTechnologiesNameRef}
+              data-testid="project-technologies"
             >
               {projectTechnologiesUsed}
             </div>
+
+            {/* icons bottom */}
             <div className="flex items-center justify-start ">
               <ProjectDescriptionLink
                 linkDetails={links.github}
