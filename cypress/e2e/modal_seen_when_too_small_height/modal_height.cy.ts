@@ -118,3 +118,5 @@ describe("modal should become visible when height of browser window changes to t
     cy.get(modalInsideSelector).should("be.visible");
   });
 });
+
+export {};

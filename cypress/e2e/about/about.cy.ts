@@ -79,3 +79,5 @@ describe("about section", () => {
       );
   });
 });
+
+export {};

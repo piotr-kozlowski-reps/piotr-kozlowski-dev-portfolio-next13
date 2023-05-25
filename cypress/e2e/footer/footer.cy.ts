@@ -81,3 +81,5 @@ describe("show footer", () => {
       .should("have.attr", "src", "linkedIn_hover.svg");
   });
 });
+
+export {};
