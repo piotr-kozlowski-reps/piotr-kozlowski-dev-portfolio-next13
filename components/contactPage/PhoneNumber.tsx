@@ -30,7 +30,7 @@ const PhoneNumber = () => {
       className="-mt-[1px] text-center"
       onClick={firstClickToDisplayRealPhoneNumberHandler}
     >
-      <Link href={phoneDetails.phoneLink}>
+      <Link href={phoneDetails.phoneLink} data-testid="footer-phone-button">
         <span
           className={clsx(
             { "mobile-link-small": !isDesktop },

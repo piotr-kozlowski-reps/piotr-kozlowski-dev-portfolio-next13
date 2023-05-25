@@ -14,7 +14,10 @@ const Footer = () => {
 
   const isDesktop = mediaSizeName === "desktop";
   const nonDesktopContent = (
-    <div className="flex flex-col items-center justify-center w-full h-full overflow-x-hidden overflow-y-hidden shadow-input-shadow">
+    <div
+      className="flex flex-col items-center justify-center w-full h-full overflow-x-hidden overflow-y-hidden shadow-input-shadow"
+      data-testid="footer-section"
+    >
       <div className="w-[calc(100%-64px)] h-[1px] bg-main_white_50 "></div>
       <div className="mt-16 mb-6">
         <Image
@@ -22,6 +25,7 @@ const Footer = () => {
           alt="piotr kozłowski dev-portfolio"
           width={160}
           height={44}
+          data-testid="footer-image"
         />
       </div>
 
@@ -52,6 +56,7 @@ const Footer = () => {
                 alt="github icon"
                 width={44}
                 height={44}
+                data-testid="footer-image-github"
               />
             )}
           </a>
@@ -79,6 +84,7 @@ const Footer = () => {
                 alt="linkedIn icon"
                 width={44}
                 height={44}
+                data-testid="footer-image-linkedin"
               />
             )}
           </a>
@@ -94,7 +100,10 @@ const Footer = () => {
   );
 
   const desktopContent = (
-    <div className="flex flex-col items-center justify-center h-[178px] overflow-x-hidden overflow-y-hidden  w-container mx-auto shadow-input-shadow">
+    <div
+      className="flex flex-col items-center justify-center h-[178px] overflow-x-hidden overflow-y-hidden  w-container mx-auto shadow-input-shadow"
+      data-testid="footer-section"
+    >
       <div className="w-full h-[1px] bg-main_white_50 flex"></div>
       <div className="h-[64px]"></div>
       <div className="w-container h-[178px] flex justify-between items-center ">
@@ -104,6 +113,7 @@ const Footer = () => {
             alt="piotr kozłowski dev-portfolio"
             width={160}
             height={44}
+            data-testid="footer-image"
           />
         </div>
         <div className="flex-col items-center justify-center">
@@ -139,6 +149,7 @@ const Footer = () => {
                     alt="github icon"
                     width={21}
                     height={21}
+                    data-testid="footer-image-github"
                   />
                 )}
               </a>
@@ -167,6 +178,7 @@ const Footer = () => {
                     alt="linkedIn icon"
                     width={24}
                     height={24}
+                    data-testid="footer-image-linkedin"
                   />
                 )}
               </a>

@@ -1,7 +1,9 @@
+////vars
 const modalSelector = '[data-testid="modal"]';
 const modalInsideSelector = '[data-testid="modal-inside"]';
 const buttonSelector = '[data-testid="modal-inside"] button';
 
+////tests
 describe("show modal when height of browser window is too small on desktops ", () => {
   beforeEach(() => {
     cy.viewport(1024, 719);

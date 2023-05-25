@@ -1,3 +1,4 @@
+////vars
 const aboutSectionSelector = "[data-testid='about-overall']";
 const aboutLogoSectionSelector = "[data-testid='about-overall-logo']";
 const aboutLogoDeveloperSectionSelector =
@@ -8,6 +9,7 @@ const aboutTextSectionSelector = "[data-testid='about-overall-text']";
 const aboutTextDeveloperSelector =
   "[data-testid='about-overall-text-developer']";
 
+////tests
 describe("about section", () => {
   beforeEach(() => {
     cy.viewport(450, 700);
