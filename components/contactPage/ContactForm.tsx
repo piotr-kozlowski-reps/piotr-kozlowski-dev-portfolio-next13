@@ -211,9 +211,14 @@ const ContactForm = () => {
           { "pt-[172px]": mediaSizeName !== "desktop" }
         )}
         ref={contactFormRef}
+        data-testid="contact-form"
       >
         <div className="w-full mb-8 ml-16">
-          <p className="font-style-h3" ref={contactGETINTOUCHRef}>
+          <p
+            className="font-style-h3"
+            ref={contactGETINTOUCHRef}
+            data-testid="contact-getintouch"
+          >
             GET IN TOUCH
           </p>
           <p
@@ -238,6 +243,8 @@ const ContactForm = () => {
               }}
               inputData={nameInput}
               ref={nameInputRef}
+              dataTestId="contact-name-field"
+              dataTestIdForError="contact-name-error"
             />
             <InputField
               id="email"
@@ -252,8 +259,9 @@ const ContactForm = () => {
               }}
               inputData={emailInput}
               ref={emailInputRef}
+              dataTestId="contact-email-field"
+              dataTestIdForError="contact-email-error"
             />
-
             <InputField
               id="message"
               name="Message:"
@@ -268,12 +276,16 @@ const ContactForm = () => {
               }}
               inputData={messageInput}
               ref={messageInputRef}
+              dataTestId="contact-message-field"
+              dataTestIdForError="contact-message-error"
             />
 
             <button
               type="submit"
               className="w-[calc(100%-64px)] button-fill disabled:cursor-default mt-8"
               disabled={!isEnabled || isLoading}
+              // dataTestId="contact-send-button"
+              data-testid="contact-send-button"
             >
               {isLoading ? (
                 <span className="loader">

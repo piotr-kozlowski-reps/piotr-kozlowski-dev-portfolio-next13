@@ -11,6 +11,8 @@ interface Props {
   onChange: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
   onBlur: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
   inputData: TInputFormState;
+  dataTestId: string;
+  dataTestIdForError: string;
 }
 
 const InputField = forwardRef(
@@ -25,6 +27,8 @@ const InputField = forwardRef(
       onBlur,
       inputData,
       isTextarea,
+      dataTestId: datatestId,
+      dataTestIdForError,
     } = props;
     const { isValid, isDirty, errorMessage } = inputData;
 
@@ -68,6 +72,7 @@ const InputField = forwardRef(
                     !isValid && isDirty,
                 }
               )}
+              data-testid={datatestId}
             />
           ) : null}
 
@@ -91,11 +96,15 @@ const InputField = forwardRef(
                     !isValid && isDirty,
                 }
               )}
+              data-testid={datatestId}
             ></textarea>
           ) : null}
 
           {!isValid && isDirty ? (
-            <div className="absolute -bottom-[1px] left-0 font-style-xs text-error">
+            <div
+              className="absolute -bottom-[1px] left-0 font-style-xs text-error"
+              data-testid={dataTestIdForError}
+            >
               {errorMessage}
             </div>
           ) : null}

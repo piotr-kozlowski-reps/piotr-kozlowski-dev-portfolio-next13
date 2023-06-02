@@ -1,109 +1,144 @@
 ////vars
-
-const projectsSelector = '[data-testid="projects-section"]';
+const contactFormSelector = '[data-testid="contact-form"]';
+const contactGetInTOuchSelector = '[data-testid="contact-getintouch"]';
+const contactNameFieldSelector = '[data-testid="contact-name-field"]';
+const contactNameFieldErrorSelector = '[data-testid="contact-name-error"]';
+const contactEmailSelector = '[data-testid="contact-email-field"]';
+const contactEmailErrorSelector = '[data-testid="contact-email-error"]';
+const contactMessageSelector = '[data-testid="contact-message-field"]';
+const contactMessageErrorSelector = '[data-testid="contact-message-error"]';
+const contactSendButtonSelector = '[data-testid="contact-send-button"]';
+const modalButtonSelector = '[data-testid="modal-inside"] button';
 
 ////tests
-describe("projects section", () => {
+describe("contact form section", () => {
   beforeEach(() => {
-    cy.viewport(1024, 800);
+    cy.viewport(520, 500);
     cy.visit("http://localhost:3000");
-    cy.get(projectsSelector).scrollIntoView();
+    cy.get(contactFormSelector).scrollIntoView();
+    cy.wait(400);
+    cy.get(modalButtonSelector).click();
+    cy.get(contactGetInTOuchSelector).scrollIntoView();
+    cy.wait(100);
   });
 
-  // it.skip("shows projects section", () => {
-  //   cy.get(projectsSelector).should("exist");
-  //   cy.get(projectsSelector).should("be.visible");
-  // });
+  //helpers
+  function clear() {
+    cy.get(contactNameFieldSelector).clear();
+    cy.get(contactEmailSelector).clear();
+    cy.get(contactMessageSelector).clear();
+  }
 
-  // it.skip("shows projects section image at the beginning", () => {
-  //   cy.get(projectsTitleSelector).should("exist");
-  //   cy.get(projectsTitleSelector).should("have.attr", "src", "portfolio.svg");
-  // });
+  //tests
+  it("shows contact form section", () => {
+    cy.get(contactFormSelector).should("exist");
+    cy.get(contactFormSelector).should("be.visible");
+  });
 
-  // it.skip("shows projects elements with the number got from data array provided", () => {
-  //   cy.get(projectsNumbersImageSelector).should("exist");
-  //   cy.get(projectsImage001Selector).should("exist");
-  //   cy.get(projectsImage002Selector).should("exist");
-  //   cy.get(projectsImage003Selector).should("exist");
-  //   cy.get(projectsImage004Selector).should("exist");
+  it("checks if initially form has empty fields and send button is disabled", () => {
+    cy.get(contactFormSelector).should("exist");
+    cy.get(contactFormSelector).should("be.visible");
 
-  //   cy.get(projectTitleSelector).should("exist");
-  //   cy.get(projectDescriptionSelector).should("exist");
-  //   cy.get(projectTechnologiesSelector).should("exist");
-  //   cy.get(projectIconsSelector).should("exist");
+    cy.get(contactNameFieldSelector).should("exist");
+    cy.get(contactNameFieldSelector).should("be.visible");
+    cy.get(contactNameFieldSelector).should("have.value", "");
 
-  //   cy.get(projectsNumbersImageSelector).should(
-  //     "have.length",
-  //     numberOfProjects
-  //   );
-  //   cy.get(projectsImage001Selector).should("have.length", numberOfProjects);
-  //   cy.get(projectsImage002Selector).should("have.length", numberOfProjects);
-  //   cy.get(projectsImage003Selector).should("have.length", numberOfProjects);
-  //   cy.get(projectsImage004Selector).should("have.length", numberOfProjects);
+    cy.get(contactEmailSelector).should("exist");
+    cy.get(contactEmailSelector).should("be.visible");
+    cy.get(contactEmailSelector).should("have.value", "");
 
-  //   cy.get(projectTitleSelector).should("have.length", numberOfProjects);
-  //   cy.get(projectDescriptionSelector).should("have.length", numberOfProjects);
-  //   cy.get(projectTechnologiesSelector).should("have.length", numberOfProjects);
-  //   cy.get(projectIconsSelector).should("have.length", numberOfProjects * 2);
-  // });
+    cy.get(contactMessageSelector).should("exist");
+    cy.get(contactMessageSelector).should("be.visible");
+    cy.get(contactMessageSelector).should("have.value", "");
 
-  // it("shows proper images and texts per project", () => {
-  //   projectsDetails.forEach((project, index) => {
-  //     const projectNumberURL = `/_next/image?url=%2F${project.numberImageURL.substring(
-  //       1
-  //     )}&w=828&q=75`;
+    cy.get(contactSendButtonSelector).should("exist");
+    cy.get(contactSendButtonSelector).should("be.visible");
+    cy.get(contactSendButtonSelector).should("be.disabled");
+  });
 
-  //     cy.get(projectsNumbersImageSelector)
-  //       .eq(index)
-  //       .should("have.attr", "src", projectNumberURL);
+  it("checks if name input works well: errors, happyPath", () => {
+    cy.get(contactNameFieldSelector).should("have.value", "");
+    cy.get(contactNameFieldSelector).type("Name");
+    cy.get(contactNameFieldErrorSelector).should("not.exist");
+    cy.get(contactNameFieldSelector).clear();
+    cy.get(contactNameFieldErrorSelector).should("exist");
+    cy.get(contactNameFieldErrorSelector).contains("Name is required.");
+    cy.get(contactSendButtonSelector).should("be.disabled");
+  });
 
-  //     cy.get(projectTitleSelector)
-  //       .eq(index)
-  //       .should("have.text", project.projectInfo.projectName);
+  it("checks if email input works well: errors, happyPath", () => {
+    const errorText = "The email provided has the wrong format.";
 
-  //     cy.get(projectDescriptionSelector)
-  //       .eq(index)
-  //       .should("have.text", project.projectInfo.projectDescription);
+    cy.get(contactEmailSelector).should("have.value", "");
+    cy.wait(100);
 
-  //     cy.get(projectTechnologiesSelector)
-  //       .eq(index)
-  //       .should("have.text", project.projectInfo.projectTechnologiesUsed);
+    cy.get(contactEmailSelector).type("whatever");
+    cy.get(contactEmailErrorSelector).should("exist");
+    cy.get(contactEmailErrorSelector).contains(errorText);
+    cy.get(contactSendButtonSelector).should("be.disabled");
 
-  //     const projectImages = project.projectImages;
+    cy.get(contactEmailSelector).clear();
+    cy.get(contactEmailErrorSelector).should("exist");
+    cy.get(contactEmailErrorSelector).contains(errorText);
+    cy.get(contactSendButtonSelector).should("be.disabled");
 
-  //     projectImages.forEach((image, index_in) => {
-  //       console.log(image, index_in);
+    cy.get(contactEmailSelector).clear();
+    cy.get(contactEmailSelector).clear();
+    cy.get(contactEmailSelector).type("whatever@dfbsdg");
+    cy.get(contactEmailErrorSelector).should("exist");
+    cy.get(contactEmailErrorSelector).contains(errorText);
+    cy.get(contactSendButtonSelector).should("be.disabled");
 
-  //       if (index_in === 0) {
-  //         cy.get(projectsImage001Selector)
-  //           .eq(index)
-  //           .invoke("attr", "src")
-  //           .should("contain", image.imageUrl.substring(1));
-  //       }
+    cy.get(contactEmailSelector).clear();
+    cy.get(contactEmailSelector).type("@dfbsdg.pl");
+    cy.get(contactEmailErrorSelector).should("exist");
+    cy.get(contactEmailErrorSelector).contains(errorText);
+    cy.get(contactSendButtonSelector).should("be.disabled");
 
-  //       if (index_in === 1) {
-  //         cy.get(projectsImage002Selector)
-  //           .eq(index)
-  //           .invoke("attr", "src")
-  //           .should("contain", image.imageUrl.substring(1));
-  //       }
+    cy.get(contactEmailSelector).clear();
+    cy.get(contactEmailSelector).type("sdfvsd@dfbsdg.pl");
+    cy.get(contactEmailErrorSelector).should("not.exist");
+    cy.get(contactSendButtonSelector).should("be.disabled");
+  });
 
-  //       if (index_in === 2) {
-  //         cy.get(projectsImage003Selector)
-  //           .eq(index)
-  //           .invoke("attr", "src")
-  //           .should("contain", image.imageUrl.substring(1));
-  //       }
+  it("checks if message input works well: errors, happyPath", () => {
+    cy.get(contactMessageSelector).should("have.value", "");
 
-  //       if (index_in === 3) {
-  //         cy.get(projectsImage004Selector)
-  //           .eq(index)
-  //           .invoke("attr", "src")
-  //           .should("contain", image.imageUrl.substring(1));
-  //       }
-  //     });
-  //   });
-  // });
+    cy.get(contactMessageSelector).type("Example message.");
+    cy.get(contactMessageErrorSelector).should("not.exist");
+
+    cy.get(contactMessageSelector).clear();
+    cy.get(contactMessageErrorSelector).should("exist");
+
+    cy.get(contactSendButtonSelector).should("be.disabled");
+  });
+
+  it("should show SEND button disabled in this situations", () => {
+    cy.get(contactSendButtonSelector).should("be.disabled");
+
+    cy.get(contactNameFieldSelector).type("Name");
+    cy.get(contactEmailSelector).type("sdfvsd@dfbsdg.pl");
+    cy.get(contactSendButtonSelector).should("be.disabled");
+
+    clear();
+    cy.get(contactNameFieldSelector).type("Name");
+    cy.get(contactMessageSelector).type("Example message.");
+    cy.get(contactSendButtonSelector).should("be.disabled");
+
+    clear();
+    cy.get(contactEmailSelector).type("sdfvsd@dfbsdg.pl");
+    cy.get(contactMessageSelector).type("Example message.");
+    cy.get(contactSendButtonSelector).should("be.disabled");
+  });
+
+  it("should show SEND button enabled when all fields are filled properly", () => {
+    cy.get(contactSendButtonSelector).should("be.disabled");
+
+    cy.get(contactNameFieldSelector).type("Name");
+    cy.get(contactEmailSelector).type("sdfvsd@dfbsdg.pl");
+    cy.get(contactMessageSelector).type("Example message.");
+    cy.get(contactSendButtonSelector).should("be.enabled");
+  });
 });
 
 export {};

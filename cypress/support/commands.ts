@@ -36,4 +36,8 @@
 //   }
 // }
 
+// Cypress.Commands.add("getByDataTestId", (selector: string) => {
+//   return cy.get(`[data-testid=${selector}]`);
+// });
+
 export {};

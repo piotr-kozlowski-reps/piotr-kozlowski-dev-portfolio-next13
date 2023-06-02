@@ -1,7 +1,7 @@
 ////vars
 const modalSelector = '[data-testid="modal"]';
 const modalInsideSelector = '[data-testid="modal-inside"]';
-const buttonSelector = '[data-testid="modal-inside"] button';
+const modalButtonSelector = '[data-testid="modal-inside"] button';
 
 ////tests
 describe("show modal when height of browser window is too small on desktops ", () => {
@@ -27,12 +27,14 @@ describe("show modal when height of browser window is too small on desktops ", (
 
   it("show modal and have button hide", () => {
     //button
-    cy.get(buttonSelector).should("be.visible").should("include.text", "hide");
+    cy.get(modalButtonSelector)
+      .should("be.visible")
+      .should("include.text", "hide");
   });
 
   it("should hide when button clicked", () => {
     //button
-    cy.get(buttonSelector).click();
+    cy.get(modalButtonSelector).click();
     cy.get(modalSelector).should("not.be.visible");
     cy.get(modalInsideSelector).should("not.be.visible");
   });
@@ -61,12 +63,14 @@ describe("show modal when height of browser window is too small in mobiles", () 
 
   it("show modal and have button hide", () => {
     //button
-    cy.get(buttonSelector).should("be.visible").should("include.text", "hide");
+    cy.get(modalButtonSelector)
+      .should("be.visible")
+      .should("include.text", "hide");
   });
 
   it("should hide when button clicked", () => {
     //button
-    cy.get(buttonSelector).click();
+    cy.get(modalButtonSelector).click();
     cy.get(modalSelector).should("not.be.visible");
     cy.get(modalInsideSelector).should("not.be.visible");
   });

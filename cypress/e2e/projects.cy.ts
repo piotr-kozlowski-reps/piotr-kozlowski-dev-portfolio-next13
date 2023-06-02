@@ -27,17 +27,17 @@ describe("projects section", () => {
     cy.get(projectsSelector).scrollIntoView();
   });
 
-  it.skip("shows projects section", () => {
+  it("shows projects section", () => {
     cy.get(projectsSelector).should("exist");
     cy.get(projectsSelector).should("be.visible");
   });
 
-  it.skip("shows projects section image at the beginning", () => {
+  it("shows projects section image at the beginning", () => {
     cy.get(projectsTitleSelector).should("exist");
     cy.get(projectsTitleSelector).should("have.attr", "src", "portfolio.svg");
   });
 
-  it.skip("shows projects elements with the number got from data array provided", () => {
+  it("shows projects elements with the number got from data array provided", () => {
     cy.get(projectsNumbersImageSelector).should("exist");
     cy.get(projectsImage001Selector).should("exist");
     cy.get(projectsImage002Selector).should("exist");

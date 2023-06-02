@@ -307,6 +307,7 @@ const Navigation: FunctionComponent<Props> = (props) => {
                   : "invisible mobile-link"
               }
               ref={mobile_homeRef}
+              data-testid="nav-mobile-home"
             >
               <Link href="/">
                 <span onClick={triggerMobileNavigation.bind(null, null)}>
@@ -321,6 +322,7 @@ const Navigation: FunctionComponent<Props> = (props) => {
                   : "invisible mobile-link"
               }
               ref={mobile_aboutRef}
+              data-testid="nav-mobile-about"
             >
               <Link href="/">
                 <span
@@ -337,6 +339,7 @@ const Navigation: FunctionComponent<Props> = (props) => {
                   : "invisible mobile-link"
               }
               ref={mobile_projectsRef}
+              data-testid="nav-mobile-projects"
             >
               <Link href="/">
                 <span
@@ -353,6 +356,7 @@ const Navigation: FunctionComponent<Props> = (props) => {
                   : "invisible mobile-link"
               }
               ref={mobile_contactRef}
+              data-testid="nav-mobile-contact"
             >
               <Link href="/">
                 <span
@@ -382,6 +386,7 @@ const Navigation: FunctionComponent<Props> = (props) => {
                 onMouseLeave={() => {
                   setIsGithubHover(false);
                 }}
+                data-testid="nav-mobile-github"
               >
                 <a
                   href={githubMainLink}
@@ -415,6 +420,7 @@ const Navigation: FunctionComponent<Props> = (props) => {
                 onMouseLeave={() => {
                   setIsLinkedInHover(false);
                 }}
+                data-testid="nav-mobile-linkedin"
               >
                 <a
                   href={linkedInLink}
@@ -449,7 +455,10 @@ const Navigation: FunctionComponent<Props> = (props) => {
       <div className="relative">
         <div>
           {/* tablet and desktop -> links - start */}
-          <nav className="absolute z-50 top-8 right-132px w-96">
+          <nav
+            className="absolute z-50 top-8 right-132px w-96"
+            data-testid="nav-desktop"
+          >
             <ul className="flex justify-end gap-2">
               <li
                 className={
@@ -458,6 +467,7 @@ const Navigation: FunctionComponent<Props> = (props) => {
                     : "opacity-0 link"
                 }
                 ref={homeRef}
+                data-testid="nav-desktop-home"
               >
                 <Link
                   href="/"
@@ -479,6 +489,7 @@ const Navigation: FunctionComponent<Props> = (props) => {
                     : "opacity-0 link"
                 }
                 ref={aboutRef}
+                data-testid="nav-desktop-about"
               >
                 <Link
                   href="/"
@@ -502,6 +513,7 @@ const Navigation: FunctionComponent<Props> = (props) => {
                     : "opacity-0 link"
                 }
                 ref={projectsRef}
+                data-testid="nav-desktop-projects"
               >
                 <Link
                   href="/"
@@ -528,6 +540,7 @@ const Navigation: FunctionComponent<Props> = (props) => {
                     : "opacity-0 link"
                 }
                 ref={contactRef}
+                data-testid="nav-desktop-contact"
               >
                 <Link
                   href="/"
@@ -558,6 +571,7 @@ const Navigation: FunctionComponent<Props> = (props) => {
             onMouseLeave={() => {
               setIsGithubHover(false);
             }}
+            data-testid="nav-desktop-github"
           >
             <a href={githubMainLink} target="_blank" rel="noopener noreferrer">
               {isGithubHover ? (
@@ -587,6 +601,7 @@ const Navigation: FunctionComponent<Props> = (props) => {
             onMouseLeave={() => {
               setIsLinkedInHover(false);
             }}
+            data-testid="nav-linkedin-github"
           >
             <a href={linkedInLink} target="_blank" rel="noopener noreferrer">
               {isLinkedInHover ? (
@@ -623,6 +638,7 @@ const Navigation: FunctionComponent<Props> = (props) => {
           <div
             className="absolute w-16 top-8 z-200 right-1 md:z-50"
             onClick={toggleHamburgerIcon}
+            data-testid="nav-mobile-hamburger"
           >
             <div
               ref={hamburgerIconRef}
@@ -641,6 +657,7 @@ const Navigation: FunctionComponent<Props> = (props) => {
           <div
             className="absolute w-16 top-8 right-1 z-200 md:z-50 "
             onClick={toggleHamburgerIcon}
+            data-testid="nav-mobile-x"
           >
             <div ref={XIconRef} className="opacity-0 ">
               <Image
