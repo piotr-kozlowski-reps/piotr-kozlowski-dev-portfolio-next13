@@ -192,7 +192,8 @@ const ProjectDetails = (props: Props) => {
 
     mm.add("(min-width: 1224px)", () => {
       const tl = createTl();
-      animate(tl, "-180vh", 1);
+      // animate(tl, "-180vh", 1);
+      animate(tl, "-300vh", 1);
     });
 
     return () => {
@@ -203,136 +204,147 @@ const ProjectDetails = (props: Props) => {
   ////jsx
   return (
     <section title="projectDetailsSection">
-      <div
-        className="relative flex flex-col items-start justify-center w-full h-screen -mt-[100vh] overflow-y-hidden xl:w-container xl:mx-auto z-40"
-        ref={projectRef}
-      >
-        {/* images start */}
-        <div className="absolute invisible w-full h-full -z-10" ref={image1Ref}>
-          <div className="ml-8 mr-[24px]">
-            <Image
-              src={projectImages[0].imageUrl}
-              alt="project image"
-              width={projectImages[0].width}
-              height={projectImages[0].height}
-              data-testid="projects-image-001"
-            />
-          </div>
-        </div>
-        <div className="absolute invisible w-full h-full -z-10" ref={image2Ref}>
-          <div className="ml-8 mr-[24px]">
-            <Image
-              src={projectImages[1].imageUrl}
-              alt="project image"
-              width={projectImages[1].width}
-              height={projectImages[1].height}
-              data-testid="projects-image-002"
-            />
-          </div>
-        </div>
-        <div className="absolute invisible w-full h-full -z-10" ref={image3Ref}>
-          <div className="ml-8 mr-[24px]">
-            <Image
-              src={projectImages[2].imageUrl}
-              alt="project image"
-              width={projectImages[2].width}
-              height={projectImages[2].height}
-              data-testid="projects-image-003"
-            />
-          </div>
-        </div>
+      <div className="w-full xl:w-container xl:mx-auto">
         <div
-          className="absolute top-0 right-0 invisible float-right w-4/5 h-full md:w-full -z-10"
-          ref={image4Ref}
+          className="relative flex flex-col items-start justify-center w-full h-screen -mt-[100vh] overflow-y-hidden xl:w-container xl:mx-auto z-40"
+          ref={projectRef}
         >
-          <div className="ml-8 mr-[24px]">
-            <Image
-              src={projectImages[3].imageUrl}
-              alt="project image"
-              width={projectImages[3].width}
-              height={projectImages[3].height}
-              className="absolute right-0 md:right-0 mr-[24px] md:mr-[120px]"
-              data-testid="projects-image-004"
-            />
-          </div>
-        </div>
-        {/* images end */}
-        <div className="w-[256px] md:w-[384px] h-[384px] ml-8 relative">
+          {/* images start */}
           <div
-            className="absolute top-0 left-0 invisible w-full h-full"
-            ref={backgroundDescriptionRef}
+            className="absolute invisible w-full h-full -z-10"
+            ref={image1Ref}
           >
-            <svg
-              width="100%"
-              height="100%"
-              viewBox="0 0 257 385"
-              preserveAspectRatio="none"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M227.614 384L-8.88109e-06 372.217V-5.84126e-06L256 11.7834L227.614 384Z"
-                fill="#2C2F36"
+            <div className="ml-8 mr-[24px]">
+              <Image
+                src={projectImages[0].imageUrl}
+                alt="project image"
+                width={projectImages[0].width}
+                height={projectImages[0].height}
+                data-testid="projects-image-001"
               />
-              <path d="M227.614 384L256 11.7834" stroke="#FCEB41" />
-            </svg>
+            </div>
           </div>
           <div
-            className="absolute top-0 left-0 h-36 w-[201px] invisible"
-            ref={projectNumberRef}
+            className="absolute invisible w-full h-full -z-10"
+            ref={image2Ref}
           >
-            <Image
-              src={numberImageURL}
-              alt="project number"
-              width={400}
-              height={400}
-              data-testid="projects-numbers-image"
-            />
+            <div className="ml-8 mr-[24px]">
+              <Image
+                src={projectImages[1].imageUrl}
+                alt="project image"
+                width={projectImages[1].width}
+                height={projectImages[1].height}
+                data-testid="projects-image-002"
+              />
+            </div>
           </div>
-          <div className="absolute mt-[26px] ml-4 w-fill h-fill">
-            <p
-              className={classesProjectNameWhenFirefox}
-              ref={projectNameRef}
-              data-testid="project-title"
-            >
-              {projectName}
-            </p>
-            <p
-              className={classesProjectDescriptionWhenFirefox}
-              ref={projectDescriptionRef}
-              data-testid="project-description"
-            >
-              {projectDescription}
-            </p>
+          <div
+            className="absolute invisible w-full h-full -z-10"
+            ref={image3Ref}
+          >
+            <div className="ml-8 mr-[24px]">
+              <Image
+                src={projectImages[2].imageUrl}
+                alt="project image"
+                width={projectImages[2].width}
+                height={projectImages[2].height}
+                data-testid="projects-image-003"
+              />
+            </div>
           </div>
-
-          <div className="absolute bottom-0 mb-[20px] ml-[6px] z-100">
+          <div
+            className="absolute top-0 right-0 invisible float-right w-4/5 h-full md:w-full -z-10"
+            ref={image4Ref}
+          >
+            <div className="ml-8 mr-[24px]">
+              <Image
+                src={projectImages[3].imageUrl}
+                alt="project image"
+                width={projectImages[3].width}
+                height={projectImages[3].height}
+                className="absolute right-0 md:right-0 mr-[24px] md:mr-[120px]"
+                data-testid="projects-image-004"
+              />
+            </div>
+          </div>
+          {/* images end */}
+          <div className="w-[256px] md:w-[384px] h-[384px] ml-8 relative">
             <div
-              className={classesProjectTechnologiesWhenFirefox}
-              ref={projectTechnologiesNameRef}
-              data-testid="project-technologies"
+              className="absolute top-0 left-0 invisible w-full h-full"
+              ref={backgroundDescriptionRef}
             >
-              {projectTechnologiesUsed}
+              <svg
+                width="100%"
+                height="100%"
+                viewBox="0 0 257 385"
+                preserveAspectRatio="none"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M227.614 384L-8.88109e-06 372.217V-5.84126e-06L256 11.7834L227.614 384Z"
+                  fill="#2C2F36"
+                />
+                <path d="M227.614 384L256 11.7834" stroke="#FCEB41" />
+              </svg>
+            </div>
+            <div
+              className="absolute top-0 left-0 h-36 w-[201px] invisible"
+              ref={projectNumberRef}
+            >
+              <Image
+                src={numberImageURL}
+                alt="project number"
+                width={400}
+                height={400}
+                data-testid="projects-numbers-image"
+              />
+            </div>
+            <div className="absolute mt-[26px] ml-4 w-fill h-fill">
+              <p
+                className={classesProjectNameWhenFirefox}
+                ref={projectNameRef}
+                data-testid="project-title"
+              >
+                {projectName}
+              </p>
+              <p
+                className={classesProjectDescriptionWhenFirefox}
+                ref={projectDescriptionRef}
+                data-testid="project-description"
+              >
+                {projectDescription}
+              </p>
             </div>
 
-            {/* icons bottom */}
-            <div className="flex items-center justify-start ">
-              <ProjectDescriptionLink
-                linkDetails={links.github}
-                ref={githubNameRef}
-                iconBaseUrl="github.svg"
-                iconBaseAlt="github icon"
-                iconHoverUrl="gitHub_hover.svg"
-                iconHoverAlt="github icon hover"
-              />
-              <ProjectDescriptionLink
-                linkDetails={links.seeWWW}
-                ref={viewSiteNameRef}
-                iconBaseUrl="eye.svg"
-                iconBaseAlt="eye icon"
-                iconHoverUrl="eye_hover.svg"
-                iconHoverAlt="eye icon hover"
-              />
+            <div className="absolute bottom-0 mb-[20px] ml-[6px] z-100">
+              <div
+                className={classesProjectTechnologiesWhenFirefox}
+                ref={projectTechnologiesNameRef}
+                data-testid="project-technologies"
+              >
+                {projectTechnologiesUsed}
+              </div>
+
+              {/* icons bottom */}
+              <div className="flex items-center justify-start ">
+                <ProjectDescriptionLink
+                  linkDetails={links.github}
+                  ref={githubNameRef}
+                  iconBaseUrl="github.svg"
+                  iconBaseAlt="github icon"
+                  iconHoverUrl="gitHub_hover.svg"
+                  iconHoverAlt="github icon hover"
+                />
+                <ProjectDescriptionLink
+                  linkDetails={links.seeWWW}
+                  ref={viewSiteNameRef}
+                  iconBaseUrl="eye.svg"
+                  iconBaseAlt="eye icon"
+                  iconHoverUrl="eye_hover.svg"
+                  iconHoverAlt="eye icon hover"
+                />
+              </div>
             </div>
           </div>
         </div>
