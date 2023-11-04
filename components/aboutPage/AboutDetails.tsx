@@ -53,7 +53,7 @@ const AboutDetails = (props: Props) => {
     }
   }, []);
 
-  ////animation
+  //animation
   useIsomorphicLayoutEffect(() => {
     const mm = gsap.matchMedia();
 
@@ -221,13 +221,13 @@ const AboutDetails = (props: Props) => {
           </div>
         </div>
         <div
-          className="invisible mt-[7px] font-style-h3 "
+          className="invisible mt-[7px] font-style-h3"
           ref={titleMobileAndTabletRef}
         >
           {sectionPurposeName}
         </div>
         <div className="relative w-full md:w-[566px] ">
-          <div className="absolute w-full h-full ">
+          <div className="absolute w-full h-full">
             <div
               className={classesWhenFirefox}
               ref={paragraphMobileAndTabletRef}
@@ -239,7 +239,7 @@ const AboutDetails = (props: Props) => {
               ></div>
             </div>
           </div>
-          <div className="absolute w-full h-full ">
+          <div className="absolute w-full h-full">
             <div
               className="mx-8 pt-[41px] text-center font-style-p invisible"
               ref={graphsMobileAndTabletRef}
@@ -261,52 +261,60 @@ const AboutDetails = (props: Props) => {
       {/* {width >= 1224  -> start */}
       <div
         className={clsx(
-          `flex flex-col xl:flex-row items-center xl:items-start justify-center xl:justify-between w-full xl:w-container mx-0 xl:mx-auto z-10 pb-0 xl:pb-8 bg-background_2_darker)`,
+          // `flex flex-col xl:flex-row items-center xl:items-start justify-center xl:justify-between w-full xl:!w-container mx-0 xl:mx-auto z-10 pb-0 xl:pb-8 bg-background_2_darker`,
+          `bg-background_2_darker w-full`,
+
           // { "mt-[50%]": !isFirstSectionThenNoTopMargin },
           { invisible: width < 1224 }
         )}
         ref={sectionDesktopRef}
         data-testid="about-overall-text-developer"
       >
-        <div
-          className={`flex flex-col items-start justify-start ml-[40px] w-[570px]`}
-        >
-          <div className="relative w-[44px] h-[44px]" ref={logoDesktopRef}>
-            <div className="absolute top-0 bottom-0 left-0 right-0 w-fill h-fill">
-              <Image src={logoImageURL} alt="logo" width={128} height={128} />
+        <div className="flex items-start justify-between pb-8 mx-auto w-container">
+          <div
+            className={`flex flex-col items-start justify-start ml-[40px] w-[570px]`}
+          >
+            <div className="relative w-[44px] h-[44px]" ref={logoDesktopRef}>
+              <div className="absolute top-0 bottom-0 left-0 right-0 w-fill h-fill">
+                <Image src={logoImageURL} alt="logo" width={128} height={128} />
+              </div>
+            </div>
+            <div className="mt-2 font-style-h3" ref={titleDesktopRef}>
+              {sectionPurposeName}
+            </div>
+            <div className="relative w-full ">
+              <div className="absolute w-full h-full">
+                <div
+                  className="pt-[48px] font-style-p"
+                  ref={paragraphDesktopRef}
+                >
+                  <div
+                    dangerouslySetInnerHTML={{
+                      __html: paragraphText,
+                    }}
+                  ></div>
+                </div>
+              </div>
             </div>
           </div>
-          <div className="mt-2 font-style-h3" ref={titleDesktopRef}>
-            {sectionPurposeName}
-          </div>
-          <div className="relative w-full ">
-            <div className="absolute w-full h-full">
-              <div className="pt-[48px] font-style-p" ref={paragraphDesktopRef}>
-                <div
-                  dangerouslySetInnerHTML={{
-                    __html: paragraphText,
-                  }}
-                ></div>
+          <div className="w-[570px] mr-[23px]">
+            <div className="h-fill w-fill mt-[134px]">
+              <div className="font-style-p" ref={graphsDesktopRef}>
+                {sliders.map((slider, index) => (
+                  <Fragment key={index}>
+                    <AboutSlider
+                      sliderData={slider}
+                      mediaSizeName={mediaSizeName}
+                      isAnimateStripes={isAnimateStripes}
+                    />
+                  </Fragment>
+                ))}
               </div>
             </div>
           </div>
         </div>
-        <div className="w-[570px] mr-[23px]">
-          <div className="h-fill w-fill mt-[134px]">
-            <div className="font-style-p" ref={graphsDesktopRef}>
-              {sliders.map((slider, index) => (
-                <Fragment key={index}>
-                  <AboutSlider
-                    sliderData={slider}
-                    mediaSizeName={mediaSizeName}
-                    isAnimateStripes={isAnimateStripes}
-                  />
-                </Fragment>
-              ))}
-            </div>
-          </div>
-        </div>
       </div>
+
       {/* {width >= 1224  -> end */}
     </section>
   );

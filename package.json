@@ -23,7 +23,7 @@
     "gsap": "^3.11.4",
     "html-react-parser": "^3.0.12",
     "lsof": "^0.1.0",
-    "next": "^13.2.4",
+    "next": "^14.0.1",
     "nodemailer": "^6.9.1",
     "react": "^18.2.0",
     "react-device-detect": "^2.2.3",
