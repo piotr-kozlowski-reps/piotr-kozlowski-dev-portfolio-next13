@@ -190,10 +190,14 @@ const ProjectDetails = (props: Props) => {
       animate(tl, "-160vh", 3);
     });
 
-    mm.add("(min-width: 1224px)", () => {
+    mm.add("(min-width: 1224px) and (max-height: 1079px)", () => {
       const tl = createTl();
-      // animate(tl, "-180vh", 1);
       animate(tl, "-300vh", 1);
+    });
+
+    mm.add("(min-width: 1224px) and (min-height: 1080px)", () => {
+      const tl = createTl();
+      animate(tl, "-250vh", 1);
     });
 
     return () => {
@@ -317,7 +321,7 @@ const ProjectDetails = (props: Props) => {
               </p>
             </div>
 
-            <div className="absolute bottom-0 mb-[20px] ml-[6px] z-100">
+            <div className="absolute bottom-0 mb-[20px] ml-[6px] z-100 w-[220px] md:w-[340px]">
               <div
                 className={classesProjectTechnologiesWhenFirefox}
                 ref={projectTechnologiesNameRef}

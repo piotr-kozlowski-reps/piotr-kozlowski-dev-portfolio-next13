@@ -170,9 +170,7 @@ const Navigation: FunctionComponent<Props> = (props) => {
 
   /** Trigger mobile navigation and hide mobile menu */
   function triggerMobileNavigation(sectionToMoveInto: HTMLDivElement | null) {
-    if (!sectionToMoveInto) window.scroll({ top: 0 });
-    else sectionToMoveInto.scrollIntoView();
-
+    scrollWithFadingHandler(sectionToMoveInto);
     hideMobileNavigation();
     toggleHamburgerIcon();
   }

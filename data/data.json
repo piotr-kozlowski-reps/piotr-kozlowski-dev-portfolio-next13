@@ -70,49 +70,94 @@
       "numberImageURL": "/001.png",
       "projectImages": [
         {
-          "imageUrl": "/ante_portfolio_desktop_0001.jpg",
+          "imageUrl": "/artck_desktop_0001.jpg",
           "width": 1214,
           "height": 3176
         },
         {
-          "imageUrl": "/ante_portfolio_desktop_0002.jpg",
+          "imageUrl": "/artck_desktop_0002.jpg",
           "width": 1214,
-          "height": 3509
+          "height": 3514
         },
         {
-          "imageUrl": "/ante_portfolio_desktop_0003.jpg",
+          "imageUrl": "/artck_desktop_0003.jpg",
           "width": 1214,
-          "height": 2792
+          "height": 2874
         },
         {
-          "imageUrl": "/ante_portfolio_mobile_0001.jpg",
-          "width": 553,
-          "height": 3191
+          "imageUrl": "/artck_mobile_0001.jpg",
+          "width": 526,
+          "height": 4774
         }
       ],
       "projectInfo": {
-        "projectName": "ante portfolio",
-        "projectDescription": "Portfolio website of a 3d part of my work-related activities. Architectural visualizations in most cases.",
-        "projectTechnologiesUsed": "react redux formik gsap node express",
+        "projectName": "Art CK",
+        "projectDescription": "Nice and demanding project, with challenging custom cms. Graphics/code/... hmm ...everything done with my bare fingers.",
+        "projectTechnologiesUsed": "nextjs13 typescript next-auth prisma react-table formik framer-motion  tailwindcss aws-s3 vitest",
         "links": {
           "github": {
-            "isClickableGithub": true,
-            "githubTooltipText": "check github repositories",
+            "isClickableGithub": false,
+            "githubTooltipText": "No repository available.",
             "isOneLinkOnly_ifFalseThenIsModal": false,
-            "githubModalContent": "<div class=\"flex flex-col border-t border-main_color bg-background_1_lighter\">\r\n          <div class=\"mx-auto mt-16 font-style-sm\">\r\n            Which part of the project code would you like to see?\r\n          </div>\r\n          <div class=\"block mx-auto mt-[25px] mb-8 button-outline\">\r\n            <a\r\n              href=\"https://github.com/piotr-kozlowski-reps/ante_app__react\"\r\n              target=\"_blank\"\r\n              rel=\"noopener\"\r\n            >\r\n              frontend\r\n            </a>\r\n          </div>\r\n          <div class=\"button-outline block mx-auto mb-16 \">\r\n            <a\r\n              href=\"https://github.com/piotr-kozlowski-reps/-ante_app__backend\"\r\n              target=\"_blank\"\r\n              rel=\"noopener\"\r\n            >\r\n              backend\r\n            </a>\r\n          </div>\r\n        </div>",
+            "githubModalContent": "",
             "githubURL": ""
           },
           "seeWWW": {
             "isClickableSeeWWW": true,
             "seeWWWTooltipText": "see the project page",
             "isOneLinkOnly_ifFalseThenIsModal": true,
-            "seeWWWURL": "https://react-http-9c2cf.web.app/"
+            "seeWWWURL": "https://www.kinoscenakultura.pl/"
           }
         }
       }
     },
     {
       "numberImageURL": "/002.png",
+      "projectImages": [
+        {
+          "imageUrl": "/kinoscenakultura_desktop_0001.jpg",
+          "width": 1214,
+          "height": 3229
+        },
+        {
+          "imageUrl": "/kinoscenakultura_desktop_0002.jpg",
+          "width": 1214,
+          "height": 3615
+        },
+        {
+          "imageUrl": "/kinoscenakultura_desktop_0003.jpg",
+          "width": 1214,
+          "height": 3250
+        },
+        {
+          "imageUrl": "/kinoscenakultura_mobile_0001.jpg",
+          "width": 554,
+          "height": 4000
+        }
+      ],
+      "projectInfo": {
+        "projectName": "kinoscenakultura",
+        "projectDescription": "I wrote all custom javascript, that was needed.",
+        "projectTechnologiesUsed": "javascript",
+        "links": {
+          "github": {
+            "isClickableGithub": false,
+            "githubTooltipText": "No repository available.",
+            "isOneLinkOnly_ifFalseThenIsModal": false,
+            "githubModalContent": "",
+            "githubURL": ""
+          },
+          "seeWWW": {
+            "isClickableSeeWWW": true,
+            "seeWWWTooltipText": "see the project page",
+            "isOneLinkOnly_ifFalseThenIsModal": true,
+            "seeWWWURL": "https://www.kinoscenakultura.pl/"
+          }
+        }
+      }
+    },
+    {
+      "numberImageURL": "/003.png",
       "projectImages": [
         {
           "imageUrl": "/dev_portfolio_desktop_0001.jpg",
@@ -149,6 +194,51 @@
           "seeWWW": {
             "isClickableSeeWWW": false,
             "seeWWWTooltipText": "you're already on this project's page"
+          }
+        }
+      }
+    },
+    {
+      "numberImageURL": "/004.png",
+      "projectImages": [
+        {
+          "imageUrl": "/ante_portfolio_desktop_0001.jpg",
+          "width": 1214,
+          "height": 3176
+        },
+        {
+          "imageUrl": "/ante_portfolio_desktop_0002.jpg",
+          "width": 1214,
+          "height": 3509
+        },
+        {
+          "imageUrl": "/ante_portfolio_desktop_0003.jpg",
+          "width": 1214,
+          "height": 2792
+        },
+        {
+          "imageUrl": "/ante_portfolio_mobile_0001.jpg",
+          "width": 553,
+          "height": 4000
+        }
+      ],
+      "projectInfo": {
+        "projectName": "ante portfolio",
+        "projectDescription": "Portfolio website of a 3d part of my work-related activities. Architectural visualizations in most cases.",
+        "projectTechnologiesUsed": "react redux formik gsap node express",
+        "links": {
+          "github": {
+            "isClickableGithub": true,
+            "githubTooltipText": "check github repositories",
+            "isOneLinkOnly_ifFalseThenIsModal": false,
+            "githubModalContent": "<div class=\"flex flex-col border-t border-main_color bg-background_1_lighter\">\r\n          <div class=\"mx-auto mt-16 font-style-sm\">\r\n            Which part of the project code would you like to see?\r\n          </div>\r\n          <div class=\"block mx-auto mt-[25px] mb-8 button-outline\">\r\n            <a\r\n              href=\"https://github.com/piotr-kozlowski-reps/ante_app__react\"\r\n              target=\"_blank\"\r\n              rel=\"noopener\"\r\n            >\r\n              frontend\r\n            </a>\r\n          </div>\r\n          <div class=\"button-outline block mx-auto mb-16 \">\r\n            <a\r\n              href=\"https://github.com/piotr-kozlowski-reps/-ante_app__backend\"\r\n              target=\"_blank\"\r\n              rel=\"noopener\"\r\n            >\r\n              backend\r\n            </a>\r\n          </div>\r\n        </div>",
+            "githubURL": ""
+          },
+          "seeWWW": {
+            "isClickableSeeWWW": true,
+            "seeWWWTooltipText": "see the project page",
+            "isOneLinkOnly_ifFalseThenIsModal": true,
+            "seeWWWURL": "https://react-http-9c2cf.web.app/"
           }
         }
       }
