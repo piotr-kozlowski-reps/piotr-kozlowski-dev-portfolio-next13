@@ -96,11 +96,10 @@
         "projectTechnologiesUsed": "nextjs13 typescript next-auth prisma react-table formik framer-motion  tailwindcss aws-s3 vitest",
         "links": {
           "github": {
-            "isClickableGithub": false,
-            "githubTooltipText": "No repository available.",
-            "isOneLinkOnly_ifFalseThenIsModal": false,
-            "githubModalContent": "",
-            "githubURL": ""
+            "isClickableGithub": true,
+            "githubTooltipText": "Check github repository",
+            "isOneLinkOnly_ifFalseThenIsModal": true,
+            "githubURL": "https://github.com/piotr-kozlowski-reps/witosa_next"
           },
           "seeWWW": {
             "isClickableSeeWWW": true,

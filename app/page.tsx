@@ -58,7 +58,7 @@ const Home = () => {
   const backgroundFadeRef = useRef<HTMLDivElement>(null);
   const modalRef = useRef<HTMLDivElement>(null);
 
-  const homeSectionHPercentage = 0; //500 was to make nice home page section, needs to be reorganised to make rest of the animations possible
+  const homeSectionHPercentage = 0; //500 was to make nice home page section, needs to be reorganized to make rest of the animations possible
 
   /** get object defining in which section we are currently based on Scroll Y position */
   const { whichSectionIsActive } =
@@ -67,66 +67,6 @@ const Home = () => {
       projectsRef,
       contactRef
     );
-
-  /** Main scrollTrigger to maintain progress when window resize */
-  // const mainScrollTrigger = ScrollTrigger.create({
-  //   trigger: "body",
-  //   start: 0,
-  //   end: "bottom bottom",
-  //   onUpdate: (self) => {
-  //     console.log(self.progress);
-  //   },
-  //   invalidateOnRefresh: true,
-  // });
-
-  // useIsomorphicLayoutEffect(() => {
-  //   // ScrollTrigger.addEventListener("refreshInit", () => {
-  //   //   console.log("mainScrollTrigger.progress: ", mainScrollTrigger.progress);
-  //   //   actualProgress = mainScrollTrigger.progress;
-  //   //   console.log({ actualProgress });
-  //   // });
-
-  //   // ScrollTrigger.addEventListener("refresh", () => {
-  //   //   mainScrollTrigger.scroll(
-  //   //     actualProgress * ScrollTrigger.maxScroll(window)
-  //   //   );
-  //   // });
-
-  //   return () => {
-  //     // ScrollTrigger.removeEventListener("refreshInit");
-  //   };
-  // }, [height, width]);
-  // // (actualProgress = mainScrollTrigger.progress)
-
-  // useIsomorphicLayoutEffect(() => {
-  //   const mainScrollTriggerToMaintainProgress = ScrollTrigger.create({
-  //     trigger: wholeAppRef.current,
-  //     start: "top, top",
-  //     end: "bottom bottom",
-  //     onUpdate: (self) => {
-  //       console.log(self.progress);
-  //       actualProgress.current = self.progress;
-  //     },
-  //     invalidateOnRefresh: true,
-  //   });
-
-  //   const resizeHandler = () => {
-  //     console.log("resizeHandlerFunction");
-  //     console.log("resizeHandler: ", actualProgress.current);
-  //   };
-
-  //   window.addEventListener("resize", resizeHandler);
-  //   // ScrollTrigger.addEventListener("refresh", () =>
-  //   //   mainScrollTriggerToMaintainProgress.scroll(
-  //   //     actualProgress.current * ScrollTrigger.maxScroll(window)
-  //   //   )
-  //   // );
-
-  //   //cleanUp
-  //   return () => {
-  //     window.removeEventListener("resize", resizeHandler);
-  //   };
-  // }, []);
 
   /** Footer Pinned With ScrollTrigger */
   useIsomorphicLayoutEffect(() => {
