@@ -24,7 +24,7 @@
     "logoImageURL": "/logo_only_graph_transparency__developer.png",
     "clipPathName": "clip-path-logo-right-triangle",
     "sectionPurposeName": "developer",
-    "paragraphText": " <p>\r\n                    <span class=\"underline\">I'm</span> /\r\n                    <span class=\"underline\">I wish I could be</span>\r\n                    <span class=\"text-main_white_50\">\r\n                      \r\n                      (delete as appropriate)\r\n                    </span>\r\n                    a front-end developer.\r\n                  </p>\r\n                  <p class=\"mb-6\">\r\n                    I really like this. It's annoying and relaxing in the same\r\n                    moment, since when you do it (finally) in a right manner -\r\n                    it works (that certainty is not so common elsewhere).\r\n                  </p>\r\n                  \r\n                  <p class=\"font-style-xs\">\r\n                    * And yes... I also do this for money.\r\n                  </p>",
+    "paragraphText": " <p>\r\n                    <span class=\"underline\">I'm</span>        a front-end developer.\r\n                  </p>\r\n                  <p class=\"mb-6\">\r\n  What can I say ...                  I really like it. It's annoying and relaxing in the same\r\n                    moment, since when you do it (finally) in a right manner -\r\n                    it works (that certainty is not so common elsewhere).\r\n                  </p>\r\n                  \r\n                  <p class=\"font-style-xs\">\r\n                    * And yes... I also do this for money.\r\n                  </p>",
     "isFirstSectionThenNoTopMargin": true
   },
   "designerDetails": {
@@ -97,8 +97,9 @@
         "links": {
           "github": {
             "isClickableGithub": true,
-            "githubTooltipText": "Check github repository",
+            "githubTooltipText": "check github repository",
             "isOneLinkOnly_ifFalseThenIsModal": true,
+            "githubModalContent": "",
             "githubURL": "https://github.com/piotr-kozlowski-reps/witosa_next"
           },
           "seeWWW": {
@@ -237,7 +238,7 @@
             "isClickableSeeWWW": true,
             "seeWWWTooltipText": "see the project page",
             "isOneLinkOnly_ifFalseThenIsModal": true,
-            "seeWWWURL": "https://react-http-9c2cf.web.app/"
+            "seeWWWURL": "https://ante.pl/en/projects"
           }
         }
       }
