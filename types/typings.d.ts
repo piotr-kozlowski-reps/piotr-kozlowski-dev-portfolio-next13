@@ -54,11 +54,13 @@ export type TProjectDetails = {
 };
 
 /**
+ * @param {boolean} hasMobilePart
  * @param {string} projectName
  * @param {string} projectDescription
  * @param {string} projectTechnologiesUsed
  */
 export type TProjectInfo = {
+  hasMobilePart: boolean;
   projectName: string;
   projectDescription: string;
   projectTechnologiesUsed: string;

@@ -5,7 +5,7 @@
     "sliders": [
       {
         "mainTitle": "html / css",
-        "additionalInfo": "Tailwind",
+        "additionalInfo": "Tailwind | Bootstrap | SCSS",
         "percentage": 90
       },
       {
@@ -15,10 +15,14 @@
       },
       {
         "mainTitle": "FRAMEWORKS",
-        "additionalInfo": "React | Next | Express",
+        "additionalInfo": "React | Next | Nest | Express",
         "percentage": 80
       },
-      { "mainTitle": "NODE", "additionalInfo": "", "percentage": 56 },
+      {
+        "mainTitle": "NODE",
+        "additionalInfo": "Nest | Express",
+        "percentage": 56
+      },
       { "mainTitle": "JAVA", "additionalInfo": "", "percentage": 28 }
     ],
     "logoImageURL": "/logo_only_graph_transparency__developer.png",
@@ -35,8 +39,8 @@
         "percentage": 97
       },
       {
-        "mainTitle": "raster",
-        "additionalInfo": "Photoshop | Figma | LightRoom",
+        "mainTitle": "raster / vector",
+        "additionalInfo": "Photoshop | Figma | LightRoom | ...",
         "percentage": 97
       },
       {
@@ -70,6 +74,52 @@
       "numberImageURL": "/001.png",
       "projectImages": [
         {
+          "imageUrl": "/optiq_desktop_0001.jpg",
+          "width": 1214,
+          "height": 3176
+        },
+        {
+          "imageUrl": "/optiq_desktop_0002.jpg",
+          "width": 1214,
+          "height": 3514
+        },
+        {
+          "imageUrl": "/optiq_desktop_0003.jpg",
+          "width": 1214,
+          "height": 2874
+        },
+        {
+          "imageUrl": "/artck_mobile_0001.jpg",
+          "width": 526,
+          "height": 4774
+        }
+      ],
+      "projectInfo": {
+        "hasMobilePart": false,
+        "projectName": "OPTIQ PREMIUM",
+        "projectDescription": "Virtual touch kiosk for premium optical stores.",
+        "projectTechnologiesUsed": "plain_pure_vanilla_js (customer's request) bootstrap gsap",
+        "links": {
+          "github": {
+            "isClickableGithub": false,
+            "githubTooltipText": "client's private repository",
+            "isOneLinkOnly_ifFalseThenIsModal": true,
+            "githubModalContent": "",
+            "githubURL": "https://github.com/piotr-kozlowski-reps/witosa_next"
+          },
+          "seeWWW": {
+            "isClickableSeeWWW": false,
+            "seeWWWTooltipText": "project can be seen only on kiosk device",
+            "isOneLinkOnly_ifFalseThenIsModal": true,
+            "seeWWWURL": "https://www.art-ck.pl/"
+          }
+        }
+      }
+    },
+    {
+      "numberImageURL": "/002.png",
+      "projectImages": [
+        {
           "imageUrl": "/artck_desktop_0001.jpg",
           "width": 1214,
           "height": 3176
@@ -91,6 +141,7 @@
         }
       ],
       "projectInfo": {
+        "hasMobilePart": true,
         "projectName": "Art CK",
         "projectDescription": "Nice and demanding project, with challenging custom cms. Graphics/code/... hmm ...everything done with my bare fingers.",
         "projectTechnologiesUsed": "nextjs13 typescript next-auth prisma react-table formik framer-motion  tailwindcss aws-s3 vitest",
@@ -112,7 +163,7 @@
       }
     },
     {
-      "numberImageURL": "/002.png",
+      "numberImageURL": "/003.png",
       "projectImages": [
         {
           "imageUrl": "/kinoscenakultura_desktop_0001.jpg",
@@ -136,6 +187,7 @@
         }
       ],
       "projectInfo": {
+        "hasMobilePart": true,
         "projectName": "kinoscenakultura",
         "projectDescription": "I wrote all custom javascript, that was needed.",
         "projectTechnologiesUsed": "javascript",
@@ -157,7 +209,7 @@
       }
     },
     {
-      "numberImageURL": "/003.png",
+      "numberImageURL": "/004.png",
       "projectImages": [
         {
           "imageUrl": "/dev_portfolio_desktop_0001.jpg",
@@ -181,6 +233,7 @@
         }
       ],
       "projectInfo": {
+        "hasMobilePart": true,
         "projectName": "Dev Portfolio",
         "projectDescription": "It's a bit awkward to put my dev portfolio into my dev portfolio. But I made it ... so here it is.",
         "projectTechnologiesUsed": "next gsap/scrollTrigger tailwindCSS",
@@ -199,7 +252,7 @@
       }
     },
     {
-      "numberImageURL": "/004.png",
+      "numberImageURL": "/005.png",
       "projectImages": [
         {
           "imageUrl": "/ante_portfolio_desktop_0001.jpg",
@@ -223,6 +276,7 @@
         }
       ],
       "projectInfo": {
+        "hasMobilePart": true,
         "projectName": "ante portfolio",
         "projectDescription": "Portfolio website of a 3d part of my work-related activities. Architectural visualizations in most cases.",
         "projectTechnologiesUsed": "react redux formik gsap node express",

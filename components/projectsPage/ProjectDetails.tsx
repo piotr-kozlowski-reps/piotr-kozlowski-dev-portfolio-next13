@@ -15,8 +15,15 @@ gsap.registerPlugin(ScrollTrigger);
 const ProjectDetails = (props: Props) => {
   ////vars
   const { numberImageURL, projectImages, projectInfo } = props.projectDetails;
-  const { projectName, projectDescription, projectTechnologiesUsed, links } =
-    projectInfo;
+  const {
+    projectName,
+    projectDescription,
+    projectTechnologiesUsed,
+    links,
+    hasMobilePart,
+  } = projectInfo;
+
+  // console.log({ hasMobilePart });
 
   const projectRef = useRef<HTMLDivElement>(null);
   const backgroundDescriptionRef = useRef<HTMLDivElement>(null);
@@ -180,24 +187,113 @@ const ProjectDetails = (props: Props) => {
         );
     };
 
+    function animateNoMobile(
+      tl: gsap.core.Timeline,
+      howMuchMoveImages: string,
+      blurAmount: number
+    ) {
+      tl.addLabel("start")
+        .to(projectNumberRef.current, { autoAlpha: 1 }, "start")
+        .fromTo(
+          image1Ref.current,
+          { autoAlpha: 0, y: "50vh" },
+          { autoAlpha: 1, y: "-10vh", ease: "power4.in" },
+          "start"
+        )
+        .fromTo(
+          image1Ref.current,
+          { filter: "blur(0px)", y: "-10vh", autoAlpha: 1 },
+          {
+            filter: `blur(${blurAmount}px)`,
+            y: howMuchMoveImages,
+            autoAlpha: 0,
+          }
+        )
+        .fromTo(
+          image2Ref.current,
+          { autoAlpha: 0, y: "50vh" },
+          { autoAlpha: 1, y: "-10vh", ease: "power4.in" },
+          "-=90%"
+        )
+        .addLabel("description")
+        .fromTo(
+          image2Ref.current,
+          { filter: "blur(0px)", y: "-10vh", autoAlpha: 1 },
+          {
+            filter: `blur(${blurAmount}px)`,
+            y: howMuchMoveImages,
+            autoAlpha: 0,
+          },
+          "description"
+        )
+        .fromTo(
+          image3Ref.current,
+          { autoAlpha: 0, y: "50vh" },
+          { autoAlpha: 1, y: "-10vh", ease: "power4.in" },
+          "-=90%"
+        )
+        .fromTo(
+          image3Ref.current,
+          { filter: "blur(0px)", y: "-10vh" },
+          { filter: `blur(${blurAmount}px)`, y: howMuchMoveImages },
+          "description"
+        )
+        .to(backgroundDescriptionRef.current, { autoAlpha: 1 }, "description")
+        .fromTo(
+          projectNameRef.current,
+          { filter: "blur(5px)", x: "-100vh", autoAlpha: 0 },
+          { filter: "blur(0px)", x: 0, autoAlpha: 1, ease: "power4.inOut" },
+          "description"
+        )
+        .fromTo(
+          projectTechnologiesNameRef.current,
+          { filter: "blur(5px)", x: "-100vh", autoAlpha: 0 },
+          { filter: "blur(0px)", x: 0, autoAlpha: 1, ease: "power4.inOut" },
+          "description"
+        )
+        .addLabel("descriptionAndScale")
+        .fromTo(
+          [
+            githubNameRef.current,
+            viewSiteNameRef.current,
+            projectDescriptionRef.current,
+          ],
+          { filter: "blur(5px)", x: "-100vh", autoAlpha: 0 },
+          { filter: "blur(0px)", x: 0, autoAlpha: 1, ease: "power4.inOut" },
+          "description"
+        )
+        .to(projectRef.current, { autoAlpha: 1 }, "description")
+        .fromTo(
+          projectRef.current,
+          { y: "0", autoAlpha: 1 },
+          { y: "-50vh", autoAlpha: 0 }
+        );
+    }
+
     mm.add("(max-width: 768px)", () => {
       const tl = createTl();
-      animate(tl, "-60vh", 1);
+      hasMobilePart ? animate(tl, "-60vh", 1) : animateNoMobile(tl, "-60vh", 1);
     });
 
     mm.add("(min-width: 769px) and (max-width: 1223px)", () => {
       const tl = createTl();
-      animate(tl, "-160vh", 3);
+      hasMobilePart
+        ? animate(tl, "-160vh", 3)
+        : animateNoMobile(tl, "-160vh", 0);
     });
 
     mm.add("(min-width: 1224px) and (max-height: 1079px)", () => {
       const tl = createTl();
-      animate(tl, "-300vh", 1);
+      hasMobilePart
+        ? animate(tl, "-300vh", 1)
+        : animateNoMobile(tl, "-300vh", 0);
     });
 
     mm.add("(min-width: 1224px) and (min-height: 1080px)", () => {
       const tl = createTl();
-      animate(tl, "-250vh", 1);
+      hasMobilePart
+        ? animate(tl, "-250vh", 1)
+        : animateNoMobile(tl, "-250vh", 0);
     });
 
     return () => {
